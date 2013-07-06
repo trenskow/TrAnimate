@@ -1,6 +1,6 @@
 (This documentation is very preliminary)
 
-# TrAnimation iOS Animation Library
+# TrAnimate iOS Animation Library
 
 TrAnimate is an iOS animation library designed to make it easy to create complex animations, without the need for using Core Animation.
 
