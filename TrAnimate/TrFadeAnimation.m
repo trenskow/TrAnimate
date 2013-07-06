@@ -1,0 +1,137 @@
+//
+//  TrFadeOutAnimation.m
+//  TrAnimate
+//
+//  Copyright (c) 2013, Kristian Trenskow All rights reserved.
+//
+//  Redistribution and use in source and binary forms, with or
+//  without modification, are permitted provided that the following
+//  conditions are met:
+//
+//  Redistributions of source code must retain the above copyright
+//  notice, this list of conditions and the following disclaimer.
+//  Redistributions in binary form must reproduce the above
+//  copyright notice, this list of conditions and the following
+//  disclaimer in the documentation and/or other materials provided
+//  with the distribution. THIS SOFTWARE IS PROVIDED BY THE
+//  COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR
+//  IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+//  WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+//  PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER
+//  OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+//  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+//  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS
+//  OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+//  CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+//  STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+//  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+//  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+//
+
+#import <QuartzCore/QuartzCore.h>
+
+#import "TrFadeAnimation.h"
+
+@interface TrAnimation (Private)
+@property (weak,nonatomic) UIView *view;
+@property (nonatomic) NSTimeInterval duration;
+@property (nonatomic) NSTimeInterval delay;
+@property (nonatomic) TrAnimationOptions options;
+- (void)prepareAnimation:(CAAnimation *)animation usingKey:(NSString *)key;
+- (void)animationStarted;
+- (void)animationCompleted:(BOOL)finished;
+- (void)setupAnimations;
+- (NSArray *)propertiesDescription;
+@end
+
+@interface TrFadeAnimation () {
+    
+    TrCustomCurveBlock _curve;
+    CGFloat _startValue;
+    CGFloat _endValue;
+    
+}
+
+@end
+
+@implementation TrFadeAnimation
+
+#pragma mark - Internal
+
+- (void)animationStarted {
+    
+    [super animationStarted];
+    
+    CGFloat endValue = (_endValue - _startValue) * _curve(1.0f) + _startValue;
+    
+    self.view.hidden = NO;
+    self.view.layer.opacity = endValue;
+    
+}
+
+- (void)animationCompleted:(BOOL)finished {
+    
+    [super animationCompleted:finished];
+    
+    if (!(self.options & kTrAnimationOptionReversed))
+        self.view.hidden = YES;
+    
+}
+
+- (void)setupAnimations {
+    
+    _startValue = 1.0;
+    _endValue = 0.0;
+    
+    if (self.options & kTrAnimationOptionReversed) {
+        _startValue = 0.0;
+        _endValue = 1.0;
+    }
+    
+    TrCustomCurvedAnimation *fadeAnimation = [TrCustomCurvedAnimation animationWithKeyPath:@"opacity"];
+    fadeAnimation.curve = _curve;
+    fadeAnimation.fromValue = @(_startValue);
+    fadeAnimation.toValue = @(_endValue);
+    
+    self.view.layer.opacity = _startValue;
+    
+    [self prepareAnimation:fadeAnimation usingKey:@"fadeAnimation"];
+    
+    [self.view.layer addAnimation:fadeAnimation forKey:nil];
+    
+}
+
+#pragma mark - Creating Animation
+
++ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
+    
+    TrFadeAnimation *animation = [self animateView:view
+                                            duration:duration
+                                               delay:delay
+                                             options:(fadesIn ? kTrAnimationOptionReversed : 0)
+                                          completion:completion];
+    
+    animation->_curve = curve;
+    
+    return animation;
+    
+}
+
++ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
+    
+    return [self animateView:view
+                    duration:duration
+                       delay:delay
+                       curve:kTrAnimationCurveLinear
+                     fadesIn:fadesIn
+                  completion:completion];
+    
+}
+
++ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay fadesIn:(BOOL)fadesIn {
+    
+    return [self animateView:view duration:duration delay:delay fadesIn:fadesIn completion:nil];
+    
+}
+
+@end
