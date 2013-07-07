@@ -28,16 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "TrAnimationSubclass.h"
 #import "TrMoveInAnimation.h"
-
-@interface TrAnimation (Private)
-@property (weak,nonatomic) UIView *view;
-@property (nonatomic) TrAnimationOptions options;
-- (void)prepareAnimation:(CAAnimation *)animation usingKey:(NSString *)key;
-- (void)animationStarted;
-- (void)animationCompleted:(BOOL)finished;
-- (void)setupAnimations;
-@end
 
 @interface TrMoveInAnimation () {
     

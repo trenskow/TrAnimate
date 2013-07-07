@@ -28,19 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "TrAnimationSubclass.h"
 #import "TrZoomAnimation.h"
-
-@interface TrAnimation (Private)
-@property (weak,nonatomic) UIView *view;
-@property (nonatomic) NSTimeInterval duration;
-@property (nonatomic) NSTimeInterval delay;
-@property (nonatomic) TrAnimationOptions options;
-@property (copy,nonatomic) void(^completionBlock)(BOOL finished);
-- (void)prepareAnimation:(CAAnimation *)animation usingKey:(NSString *)key;
-- (void)animationStarted;
-- (void)animationCompleted:(BOOL)finished;
-- (void)setupAnimations;
-@end
 
 @interface TrZoomAnimation () {
     

@@ -30,19 +30,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import "TrAnimationSubclass.h"
 #import "TrFadeAnimation.h"
-
-@interface TrAnimation (Private)
-@property (weak,nonatomic) UIView *view;
-@property (nonatomic) NSTimeInterval duration;
-@property (nonatomic) NSTimeInterval delay;
-@property (nonatomic) TrAnimationOptions options;
-- (void)prepareAnimation:(CAAnimation *)animation usingKey:(NSString *)key;
-- (void)animationStarted;
-- (void)animationCompleted:(BOOL)finished;
-- (void)setupAnimations;
-- (NSArray *)propertiesDescription;
-@end
 
 @interface TrFadeAnimation () {
     

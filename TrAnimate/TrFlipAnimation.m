@@ -30,19 +30,8 @@
 
 #import "TrCustomCurvedAnimation.h"
 
+#import "TrAnimationSubclass.h"
 #import "TrFlipAnimation.h"
-
-@interface TrAnimation (Private)
-@property (weak,nonatomic) UIView *view;
-@property (nonatomic) NSTimeInterval duration;
-@property (nonatomic) NSTimeInterval delay;
-@property (nonatomic) TrAnimationOptions options;
-- (id)initWithView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion;
-- (void)prepareAnimation:(CAAnimation *)animation usingKey:(NSString *)key;
-- (void)animationStarted;
-- (void)animationCompleted:(BOOL)finished;
-- (void)setupAnimations;
-@end
 
 @interface TrFlipAnimation () {
     

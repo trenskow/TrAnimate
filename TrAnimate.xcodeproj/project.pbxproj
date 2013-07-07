@@ -41,6 +41,7 @@
 
 /* Begin PBXFileReference section */
 		A10BC9A217883E9800F354FC /* TrAnimate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimate.h; sourceTree = "<group>"; };
+		A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimationSubclass.h; sourceTree = "<group>"; };
 		A11C7853178839720000B420 /* libTrAnimate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTrAnimate.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11C7856178839720000B420 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A11C785A178839720000B420 /* TrAnimate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrAnimate-Prefix.pch"; sourceTree = "<group>"; };
@@ -145,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				A11C7867178839FA0000B420 /* TrAnimation.h */,
+				A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */,
 				A11C7868178839FA0000B420 /* TrAnimation.m */,
 				A11C786A17883A0A0000B420 /* Move */,
 				A11C786B17883A110000B420 /* MoveIn */,

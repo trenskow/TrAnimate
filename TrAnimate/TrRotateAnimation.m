@@ -28,15 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "TrAnimationSubclass.h"
 #import "TrRotateAnimation.h"
-
-@interface TrAnimation (Private)
-@property (weak,nonatomic) UIView *view;
-@property (nonatomic) TrAnimationOptions options;
-- (void)prepareAnimation:(CAAnimation *)animation usingKey:(NSString *)key;
-- (void)animationStarted;
-- (void)setupAnimations;
-@end
 
 @interface TrRotateAnimation () {
     
