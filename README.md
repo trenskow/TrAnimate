@@ -1,4 +1,4 @@
-(This documentation is very preliminary)
+[New documentation is currently being written and is available here](wiki)
 
 # TrAnimate iOS Animation Library
 
