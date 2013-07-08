@@ -1,4 +1,4 @@
-[New documentation is currently being written and is available here](wiki)
+[New documentation is currently being written and is available here](https://github.com/trenskow/TrAnimate/wiki)
 
 # TrAnimate iOS Animation Library
 
