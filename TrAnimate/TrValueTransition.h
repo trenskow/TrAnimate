@@ -31,6 +31,7 @@
 @protocol TrValueTransition
 
 @required
-- (id)transitionToValue:(id)val withProgress:(CGFloat)p;
+- (id)transitionToValue:(id)val
+           withProgress:(CGFloat)p;
 
 @end

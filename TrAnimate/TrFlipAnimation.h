@@ -40,8 +40,25 @@ typedef enum {
 
 @interface TrFlipAnimation : TrAnimation
 
-+ (id)animateFromView:(UIView *)sourceView toView:(UIView *)destinationView duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void(^)(BOOL finished))completion;
-+ (id)animateFromView:(UIView *)sourceView toView:(UIView *)destinationView duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options;
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion;
++ (id)animateFromView:(UIView *)sourceView
+               toView:(UIView *)destinationView
+             duration:(NSTimeInterval)duration
+                delay:(NSTimeInterval)delay
+              options:(TrAnimationOptions)options
+                curve:(TrCustomCurveBlock)curve
+           completion:(void(^)(BOOL finished))completion;
+
++ (id)animateFromView:(UIView *)sourceView
+               toView:(UIView *)destinationView
+             duration:(NSTimeInterval)duration
+                delay:(NSTimeInterval)delay
+              options:(TrAnimationOptions)options;
+
++ (id)animateView:(UIView *)view
+         duration:(NSTimeInterval)duration
+            delay:(NSTimeInterval)delay
+          options:(TrAnimationOptions)options
+            curve:(TrCustomCurveBlock)curve
+       completion:(void (^)(BOOL))completion;
 
 @end

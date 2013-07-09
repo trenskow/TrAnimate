@@ -34,8 +34,22 @@
 
 @interface TrFadeAnimation : TrAnimation
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion;
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion;
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay fadesIn:(BOOL)fadesIn;
++ (id)animateView:(UIView *)view
+         duration:(NSTimeInterval)duration
+            delay:(NSTimeInterval)delay
+            curve:(TrCustomCurveBlock)curve
+          fadesIn:(BOOL)fadesIn
+       completion:(void (^)(BOOL))completion;
+
++ (id)animateView:(UIView *)view
+         duration:(NSTimeInterval)duration
+            delay:(NSTimeInterval)delay
+          fadesIn:(BOOL)fadesIn
+       completion:(void (^)(BOOL))completion;
+
++ (id)animateView:(UIView *)view
+         duration:(NSTimeInterval)duration
+            delay:(NSTimeInterval)delay
+          fadesIn:(BOOL)fadesIn;
 
 @end

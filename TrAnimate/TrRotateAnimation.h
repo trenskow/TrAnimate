@@ -42,9 +42,34 @@ typedef enum {
 
 @interface TrRotateAnimation : TrAnimation
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle;
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle options:(TrRotateAnimationOptions)options;
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion;
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle options:(TrRotateAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion;
++ (id)animateView:(UIView *)view
+         duration:(NSTimeInterval)duration
+            delay:(NSTimeInterval)delay
+       startAngle:(CGFloat)startAngle
+         endAngle:(CGFloat)endAngle;
+
++ (id)animateView:(UIView *)view
+         duration:(NSTimeInterval)duration
+            delay:(NSTimeInterval)delay
+       startAngle:(CGFloat)startAngle
+         endAngle:(CGFloat)endAngle
+          options:(TrRotateAnimationOptions)options;
+
++ (id)animateView:(UIView *)view
+         duration:(NSTimeInterval)duration
+            delay:(NSTimeInterval)delay
+       startAngle:(CGFloat)startAngle
+         endAngle:(CGFloat)endAngle
+            curve:(TrCustomCurveBlock)curve
+       completion:(void (^)(BOOL))completion;
+
++ (id)animateView:(UIView *)view
+         duration:(NSTimeInterval)duration
+            delay:(NSTimeInterval)delay
+       startAngle:(CGFloat)startAngle
+         endAngle:(CGFloat)endAngle
+          options:(TrRotateAnimationOptions)options
+            curve:(TrCustomCurveBlock)curve
+       completion:(void (^)(BOOL))completion;
 
 @end

@@ -37,11 +37,13 @@ typedef enum {
 @protocol TrAnimation
 
 @required
+
 @property (nonatomic,readonly,getter = isAnimating) BOOL animating;
 @property (nonatomic,readonly,getter = isComplete) BOOL complete;
 @property (nonatomic,readonly,getter = isFinished) BOOL finished;
 @property (nonatomic,readonly) NSTimeInterval duration;
 @property (nonatomic) NSTimeInterval delay;
+
 - (void)postponeAnimation;
 - (void)beginAnimation;
 
@@ -49,6 +51,10 @@ typedef enum {
 
 @interface TrAnimation : NSObject <TrAnimation>
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void(^)(BOOL finished))completion;
++ (id)animateView:(UIView *)view
+         duration:(NSTimeInterval)duration
+            delay:(NSTimeInterval)delay
+          options:(TrAnimationOptions)options
+       completion:(void(^)(BOOL finished))completion;
 
 @end
