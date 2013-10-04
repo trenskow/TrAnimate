@@ -40,7 +40,7 @@ TrCustomCurveBlock kTrAnimationCurveLinear = ^(CGFloat t) {
 #pragma mark kTrAnimationCurveEaseInSine
 
 TrCustomCurveBlock kTrAnimationCurveEaseInSine = ^(CGFloat t) {
-    return (CGFloat) (-1.0f * cos(t * M_PI_2) + 1.0f);
+    return (CGFloat)(-1.0f * cos(t * M_PI_2) + 1.0f);
 };
 
 #pragma mark kTrAnimationCurveEaseOutSine
@@ -61,11 +61,14 @@ TrCustomCurveBlock kTrAnimationCurveEaseOutBounce = ^(CGFloat t) {
     if (t < (1/2.75)) {
         r = 7.5625*t*t;
     } else if (t < (2/2.75)) {
-        r = 7.5625*(t-=(1.5/2.75))*t + .75;
+        t -= 1.5 / 2.75;
+        r = 7.5625*t*t + .75;
     } else if (t < (2.5/2.75)) {
-        r = 7.5625*(t-=(2.25/2.75))*t + .9375;
+        t -= 2.25 / 2.75;
+        r = 7.5625*t*t + .9375;
     } else {
-        r = 7.5625*(t-=(2.625/2.75))*t + .984375;
+        t -= 2.625 / 2.75;
+        r = 7.5625*t*t + .984375;
     }
     
     return r;
@@ -90,17 +93,22 @@ TrCustomCurveBlock kTrAnimationCurveEaseInBack = ^(CGFloat t) {
 #pragma mark kTrAnimationCurveEaseOutBack
 TrCustomCurveBlock kTrAnimationCurveEaseOutBack = ^(CGFloat t) {
     
-    return (CGFloat)((t=t-1)*t*((1.70158f+1)*t + 1.70158f) + 1);
+    t -= 1.0f;
+    return (CGFloat)(t*t*((1.70158f+1)*t + 1.70158f) + 1);
     
 };
 
 #pragma mark kTrAnimationCurveEaseInOutBack
 TrCustomCurveBlock kTrAnimationCurveEaseInOutBack = ^(CGFloat t) {
     
-    CGFloat s = 1.70158f;
-    if ((t/=.5f) < 1.0f)
-        return (CGFloat)(.5f*(t*t*(((s*=(1.525))+1)*t - s)));
-    return (CGFloat)(.5f*((t-=2)*t*(((s*=(1.525))+1)*t + s) + 2));
+    CGFloat s = 1.70158f * 1.525f;
+    t /= .5f;
+    
+    if (t < 1.0f)
+        return (.5f*(t*t*(((s)+1)*t - s))); //.5f * (t * t * (s+1) * t - s);
+    
+    t -= 2;
+    return .5f* ((t * t * ((s+1) * t + s) + 2));
     
 };
 
