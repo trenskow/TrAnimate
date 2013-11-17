@@ -34,6 +34,8 @@
 
 @interface TrFadeAnimation : TrAnimation
 
++ (BOOL)inProgressOnView:(UIView *)view;
+
 + (id)animateView:(UIView *)view
          duration:(NSTimeInterval)duration
             delay:(NSTimeInterval)delay

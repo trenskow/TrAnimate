@@ -118,7 +118,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 - (void)prepareAnimation:(CAAnimation *)animation usingKey:(NSString *)key {
     
-#if defined(Tr_ANIMATION_VIEW_DEBUG)
+#if defined(TR_ANIMATION_VIEW_DEBUG)
     animation.duration = self.duration * 10.0f;
     animation.beginTime = CACurrentMediaTime() + self.delay * 10.0f;
 #else

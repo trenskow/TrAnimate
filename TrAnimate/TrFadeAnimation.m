@@ -86,11 +86,17 @@
     
     [self prepareAnimation:fadeAnimation usingKey:@"fadeAnimation"];
     
-    [self.view.layer addAnimation:fadeAnimation forKey:nil];
+    [self.view.layer addAnimation:fadeAnimation forKey:@"fadeAnimation"];
     
 }
 
 #pragma mark - Creating Animation
+
++ (BOOL)inProgressOnView:(UIView *)view {
+    
+    return ([view.layer animationForKey:@"fadeAnimation"] != nil);
+    
+}
 
 + (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
     
