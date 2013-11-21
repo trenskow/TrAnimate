@@ -40,3 +40,5 @@
 #import "TrRotateAnimation.h"
 
 #import "TrAnimationGroup.h"
+
+#import "UIView+TrAnimateAdditions.h"
