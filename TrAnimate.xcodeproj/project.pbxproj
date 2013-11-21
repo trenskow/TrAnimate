@@ -128,7 +128,7 @@
 		A11C7858178839720000B420 /* TrAnimate */ = {
 			isa = PBXGroup;
 			children = (
-				A1A89240183E8A9A004C78B9 /* Categories */,
+				A1A89240183E8A9A004C78B9 /* Generic Additions */,
 				A11C7866178839B50000B420 /* Curves & Interpolation */,
 				A11C7865178839AC0000B420 /* Animations */,
 				A11C788217883B6E0000B420 /* Animation Group */,
@@ -279,13 +279,13 @@
 			name = Additions;
 			sourceTree = "<group>";
 		};
-		A1A89240183E8A9A004C78B9 /* Categories */ = {
+		A1A89240183E8A9A004C78B9 /* Generic Additions */ = {
 			isa = PBXGroup;
 			children = (
 				A1A89241183E8AB0004C78B9 /* UIView+TrAnimateAdditions.h */,
 				A1A89242183E8AB0004C78B9 /* UIView+TrAnimateAdditions.m */,
 			);
-			name = Categories;
+			name = "Generic Additions";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
