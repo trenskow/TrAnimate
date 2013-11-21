@@ -53,6 +53,12 @@ TrCustomCurveBlock kTrAnimationCurveEaseInOutSine = ^(CGFloat t) {
     return (CGFloat)(-.5f * cos(M_PI*t) + .5f);
 };
 
+#pragma mark kTrAnimationCurveEaseOutCubic
+TrCustomCurveBlock kTrAnimationCurveEaseOutCubic = ^(CGFloat t) {
+    t = t - 1.0;
+    return t*t*t + 1;
+};
+
 #pragma mark kTrAnimationCurveEaseOutBounce
 TrCustomCurveBlock kTrAnimationCurveEaseOutBounce = ^(CGFloat t) {
     
