@@ -52,7 +52,7 @@ TrCustomCurveBlock kTrAnimationCurveEaseOutElastic;
 @interface TrCustomCurvedAnimation : TrCustomInterpolationAnimation
 
 @property (copy,nonatomic) TrCustomCurveBlock curve;
-@property (nonatomic) id<TrValueTransition> fromValue;
-@property (nonatomic) id<TrValueTransition> toValue;
+@property (nonatomic,strong) id<TrValueTransition> fromValue;
+@property (nonatomic,strong) id<TrValueTransition> toValue;
 
 @end
