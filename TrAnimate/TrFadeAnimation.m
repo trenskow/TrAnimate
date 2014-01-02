@@ -106,7 +106,8 @@
                                              options:(fadesIn ? kTrAnimationOptionReversed : 0)
                                           completion:completion];
     
-    animation->_curve = curve;
+    if (animation)
+        animation->_curve = curve;
     
     return animation;
     

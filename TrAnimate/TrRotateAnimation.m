@@ -104,9 +104,11 @@
                                                 options:(TrAnimationOptions)options
                                              completion:completion];
     
-    animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
-    animation->_startValue = startAngle;
-    animation->_endValue = endAngle;
+    if (animation) {
+        animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
+        animation->_startValue = startAngle;
+        animation->_endValue = endAngle;
+    }
     
     return animation;
     

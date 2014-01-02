@@ -80,10 +80,12 @@
                                               options:0
                                            completion:completion];
     
-    animation->_curve = (curve ? curve : kTrAnimationCurveLinear);;
-    animation->_startPosition = view.layer.position;
-    animation->_endPosition = CGPointMake(endPosition.x + (view.frame.size.width / 2),
-                                          endPosition.y + (view.frame.size.height / 2));;
+    if (animation) {
+        animation->_curve = (curve ? curve : kTrAnimationCurveLinear);;
+        animation->_startPosition = view.layer.position;
+        animation->_endPosition = CGPointMake(endPosition.x + (view.frame.size.width / 2),
+                                              endPosition.y + (view.frame.size.height / 2));;
+    }
     
     return animation;
     

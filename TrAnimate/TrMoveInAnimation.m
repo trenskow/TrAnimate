@@ -153,7 +153,8 @@
                                                 options:(TrAnimationOptions)options
                                              completion:completion];
     
-    animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
+    if (animation)
+        animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
     
     return animation;
     

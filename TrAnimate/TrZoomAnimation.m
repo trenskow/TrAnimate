@@ -79,9 +79,11 @@
                                               options:0
                                            completion:completion];
     
-    animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
-    animation->_startValue = startZoomLevel;
-    animation->_endValue = endZoomLevel;
+    if (animation) {
+        animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
+        animation->_startValue = startZoomLevel;
+        animation->_endValue = endZoomLevel;
+    }
     
     return animation;
     

@@ -185,8 +185,10 @@
                                           completion:completion];
     
     /* Set flip animation instance variables */
-    animation->_destinationView = destinationView;
-    animation->_curve = curve;
+    if (animation) {
+        animation->_destinationView = destinationView;
+        animation->_curve = curve;
+    }
     
     return animation;
     
