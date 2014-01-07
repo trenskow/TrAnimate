@@ -36,8 +36,8 @@
 @interface TrFlipAnimation () {
     
     TrCustomCurveBlock _curve;
-    UIView *_destinationView;
-    UIView *_encapsulation;
+    CALayer *_destinationLayer;
+    CALayer *_encapsulationLayer;
     
 }
 
@@ -51,10 +51,10 @@
     
     [super animationStarted];
     
-    if (_destinationView) {
+    if (_destinationLayer) {
         
-        _destinationView.layer.opacity = 1.0f;
-        self.view.layer.opacity = .0f;
+        _destinationLayer.opacity = 1.0f;
+        self.layer.opacity = .0f;
         
     }
     
@@ -64,47 +64,53 @@
     
     [super animationCompleted:finished];
     
-    if (_destinationView) {
+    if (_destinationLayer) {
         
         /* Animation is complete so we need to unpack view from encapsulation */
-        _destinationView.frame = _encapsulation.frame;
-        [_encapsulation.superview insertSubview:_destinationView aboveSubview:_encapsulation];
+        _destinationLayer.bounds = _encapsulationLayer.bounds;
+        _destinationLayer.position = _encapsulationLayer.position;
+        [_encapsulationLayer.superlayer insertSublayer:_destinationLayer above:_encapsulationLayer];
         
     } else {
         
-        self.view.frame = _encapsulation.frame;
-        [_encapsulation.superview insertSubview:self.view aboveSubview:_encapsulation];
+        self.layer.bounds = _encapsulationLayer.bounds;
+        self.layer.position = _encapsulationLayer.position;
+        [_encapsulationLayer.superlayer insertSublayer:self.layer above:_encapsulationLayer];
         
     }
     
-    [_encapsulation removeFromSuperview];
+    [_encapsulationLayer removeFromSuperlayer];
     
 }
 
 - (void)setupAnimations {
     
-    /* We start by encapsulating view into a container view */
-    _encapsulation = [[UIView alloc] initWithFrame:self.view.frame];
-    _encapsulation.backgroundColor = [UIColor clearColor];
-    _encapsulation.opaque = NO;
+    /* We start by encapsulating layer into a container layer */
+    _encapsulationLayer = [[CALayer alloc] init];
+    _encapsulationLayer.bounds = self.layer.bounds;
+    _encapsulationLayer.position = self.layer.position;
+    _encapsulationLayer.backgroundColor = [UIColor clearColor].CGColor;
+    _encapsulationLayer.opaque = NO;
     
-    /* Place views in view hierarki */
-    [self.view.superview insertSubview:_encapsulation belowSubview:self.view];
-    [_encapsulation addSubview:self.view];
-    self.view.frame = _encapsulation.bounds;
+    /* Place layer in layer hierarki */
+    [self.layer.superlayer insertSublayer:_encapsulationLayer below:self.layer];
+    [_encapsulationLayer addSublayer:self.layer];
+    self.layer.bounds = _encapsulationLayer.bounds;
+    self.layer.position = CGPointZero;
     
     /* Hide destination layer as this is the state at animation departure */
-    _destinationView.layer.opacity = .0f;
+    _destinationLayer.opacity = .0f;
     
     /* Add destination view */
-    _destinationView.frame = _encapsulation.bounds;
+    _destinationLayer.bounds = _encapsulationLayer.bounds;
+    _destinationLayer.position = CGPointZero;
     
-    if (_destinationView)
-        [_encapsulation insertSubview:_destinationView atIndex:0];
+    if (_destinationLayer)
+        [_encapsulationLayer insertSublayer:_destinationLayer atIndex:0];
     
-    CATransform3D theTransform = _encapsulation.layer.sublayerTransform;
+    CATransform3D theTransform = _encapsulationLayer.sublayerTransform;
     theTransform.m34 = 1.0f / -250.0f;
-    _encapsulation.layer.sublayerTransform = theTransform;
+    _encapsulationLayer.sublayerTransform = theTransform;
     
     /* If view should fit context we add a zoom animation */
     if (self.options & kTrFlipAnimationOptionFit) {
@@ -117,7 +123,7 @@
         
         [self prepareAnimation:encapsulationZoomAnimation usingKey:@"encapsulationZoomAnimation"];
         
-        [_encapsulation.layer addAnimation:encapsulationZoomAnimation forKey:nil];
+        [_encapsulationLayer addAnimation:encapsulationZoomAnimation forKey:nil];
         
     }
     
@@ -129,7 +135,7 @@
         return [NSValue valueWithCATransform3D:CATransform3DMakeRotation(M_PI * _curve(t), .0f, 1.0f, .0f)];
     };
     
-    if (_destinationView) {
+    if (_destinationLayer) {
         
         /* Setup opacity animation for source view - hide halfway */
         TrCustomInterpolationAnimation *sourceOpacityAnimation = [TrCustomInterpolationAnimation animationWithKeyPath:@"opacity"];
@@ -145,9 +151,9 @@
     
     [self prepareAnimation:sourceAnimationGroup usingKey:@"flipSourceAnimation"];
     
-    [self.view.layer addAnimation:sourceAnimationGroup forKey:nil];
+    [self.layer addAnimation:sourceAnimationGroup forKey:nil];
     
-    if (_destinationView) {
+    if (_destinationLayer) {
         
         CAAnimationGroup *destinationAnimationGroup = [CAAnimationGroup animation];
         
@@ -168,7 +174,7 @@
         
         [self prepareAnimation:destinationAnimationGroup usingKey:@"flipDestinationAnimation"];
         
-        [_destinationView.layer addAnimation:destinationAnimationGroup forKey:nil];
+        [_destinationLayer addAnimation:destinationAnimationGroup forKey:nil];
         
     }
     
@@ -176,45 +182,51 @@
 
 #pragma mark - Creating Animation
 
-+ (id)animateFromView:(UIView *)sourceView toView:(UIView *)destinationView duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (id)animateFrom:(id)sourceViewOrLayer to:(id)destinationViewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    TrFlipAnimation *animation = [self animateView:sourceView
-                                            duration:duration
-                                               delay:delay
-                                             options:options
-                                          completion:completion];
+    TrFlipAnimation *animation = [self animate:sourceViewOrLayer
+                                      duration:duration
+                                         delay:delay
+                                       options:options
+                                    completion:completion];
     
     /* Set flip animation instance variables */
     if (animation) {
-        animation->_destinationView = destinationView;
+        
+        CALayer *destinationLayer = destinationViewOrLayer;
+        if ([destinationViewOrLayer isKindOfClass:[UIView class]])
+            destinationLayer = ((UIView *)destinationViewOrLayer).layer;
+        
+        animation->_destinationLayer = destinationLayer;
         animation->_curve = curve;
+        
     }
     
     return animation;
     
 }
 
-+ (id)animateFromView:(UIView *)sourceView toView:(UIView *)destinationView duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options {
++ (id)animateFrom:(id)sourceViewOrLayer to:(id)destinationViewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options {
     
-    return [self animateFromView:sourceView
-                          toView:destinationView
-                        duration:duration
-                           delay:delay
-                         options:options
-                           curve:kTrAnimationCurveLinear
-                      completion:nil];
+    return [self animateFrom:sourceViewOrLayer
+                          to:destinationViewOrLayer
+                    duration:duration
+                       delay:delay
+                     options:options
+                       curve:kTrAnimationCurveLinear
+                  completion:nil];
     
 }
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    return [self animateFromView:view
-                          toView:nil
-                        duration:duration
-                           delay:delay
-                         options:options
-                           curve:curve
-                      completion:completion];
+    return [self animateFrom:viewOrLayer
+                          to:nil
+                    duration:duration
+                       delay:delay
+                     options:options
+                       curve:curve
+                  completion:completion];
     
 }
 

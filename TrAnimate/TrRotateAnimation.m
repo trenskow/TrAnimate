@@ -68,9 +68,8 @@
      when presentation layer is removed our animation is final.
      */
     
-    CGFloat endValue = (_endValue - _startValue) * _curve(1.0f) + _startValue;
-    
-    [self.view.layer setValue:@(endValue) forKey:self.keyPath];
+    [self.layer setValue:@((_endValue - _startValue) * _curve(1.0f) + _startValue)
+                  forKey:self.keyPath];
     
 }
 
@@ -88,21 +87,22 @@
     [self prepareAnimation:rotateAnimation usingKey:@"rotateAnimation"];
     
     /* As delay may have been applied, we start by applying the start value to our layer */
-    [self.view.layer setValue:@(_startValue) forKey:self.keyPath];
+    [self.layer setValue:@((_endValue - _startValue) * _curve(0.0f) + _startValue)
+                  forKey:self.keyPath];
     
-    [self.view.layer addAnimation:rotateAnimation forKey:nil];
+    [self.layer addAnimation:rotateAnimation forKey:nil];
     
 }
 
 #pragma mark - Creating Animation
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle options:(TrRotateAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle options:(TrRotateAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    TrRotateAnimation *animation = [super animateView:view
-                                               duration:duration
-                                                  delay:delay
-                                                options:(TrAnimationOptions)options
-                                             completion:completion];
+    TrRotateAnimation *animation = [super animate:viewOrLayer
+                                         duration:duration
+                                            delay:delay
+                                          options:(TrAnimationOptions)options
+                                       completion:completion];
     
     if (animation) {
         animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
@@ -114,56 +114,56 @@
     
 }
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    return [self animateView:view
-                    duration:duration
-                       delay:delay
-                  startAngle:startAngle
-                    endAngle:endAngle
-                     options:kTrRotateAnimationOptionsAxisZ
-                       curve:curve
-                  completion:completion];
-    
-}
-
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle {
-    
-    return [self animateView:view
-                    duration:duration
-                       delay:delay
-                  startAngle:startAngle
-                    endAngle:endAngle
-                     options:kTrRotateAnimationOptionsAxisZ
-                       curve:nil
-                  completion:nil];
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+              startAngle:startAngle
+                endAngle:endAngle
+                 options:kTrRotateAnimationOptionsAxisZ
+                   curve:curve
+              completion:completion];
     
 }
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle options:(TrRotateAnimationOptions)options {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle {
     
-    return [self animateView:view
-                    duration:duration
-                       delay:delay
-                  startAngle:startAngle
-                    endAngle:endAngle
-                     options:options
-                       curve:nil
-                  completion:nil];
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+              startAngle:startAngle
+                endAngle:endAngle
+                 options:kTrRotateAnimationOptionsAxisZ
+                   curve:nil
+              completion:nil];
     
 }
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle options:(TrRotateAnimationOptions)options {
     
-    return [self animateView:view
-                    duration:duration
-                       delay:delay
-                  startAngle:.0f
-                    endAngle:M_PI
-                     options:kTrRotateAnimationOptionsAxisZ
-                       curve:nil
-                  completion:completion];
-        
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+              startAngle:startAngle
+                endAngle:endAngle
+                 options:options
+                   curve:nil
+              completion:nil];
+    
+}
+
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+              startAngle:.0f
+                endAngle:M_PI
+                 options:kTrRotateAnimationOptionsAxisZ
+                   curve:nil
+              completion:completion];
+    
 }
 
 @end

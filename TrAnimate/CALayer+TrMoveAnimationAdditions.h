@@ -10,4 +10,6 @@
 
 @interface CALayer (TrMoveAnimationAdditions)
 
+- (CALayer *)topLayer;
+
 @end

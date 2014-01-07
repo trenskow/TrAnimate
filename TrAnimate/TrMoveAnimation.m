@@ -52,7 +52,7 @@
     CGPoint endPosition = [[[NSValue valueWithCGPoint:_startPosition] transitionToValue:[NSValue valueWithCGPoint:_endPosition]
                                                                            withProgress:_curve(1.0f)] CGPointValue];
     
-    self.view.layer.position = endPosition;
+    self.layer.position = endPosition;
     
 }
 
@@ -66,39 +66,27 @@
     
     [self prepareAnimation:moveAnimation usingKey:@"moveAnimation"];
     
-    [self.view.layer addAnimation:moveAnimation forKey:nil];
+    [self.layer addAnimation:moveAnimation forKey:nil];
     
 }
 
 #pragma mark - Creating Animation
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    TrMoveAnimation *animation = [super animateView:view
-                                             duration:duration
-                                                delay:delay
-                                              options:0
-                                           completion:completion];
+    TrMoveAnimation *animation = [super animate:viewOrLayer
+                                       duration:duration
+                                          delay:delay
+                                        options:0
+                                     completion:completion];
     
     if (animation) {
         animation->_curve = (curve ? curve : kTrAnimationCurveLinear);;
-        animation->_startPosition = view.layer.position;
-        animation->_endPosition = CGPointMake(endPosition.x + (view.frame.size.width / 2),
-                                              endPosition.y + (view.frame.size.height / 2));;
+        animation->_startPosition = animation.layer.position;
+        animation->_endPosition = endPosition;
     }
     
     return animation;
-    
-}
-
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void(^)(BOOL finished))completion {
-    
-    return [self animateView:view
-                    duration:duration
-                       delay:delay
-                 endPosition:view.frame.origin
-                       curve:kTrAnimationCurveLinear
-                  completion:completion];
     
 }
 

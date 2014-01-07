@@ -51,10 +51,10 @@ typedef enum {
 
 @interface TrAnimation : NSObject <TrAnimation>
 
-+ (id)animateView:(UIView *)view
-         duration:(NSTimeInterval)duration
-            delay:(NSTimeInterval)delay
-          options:(TrAnimationOptions)options
-       completion:(void(^)(BOOL finished))completion;
++ (id)animate:(id)viewOrLayer
+     duration:(NSTimeInterval)duration
+        delay:(NSTimeInterval)delay
+      options:(TrAnimationOptions)options
+   completion:(void(^)(BOOL finished))completion;
 
 @end

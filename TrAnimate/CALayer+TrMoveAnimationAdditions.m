@@ -10,4 +10,15 @@
 
 @implementation CALayer (TrMoveAnimationAdditions)
 
+#pragma mark - Properties
+
+- (CALayer *)topLayer {
+    
+    if (self.superlayer)
+        return [self.superlayer topLayer];
+    
+    return self;
+    
+}
+
 @end

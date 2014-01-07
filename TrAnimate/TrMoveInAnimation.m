@@ -28,6 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "CALayer+TrMoveAnimationAdditions.h"
+
 #import "TrAnimationSubclass.h"
 #import "TrMoveInAnimation.h"
 
@@ -51,14 +53,14 @@
     
     /* Unhide layer */
     if (!(self.options & kTrMoveInAnimationOptionReversed))
-        self.view.hidden = NO;
+        self.layer.hidden = NO;
     
     /*
      Animation has started. Presentation layer is not visible instead of actual layer.
      Set view's layers position to match the end of the animation, so that when the presentation layer is removed,
      the view's layer is in end position.
      */
-    self.view.layer.position = _endPosition;
+    self.layer.position = _endPosition;
     
 }
 
@@ -67,8 +69,8 @@
     [super animationCompleted:finished];
     
     if (self.options & kTrMoveInAnimationOptionReversed) {
-        self.view.hidden = YES;
-        self.view.layer.position = _startPosition;
+        self.layer.hidden = YES;
+        self.layer.position = _startPosition;
     }
     
 }
@@ -77,28 +79,30 @@
     
     TrAnimationOptions options = self.options;
     
-    CGRect animationBounds = self.view.superview.bounds;
-    if (options & kTrMoveInAnimationOptionFromScreenBounds)
-        animationBounds = [self.view.window convertRect:self.view.window.bounds toView:self.view.superview];
+    CGRect animationBounds = self.layer.superlayer.bounds;
+    if (options & kTrMoveInAnimationOptionFromScreenBounds) {
+        CALayer *topLayer = self.layer.topLayer;
+        animationBounds = [topLayer convertRect:topLayer.bounds toLayer:self.layer];
+    }
     
-    CGPoint endPosition = self.view.layer.position;
+    CGPoint endPosition = self.layer.position;
     CGPoint startPosition = endPosition;
     
-    CGRect viewFrame = self.view.frame;
+    CGSize layerSize = self.layer.bounds.size;
     
     /* Parse settings */
     switch (options & 0x6) {
         case kTrMoveInAnimationOptionDirectionTop:
-            startPosition.y = animationBounds.origin.y - (viewFrame.size.height * self.view.layer.anchorPoint.y);
+            startPosition.y = animationBounds.origin.y - (layerSize.height * self.layer.anchorPoint.y);
             break;
         case kTrMoveInAnimationOptionDirectionRight:
-            startPosition.x = animationBounds.origin.x + animationBounds.size.width + (viewFrame.size.width * self.view.layer.anchorPoint.x);
+            startPosition.x = animationBounds.origin.x + animationBounds.size.width + (layerSize.width * self.layer.anchorPoint.x);
             break;
         case kTrMoveInAnimationOptionDirectionBottom:
-            startPosition.y = animationBounds.origin.y + animationBounds.size.height + (viewFrame.size.height * self.view.layer.anchorPoint.y);
+            startPosition.y = animationBounds.origin.y + animationBounds.size.height + (layerSize.height * self.layer.anchorPoint.y);
             break;
         case kTrMoveInAnimationOptionDirectionLeft:
-            startPosition.x = animationBounds.origin.x - (viewFrame.size.width * self.view.layer.anchorPoint.x);
+            startPosition.x = animationBounds.origin.x - (layerSize.width * self.layer.anchorPoint.x);
             break;
     }
     
@@ -131,27 +135,27 @@
      Animation has not yet started. If a delay is set, the presentation layer will not be presented until animation begins.
      Therefore we set the layers position to match the beginning of the animation.
      */
-    self.view.layer.position = CGPointMake(startPosition.x,
-                                           startPosition.y);
+    self.layer.position = CGPointMake(startPosition.x,
+                                      startPosition.y);
     
     /* Set animation instance variables */
     _startPosition = startPosition;
     _endPosition = endPosition;
     
     /* Add animation */
-    [self.view.layer addAnimation:moveAnimation forKey:nil];
+    [self.layer addAnimation:moveAnimation forKey:nil];
     
 }
 
 #pragma mark - Creating Animation
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrMoveInAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrMoveInAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    TrMoveInAnimation *animation = [super animateView:view
-                                               duration:duration
-                                                  delay:delay
-                                                options:(TrAnimationOptions)options
-                                             completion:completion];
+    TrMoveInAnimation *animation = [super animate:viewOrLayer
+                                         duration:duration
+                                            delay:delay
+                                          options:(TrAnimationOptions)options
+                                       completion:completion];
     
     if (animation)
         animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
@@ -160,34 +164,34 @@
     
 }
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
     
-    return [self animateView:view
-                    duration:duration
-                       delay:delay
-                     options:(TrMoveInAnimationOptions)options
-                       curve:nil
-                  completion:completion];
-    
-}
-
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrMoveInAnimationOptions)options {
-    
-    return [self animateView:view
-                    duration:duration
-                       delay:delay
-                     options:(TrAnimationOptions)options
-                  completion:nil];
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+                 options:(TrMoveInAnimationOptions)options
+                   curve:nil
+              completion:completion];
     
 }
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrMoveInAnimationOptions)options {
     
-    return [self animateView:view
-                    duration:duration
-                       delay:delay
-                     options:0
-                  completion:nil];
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+                 options:(TrAnimationOptions)options
+              completion:nil];
+    
+}
+
++ (id)animate:viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+                 options:0
+              completion:nil];
     
 }
 

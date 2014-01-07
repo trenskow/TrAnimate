@@ -40,25 +40,25 @@ typedef enum {
 
 @interface TrFlipAnimation : TrAnimation
 
-+ (id)animateFromView:(UIView *)sourceView
-               toView:(UIView *)destinationView
-             duration:(NSTimeInterval)duration
-                delay:(NSTimeInterval)delay
-              options:(TrAnimationOptions)options
-                curve:(TrCustomCurveBlock)curve
-           completion:(void(^)(BOOL finished))completion;
-
-+ (id)animateFromView:(UIView *)sourceView
-               toView:(UIView *)destinationView
-             duration:(NSTimeInterval)duration
-                delay:(NSTimeInterval)delay
-              options:(TrAnimationOptions)options;
-
-+ (id)animateView:(UIView *)view
++ (id)animateFrom:(id)sourceViewOrLayer
+               to:(id)destinationViewORLayer
          duration:(NSTimeInterval)duration
             delay:(NSTimeInterval)delay
           options:(TrAnimationOptions)options
             curve:(TrCustomCurveBlock)curve
-       completion:(void (^)(BOOL))completion;
+       completion:(void(^)(BOOL finished))completion;
+
++ (id)animateFrom:(id)sourceViewOrLayer
+               to:(id)destinationViewOrLayer
+         duration:(NSTimeInterval)duration
+            delay:(NSTimeInterval)delay
+          options:(TrAnimationOptions)options;
+
++ (id)animate:(id)viewOrLayer
+     duration:(NSTimeInterval)duration
+        delay:(NSTimeInterval)delay
+      options:(TrAnimationOptions)options
+        curve:(TrCustomCurveBlock)curve
+   completion:(void (^)(BOOL))completion;
 
 @end

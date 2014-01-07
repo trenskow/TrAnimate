@@ -26,6 +26,7 @@
 		A11C78A117883C070000B420 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C78A017883C070000B420 /* QuartzCore.framework */; };
 		A11C78A317883C120000B420 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C78A217883C120000B420 /* UIKit.framework */; };
 		A1A89243183E8AB0004C78B9 /* UIView+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A89242183E8AB0004C78B9 /* UIView+TrAnimateAdditions.m */; };
+		A1CC9F521875BD95006703E2 /* CALayer+TrMoveAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1CC9F511875BD95006703E2 /* CALayer+TrMoveAnimationAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -81,6 +82,8 @@
 		A11C78A217883C120000B420 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A1A89241183E8AB0004C78B9 /* UIView+TrAnimateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TrAnimateAdditions.h"; sourceTree = "<group>"; };
 		A1A89242183E8AB0004C78B9 /* UIView+TrAnimateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+TrAnimateAdditions.m"; sourceTree = "<group>"; };
+		A1CC9F501875BD95006703E2 /* CALayer+TrMoveAnimationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+TrMoveAnimationAdditions.h"; sourceTree = "<group>"; };
+		A1CC9F511875BD95006703E2 /* CALayer+TrMoveAnimationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+TrMoveAnimationAdditions.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -182,6 +185,7 @@
 		A11C786B17883A110000B420 /* MoveIn */ = {
 			isa = PBXGroup;
 			children = (
+				A1CC9F4F1875BD83006703E2 /* Additions */,
 				A11C787317883AF30000B420 /* TrMoveInAnimation.h */,
 				A11C787417883AF30000B420 /* TrMoveInAnimation.m */,
 			);
@@ -288,6 +292,15 @@
 			name = "Generic Additions";
 			sourceTree = "<group>";
 		};
+		A1CC9F4F1875BD83006703E2 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				A1CC9F501875BD95006703E2 /* CALayer+TrMoveAnimationAdditions.h */,
+				A1CC9F511875BD95006703E2 /* CALayer+TrMoveAnimationAdditions.m */,
+			);
+			name = Additions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -348,6 +361,7 @@
 				A11C788117883B450000B420 /* TrRotateAnimation.m in Sources */,
 				A11C788517883B7F0000B420 /* TrAnimationGroup.m in Sources */,
 				A11C788D17883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.m in Sources */,
+				A1CC9F521875BD95006703E2 /* CALayer+TrMoveAnimationAdditions.m in Sources */,
 				A11C788E17883B940000B420 /* NSArray+TrAnimationGroupAdditions.m in Sources */,
 				A11C788F17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.m in Sources */,
 				A11C789317883BBA0000B420 /* TrCustomInterpolationAnimation.m in Sources */,

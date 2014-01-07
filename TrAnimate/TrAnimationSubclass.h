@@ -32,13 +32,13 @@
 
 @interface TrAnimation ()
 
-- (id)initWithView:(UIView *)view
-          duration:(NSTimeInterval)duration
-             delay:(NSTimeInterval)delay
-           options:(TrAnimationOptions)options
-        completion:(void (^)(BOOL))completion;
+- (id)initWithLayer:(CALayer *)layer
+           duration:(NSTimeInterval)duration
+              delay:(NSTimeInterval)delay
+            options:(TrAnimationOptions)options
+         completion:(void (^)(BOOL))completion;
 
-@property (weak,nonatomic) UIView *view;
+@property (nonatomic,readonly) CALayer *layer;
 @property (nonatomic) TrAnimationOptions options;
 @property (nonatomic) NSTimeInterval duration;
 

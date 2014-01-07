@@ -34,18 +34,18 @@
 
 @interface TrZoomAnimation : TrAnimation
 
-+ (id)animateView:(UIView *)view
-         duration:(NSTimeInterval)duration
-            delay:(NSTimeInterval)delay
-   startZoomLevel:(CGFloat)startZoomLevel
-     endZoomLevel:(CGFloat)endZoomLevel
-            curve:(TrCustomCurveBlock)curve
-       completion:(void (^)(BOOL))completion;
++ (id)animate:(id)viewOrLayer
+     duration:(NSTimeInterval)duration
+        delay:(NSTimeInterval)delay
+startZoomLevel:(CGFloat)startZoomLevel
+ endZoomLevel:(CGFloat)endZoomLevel
+        curve:(TrCustomCurveBlock)curve
+   completion:(void (^)(BOOL))completion;
 
-+ (id)animateView:(UIView *)view
-         duration:(NSTimeInterval)duration
-            delay:(NSTimeInterval)delay
-   startZoomLevel:(CGFloat)startZoomLevel
-     endZoomLevel:(CGFloat)endZoomLevel;
++ (id)animate:(id)viewOrLayer
+     duration:(NSTimeInterval)duration
+        delay:(NSTimeInterval)delay
+startZoomLevel:(CGFloat)startZoomLevel
+ endZoomLevel:(CGFloat)endZoomLevel;
 
 @end

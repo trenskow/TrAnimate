@@ -51,7 +51,7 @@
     
     CGFloat endValue = (_endValue - _startValue) * _curve(1.0f) + _startValue;
     
-    self.view.layer.transform = CATransform3DMakeScale(endValue, endValue, 1.0);
+    self.layer.transform = CATransform3DMakeScale(endValue, endValue, 1.0);
     
 }
 
@@ -65,19 +65,19 @@
     
     [self prepareAnimation:zoomAnimation usingKey:@"zoomAnimation"];
     
-    [self.view.layer addAnimation:zoomAnimation forKey:nil];
+    [self.layer addAnimation:zoomAnimation forKey:nil];
     
 }
 
 #pragma mark - Creating Animation
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    TrZoomAnimation *animation = [super animateView:view
-                                             duration:duration
-                                                delay:delay
-                                              options:0
-                                           completion:completion];
+    TrZoomAnimation *animation = [super animate:viewOrLayer
+                                       duration:duration
+                                          delay:delay
+                                        options:0
+                                     completion:completion];
     
     if (animation) {
         animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
@@ -89,27 +89,27 @@
     
 }
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel {
     
-    return [self animateView:view
-                    duration:duration
-                       delay:delay
-              startZoomLevel:startZoomLevel
-                endZoomLevel:endZoomLevel
-                       curve:nil
-                  completion:nil];
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+          startZoomLevel:startZoomLevel
+            endZoomLevel:endZoomLevel
+                   curve:nil
+              completion:nil];
     
 }
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
     
-    return [self animateView:view
-                    duration:duration
-                       delay:delay
-              startZoomLevel:.0f
-                endZoomLevel:1.0f
-                       curve:nil
-                  completion:completion];
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+          startZoomLevel:.0f
+            endZoomLevel:1.0f
+                   curve:nil
+              completion:completion];
     
 }
 

@@ -34,7 +34,7 @@
 
 //#define Tr_ANIMATION_VIEW_DEBUG
 
-const char TrViewAnimationKey;
+const void *TrAnimationLayerKey;
 
 NSString *const TrAnimationKey = @"TrAnimationKey";
 
@@ -49,7 +49,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 @property (nonatomic,getter = isAnimating) BOOL animating;
 @property (nonatomic,getter = isComplete) BOOL complete;
 @property (nonatomic,getter = isFinished) BOOL finished;
-@property (weak,nonatomic) UIView *view;
+@property (weak,nonatomic) CALayer *layer;
 @property (nonatomic) NSTimeInterval duration;
 @property (nonatomic) TrAnimationOptions options;
 @property (copy,nonatomic) void(^completionBlock)(BOOL finished);
@@ -60,11 +60,11 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Setup / Teardown
 
-- (id)initWithView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
+- (id)initWithLayer:(CALayer *)layer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
     
     if ((self = [super init])) {
         
-        self.view = view;
+        self.layer = layer;
         self.duration = duration;
         self.delay = delay;
         self.options = options;
@@ -74,7 +74,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
         _observedAnimations = [[NSMutableArray alloc] init];
         
         /* Associate animation object with view, so it won't be released doing animation */
-        objc_setAssociatedObject(view, &TrViewAnimationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
     }
     
@@ -110,7 +110,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
         self.finished = _animationFinished;
         
         /* Remove animation from view so it can be released */
-        objc_setAssociatedObject(_view, &TrViewAnimationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
     }
     
@@ -159,17 +159,21 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Creating Animation
 
-+ (id)animateView:(UIView *)view duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
++ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
     
-    if (!view)
+    if (!viewOrLayer)
         return nil;
     
+    CALayer *layer = viewOrLayer;
+    if ([layer isKindOfClass:[UIView class]])
+        layer = ((UIView *)viewOrLayer).layer;
+    
     /* Setup animation object */
-    id animation = [[[self class] alloc] initWithView:view
-                                             duration:duration
-                                                delay:delay
-                                              options:options
-                                           completion:completion];
+    id animation = [[[self class] alloc] initWithLayer:layer
+                                              duration:duration
+                                                 delay:delay
+                                               options:options
+                                            completion:completion];
     
     [animation performSelector:@selector(beginAnimation) withObject:nil afterDelay:0.0];
     
