@@ -64,6 +64,12 @@ TrCustomCurveBlock kTrAnimationCurveEaseOutCubic = ^(CGFloat t) {
     return t*t*t + 1;
 };
 
+#pragma mark kTrAnimationCurveEaseInOutCubic
+TrCustomCurveBlock kTrAnimationCurveEaseInOutCubic = ^(CGFloat t) {
+    if (t < .5) return (CGFloat)(kTrAnimationCurveEaseInCubic(t * 2.0) / 2.0);
+    return (CGFloat)(kTrAnimationCurveEaseOutCubic((t - .5) * 2.0) / 2.0 + .5);
+};
+
 #pragma mark kTrAnimationCurveEaseOutBounce
 TrCustomCurveBlock kTrAnimationCurveEaseOutBounce = ^(CGFloat t) {
     

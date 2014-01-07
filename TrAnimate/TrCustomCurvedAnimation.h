@@ -41,6 +41,7 @@ TrCustomCurveBlock kTrAnimationCurveEaseOutSine;
 TrCustomCurveBlock kTrAnimationCurveEaseInOutSine;
 TrCustomCurveBlock kTrAnimationCurveEaseInCubic;
 TrCustomCurveBlock kTrAnimationCurveEaseOutCubic;
+TrCustomCurveBlock kTrAnimationCurveEaseInOutCubic;
 TrCustomCurveBlock kTrAnimationCurveEaseOutBounce;
 TrCustomCurveBlock kTrAnimationCurveEaseInExpo;
 TrCustomCurveBlock kTrAnimationCurveEaseOutExpo;
