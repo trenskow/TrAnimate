@@ -228,7 +228,7 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
         CGSize val2 = [val CGSizeValue];
         
         return [NSValue valueWithCGSize:CGSizeMake(((val2.width - val1.width) * p) + val1.width,
-                                                   ((val2.height - val1.height) * p) + val1.width)];
+                                                   ((val2.height - val1.height) * p) + val1.height)];
         
     } else if (0 == strcmp(valType, @encode(CGRect))) {
         
@@ -241,26 +241,6 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
                                                    ((val2.size.height - val1.size.height) * p) + val1.size.width)];
         
     } else if (0 == strcmp(valType, @encode(CATransform3D))) {
-        
-        /*
-         
-         REMARK: Only interpolating scale is supported. New code below
-         
-        CATransform3D val1 = [self CATransform3DValue];
-        CATransform3D val2 = [val CATransform3DValue];
-        
-        CGFloat val1x = sqrtf((val1.m11 * val1.m11) + (val1.m12 * val1.m12) + (val1.m13 * val1.m13));
-        CGFloat val1y = sqrtf((val1.m21 * val1.m21) + (val1.m22 * val1.m22) + (val1.m23 * val1.m23));
-        CGFloat val1z = sqrtf((val1.m31 * val1.m31) + (val1.m32 * val1.m32) + (val1.m33 * val1.m33));
-        
-        CGFloat val2x = sqrtf((val2.m11 * val2.m11) + (val2.m12 * val2.m12) + (val2.m13 * val2.m13));
-        CGFloat val2y = sqrtf((val2.m21 * val2.m21) + (val2.m22 * val2.m22) + (val2.m23 * val2.m23));
-        CGFloat val2z = sqrtf((val2.m31 * val2.m31) + (val2.m32 * val2.m32) + (val2.m33 * val2.m33));
-        
-        return [NSValue valueWithCATransform3D:CATransform3DMakeScale(((val2x - val1x) * p) + val1x,
-                                                                      ((val2y - val1y) * p) + val1y,
-                                                                      ((val2z - val1z) * p) + val1z)];
-        */
         
         CATransform3D fromTf = [self CATransform3DValue];
         CATransform3D toTf = [val CATransform3DValue];

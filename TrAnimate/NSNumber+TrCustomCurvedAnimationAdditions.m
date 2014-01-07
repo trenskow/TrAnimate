@@ -40,7 +40,7 @@
     const char* valType = [val objCType];
     NSAssert(0 == strcmp(valType, [self objCType]), @"NSNumber of Obj-C type %s cannot transition to NSValue of Ojb-C type %s", [self objCType], valType);
     
-    if (0 == strcmp(valType, @encode(CGFloat))) {
+    if (0 == strcmp(valType, @encode(CGFloat)) || 0 == strcmp(valType, "d")) {
         
         CGFloat val1 = [self doubleValue];
         CGFloat val2 = [val doubleValue];
@@ -49,7 +49,7 @@
         
     }
     
-    NSAssert(YES, @"NSValue cannot transition values of type %s", valType);
+    NSAssert(NO, @"NSValue cannot transition values of type %s", valType);
     return nil;
     
 }
