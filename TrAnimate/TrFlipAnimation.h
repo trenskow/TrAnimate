@@ -32,33 +32,32 @@
 
 #import "TrAnimation.h"
 
-typedef enum {
-    
+typedef NS_OPTIONS(NSUInteger, TrFlipAnimationInOptions) {
+    kTrFlipAnimationOptionReversed = kTrAnimationOptionReversed,
     kTrFlipAnimationOptionFit = 1 << 5
-    
-} TrFlipAnimationInOptions;
+};
 
 @interface TrFlipAnimation : TrAnimation
 
-+ (id)animateFrom:(id)sourceViewOrLayer
-               to:(id)destinationViewORLayer
-         duration:(NSTimeInterval)duration
-            delay:(NSTimeInterval)delay
-          options:(TrAnimationOptions)options
-            curve:(TrCustomCurveBlock)curve
-       completion:(void(^)(BOOL finished))completion;
++ (instancetype)animateFrom:(id)sourceViewOrLayer
+                         to:(id)destinationViewORLayer
+                   duration:(NSTimeInterval)duration
+                      delay:(NSTimeInterval)delay
+                    options:(TrAnimationOptions)options
+                      curve:(TrCustomCurveBlock)curve
+                 completion:(void(^)(BOOL finished))completion;
 
-+ (id)animateFrom:(id)sourceViewOrLayer
-               to:(id)destinationViewOrLayer
-         duration:(NSTimeInterval)duration
-            delay:(NSTimeInterval)delay
-          options:(TrAnimationOptions)options;
++ (instancetype)animateFrom:(id)sourceViewOrLayer
+                         to:(id)destinationViewOrLayer
+                   duration:(NSTimeInterval)duration
+                      delay:(NSTimeInterval)delay
+                    options:(TrAnimationOptions)options;
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-      options:(TrAnimationOptions)options
-        curve:(TrCustomCurveBlock)curve
-   completion:(void (^)(BOOL))completion;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                options:(TrAnimationOptions)options
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void (^)(BOOL))completion;
 
 @end

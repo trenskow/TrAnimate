@@ -60,7 +60,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Setup / Teardown
 
-- (id)initWithLayer:(CALayer *)layer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
+- (instancetype)initWithLayer:(CALayer *)layer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
     
     if ((self = [super init])) {
         
@@ -159,7 +159,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Creating Animation
 
-+ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
     
     if (!viewOrLayer)
         return nil;

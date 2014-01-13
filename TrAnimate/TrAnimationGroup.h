@@ -32,14 +32,14 @@
 
 @interface TrAnimationGroup : NSObject <TrAnimation>
 
-+ (id)animationGroupWithAnimations:(NSArray *)animations
-                        completion:(void(^)(BOOL finished))completion;
++ (instancetype)animationGroupWithAnimations:(NSArray *)animations
+                                  completion:(void(^)(BOOL finished))completion;
 
-+ (id)animationGroupWithAnimations:(NSArray *)animations;
++ (instancetype)animationGroupWithAnimations:(NSArray *)animations;
 
-+ (id)animationGroupWithCompletion:(void(^)(BOOL finished))completion;
++ (instancetype)animationGroupWithCompletion:(void(^)(BOOL finished))completion;
 
-+ (id)animationGroup;
++ (instancetype)animationGroup;
 
 - (void)addAnimation:(id<TrAnimation>)animation
         animateAfter:(id<TrAnimation>)animateAfter;

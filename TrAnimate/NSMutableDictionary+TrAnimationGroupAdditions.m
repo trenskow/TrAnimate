@@ -37,7 +37,7 @@ NSString *const TrAnimationGroupAnimateAfterKey = @"TrAnimationGroupAnimateAfter
 
 #pragma mark - Creating a Dictionary
 
-+ (id)dictionaryWithAnimation:(id<TrAnimation>)animation animatedAfter:(id<TrAnimation>)animatedAfter {
++ (instancetype)dictionaryWithAnimation:(id<TrAnimation>)animation animatedAfter:(id<TrAnimation>)animatedAfter {
     
     NSMutableDictionary *dictionary = [@{TrAnimationGroupAnimationKey: animation} mutableCopy];
     [dictionary setAnimatedAfter:animatedAfter];

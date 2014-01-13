@@ -34,11 +34,11 @@
 
 @interface TrMoveAnimation : TrAnimation
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-  endPosition:(CGPoint)endPosition
-        curve:(TrCustomCurveBlock)curve
-   completion:(void (^)(BOOL finished))completion;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+            endPosition:(CGPoint)endPosition
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void (^)(BOOL finished))completion;
 
 @end

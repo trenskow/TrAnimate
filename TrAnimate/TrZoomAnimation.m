@@ -71,7 +71,7 @@
 
 #pragma mark - Creating Animation
 
-+ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     TrZoomAnimation *animation = [super animate:viewOrLayer
                                        duration:duration
@@ -89,7 +89,7 @@
     
 }
 
-+ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel {
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel {
     
     return [self animate:viewOrLayer
                 duration:duration
@@ -101,7 +101,7 @@
     
 }
 
-+ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration

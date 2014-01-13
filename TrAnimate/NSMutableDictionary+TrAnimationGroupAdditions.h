@@ -32,8 +32,8 @@
 
 @interface NSMutableDictionary (TrAnimationGroupAdditions)
 
-+ (id)dictionaryWithAnimation:(id<TrAnimation>)animation
-                animatedAfter:(id<TrAnimation>)animatedAfter;
++ (instancetype)dictionaryWithAnimation:(id<TrAnimation>)animation
+                          animatedAfter:(id<TrAnimation>)animatedAfter;
 
 @property (nonatomic,readonly) id<TrAnimation> animation;
 @property (nonatomic) id<TrAnimation> animatedAfter;

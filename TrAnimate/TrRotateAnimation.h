@@ -32,44 +32,45 @@
 
 #import "TrAnimation.h"
 
-typedef enum {
+typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
     
-    kTrRotateAnimationOptionsAxisZ = 0x0,
-    kTrRotateAnimationOptionsAxisX = 0x2,
-    kTrRotateAnimationOptionsAxisY = 0x4
+    kTrRotateAnimationOptionReversed = kTrAnimationOptionReversed,
+    kTrRotateAnimationOptionsAxisZ = 1 << 1,
+    kTrRotateAnimationOptionsAxisX = 1 << 2,
+    kTrRotateAnimationOptionsAxisY = 1 << 3
     
-} TrRotateAnimationOptions;
+};
 
 @interface TrRotateAnimation : TrAnimation
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-   startAngle:(CGFloat)startAngle
-     endAngle:(CGFloat)endAngle;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             startAngle:(CGFloat)startAngle
+               endAngle:(CGFloat)endAngle;
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-   startAngle:(CGFloat)startAngle
-     endAngle:(CGFloat)endAngle
-      options:(TrRotateAnimationOptions)options;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             startAngle:(CGFloat)startAngle
+               endAngle:(CGFloat)endAngle
+                options:(TrRotateAnimationOptions)options;
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-   startAngle:(CGFloat)startAngle
-     endAngle:(CGFloat)endAngle
-        curve:(TrCustomCurveBlock)curve
-   completion:(void (^)(BOOL))completion;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             startAngle:(CGFloat)startAngle
+               endAngle:(CGFloat)endAngle
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void (^)(BOOL))completion;
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-   startAngle:(CGFloat)startAngle
-     endAngle:(CGFloat)endAngle
-      options:(TrRotateAnimationOptions)options
-        curve:(TrCustomCurveBlock)curve
-   completion:(void (^)(BOOL))completion;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             startAngle:(CGFloat)startAngle
+               endAngle:(CGFloat)endAngle
+                options:(TrRotateAnimationOptions)options
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void (^)(BOOL))completion;
 
 @end

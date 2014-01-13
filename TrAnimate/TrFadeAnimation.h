@@ -36,22 +36,22 @@
 
 + (BOOL)inProgressOnView:(UIView *)view;
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-        curve:(TrCustomCurveBlock)curve
-      fadesIn:(BOOL)fadesIn
-   completion:(void (^)(BOOL))completion;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                  curve:(TrCustomCurveBlock)curve
+                fadesIn:(BOOL)fadesIn
+             completion:(void (^)(BOOL))completion;
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-      fadesIn:(BOOL)fadesIn
-   completion:(void (^)(BOOL))completion;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                fadesIn:(BOOL)fadesIn
+             completion:(void (^)(BOOL))completion;
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-      fadesIn:(BOOL)fadesIn;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                fadesIn:(BOOL)fadesIn;
 
 @end

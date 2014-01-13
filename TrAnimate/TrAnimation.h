@@ -28,11 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-typedef enum {
-    
-    kTrAnimationOptionReversed = 1 << 0,
-    
-} TrAnimationOptions;
+typedef NS_OPTIONS(NSUInteger, TrAnimationOptions) { kTrAnimationOptionReversed = 1 };
 
 @protocol TrAnimation
 
@@ -51,10 +47,10 @@ typedef enum {
 
 @interface TrAnimation : NSObject <TrAnimation>
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-      options:(TrAnimationOptions)options
-   completion:(void(^)(BOOL finished))completion;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                options:(TrAnimationOptions)options
+             completion:(void(^)(BOOL finished))completion;
 
 @end

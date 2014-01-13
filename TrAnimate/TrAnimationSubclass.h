@@ -32,11 +32,11 @@
 
 @interface TrAnimation ()
 
-- (id)initWithLayer:(CALayer *)layer
-           duration:(NSTimeInterval)duration
-              delay:(NSTimeInterval)delay
-            options:(TrAnimationOptions)options
-         completion:(void (^)(BOOL))completion;
+- (instancetype)initWithLayer:(CALayer *)layer
+                     duration:(NSTimeInterval)duration
+                        delay:(NSTimeInterval)delay
+                      options:(TrAnimationOptions)options
+                   completion:(void (^)(BOOL))completion;
 
 @property (nonatomic,readonly) CALayer *layer;
 @property (nonatomic) TrAnimationOptions options;

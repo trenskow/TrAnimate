@@ -32,34 +32,32 @@
 
 #import "TrAnimation.h"
 
-typedef enum {
-    
-    /* Represented in bit 1 and 2 */
+typedef NS_OPTIONS(NSUInteger, TrMoveInAnimationOptions) {
     kTrMoveInAnimationOptionReversed = kTrAnimationOptionReversed,
+    /* Represented in bit 1 and 2 */
     kTrMoveInAnimationOptionDirectionTop = 0x00,
     kTrMoveInAnimationOptionDirectionRight = 0x02,
     kTrMoveInAnimationOptionDirectionBottom = 0x04,
     kTrMoveInAnimationOptionDirectionLeft = 0x06,
     kTrMoveInAnimationOptionFromScreenBounds = 1 << 3
-    
-} TrMoveInAnimationOptions;
+};
 
 @interface TrMoveInAnimation : TrAnimation
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-      options:(TrMoveInAnimationOptions)options
-        curve:(TrCustomCurveBlock)curve
-   completion:(void (^)(BOOL finished))completion;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                options:(TrMoveInAnimationOptions)options
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void (^)(BOOL finished))completion;
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay
-      options:(TrMoveInAnimationOptions)options;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                options:(TrMoveInAnimationOptions)options;
 
-+ (id)animate:(id)viewOrLayer
-     duration:(NSTimeInterval)duration
-        delay:(NSTimeInterval)delay;
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay;
 
 @end

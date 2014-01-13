@@ -58,7 +58,7 @@ char TrAnimationGroupObserverContext;
 
 #pragma mark - Setup / Teardown
 
-- (id)initWithAnimations:(NSArray *)animations completion:(void(^)(BOOL finished))completion {
+- (instancetype)initWithAnimations:(NSArray *)animations completion:(void(^)(BOOL finished))completion {
     
     if ((self = [super init])) {
         
@@ -78,7 +78,7 @@ char TrAnimationGroupObserverContext;
 
 #pragma mark - Creating Animation Group
 
-+ (id)animationGroupWithAnimations:(NSArray *)animations completion:(void(^)(BOOL finished))completion {
++ (instancetype)animationGroupWithAnimations:(NSArray *)animations completion:(void(^)(BOOL finished))completion {
     
     TrAnimationGroup *animationGroup = [[self alloc] initWithAnimations:animations
                                                                completion:completion];
@@ -89,19 +89,19 @@ char TrAnimationGroupObserverContext;
     
 }
 
-+ (id)animationGroupWithAnimations:(NSArray *)animations {
++ (instancetype)animationGroupWithAnimations:(NSArray *)animations {
     
     return [self animationGroupWithAnimations:animations completion:nil];
     
 }
 
-+ (id)animationGroupWithCompletion:(void (^)(BOOL))completion {
++ (instancetype)animationGroupWithCompletion:(void (^)(BOOL))completion {
     
     return [self animationGroupWithAnimations:nil completion:completion];
     
 }
 
-+ (id)animationGroup {
++ (instancetype)animationGroup {
     
     return [self animationGroupWithAnimations:nil completion:nil];
     
@@ -109,7 +109,7 @@ char TrAnimationGroupObserverContext;
 
 #pragma mark - Internals
 
-- (NSMutableArray *)animationGroupsForAnimation:(id)animation {
+- (NSMutableArray *)animationGroupsForAnimation:(id<TrAnimation>)animation {
     
     NSMutableArray *animationGroups = objc_getAssociatedObject(animation, &TrAnimationGroupKey);
     if (!animationGroups) {
@@ -237,7 +237,7 @@ char TrAnimationGroupObserverContext;
         /* Call beginAnimation again to start any waiting animations */
         [self beginAnimation];
         
-        /* Remove association with ani>mation in order to get released when all animations are done */
+        /* Remove association with animation in order to get released when all animations are done */
         [[self animationGroupsForAnimation:object] removeObject:self];
         
     } else

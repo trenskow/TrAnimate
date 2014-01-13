@@ -182,7 +182,7 @@
 
 #pragma mark - Creating Animation
 
-+ (id)animateFrom:(id)sourceViewOrLayer to:(id)destinationViewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animateFrom:(id)sourceViewOrLayer to:(id)destinationViewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     TrFlipAnimation *animation = [self animate:sourceViewOrLayer
                                       duration:duration
@@ -206,7 +206,7 @@
     
 }
 
-+ (id)animateFrom:(id)sourceViewOrLayer to:(id)destinationViewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options {
++ (instancetype)animateFrom:(id)sourceViewOrLayer to:(id)destinationViewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options {
     
     return [self animateFrom:sourceViewOrLayer
                           to:destinationViewOrLayer
@@ -218,7 +218,7 @@
     
 }
 
-+ (id)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     return [self animateFrom:viewOrLayer
                           to:nil
