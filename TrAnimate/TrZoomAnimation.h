@@ -45,6 +45,13 @@
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
+           endZoomLevel:(CGFloat)endZoomLevel
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void (^)(BOOL))completion;
+
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
          startZoomLevel:(CGFloat)startZoomLevel
            endZoomLevel:(CGFloat)endZoomLevel;
 

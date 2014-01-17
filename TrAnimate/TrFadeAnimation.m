@@ -58,24 +58,7 @@
     
 }
 
-- (void)animationCompleted:(BOOL)finished {
-    
-    [super animationCompleted:finished];
-    
-    if (!(self.options & kTrAnimationOptionReversed))
-        self.layer.hidden = YES;
-    
-}
-
 - (void)setupAnimations {
-    
-    _startValue = 1.0;
-    _endValue = 0.0;
-    
-    if (self.options & kTrAnimationOptionReversed) {
-        _startValue = 0.0;
-        _endValue = 1.0;
-    }
     
     TrCustomCurvedAnimation *fadeAnimation = [TrCustomCurvedAnimation animationWithKeyPath:@"opacity"];
     fadeAnimation.curve = _curve;
@@ -98,18 +81,32 @@
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(CGFloat)endValue curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     TrFadeAnimation *animation = [self animate:viewOrLayer
                                       duration:duration
                                          delay:delay
-                                       options:(fadesIn ? kTrAnimationOptionReversed : 0)
+                                       options:0
                                     completion:completion];
     
-    if (animation)
+    if (animation) {
         animation->_curve = curve;
+        animation->_startValue = animation.layer.opacity;
+        animation->_endValue = endValue;
+    }
     
     return animation;
+    
+}
+
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+                endValue:(fadesIn ? 1.0 : .0)
+                   curve:curve
+              completion:completion];
     
 }
 

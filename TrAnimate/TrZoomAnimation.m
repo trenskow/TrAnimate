@@ -89,6 +89,23 @@
     
 }
 
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endZoomLevel:(CGFloat)endZoomLevel curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
+    
+    TrZoomAnimation *animation = [self animate:viewOrLayer
+                                      duration:duration
+                                         delay:delay
+                                startZoomLevel:.0
+                                  endZoomLevel:endZoomLevel
+                                         curve:curve
+                                    completion:completion];
+    
+    if (animation)
+        animation->_startValue = [[animation.layer valueForKeyPath:@"transform.scale.x"] floatValue];
+    
+    return animation;
+    
+}
+
 + (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel {
     
     return [self animate:viewOrLayer

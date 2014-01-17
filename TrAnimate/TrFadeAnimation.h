@@ -39,6 +39,13 @@
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
+               endValue:(CGFloat)endValue
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void (^)(BOOL))completion;
+
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
                   curve:(TrCustomCurveBlock)curve
                 fadesIn:(BOOL)fadesIn
              completion:(void (^)(BOOL))completion;
