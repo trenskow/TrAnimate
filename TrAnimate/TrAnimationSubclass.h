@@ -30,19 +30,21 @@
 
 #import "TrAnimation.h"
 
+@class TrCustomCurvedAnimation;
+
 @interface TrAnimation ()
 
 - (instancetype)initWithLayer:(CALayer *)layer
                      duration:(NSTimeInterval)duration
                         delay:(NSTimeInterval)delay
-                      options:(TrAnimationOptions)options
+                        curve:(TrCustomCurveBlock)curve
                    completion:(void (^)(BOOL))completion;
 
 @property (nonatomic,readonly) CALayer *layer;
-@property (nonatomic) TrAnimationOptions options;
 @property (nonatomic) NSTimeInterval duration;
+@property (copy,nonatomic,readonly) TrCustomCurveBlock curve;
 
-- (void)prepareAnimation:(CAAnimation *)animation
+- (void)prepareAnimation:(TrCustomCurvedAnimation *)animation
                 usingKey:(NSString *)key;
 
 - (void)animationStarted;

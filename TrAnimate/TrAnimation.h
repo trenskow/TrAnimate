@@ -28,6 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "TrCustomCurvedAnimation.h"
+
 typedef NS_OPTIONS(NSUInteger, TrAnimationOptions) { kTrAnimationOptionReversed = 1 };
 
 @protocol TrAnimation
@@ -50,7 +52,7 @@ typedef NS_OPTIONS(NSUInteger, TrAnimationOptions) { kTrAnimationOptionReversed 
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                options:(TrAnimationOptions)options
+                  curve:(TrCustomCurveBlock)curve
              completion:(void(^)(BOOL finished))completion;
 
 @end

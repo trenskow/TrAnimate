@@ -38,7 +38,6 @@
     NSString *_keyPath;
     id<TrValueTransition> _startValue;
     id<TrValueTransition> _endValue;
-    TrCustomCurveBlock _curve;
     
 }
 
@@ -52,7 +51,7 @@
     
     [super animationStarted];
     
-    [self.layer setValue:[_startValue transitionToValue:_endValue withProgress:_curve(1.0f)]
+    [self.layer setValue:[_startValue transitionToValue:_endValue withProgress:self.curve(1.0f)]
               forKeyPath:_keyPath];
     
 }
@@ -60,12 +59,11 @@
 - (void)setupAnimations {
     
     TrCustomCurvedAnimation *customAnimation = [TrCustomCurvedAnimation animationWithKeyPath:_keyPath];
-    customAnimation.curve = _curve;
     customAnimation.fromValue = _startValue;
     customAnimation.toValue = _endValue;
     
     [self.layer setValue:[_startValue transitionToValue:_endValue
-                                           withProgress:_curve(.0f)]
+                                           withProgress:self.curve(.0f)]
               forKeyPath:_keyPath];
     
     NSString *key = [NSString stringWithFormat:@"customAnimation.%@", _keyPath];
@@ -94,14 +92,13 @@
     TrCustomAnimation *animation = [super animate:viewOrLayer
                                          duration:duration
                                             delay:delay
-                                          options:0
+                                            curve:curve
                                        completion:completion];
     
     if (animation) {
         animation->_keyPath = keyPath;
         animation->_startValue = startValue;
         animation->_endValue = endValue;
-        animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
     }
     
     return animation;

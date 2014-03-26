@@ -30,8 +30,8 @@
 
 #import <objc/runtime.h>
 
+#import "TrCustomCurvedAnimation.h"
 #import "TrLayerAdditions.h"
-
 #import "TrAnimation.h"
 
 //#define Tr_ANIMATION_VIEW_DEBUG
@@ -53,7 +53,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 @property (nonatomic,getter = isFinished) BOOL finished;
 @property (weak,nonatomic) CALayer *layer;
 @property (nonatomic) NSTimeInterval duration;
-@property (nonatomic) TrAnimationOptions options;
+@property (copy,nonatomic) TrCustomCurveBlock curve;
 @property (copy,nonatomic) void(^completionBlock)(BOOL finished);
 
 @end
@@ -62,14 +62,14 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Setup / Teardown
 
-- (instancetype)initWithLayer:(CALayer *)layer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
+- (instancetype)initWithLayer:(CALayer *)layer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     if ((self = [super init])) {
         
         self.layer = layer;
         self.duration = duration;
         self.delay = delay;
-        self.options = options;
+        self.curve = (curve ? curve : kTrAnimationCurveLinear);
         self.completionBlock = completion;
         
         _animationFinished = YES;
@@ -86,7 +86,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Internal
 
-- (void)animationDidStart:(CAAnimation *)anim {
+- (void)animationDidStart:(TrCustomCurvedAnimation *)anim {
     
     if (!_animationStarted)
         [self animationStarted];
@@ -95,7 +95,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     
 }
 
-- (void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag {
+- (void)animationDidStop:(TrCustomCurvedAnimation *)anim finished:(BOOL)flag {
     
     [_observedAnimations removeObject:[anim valueForKey:TrAnimationKey]];
     
@@ -118,7 +118,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     
 }
 
-- (void)prepareAnimation:(CAAnimation *)animation usingKey:(NSString *)key {
+- (void)prepareAnimation:(TrCustomCurvedAnimation *)animation usingKey:(NSString *)key {
     
 #if defined(TR_ANIMATION_VIEW_DEBUG)
     animation.duration = self.duration * 10.0f;
@@ -127,6 +127,8 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     animation.duration = self.duration;
     animation.beginTime = CACurrentMediaTime() + self.delay;
 #endif
+    
+    animation.curve = self.curve;
     
     [animation setValue:key forKey:TrAnimationKey];
     
@@ -161,7 +163,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Creating Animation
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     if (!viewOrLayer)
         return nil;
@@ -170,7 +172,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     id animation = [[[self class] alloc] initWithLayer:TrGetLayer(viewOrLayer)
                                               duration:duration
                                                  delay:delay
-                                               options:options
+                                                 curve:curve
                                             completion:completion];
     
     [animation performSelector:@selector(beginAnimation) withObject:nil afterDelay:0.0 inModes:@[NSRunLoopCommonModes]];
