@@ -28,65 +28,74 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrAnimationSubclass.h"
+#import "TrLayerAdditions.h"
 #import "TrMoveAnimation.h"
-
-@interface TrMoveAnimation () {
-    
-    TrCustomCurveBlock _curve;
-    CGPoint _startPosition;
-    CGPoint _endPosition;
-    
-}
-
-@end
 
 @implementation TrMoveAnimation
 
-#pragma mark - Internal
-
-- (void)animationStarted {
-    
-    [super animationStarted];
-    
-    CGPoint endPosition = [[[NSValue valueWithCGPoint:_startPosition] transitionToValue:[NSValue valueWithCGPoint:_endPosition]
-                                                                           withProgress:_curve(1.0f)] CGPointValue];
-    
-    self.layer.position = endPosition;
-    
-}
-
-- (void)setupAnimations {
-    
-    /* Create and group animations */
-    TrCustomCurvedAnimation *moveAnimation = [TrCustomCurvedAnimation animationWithKeyPath:@"position"];
-    moveAnimation.curve = _curve;
-    moveAnimation.fromValue = [NSValue valueWithCGPoint:_startPosition];
-    moveAnimation.toValue = [NSValue valueWithCGPoint:_endPosition];
-    
-    [self prepareAnimation:moveAnimation usingKey:@"moveAnimation"];
-    
-    [self.layer addAnimation:moveAnimation forKey:nil];
-    
-}
-
 #pragma mark - Creating Animation
+
++ (BOOL)inProgressOn:(id)viewOrLayer {
+    
+    return [self inProgressOn:viewOrLayer withKeyPath:@"position"];
+    
+}
+
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
+    
+    CGPoint finalStartPosition = startPosition;
+    CGPoint finalEndPosition = endPosition;
+    
+    CALayer *layer = TrGetLayer(viewOrLayer);
+    
+    if (options == kTrMoveAnimationsOptionOriginTopLeft) {
+        finalStartPosition.x += layer.bounds.size.width * layer.anchorPoint.x;
+        finalStartPosition.y += layer.bounds.size.height * layer.anchorPoint.y;
+        finalEndPosition.x += layer.bounds.size.width * layer.anchorPoint.x;
+        finalEndPosition.y += layer.bounds.size.height * layer.anchorPoint.y;
+    }
+    
+    return [super animate:viewOrLayer
+             layerKeyPath:@"position"
+               startValue:[NSValue valueWithCGPoint:finalStartPosition]
+                 endValue:[NSValue valueWithCGPoint:finalEndPosition]
+                 duration:duration
+                    delay:delay
+                    curve:curve
+               completion:completion];
+    
+}
+
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
+    
+    CALayer *layer = TrGetLayer(viewOrLayer);
+    CGPoint startPosition = layer.position;
+    
+    if (options == kTrMoveAnimationsOptionOriginTopLeft) {
+        startPosition.x -= layer.bounds.size.width * layer.anchorPoint.x;
+        startPosition.y -= layer.bounds.size.height * layer.anchorPoint.y;
+    }
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+           startPosition:startPosition
+             endPosition:endPosition
+                   curve:curve
+                 options:options
+              completion:completion];
+    
+}
 
 + (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    TrMoveAnimation *animation = [super animate:viewOrLayer
-                                       duration:duration
-                                          delay:delay
-                                        options:0
-                                     completion:completion];
-    
-    if (animation) {
-        animation->_curve = (curve ? curve : kTrAnimationCurveLinear);;
-        animation->_startPosition = animation.layer.position;
-        animation->_endPosition = endPosition;
-    }
-    
-    return animation;
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+             endPosition:endPosition
+                   curve:curve
+                 options:kTrMoveAnimationsOptionOriginCenter
+              completion:completion];
     
 }
 

@@ -1,8 +1,8 @@
 //
-//  TrFlipAnimation.h
+//  TrRotateAnimation.h
 //  TrAnimate
 //
-//  Copyright (c) 2013, Kristian Trenskow All rights reserved.
+//  Copyright (c) 2014, Kristian Trenskow All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or
 //  without modification, are permitted provided that the following
@@ -32,31 +32,24 @@
 
 #import "TrAnimation.h"
 
-typedef NS_OPTIONS(NSUInteger, TrFlipAnimationInOptions) {
-    kTrFlipAnimationOptionReversed = kTrAnimationOptionReversed,
-    kTrFlipAnimationOptionFit = 1 << 5
-};
+@interface TrCustomAnimation : TrAnimation
 
-@interface TrFlipAnimation : TrAnimation
-
-+ (instancetype)animateFrom:(id)sourceViewOrLayer
-                         to:(id)destinationViewORLayer
-                   duration:(NSTimeInterval)duration
-                      delay:(NSTimeInterval)delay
-                    options:(TrAnimationOptions)options
-                      curve:(TrCustomCurveBlock)curve
-                 completion:(void(^)(BOOL finished))completion;
-
-+ (instancetype)animateFrom:(id)sourceViewOrLayer
-                         to:(id)destinationViewOrLayer
-                   duration:(NSTimeInterval)duration
-                      delay:(NSTimeInterval)delay
-                    options:(TrAnimationOptions)options;
++ (BOOL)inProgressOn:(id)viewOrLayer withKeyPath:(NSString *)keyPath;
 
 + (instancetype)animate:(id)viewOrLayer
+           layerKeyPath:(NSString *)keyPath
+             startValue:(id<TrValueTransition>)startValue
+               endValue:(id<TrValueTransition>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                options:(TrAnimationOptions)options
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void (^)(BOOL))completion;
+
++ (instancetype)animate:(id)viewOrLayer
+           layerKeyPath:(NSString *)keyPath
+               endValue:(id<TrValueTransition>)endValue
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
                   curve:(TrCustomCurveBlock)curve
              completion:(void (^)(BOOL))completion;
 

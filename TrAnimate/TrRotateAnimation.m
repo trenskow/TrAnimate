@@ -28,89 +28,29 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrAnimationSubclass.h"
+#import "TrLayerAdditions.h"
 #import "TrRotateAnimation.h"
 
-@interface TrRotateAnimation () {
-    
-    TrCustomCurveBlock _curve;
-    CGFloat _startValue;
-    CGFloat _endValue;
-    
-}
-
-@property (nonatomic,readonly) NSString *keyPath;
-
-@end
-
 @implementation TrRotateAnimation
-
-#pragma mark - Internals
-
-- (NSString *)keyPath {
-    
-    NSString *keyPath = @"transform.rotation.z";
-    if (self.options & kTrRotateAnimationOptionsAxisX)
-        keyPath = @"transform.rotation.x";
-    else if (self.options & kTrRotateAnimationOptionsAxisY)
-        keyPath = @"transform.rotation.y";
-    
-    return keyPath;
-        
-}
-
-- (void)animationStarted {
-    
-    [super animationStarted];
-    
-    /*
-     Animation has started. Presentation layer is now present. Set layer to end value so that
-     when presentation layer is removed our animation is final.
-     */
-    
-    [self.layer setValue:@((_endValue - _startValue) * _curve(1.0f) + _startValue)
-                  forKey:self.keyPath];
-    
-}
-
-- (void)setupAnimations {
-    
-    /* Create rotation animation */
-    TrCustomCurvedAnimation *rotateAnimation = [TrCustomCurvedAnimation animationWithKeyPath:self.keyPath];
-    rotateAnimation.curve = _curve;
-    rotateAnimation.fromValue = @(_startValue);
-    rotateAnimation.toValue = @(_endValue);
-    rotateAnimation.removedOnCompletion = NO;
-    rotateAnimation.fillMode = kCAFillModeForwards;
-    
-    /* Add to observed animations */
-    [self prepareAnimation:rotateAnimation usingKey:@"rotateAnimation"];
-    
-    /* As delay may have been applied, we start by applying the start value to our layer */
-    [self.layer setValue:@((_endValue - _startValue) * _curve(0.0f) + _startValue)
-                  forKey:self.keyPath];
-    
-    [self.layer addAnimation:rotateAnimation forKey:nil];
-    
-}
 
 #pragma mark - Creating Animation
 
 + (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle options:(TrRotateAnimationOptions)options curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    TrRotateAnimation *animation = [super animate:viewOrLayer
-                                         duration:duration
-                                            delay:delay
-                                          options:(TrAnimationOptions)options
-                                       completion:completion];
+    NSString *keyPath = @"transform.rotation.z";
+    if (options & kTrRotateAnimationOptionsAxisX)
+        keyPath = @"transform.rotation.x";
+    else if (options & kTrRotateAnimationOptionsAxisY)
+        keyPath = @"transform.rotation.y";
     
-    if (animation) {
-        animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
-        animation->_startValue = startAngle;
-        animation->_endValue = endAngle;
-    }
-    
-    return animation;
+    return [super animate:viewOrLayer
+             layerKeyPath:keyPath
+               startValue:@(startAngle)
+                 endValue:@(endAngle)
+                 duration:duration
+                    delay:delay
+                    curve:curve
+               completion:completion];
     
 }
 

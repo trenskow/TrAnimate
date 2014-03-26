@@ -238,7 +238,7 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
         return [NSValue valueWithCGRect:CGRectMake(((val2.origin.x - val1.origin.x) * p) + val1.origin.x,
                                                    ((val2.origin.y - val1.origin.y) * p) + val1.origin.y,
                                                    ((val2.size.width - val1.size.width) * p) + val1.size.width,
-                                                   ((val2.size.height - val1.size.height) * p) + val1.size.width)];
+                                                   ((val2.size.height - val1.size.height) * p) + val1.size.height)];
         
     } else if (0 == strcmp(valType, @encode(CATransform3D))) {
         

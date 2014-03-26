@@ -28,8 +28,6 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <QuartzCore/QuartzCore.h>
-
 typedef id(^TrCustomInterpolationBlock)(CGFloat t);
 
 @interface TrCustomInterpolationAnimation : CAKeyframeAnimation

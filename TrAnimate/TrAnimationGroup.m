@@ -83,7 +83,7 @@ char TrAnimationGroupObserverContext;
     TrAnimationGroup *animationGroup = [[self alloc] initWithAnimations:animations
                                                                completion:completion];
     
-    [animationGroup performSelector:@selector(beginAnimation) withObject:nil afterDelay:0.0];
+    [animationGroup performSelector:@selector(beginAnimation) withObject:nil afterDelay:.0 inModes:@[NSRunLoopCommonModes]];
     
     return animationGroup;
     
@@ -124,16 +124,21 @@ char TrAnimationGroupObserverContext;
 
 - (void)addAnimation:(id<TrAnimation>)animation animateAfter:(id<TrAnimation>)animateAfter {
     
-    /* Tell animation to postpone it's animation so we can manage this in the group */
-    [animation postponeAnimation];
-    
-    [_animations addObject:[NSMutableDictionary dictionaryWithAnimation:animation animatedAfter:animateAfter]];
-    
-    /* Add observer for when animation completes */
-    [(id)animation addObserver:self forKeyPath:@"complete" options:0 context:&TrAnimationGroupObserverContext];
-    
-    /* Associate group with animation so it will retain it as long as animation lives */
-    [[self animationGroupsForAnimation:animation] addObject:self];
+    /* Check if an actual animation is being added */
+    if (animation) {
+        
+        /* Tell animation to postpone it's animation so we can manage this in the group */
+        [animation postponeAnimation];
+        
+        [_animations addObject:[NSMutableDictionary dictionaryWithAnimation:animation animatedAfter:animateAfter]];
+        
+        /* Add observer for when animation completes */
+        [(id)animation addObserver:self forKeyPath:@"complete" options:0 context:&TrAnimationGroupObserverContext];
+        
+        /* Associate group with animation so it will retain it as long as animation lives */
+        [[self animationGroupsForAnimation:animation] addObject:self];
+        
+    }
     
 }
 
@@ -150,7 +155,10 @@ char TrAnimationGroupObserverContext;
     
     if ([_animations count] > 0) {
         
-        for (NSMutableDictionary *a in _animations)
+        /* Create a copy in order to prevent mutation exceptions while enumerating */
+        NSArray *animations = [_animations copy];
+        
+        for (NSMutableDictionary *a in animations)
             if (!a.animatedAfter && !a.animation.isAnimating)
                 [a.animation beginAnimation];
         

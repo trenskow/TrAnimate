@@ -28,14 +28,15 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "NSValue+TrCustomCurvedAnimationAdditions.h"
+#import "NSNumber+TrCustomCurvedAnimationAdditions.h"
+
 #import "TrCustomInterpolationAnimation.h"
 #import "TrCustomCurvedAnimation.h"
 
 #import "TrAnimation.h"
 #import "TrMoveAnimation.h"
-#import "TrMoveInAnimation.h"
 #import "TrFadeAnimation.h"
-#import "TrFlipAnimation.h"
 #import "TrZoomAnimation.h"
 #import "TrRotateAnimation.h"
 

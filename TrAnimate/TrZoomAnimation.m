@@ -28,81 +28,41 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrAnimationSubclass.h"
+#import "TrLayerAdditions.h"
 #import "TrZoomAnimation.h"
-
-@interface TrZoomAnimation () {
-    
-    TrCustomCurveBlock _curve;
-    CGFloat _startValue;
-    CGFloat _endValue;
-    
-}
-
-@end
 
 @implementation TrZoomAnimation
 
-#pragma mark - Internal
-
-- (void)animationStarted {
-    
-    [super animationStarted];
-    
-    CGFloat endValue = (_endValue - _startValue) * _curve(1.0f) + _startValue;
-    
-    self.layer.transform = CATransform3DMakeScale(endValue, endValue, 1.0);
-    
-}
-
-- (void)setupAnimations {
-        
-    /* Setup zoom animation */
-    TrCustomCurvedAnimation *zoomAnimation = [TrCustomCurvedAnimation animationWithKeyPath:@"transform.scale"];
-    zoomAnimation.curve = _curve;
-    zoomAnimation.fromValue = @(_startValue);
-    zoomAnimation.toValue = @(_endValue);
-    
-    [self prepareAnimation:zoomAnimation usingKey:@"zoomAnimation"];
-    
-    [self.layer addAnimation:zoomAnimation forKey:nil];
-    
-}
-
 #pragma mark - Creating Animation
+
++ (BOOL)inProgressOn:(id)viewOrLayer {
+    
+    return [self inProgressOn:viewOrLayer withKeyPath:@"transform.scale"];
+    
+}
 
 + (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    TrZoomAnimation *animation = [super animate:viewOrLayer
-                                       duration:duration
-                                          delay:delay
-                                        options:0
-                                     completion:completion];
-    
-    if (animation) {
-        animation->_curve = (curve ? curve : kTrAnimationCurveLinear);
-        animation->_startValue = startZoomLevel;
-        animation->_endValue = endZoomLevel;
-    }
-    
-    return animation;
+    return [super animate:viewOrLayer
+             layerKeyPath:@"transform.scale"
+               startValue:@(startZoomLevel)
+                 endValue:@(endZoomLevel)
+                 duration:duration
+                    delay:delay
+                    curve:curve
+               completion:completion];
     
 }
 
 + (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endZoomLevel:(CGFloat)endZoomLevel curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    TrZoomAnimation *animation = [self animate:viewOrLayer
-                                      duration:duration
-                                         delay:delay
-                                startZoomLevel:.0
-                                  endZoomLevel:endZoomLevel
-                                         curve:curve
-                                    completion:completion];
-    
-    if (animation)
-        animation->_startValue = [[animation.layer valueForKeyPath:@"transform.scale.x"] floatValue];
-    
-    return animation;
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+          startZoomLevel:[[TrGetLayer(viewOrLayer) valueForKeyPath:@"transform.scale.x"] floatValue]
+            endZoomLevel:endZoomLevel
+                   curve:curve
+              completion:completion];
     
 }
 

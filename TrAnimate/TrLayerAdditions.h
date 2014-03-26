@@ -1,8 +1,8 @@
 //
-//  TrMoveInAnimation.h
+//  TrAnimation.m
 //  TrAnimate
 //
-//  Copyright (c) 2013, Kristian Trenskow All rights reserved.
+//  Copyright (c) 2014, Kristian Trenskow All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or
 //  without modification, are permitted provided that the following
@@ -28,36 +28,4 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrCustomCurvedAnimation.h"
-
-#import "TrAnimation.h"
-
-typedef NS_OPTIONS(NSUInteger, TrMoveInAnimationOptions) {
-    kTrMoveInAnimationOptionReversed = kTrAnimationOptionReversed,
-    /* Represented in bit 1 and 2 */
-    kTrMoveInAnimationOptionDirectionTop = 0x00,
-    kTrMoveInAnimationOptionDirectionRight = 0x02,
-    kTrMoveInAnimationOptionDirectionBottom = 0x04,
-    kTrMoveInAnimationOptionDirectionLeft = 0x06,
-    kTrMoveInAnimationOptionFromScreenBounds = 1 << 3
-};
-
-@interface TrMoveInAnimation : TrAnimation
-
-+ (instancetype)animate:(id)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-                options:(TrMoveInAnimationOptions)options
-                  curve:(TrCustomCurveBlock)curve
-             completion:(void (^)(BOOL finished))completion;
-
-+ (instancetype)animate:(id)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-                options:(TrMoveInAnimationOptions)options;
-
-+ (instancetype)animate:(id)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay;
-
-@end
+#define TrGetLayer(x) ((CALayer *)([x isKindOfClass:[UIView class]] ? ((UIView *)x).layer : x))

@@ -30,6 +30,8 @@
 
 #import <objc/runtime.h>
 
+#import "TrLayerAdditions.h"
+
 #import "TrAnimation.h"
 
 //#define Tr_ANIMATION_VIEW_DEBUG
@@ -164,18 +166,14 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     if (!viewOrLayer)
         return nil;
     
-    CALayer *layer = viewOrLayer;
-    if ([layer isKindOfClass:[UIView class]])
-        layer = ((UIView *)viewOrLayer).layer;
-    
     /* Setup animation object */
-    id animation = [[[self class] alloc] initWithLayer:layer
+    id animation = [[[self class] alloc] initWithLayer:TrGetLayer(viewOrLayer)
                                               duration:duration
                                                  delay:delay
                                                options:options
                                             completion:completion];
     
-    [animation performSelector:@selector(beginAnimation) withObject:nil afterDelay:0.0];
+    [animation performSelector:@selector(beginAnimation) withObject:nil afterDelay:0.0 inModes:@[NSRunLoopCommonModes]];
     
     return animation;
     

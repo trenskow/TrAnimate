@@ -30,9 +30,33 @@
 
 #import "TrCustomCurvedAnimation.h"
 
-#import "TrAnimation.h"
+#import "TrCustomAnimation.h"
 
-@interface TrMoveAnimation : TrAnimation
+typedef NS_OPTIONS(NSUInteger, TrMoveAnimationsOptions) {
+    kTrMoveAnimationsOptionOriginCenter = 0,
+    kTrMoveAnimationsOptionOriginTopLeft
+};
+
+@interface TrMoveAnimation : TrCustomAnimation
+
++ (BOOL)inProgressOn:(id)viewOrLayer;
+
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+          startPosition:(CGPoint)startPosition
+            endPosition:(CGPoint)endPosition
+                  curve:(TrCustomCurveBlock)curve
+                options:(TrMoveAnimationsOptions)options
+             completion:(void (^)(BOOL finished))completion;
+
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+            endPosition:(CGPoint)endPosition
+                  curve:(TrCustomCurveBlock)curve
+                options:(TrMoveAnimationsOptions)options
+             completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration

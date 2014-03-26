@@ -30,11 +30,19 @@
 
 #import "TrCustomCurvedAnimation.h"
 
-#import "TrAnimation.h"
+#import "TrCustomAnimation.h"
 
-@interface TrFadeAnimation : TrAnimation
+@interface TrFadeAnimation : TrCustomAnimation
 
-+ (BOOL)inProgressOnView:(UIView *)view;
++ (BOOL)inProgressOn:(id)viewOrLayer;
+
++ (instancetype)animate:(id)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             startValue:(CGFloat)startValue
+               endValue:(CGFloat)endValue
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void (^)(BOOL))completion;
 
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration

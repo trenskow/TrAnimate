@@ -28,20 +28,10 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <QuartzCore/QuartzCore.h>
-
+#import "TrLayerAdditions.h"
 #import "TrAnimationSubclass.h"
+
 #import "TrFadeAnimation.h"
-
-@interface TrFadeAnimation () {
-    
-    TrCustomCurveBlock _curve;
-    CGFloat _startValue;
-    CGFloat _endValue;
-    
-}
-
-@end
 
 @implementation TrFadeAnimation
 
@@ -51,33 +41,28 @@
     
     [super animationStarted];
     
-    CGFloat endValue = (_endValue - _startValue) * _curve(1.0f) + _startValue;
-    
     self.layer.hidden = NO;
-    self.layer.opacity = endValue;
-    
-}
-
-- (void)setupAnimations {
-    
-    TrCustomCurvedAnimation *fadeAnimation = [TrCustomCurvedAnimation animationWithKeyPath:@"opacity"];
-    fadeAnimation.curve = _curve;
-    fadeAnimation.fromValue = @(_startValue);
-    fadeAnimation.toValue = @(_endValue);
-    
-    self.layer.opacity = (_endValue - _startValue) * _curve(0.0f) + _startValue;
-    
-    [self prepareAnimation:fadeAnimation usingKey:@"fadeAnimation"];
-    
-    [self.layer addAnimation:fadeAnimation forKey:@"fadeAnimation"];
     
 }
 
 #pragma mark - Creating Animation
 
-+ (BOOL)inProgressOnView:(UIView *)view {
++ (BOOL)inProgressOn:(id)viewOrLayer {
     
-    return ([view.layer animationForKey:@"fadeAnimation"] != nil);
+    return [self inProgressOn:viewOrLayer withKeyPath:@"opacity"];
+    
+}
+
++ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(CGFloat)startValue endValue:(CGFloat)endValue curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
+    
+    return [self animate:viewOrLayer
+            layerKeyPath:@"opacity"
+              startValue:@(startValue)
+                endValue:@(endValue)
+                duration:duration
+                   delay:delay
+                   curve:curve
+              completion:completion];
     
 }
 
@@ -86,14 +71,10 @@
     TrFadeAnimation *animation = [self animate:viewOrLayer
                                       duration:duration
                                          delay:delay
-                                       options:0
+                                    startValue:TrGetLayer(viewOrLayer).opacity
+                                      endValue:endValue
+                                         curve:curve
                                     completion:completion];
-    
-    if (animation) {
-        animation->_curve = curve;
-        animation->_startValue = animation.layer.opacity;
-        animation->_endValue = endValue;
-    }
     
     return animation;
     

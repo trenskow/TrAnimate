@@ -30,9 +30,11 @@
 
 #import "TrCustomCurvedAnimation.h"
 
-#import "TrAnimation.h"
+#import "TrCustomAnimation.h"
 
-@interface TrZoomAnimation : TrAnimation
+@interface TrZoomAnimation : TrCustomAnimation
+
++ (BOOL)inProgressOn:(id)viewOrLayer;
 
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration

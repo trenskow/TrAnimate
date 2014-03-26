@@ -30,7 +30,7 @@
 
 #import "TrCustomCurvedAnimation.h"
 
-#import "TrAnimation.h"
+#import "TrCustomAnimation.h"
 
 typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
     
@@ -41,7 +41,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
     
 };
 
-@interface TrRotateAnimation : TrAnimation
+@interface TrRotateAnimation : TrCustomAnimation
 
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration
