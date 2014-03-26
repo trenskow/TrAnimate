@@ -1,5 +1,5 @@
 //
-//  TrZoomAnimation.m
+//  TrScaleAnimation.m
 //  TrAnimate
 //
 //  Copyright (c) 2013, Kristian Trenskow All rights reserved.
@@ -29,9 +29,9 @@
 //
 
 #import "TrLayerAdditions.h"
-#import "TrZoomAnimation.h"
+#import "TrScaleAnimation.h"
 
-@implementation TrZoomAnimation
+@implementation TrScaleAnimation
 
 #pragma mark - Creating Animation
 

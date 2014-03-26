@@ -1,5 +1,5 @@
 //
-//  TrZoomAnimation.h
+//  TrScaleAnimation.h
 //  TrAnimate
 //
 //  Copyright (c) 2013, Kristian Trenskow All rights reserved.
@@ -32,7 +32,7 @@
 
 #import "TrCustomAnimation.h"
 
-@interface TrZoomAnimation : TrCustomAnimation
+@interface TrScaleAnimation : TrCustomAnimation
 
 + (BOOL)inProgressOn:(id)viewOrLayer;
 

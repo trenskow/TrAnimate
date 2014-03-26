@@ -51,8 +51,6 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 @property (nonatomic,getter = isAnimating) BOOL animating;
 @property (nonatomic,getter = isComplete) BOOL complete;
 @property (nonatomic,getter = isFinished) BOOL finished;
-@property (weak,nonatomic) CALayer *layer;
-@property (nonatomic) NSTimeInterval duration;
 @property (copy,nonatomic) TrCustomCurveBlock curve;
 @property (copy,nonatomic) void(^completionBlock)(BOOL finished);
 
@@ -134,6 +132,8 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     
     animation.delegate = self;
     [_observedAnimations addObject:key];
+    
+    [self.layer addAnimation:animation forKey:key];
     
 }
 

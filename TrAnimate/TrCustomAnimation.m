@@ -66,12 +66,8 @@
                                            withProgress:self.curve(.0f)]
               forKeyPath:_keyPath];
     
-    NSString *key = [NSString stringWithFormat:@"customAnimation.%@", _keyPath];
-    
-    [self prepareAnimation:customAnimation usingKey:key];
-    
-    [self.layer addAnimation:customAnimation forKey:key];
-    
+    [self prepareAnimation:customAnimation usingKey:[NSString stringWithFormat:@"customAnimation.%@", _keyPath]];
+        
 }
 
 #pragma mark - Creating Animation

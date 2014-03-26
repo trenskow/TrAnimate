@@ -12,7 +12,7 @@
 		A11C7869178839FC0000B420 /* TrAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C7868178839FA0000B420 /* TrAnimation.m */; };
 		A11C787217883AE60000B420 /* TrMoveAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C787117883AE60000B420 /* TrMoveAnimation.m */; };
 		A11C787B17883B2A0000B420 /* TrFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C787617883B050000B420 /* TrFadeAnimation.m */; };
-		A11C787D17883B2A0000B420 /* TrZoomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C787A17883B260000B420 /* TrZoomAnimation.m */; };
+		A11C787D17883B2A0000B420 /* TrScaleAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C787A17883B260000B420 /* TrScaleAnimation.m */; };
 		A11C788117883B450000B420 /* TrRotateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788017883B430000B420 /* TrRotateAnimation.m */; };
 		A11C788517883B7F0000B420 /* TrAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788417883B7D0000B420 /* TrAnimationGroup.m */; };
 		A11C788D17883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788817883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.m */; };
@@ -54,8 +54,8 @@
 		A11C787117883AE60000B420 /* TrMoveAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrMoveAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A11C787517883B050000B420 /* TrFadeAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrFadeAnimation.h; sourceTree = "<group>"; };
 		A11C787617883B050000B420 /* TrFadeAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrFadeAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		A11C787917883B260000B420 /* TrZoomAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrZoomAnimation.h; sourceTree = "<group>"; };
-		A11C787A17883B260000B420 /* TrZoomAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrZoomAnimation.m; sourceTree = "<group>"; };
+		A11C787917883B260000B420 /* TrScaleAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrScaleAnimation.h; sourceTree = "<group>"; };
+		A11C787A17883B260000B420 /* TrScaleAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrScaleAnimation.m; sourceTree = "<group>"; };
 		A11C787F17883B430000B420 /* TrRotateAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrRotateAnimation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A11C788017883B430000B420 /* TrRotateAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrRotateAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A11C788317883B7D0000B420 /* TrAnimationGroup.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimationGroup.h; sourceTree = "<group>"; };
@@ -206,8 +206,8 @@
 		A11C786E17883AB70000B420 /* Zoom */ = {
 			isa = PBXGroup;
 			children = (
-				A11C787917883B260000B420 /* TrZoomAnimation.h */,
-				A11C787A17883B260000B420 /* TrZoomAnimation.m */,
+				A11C787917883B260000B420 /* TrScaleAnimation.h */,
+				A11C787A17883B260000B420 /* TrScaleAnimation.m */,
 			);
 			name = Zoom;
 			sourceTree = "<group>";
@@ -339,7 +339,7 @@
 				A11C7869178839FC0000B420 /* TrAnimation.m in Sources */,
 				A11C787217883AE60000B420 /* TrMoveAnimation.m in Sources */,
 				A11C787B17883B2A0000B420 /* TrFadeAnimation.m in Sources */,
-				A11C787D17883B2A0000B420 /* TrZoomAnimation.m in Sources */,
+				A11C787D17883B2A0000B420 /* TrScaleAnimation.m in Sources */,
 				A11C788117883B450000B420 /* TrRotateAnimation.m in Sources */,
 				A10A32A918E2DB5B000D4B49 /* TrCustomAnimation.m in Sources */,
 				A11C788517883B7F0000B420 /* TrAnimationGroup.m in Sources */,

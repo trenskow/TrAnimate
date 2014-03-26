@@ -37,7 +37,7 @@
 #import "TrAnimation.h"
 #import "TrMoveAnimation.h"
 #import "TrFadeAnimation.h"
-#import "TrZoomAnimation.h"
+#import "TrScaleAnimation.h"
 #import "TrRotateAnimation.h"
 
 #import "TrAnimationGroup.h"

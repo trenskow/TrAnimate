@@ -49,6 +49,9 @@ typedef NS_OPTIONS(NSUInteger, TrAnimationOptions) { kTrAnimationOptionReversed 
 
 @interface TrAnimation : NSObject <TrAnimation>
 
+@property (weak,nonatomic) CALayer *layer;
+@property (nonatomic) NSTimeInterval duration;
+
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay

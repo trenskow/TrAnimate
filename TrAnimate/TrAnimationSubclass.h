@@ -40,8 +40,6 @@
                         curve:(TrCustomCurveBlock)curve
                    completion:(void (^)(BOOL))completion;
 
-@property (nonatomic,readonly) CALayer *layer;
-@property (nonatomic) NSTimeInterval duration;
 @property (copy,nonatomic,readonly) TrCustomCurveBlock curve;
 
 - (void)prepareAnimation:(TrCustomCurvedAnimation *)animation
