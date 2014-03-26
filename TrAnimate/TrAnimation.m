@@ -34,7 +34,7 @@
 #import "TrLayerAdditions.h"
 #import "TrAnimation.h"
 
-//#define Tr_ANIMATION_VIEW_DEBUG
+//#define TR_ANIMATION_VIEW_DEBUG
 
 const void *TrAnimationLayerKey;
 
