@@ -150,7 +150,6 @@
 				A1A89240183E8A9A004C78B9 /* Generic Additions */,
 				A11C7866178839B50000B420 /* Curves & Interpolation */,
 				A11C7865178839AC0000B420 /* Animations */,
-				A11C788217883B6E0000B420 /* Animation Group */,
 				A10BC9A217883E9800F354FC /* TrAnimate.h */,
 			);
 			path = TrAnimate;
@@ -169,10 +168,11 @@
 			isa = PBXGroup;
 			children = (
 				A10A32B418E2E646000D4B49 /* Additions */,
+				A11C788217883B6E0000B420 /* Animation Group */,
+				A10A32A618E2DB24000D4B49 /* Custom */,
 				A11C7867178839FA0000B420 /* TrAnimation.h */,
 				A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */,
 				A11C7868178839FA0000B420 /* TrAnimation.m */,
-				A10A32A618E2DB24000D4B49 /* Custom */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
@@ -225,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				A11C788617883B870000B420 /* Additions */,
+				A1935AA718FE634C005AFF75 /* Custom */,
 				A11C788317883B7D0000B420 /* TrAnimationGroup.h */,
 				A11C788417883B7D0000B420 /* TrAnimationGroup.m */,
 			);
@@ -274,6 +275,13 @@
 				A11C789D17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.m */,
 			);
 			name = Additions;
+			sourceTree = "<group>";
+		};
+		A1935AA718FE634C005AFF75 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Custom;
 			sourceTree = "<group>";
 		};
 		A1A89240183E8A9A004C78B9 /* Generic Additions */ = {
