@@ -100,7 +100,7 @@
 			children = (
 				A11C786C17883A180000B420 /* Fade */,
 				A11C786A17883A0A0000B420 /* Move */,
-				A11C786E17883AB70000B420 /* Zoom */,
+				A11C786E17883AB70000B420 /* Scale */,
 				A11C786F17883ABF0000B420 /* Rotate */,
 				A10A32A718E2DB5B000D4B49 /* TrCustomAnimation.h */,
 				A10A32A818E2DB5B000D4B49 /* TrCustomAnimation.m */,
@@ -203,13 +203,13 @@
 			name = Fade;
 			sourceTree = "<group>";
 		};
-		A11C786E17883AB70000B420 /* Zoom */ = {
+		A11C786E17883AB70000B420 /* Scale */ = {
 			isa = PBXGroup;
 			children = (
 				A11C787917883B260000B420 /* TrScaleAnimation.h */,
 				A11C787A17883B260000B420 /* TrScaleAnimation.m */,
 			);
-			name = Zoom;
+			name = Scale;
 			sourceTree = "<group>";
 		};
 		A11C786F17883ABF0000B420 /* Rotate */ = {
