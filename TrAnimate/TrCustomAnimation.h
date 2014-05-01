@@ -43,7 +43,7 @@
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                   curve:(TrCustomCurveBlock)curve
-             completion:(void (^)(BOOL))completion;
+             completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id)viewOrLayer
            layerKeyPath:(NSString *)keyPath
@@ -51,6 +51,6 @@
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                   curve:(TrCustomCurveBlock)curve
-             completion:(void (^)(BOOL))completion;
+             completion:(void (^)(BOOL finished))completion;
 
 @end

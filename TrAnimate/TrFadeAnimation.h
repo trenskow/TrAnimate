@@ -42,27 +42,27 @@
              startValue:(CGFloat)startValue
                endValue:(CGFloat)endValue
                   curve:(TrCustomCurveBlock)curve
-             completion:(void (^)(BOOL))completion;
+             completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                endValue:(CGFloat)endValue
                   curve:(TrCustomCurveBlock)curve
-             completion:(void (^)(BOOL))completion;
+             completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                   curve:(TrCustomCurveBlock)curve
                 fadesIn:(BOOL)fadesIn
-             completion:(void (^)(BOOL))completion;
+             completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                 fadesIn:(BOOL)fadesIn
-             completion:(void (^)(BOOL))completion;
+             completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id)viewOrLayer
                duration:(NSTimeInterval)duration
