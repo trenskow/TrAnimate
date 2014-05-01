@@ -78,16 +78,4 @@
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
-    
-    return [self animate:viewOrLayer
-                duration:duration
-                   delay:delay
-          startZoomLevel:.0f
-            endZoomLevel:1.0f
-                   curve:nil
-              completion:completion];
-    
-}
-
 @end
