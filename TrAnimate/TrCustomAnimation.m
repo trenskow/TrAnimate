@@ -105,7 +105,7 @@
     
     TrCustomAnimation *animation = [self animate:viewOrLayer
                                     layerKeyPath:keyPath
-                                      startValue:[TrGetLayer(viewOrLayer) valueForKeyPath:keyPath]
+                                       startValue:[TrGetPresentedLayer(viewOrLayer) valueForKeyPath:keyPath]
                                         endValue:endValue
                                         duration:duration
                                            delay:delay

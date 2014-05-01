@@ -29,3 +29,4 @@
 //
 
 #define TrGetLayer(x) ((CALayer *)([x isKindOfClass:[UIView class]] ? ((UIView *)x).layer : x))
+#define TrGetPresentedLayer(x) ((CALayer *)([TrGetLayer(x) presentationLayer] ?: TrGetLayer(x)))

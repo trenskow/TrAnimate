@@ -71,7 +71,7 @@
     TrFadeAnimation *animation = [self animate:viewOrLayer
                                       duration:duration
                                          delay:delay
-                                    startValue:TrGetLayer(viewOrLayer).opacity
+                                    startValue:TrGetPresentedLayer(viewOrLayer).opacity
                                       endValue:endValue
                                          curve:curve
                                     completion:completion];

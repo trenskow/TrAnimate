@@ -59,7 +59,7 @@
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-          startZoomLevel:[[TrGetLayer(viewOrLayer) valueForKeyPath:@"transform.scale.x"] floatValue]
+          startZoomLevel:[[TrGetPresentedLayer(viewOrLayer) valueForKeyPath:@"transform.scale.x"] floatValue]
             endZoomLevel:endZoomLevel
                    curve:curve
               completion:completion];

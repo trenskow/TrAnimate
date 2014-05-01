@@ -69,7 +69,7 @@
 + (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
     
     CALayer *layer = TrGetLayer(viewOrLayer);
-    CGPoint startPosition = layer.position;
+    CGPoint startPosition = TrGetPresentedLayer(viewOrLayer).position;
     
     if (options == kTrMoveAnimationsOptionOriginTopLeft) {
         startPosition.x -= layer.bounds.size.width * layer.anchorPoint.x;
