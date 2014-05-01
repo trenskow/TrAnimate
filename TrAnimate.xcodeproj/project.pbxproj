@@ -225,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				A11C788617883B870000B420 /* Additions */,
-				A1935AA718FE634C005AFF75 /* Custom */,
 				A11C788317883B7D0000B420 /* TrAnimationGroup.h */,
 				A11C788417883B7D0000B420 /* TrAnimationGroup.m */,
 			);
@@ -275,13 +274,6 @@
 				A11C789D17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.m */,
 			);
 			name = Additions;
-			sourceTree = "<group>";
-		};
-		A1935AA718FE634C005AFF75 /* Custom */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Custom;
 			sourceTree = "<group>";
 		};
 		A1A89240183E8A9A004C78B9 /* Generic Additions */ = {
