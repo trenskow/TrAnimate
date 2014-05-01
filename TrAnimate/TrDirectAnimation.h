@@ -1,8 +1,8 @@
 //
-//  TrAnimate.h
+//  TrRotateAnimation.h
 //  TrAnimate
 //
-//  Copyright (c) 2013, Kristian Trenskow All rights reserved.
+//  Copyright (c) 2014, Kristian Trenskow All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or
 //  without modification, are permitted provided that the following
@@ -28,18 +28,25 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "NSValue+TrCustomCurvedAnimationAdditions.h"
-#import "NSNumber+TrCustomCurvedAnimationAdditions.h"
-
-#import "TrCustomInterpolationAnimation.h"
-#import "TrCustomCurvedAnimation.h"
-
 #import "TrAnimation.h"
-#import "TrMoveAnimation.h"
-#import "TrFadeAnimation.h"
-#import "TrScaleAnimation.h"
-#import "TrRotateAnimation.h"
 
-#import "TrDirectAnimation.h"
+@interface TrDirectAnimation : NSObject <TrAnimation>
 
-#import "TrAnimationGroup.h"
++ (instancetype)animate:(id)what
+                keyPath:(NSString *)keyPath
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             startValue:(id<TrValueTransition>)startValue
+               endValue:(id<TrValueTransition>)endValue
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void(^)(BOOL finished))completion;
+
++ (instancetype)animate:(id)what
+                keyPath:(NSString *)keyPath
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+               endValue:(id<TrValueTransition>)endValue
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void(^)(BOOL finished))completion;
+
+@end
