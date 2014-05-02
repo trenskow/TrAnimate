@@ -158,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				A11C7866178839B50000B420 /* Curves & Interpolation */,
+				A11C788217883B6E0000B420 /* Animation Group */,
 				A11C7865178839AC0000B420 /* Animations */,
 				A10BC9A217883E9800F354FC /* TrAnimate.h */,
 			);
@@ -177,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				A10A32B418E2E646000D4B49 /* Additions */,
-				A11C788217883B6E0000B420 /* Animation Group */,
 				A10A32A618E2DB24000D4B49 /* Custom */,
 				A1E6EA921912D96B00E4F179 /* Direct */,
 				A11C7867178839FA0000B420 /* TrAnimation.h */,
