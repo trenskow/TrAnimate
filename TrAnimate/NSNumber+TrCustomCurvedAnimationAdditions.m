@@ -30,17 +30,30 @@
 
 #import "NSNumber+TrCustomCurvedAnimationAdditions.h"
 
+@interface NSNumber (TrCustomCurvedAnimationPrivateAdditions)
+
+@property (nonatomic,readonly) BOOL isKindOfFloat;
+
+@end
+
 @implementation NSNumber (TrCustomCurvedAnimationAdditions)
+
+#pragma mark - Private Properties
+
+- (BOOL)isKindOfFloat {
+    
+    const char* valType = [self objCType];
+    return (0 == strcmp(valType, @encode(float)) || 0 == strcmp(valType, @encode(double)));
+    
+}
 
 #pragma mark - Transitioning
 
 - (id)transitionToValue:(id)val withProgress:(CGFloat)p {
     
     NSAssert([val isKindOfClass:[NSNumber class]], @"NSNumber cannot transition to value of class %@", NSStringFromClass([NSNumber class]));
-    const char* valType = [val objCType];
-    NSAssert(0 == strcmp(valType, [self objCType]), @"NSNumber of Obj-C type %s cannot transition to NSValue of Ojb-C type %s", [self objCType], valType);
     
-    if (0 == strcmp(valType, @encode(CGFloat)) || 0 == strcmp(valType, "d")) {
+    if (self.isKindOfFloat && ((NSNumber *)val).isKindOfFloat) {
         
         CGFloat val1 = [self doubleValue];
         CGFloat val2 = [val doubleValue];
@@ -49,7 +62,7 @@
         
     }
     
-    NSAssert(NO, @"NSValue cannot transition values of type %s", valType);
+    NSAssert(NO, @"NSValue only support float and doubles.");
     return nil;
     
 }
