@@ -1,5 +1,5 @@
 //
-//  TrRotateAnimation.h
+//  TrDirectAnimation.h
 //  TrAnimate
 //
 //  Copyright (c) 2014, Kristian Trenskow All rights reserved.
