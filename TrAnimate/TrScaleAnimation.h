@@ -34,9 +34,9 @@
 
 @interface TrScaleAnimation : TrCustomAnimation
 
-+ (BOOL)inProgressOn:(id)viewOrLayer;
++ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
          startZoomLevel:(CGFloat)startZoomLevel
@@ -44,14 +44,14 @@
                   curve:(TrCustomCurveBlock)curve
              completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            endZoomLevel:(CGFloat)endZoomLevel
                   curve:(TrCustomCurveBlock)curve
              completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
          startZoomLevel:(CGFloat)startZoomLevel

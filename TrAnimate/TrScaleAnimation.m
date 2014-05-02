@@ -28,20 +28,19 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrLayerAdditions.h"
 #import "TrScaleAnimation.h"
 
 @implementation TrScaleAnimation
 
 #pragma mark - Creating Animation
 
-+ (BOOL)inProgressOn:(id)viewOrLayer {
++ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer {
     
     return [self inProgressOn:viewOrLayer withKeyPath:@"transform.scale"];
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     return [super animate:viewOrLayer
              layerKeyPath:@"transform.scale"
@@ -54,19 +53,19 @@
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endZoomLevel:(CGFloat)endZoomLevel curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endZoomLevel:(CGFloat)endZoomLevel curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-          startZoomLevel:[[TrGetPresentedLayer(viewOrLayer) valueForKeyPath:@"transform.scale.x"] floatValue]
+          startZoomLevel:[[viewOrLayer.presentedLayer valueForKeyPath:@"transform.scale.x"] floatValue]
             endZoomLevel:endZoomLevel
                    curve:curve
               completion:completion];
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startZoomLevel:(CGFloat)startZoomLevel endZoomLevel:(CGFloat)endZoomLevel {
     
     return [self animate:viewOrLayer
                 duration:duration

@@ -31,7 +31,6 @@
 #import <objc/runtime.h>
 
 #import "TrCustomCurvedAnimation.h"
-#import "TrLayerAdditions.h"
 #import "TrAnimation.h"
 
 //#define TR_ANIMATION_VIEW_DEBUG
@@ -163,13 +162,13 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Creating Animation
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     if (!viewOrLayer)
         return nil;
     
     /* Setup animation object */
-    id animation = [[[self class] alloc] initWithLayer:TrGetLayer(viewOrLayer)
+    id animation = [[[self class] alloc] initWithLayer:viewOrLayer.animationsLayer
                                               duration:duration
                                                  delay:delay
                                                  curve:curve

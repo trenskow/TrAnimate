@@ -28,7 +28,6 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrLayerAdditions.h"
 #import "TrAnimationSubclass.h"
 
 #import "TrFadeAnimation.h"
@@ -47,13 +46,13 @@
 
 #pragma mark - Creating Animation
 
-+ (BOOL)inProgressOn:(id)viewOrLayer {
++ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer {
     
     return [self inProgressOn:viewOrLayer withKeyPath:@"opacity"];
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(CGFloat)startValue endValue:(CGFloat)endValue curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(CGFloat)startValue endValue:(CGFloat)endValue curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
             layerKeyPath:@"opacity"
@@ -66,12 +65,12 @@
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(CGFloat)endValue curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(CGFloat)endValue curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     TrFadeAnimation *animation = [self animate:viewOrLayer
                                       duration:duration
                                          delay:delay
-                                    startValue:TrGetPresentedLayer(viewOrLayer).opacity
+                                    startValue:viewOrLayer.presentedLayer.opacity
                                       endValue:endValue
                                          curve:curve
                                     completion:completion];
@@ -80,7 +79,7 @@
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
@@ -91,7 +90,7 @@
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
@@ -102,7 +101,7 @@
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay fadesIn:(BOOL)fadesIn {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay fadesIn:(BOOL)fadesIn {
     
     return [self animate:viewOrLayer duration:duration delay:delay fadesIn:fadesIn completion:nil];
     

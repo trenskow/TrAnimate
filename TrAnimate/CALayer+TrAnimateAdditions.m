@@ -1,5 +1,5 @@
 //
-//  TrAnimation.h
+//  CALayer+TrAnimateAdditions.h
 //  TrAnimate
 //
 //  Copyright (c) 2013, Kristian Trenskow All rights reserved.
@@ -28,35 +28,22 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrAnimatable.h"
-#import "TrCustomCurvedAnimation.h"
+#import "CALayer+TrAnimateAdditions.h"
 
-typedef NS_OPTIONS(NSUInteger, TrAnimationOptions) { kTrAnimationOptionReversed = 1 };
+@implementation CALayer (TrAnimateAdditions)
 
-@protocol TrAnimation
+#pragma mark - Public Properties
 
-@required
+- (CALayer *)animationsLayer {
+    
+    return self;
+    
+}
 
-@property (nonatomic,readonly,getter = isAnimating) BOOL animating;
-@property (nonatomic,readonly,getter = isComplete) BOOL complete;
-@property (nonatomic,readonly,getter = isFinished) BOOL finished;
-@property (nonatomic,readonly) NSTimeInterval duration;
-@property (nonatomic) NSTimeInterval delay;
-
-- (void)postponeAnimation;
-- (void)beginAnimation;
-
-@end
-
-@interface TrAnimation : NSObject <TrAnimation>
-
-@property (weak,nonatomic) CALayer *layer;
-@property (nonatomic) NSTimeInterval duration;
-
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-                  curve:(TrCustomCurveBlock)curve
-             completion:(void(^)(BOOL finished))completion;
+- (CALayer *)presentedLayer {
+    
+    return ([self presentationLayer] ?: self);
+    
+}
 
 @end

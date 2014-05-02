@@ -28,7 +28,6 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrLayerAdditions.h"
 #import "TrAnimationSubclass.h"
 
 #import "TrCustomAnimation.h"
@@ -72,18 +71,18 @@
 
 #pragma mark - Creating Animation
 
-+ (BOOL)inProgressOn:(id)viewOrLayer withKeyPath:(NSString *)keyPath {
++ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withKeyPath:(NSString *)keyPath {
     
     NSString *key = [NSString stringWithFormat:@"customAnimation.%@", keyPath];
     
-    TrCustomCurvedAnimation *animation = (TrCustomCurvedAnimation *)[TrGetLayer(viewOrLayer) animationForKey:key];
+    TrCustomCurvedAnimation *animation = (TrCustomCurvedAnimation *)[viewOrLayer.animationsLayer animationForKey:key];
     return (animation && [animation.keyPath isEqualToString:keyPath]);
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer layerKeyPath:(NSString *)keyPath startValue:(id<TrValueTransition>)startValue endValue:(id<TrValueTransition>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer layerKeyPath:(NSString *)keyPath startValue:(id<TrValueTransition>)startValue endValue:(id<TrValueTransition>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    [TrGetLayer(viewOrLayer) setValue:startValue forKeyPath:keyPath];
+    [viewOrLayer.animationsLayer setValue:startValue forKeyPath:keyPath];
     
     TrCustomAnimation *animation = [super animate:viewOrLayer
                                          duration:duration
@@ -101,11 +100,11 @@
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer layerKeyPath:(NSString *)keyPath endValue:(id<TrValueTransition>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer layerKeyPath:(NSString *)keyPath endValue:(id<TrValueTransition>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     TrCustomAnimation *animation = [self animate:viewOrLayer
                                     layerKeyPath:keyPath
-                                       startValue:[TrGetPresentedLayer(viewOrLayer) valueForKeyPath:keyPath]
+                                       startValue:[viewOrLayer.presentedLayer valueForKeyPath:keyPath]
                                         endValue:endValue
                                         duration:duration
                                            delay:delay

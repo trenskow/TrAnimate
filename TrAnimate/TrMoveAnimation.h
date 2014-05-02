@@ -39,9 +39,9 @@ typedef NS_OPTIONS(NSUInteger, TrMoveAnimationsOptions) {
 
 @interface TrMoveAnimation : TrCustomAnimation
 
-+ (BOOL)inProgressOn:(id)viewOrLayer;
++ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
           startPosition:(CGPoint)startPosition
@@ -50,7 +50,7 @@ typedef NS_OPTIONS(NSUInteger, TrMoveAnimationsOptions) {
                 options:(TrMoveAnimationsOptions)options
              completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
             endPosition:(CGPoint)endPosition
@@ -58,7 +58,7 @@ typedef NS_OPTIONS(NSUInteger, TrMoveAnimationsOptions) {
                 options:(TrMoveAnimationsOptions)options
              completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
             endPosition:(CGPoint)endPosition

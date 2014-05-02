@@ -1,8 +1,8 @@
 //
-//  TrAnimation.m
+//  TrAnimatable.h
 //  TrAnimate
 //
-//  Copyright (c) 2014, Kristian Trenskow All rights reserved.
+//  Copyright (c) 2013, Kristian Trenskow All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or
 //  without modification, are permitted provided that the following
@@ -28,5 +28,11 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#define TrGetLayer(x) ((CALayer *)([x isKindOfClass:[UIView class]] ? ((UIView *)x).layer : x))
-#define TrGetPresentedLayer(x) ((CALayer *)([TrGetLayer(x) presentationLayer] ?: TrGetLayer(x)))
+#import <QuartzCore/QuartzCore.h>
+
+@protocol TrAnimatable <NSObject>
+
+@property (nonatomic,readonly) CALayer *animationsLayer;
+@property (nonatomic,readonly) CALayer *presentedLayer;
+
+@end

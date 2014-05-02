@@ -31,6 +31,9 @@
 #import "NSValue+TrCustomCurvedAnimationAdditions.h"
 #import "NSNumber+TrCustomCurvedAnimationAdditions.h"
 
+#import "UIView+TrAnimateAdditions.h"
+#import "CALayer+TrAnimateAdditions.h"
+
 #import "TrCustomInterpolationAnimation.h"
 #import "TrCustomCurvedAnimation.h"
 

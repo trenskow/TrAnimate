@@ -34,9 +34,9 @@
 
 @interface TrFadeAnimation : TrCustomAnimation
 
-+ (BOOL)inProgressOn:(id)viewOrLayer;
++ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
              startValue:(CGFloat)startValue
@@ -44,27 +44,27 @@
                   curve:(TrCustomCurveBlock)curve
              completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                endValue:(CGFloat)endValue
                   curve:(TrCustomCurveBlock)curve
              completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                   curve:(TrCustomCurveBlock)curve
                 fadesIn:(BOOL)fadesIn
              completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                 fadesIn:(BOOL)fadesIn
              completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                 fadesIn:(BOOL)fadesIn;

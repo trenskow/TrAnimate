@@ -34,9 +34,9 @@
 
 @interface TrCustomAnimation : TrAnimation
 
-+ (BOOL)inProgressOn:(id)viewOrLayer withKeyPath:(NSString *)keyPath;
++ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withKeyPath:(NSString *)keyPath;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
            layerKeyPath:(NSString *)keyPath
              startValue:(id<TrValueTransition>)startValue
                endValue:(id<TrValueTransition>)endValue
@@ -45,7 +45,7 @@
                   curve:(TrCustomCurveBlock)curve
              completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
            layerKeyPath:(NSString *)keyPath
                endValue:(id<TrValueTransition>)endValue
                duration:(NSTimeInterval)duration

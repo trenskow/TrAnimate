@@ -28,25 +28,24 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrLayerAdditions.h"
 #import "TrMoveAnimation.h"
 
 @implementation TrMoveAnimation
 
 #pragma mark - Creating Animation
 
-+ (BOOL)inProgressOn:(id)viewOrLayer {
++ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer {
     
     return [self inProgressOn:viewOrLayer withKeyPath:@"position"];
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
     
     CGPoint finalStartPosition = startPosition;
     CGPoint finalEndPosition = endPosition;
     
-    CALayer *layer = TrGetLayer(viewOrLayer);
+    CALayer *layer = viewOrLayer.animationsLayer;
     
     if (options == kTrMoveAnimationsOptionOriginTopLeft) {
         finalStartPosition.x += layer.bounds.size.width * layer.anchorPoint.x;
@@ -66,10 +65,10 @@
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
     
-    CALayer *layer = TrGetLayer(viewOrLayer);
-    CGPoint startPosition = TrGetPresentedLayer(viewOrLayer).position;
+    CALayer *layer = viewOrLayer.animationsLayer;
+    CGPoint startPosition = viewOrLayer.presentedLayer.position;
     
     if (options == kTrMoveAnimationsOptionOriginTopLeft) {
         startPosition.x -= layer.bounds.size.width * layer.anchorPoint.x;
@@ -87,7 +86,7 @@
     
 }
 
-+ (instancetype)animate:(id)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
