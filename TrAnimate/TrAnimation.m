@@ -99,10 +99,8 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     
 #if defined(TR_ANIMATION_VIEW_DEBUG)
     animation.duration = self.duration * 10.0f;
-    animation.beginTime = CACurrentMediaTime() + self.delay * 10.0f;
 #else
     animation.duration = self.duration;
-    animation.beginTime = CACurrentMediaTime() + self.delay;
 #endif
     
     animation.curve = self.curve;
@@ -120,7 +118,14 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     if (!self.isAnimating) {
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(beginAnimation) object:nil];
         self.animating = YES;
-        [self setupAnimations];
+        [self performSelector:@selector(setupAnimations)
+                   withObject:nil
+#if defined(TR_ANIMATION_VIEW_DEBUG)
+                   afterDelay:self.delay * 10.0f
+#else
+                   afterDelay:self.delay
+#endif
+                      inModes:@[NSRunLoopCommonModes]];
     }
     
 }
