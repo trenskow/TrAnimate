@@ -39,13 +39,7 @@ const void *TrAnimationLayerKey;
 
 NSString *const TrAnimationKey = @"TrAnimationKey";
 
-@interface TrAnimation () {
-    
-    BOOL _animationStarted;
-    BOOL _animationFinished;
-    NSMutableArray *_observedAnimations;
-    
-}
+@interface TrAnimation ()
 
 @property (nonatomic,getter = isAnimating) BOOL animating;
 @property (nonatomic,getter = isComplete) BOOL complete;
@@ -69,9 +63,6 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
         self.curve = (curve ? curve : kTrAnimationCurveLinear);
         self.completionBlock = completion;
         
-        _animationFinished = YES;
-        _observedAnimations = [[NSMutableArray alloc] init];
-        
         /* Associate animation object with view, so it won't be released doing animation */
         objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
@@ -85,33 +76,22 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 - (void)animationDidStart:(TrCustomCurvedAnimation *)anim {
     
-    if (!_animationStarted)
-        [self animationStarted];
-    
-    _animationStarted = YES;
+    [self animationStarted];
     
 }
 
 - (void)animationDidStop:(TrCustomCurvedAnimation *)anim finished:(BOOL)flag {
     
-    [_observedAnimations removeObject:[anim valueForKey:TrAnimationKey]];
+    [self animationCompleted:flag];
     
-    _animationFinished |= flag;
+    if (self.completionBlock)
+        self.completionBlock(flag);
     
-    if ([_observedAnimations count] == 0) {
-        
-        [self animationCompleted:_animationFinished];
-        
-        if (self.completionBlock)
-            self.completionBlock(_animationFinished);
-        
-        self.complete = YES;
-        self.finished = _animationFinished;
-        
-        /* Remove animation from view so it can be released */
-        objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        
-    }
+    self.complete = YES;
+    self.finished = flag;
+    
+    /* Remove animation from view so it can be released */
+    objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
 }
 
@@ -130,7 +110,6 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     [animation setValue:key forKey:TrAnimationKey];
     
     animation.delegate = self;
-    [_observedAnimations addObject:key];
     
     [self.layer addAnimation:animation forKey:key];
     
