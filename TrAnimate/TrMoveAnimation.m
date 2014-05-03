@@ -32,6 +32,18 @@
 
 @implementation TrMoveAnimation
 
+#pragma mark - Internal
+
++ (CGPoint)position:(CGPoint)position ofLayer:(CALayer *)layer fromOptions:(TrMoveAnimationsOptions)options {
+    
+    if (options == kTrMoveAnimationsOptionOriginTopLeft)
+        return CGPointMake(position.x + layer.bounds.size.width * layer.anchorPoint.x,
+                           position.y + layer.bounds.size.height * layer.anchorPoint.y);
+    
+    return position;
+    
+}
+
 #pragma mark - Creating Animation
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer {
@@ -42,22 +54,14 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
     
-    CGPoint finalStartPosition = startPosition;
-    CGPoint finalEndPosition = endPosition;
-    
-    CALayer *layer = viewOrLayer.animationsLayer;
-    
-    if (options == kTrMoveAnimationsOptionOriginTopLeft) {
-        finalStartPosition.x += layer.bounds.size.width * layer.anchorPoint.x;
-        finalStartPosition.y += layer.bounds.size.height * layer.anchorPoint.y;
-        finalEndPosition.x += layer.bounds.size.width * layer.anchorPoint.x;
-        finalEndPosition.y += layer.bounds.size.height * layer.anchorPoint.y;
-    }
-    
     return [super animate:viewOrLayer
              layerKeyPath:@"position"
-               startValue:[NSValue valueWithCGPoint:finalStartPosition]
-                 endValue:[NSValue valueWithCGPoint:finalEndPosition]
+               startValue:[NSValue valueWithCGPoint:[self position:startPosition
+                                                           ofLayer:viewOrLayer.animationsLayer
+                                                       fromOptions:options]]
+                 endValue:[NSValue valueWithCGPoint:[self position:endPosition
+                                                           ofLayer:viewOrLayer.animationsLayer
+                                                       fromOptions:options]]
                  duration:duration
                     delay:delay
                     curve:curve
@@ -65,15 +69,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
-    
-    CALayer *layer = viewOrLayer.animationsLayer;
-    CGPoint startPosition = viewOrLayer.presentedLayer.position;
-    
-    if (options == kTrMoveAnimationsOptionOriginTopLeft) {
-        startPosition.x -= layer.bounds.size.width * layer.anchorPoint.x;
-        startPosition.y -= layer.bounds.size.height * layer.anchorPoint.y;
-    }
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
@@ -81,7 +77,24 @@
            startPosition:startPosition
              endPosition:endPosition
                    curve:curve
-                 options:options
+                 options:([viewOrLayer isKindOfClass:[UIView class]] ?
+                          kTrMoveAnimationsOptionOriginTopLeft :
+                          kTrMoveAnimationsOptionOriginCenter)
+              completion:completion];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+           startPosition:viewOrLayer.animationsLayer.position
+             endPosition:[self position:endPosition
+                                ofLayer:viewOrLayer.animationsLayer
+                            fromOptions:options]
+                   curve:curve
+                 options:kTrMoveAnimationsOptionOriginCenter
               completion:completion];
     
 }
@@ -93,7 +106,9 @@
                    delay:delay
              endPosition:endPosition
                    curve:curve
-                 options:kTrMoveAnimationsOptionOriginCenter
+                 options:([viewOrLayer isKindOfClass:[UIView class]] ?
+                          kTrMoveAnimationsOptionOriginTopLeft :
+                          kTrMoveAnimationsOptionOriginCenter)
               completion:completion];
     
 }

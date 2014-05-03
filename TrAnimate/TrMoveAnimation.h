@@ -53,6 +53,14 @@ typedef NS_OPTIONS(NSUInteger, TrMoveAnimationsOptions) {
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
+          startPosition:(CGPoint)startPosition
+            endPosition:(CGPoint)endPosition
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void (^)(BOOL finished))completion;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
             endPosition:(CGPoint)endPosition
                   curve:(TrCustomCurveBlock)curve
                 options:(TrMoveAnimationsOptions)options
