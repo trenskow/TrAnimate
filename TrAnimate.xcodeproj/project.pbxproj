@@ -8,6 +8,39 @@
 
 /* Begin PBXBuildFile section */
 		A10A32A918E2DB5B000D4B49 /* TrCustomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A32A818E2DB5B000D4B49 /* TrCustomAnimation.m */; };
+		A1145CFA194EFA7D001B0108 /* TrCustomInterpolationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789217883BBA0000B420 /* TrCustomInterpolationAnimation.m */; };
+		A1145CFB194EFA7D001B0108 /* NSValue+TrCustomCurvedAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789B17883BE70000B420 /* NSValue+TrCustomCurvedAnimationAdditions.m */; };
+		A1145CFC194EFA7D001B0108 /* NSNumber+TrCustomCurvedAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789D17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.m */; };
+		A1145CFD194EFA7D001B0108 /* TrCustomCurvedAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789617883BD20000B420 /* TrCustomCurvedAnimation.m */; };
+		A1145CFE194EFA7D001B0108 /* NSMutableDictionary+TrAnimationGroupAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788817883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.m */; };
+		A1145CFF194EFA7D001B0108 /* NSArray+TrAnimationGroupAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788A17883B940000B420 /* NSArray+TrAnimationGroupAdditions.m */; };
+		A1145D00194EFA7D001B0108 /* NSMutableArray+TrAnimationGroupAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788C17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.m */; };
+		A1145D01194EFA7D001B0108 /* TrAnimationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788417883B7D0000B420 /* TrAnimationGroup.m */; };
+		A1145D02194EFA7D001B0108 /* UIView+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EAA01913B55300E4F179 /* UIView+TrAnimateAdditions.m */; };
+		A1145D03194EFA7D001B0108 /* CALayer+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EAA31913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m */; };
+		A1145D04194EFA7D001B0108 /* TrFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C787617883B050000B420 /* TrFadeAnimation.m */; };
+		A1145D05194EFA7D001B0108 /* TrMoveAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C787117883AE60000B420 /* TrMoveAnimation.m */; };
+		A1145D06194EFA7D001B0108 /* TrScaleAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C787A17883B260000B420 /* TrScaleAnimation.m */; };
+		A1145D07194EFA7D001B0108 /* TrRotateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788017883B430000B420 /* TrRotateAnimation.m */; };
+		A1145D08194EFA7D001B0108 /* TrCustomAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A32A818E2DB5B000D4B49 /* TrCustomAnimation.m */; };
+		A1145D09194EFA7D001B0108 /* TrDirectAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EA941912D98600E4F179 /* TrDirectAnimation.m */; };
+		A1145D0A194EFA7D001B0108 /* TrAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C7868178839FA0000B420 /* TrAnimation.m */; };
+		A1145D0B194EFAE8001B0108 /* TrAnimate.h in Headers */ = {isa = PBXBuildFile; fileRef = A10BC9A217883E9800F354FC /* TrAnimate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D0C194EFAF5001B0108 /* NSValue+TrCustomCurvedAnimationAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789A17883BE70000B420 /* NSValue+TrCustomCurvedAnimationAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D0D194EFAF5001B0108 /* NSNumber+TrCustomCurvedAnimationAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789C17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D0E194EFB06001B0108 /* UIView+TrAnimateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E6EA9F1913B55300E4F179 /* UIView+TrAnimateAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D0F194EFB06001B0108 /* CALayer+TrAnimateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E6EAA21913B5CE00E4F179 /* CALayer+TrAnimateAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D10194EFB13001B0108 /* TrCustomInterpolationAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789117883BBA0000B420 /* TrCustomInterpolationAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D11194EFB13001B0108 /* TrCustomCurvedAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789517883BD20000B420 /* TrCustomCurvedAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D12194EFB31001B0108 /* TrAnimationGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C788317883B7D0000B420 /* TrAnimationGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D13194EFB31001B0108 /* TrFadeAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C787517883B050000B420 /* TrFadeAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D14194EFB31001B0108 /* TrMoveAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C787017883AE60000B420 /* TrMoveAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D15194EFB31001B0108 /* TrScaleAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C787917883B260000B420 /* TrScaleAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D16194EFB31001B0108 /* TrRotateAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C787F17883B430000B420 /* TrRotateAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D17194EFB31001B0108 /* TrCustomAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A10A32A718E2DB5B000D4B49 /* TrCustomAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D18194EFB31001B0108 /* TrDirectAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E6EA931912D98600E4F179 /* TrDirectAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D19194EFB31001B0108 /* TrAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C7867178839FA0000B420 /* TrAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D1A194EFB58001B0108 /* TrAnimationSubclass.h in Headers */ = {isa = PBXBuildFile; fileRef = A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A11C7857178839720000B420 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C7856178839720000B420 /* Foundation.framework */; };
 		A11C7869178839FC0000B420 /* TrAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C7868178839FA0000B420 /* TrAnimation.m */; };
 		A11C787217883AE60000B420 /* TrMoveAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C787117883AE60000B420 /* TrMoveAnimation.m */; };
@@ -46,7 +79,9 @@
 		A10A32A818E2DB5B000D4B49 /* TrCustomAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrCustomAnimation.m; sourceTree = "<group>"; };
 		A10BC9A217883E9800F354FC /* TrAnimate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimate.h; sourceTree = "<group>"; };
 		A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimationSubclass.h; sourceTree = "<group>"; };
-		A11C7853178839720000B420 /* libTrAnimate.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTrAnimate.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1145CE1194EF9F3001B0108 /* TrAnimate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrAnimate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1145CE4194EF9F3001B0108 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A11C7853178839720000B420 /* libTrAnimate_static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTrAnimate_static.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11C7856178839720000B420 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A11C785A178839720000B420 /* TrAnimate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrAnimate-Prefix.pch"; sourceTree = "<group>"; };
 		A11C7867178839FA0000B420 /* TrAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimation.h; sourceTree = "<group>"; };
@@ -88,6 +123,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A1145CDD194EF9F3001B0108 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A11C7850178839720000B420 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -139,7 +181,8 @@
 		A11C7854178839720000B420 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A11C7853178839720000B420 /* libTrAnimate.a */,
+				A11C7853178839720000B420 /* libTrAnimate_static.a */,
+				A1145CE1194EF9F3001B0108 /* TrAnimate.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				A11C785A178839720000B420 /* TrAnimate-Prefix.pch */,
+				A1145CE4194EF9F3001B0108 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			path = TrAnimate;
@@ -297,10 +341,54 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		A1145CDE194EF9F3001B0108 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1145D18194EFB31001B0108 /* TrDirectAnimation.h in Headers */,
+				A1145D1A194EFB58001B0108 /* TrAnimationSubclass.h in Headers */,
+				A1145D0C194EFAF5001B0108 /* NSValue+TrCustomCurvedAnimationAdditions.h in Headers */,
+				A1145D0F194EFB06001B0108 /* CALayer+TrAnimateAdditions.h in Headers */,
+				A1145D15194EFB31001B0108 /* TrScaleAnimation.h in Headers */,
+				A1145D13194EFB31001B0108 /* TrFadeAnimation.h in Headers */,
+				A1145D0E194EFB06001B0108 /* UIView+TrAnimateAdditions.h in Headers */,
+				A1145D12194EFB31001B0108 /* TrAnimationGroup.h in Headers */,
+				A1145D16194EFB31001B0108 /* TrRotateAnimation.h in Headers */,
+				A1145D0B194EFAE8001B0108 /* TrAnimate.h in Headers */,
+				A1145D11194EFB13001B0108 /* TrCustomCurvedAnimation.h in Headers */,
+				A1145D19194EFB31001B0108 /* TrAnimation.h in Headers */,
+				A1145D10194EFB13001B0108 /* TrCustomInterpolationAnimation.h in Headers */,
+				A1145D14194EFB31001B0108 /* TrMoveAnimation.h in Headers */,
+				A1145D17194EFB31001B0108 /* TrCustomAnimation.h in Headers */,
+				A1145D0D194EFAF5001B0108 /* NSNumber+TrCustomCurvedAnimationAdditions.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		A11C7852178839720000B420 /* TrAnimate */ = {
+		A1145CE0194EF9F3001B0108 /* TrAnimate */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A11C7861178839720000B420 /* Build configuration list for PBXNativeTarget "TrAnimate" */;
+			buildConfigurationList = A1145CF4194EF9F3001B0108 /* Build configuration list for PBXNativeTarget "TrAnimate" */;
+			buildPhases = (
+				A1145CDC194EF9F3001B0108 /* Sources */,
+				A1145CDD194EF9F3001B0108 /* Frameworks */,
+				A1145CDE194EF9F3001B0108 /* Headers */,
+				A1145CDF194EF9F3001B0108 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TrAnimate;
+			productName = TrAnimate;
+			productReference = A1145CE1194EF9F3001B0108 /* TrAnimate.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A11C7852178839720000B420 /* TrAnimate Static */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A11C7861178839720000B420 /* Build configuration list for PBXNativeTarget "TrAnimate Static" */;
 			buildPhases = (
 				A11C784F178839720000B420 /* Sources */,
 				A11C7850178839720000B420 /* Frameworks */,
@@ -310,9 +398,9 @@
 			);
 			dependencies = (
 			);
-			name = TrAnimate;
+			name = "TrAnimate Static";
 			productName = TrAnimate;
-			productReference = A11C7853178839720000B420 /* libTrAnimate.a */;
+			productReference = A11C7853178839720000B420 /* libTrAnimate_static.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
@@ -321,8 +409,13 @@
 		A11C784B178839720000B420 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Kristian Trenskow";
+				TargetAttributes = {
+					A1145CE0194EF9F3001B0108 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+				};
 			};
 			buildConfigurationList = A11C784E178839720000B420 /* Build configuration list for PBXProject "TrAnimate" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -336,12 +429,47 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A11C7852178839720000B420 /* TrAnimate */,
+				A11C7852178839720000B420 /* TrAnimate Static */,
+				A1145CE0194EF9F3001B0108 /* TrAnimate */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		A1145CDF194EF9F3001B0108 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
+		A1145CDC194EF9F3001B0108 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1145D01194EFA7D001B0108 /* TrAnimationGroup.m in Sources */,
+				A1145D08194EFA7D001B0108 /* TrCustomAnimation.m in Sources */,
+				A1145D07194EFA7D001B0108 /* TrRotateAnimation.m in Sources */,
+				A1145D05194EFA7D001B0108 /* TrMoveAnimation.m in Sources */,
+				A1145D03194EFA7D001B0108 /* CALayer+TrAnimateAdditions.m in Sources */,
+				A1145D02194EFA7D001B0108 /* UIView+TrAnimateAdditions.m in Sources */,
+				A1145D06194EFA7D001B0108 /* TrScaleAnimation.m in Sources */,
+				A1145CFA194EFA7D001B0108 /* TrCustomInterpolationAnimation.m in Sources */,
+				A1145CFE194EFA7D001B0108 /* NSMutableDictionary+TrAnimationGroupAdditions.m in Sources */,
+				A1145CFB194EFA7D001B0108 /* NSValue+TrCustomCurvedAnimationAdditions.m in Sources */,
+				A1145CFF194EFA7D001B0108 /* NSArray+TrAnimationGroupAdditions.m in Sources */,
+				A1145CFD194EFA7D001B0108 /* TrCustomCurvedAnimation.m in Sources */,
+				A1145D0A194EFA7D001B0108 /* TrAnimation.m in Sources */,
+				A1145CFC194EFA7D001B0108 /* NSNumber+TrCustomCurvedAnimationAdditions.m in Sources */,
+				A1145D00194EFA7D001B0108 /* NSMutableArray+TrAnimationGroupAdditions.m in Sources */,
+				A1145D04194EFA7D001B0108 /* TrFadeAnimation.m in Sources */,
+				A1145D09194EFA7D001B0108 /* TrDirectAnimation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A11C784F178839720000B420 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -369,14 +497,85 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		A1145CF5194EF9F3001B0108 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TrAnimate/TrAnimate-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = TrAnimate/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		A1145CF6194EF9F3001B0108 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "TrAnimate/TrAnimate-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = TrAnimate/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		A11C785F178839720000B420 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -407,10 +606,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = (
-					armv7,
-					armv7s,
-				);
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -457,6 +652,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A1145CF4194EF9F3001B0108 /* Build configuration list for PBXNativeTarget "TrAnimate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1145CF5194EF9F3001B0108 /* Debug */,
+				A1145CF6194EF9F3001B0108 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A11C784E178839720000B420 /* Build configuration list for PBXProject "TrAnimate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -466,7 +670,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A11C7861178839720000B420 /* Build configuration list for PBXNativeTarget "TrAnimate" */ = {
+		A11C7861178839720000B420 /* Build configuration list for PBXNativeTarget "TrAnimate Static" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A11C7862178839720000B420 /* Debug */,

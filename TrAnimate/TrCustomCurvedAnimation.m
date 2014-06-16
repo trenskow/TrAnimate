@@ -164,7 +164,7 @@ TrCustomCurveBlock kTrAnimationCurveEaseOutElastic = ^(CGFloat t) {
 
 #pragma mark - Creating an Animation
 
-+ (id)animationWithKeyPath:(NSString *)path {
++ (instancetype)animationWithKeyPath:(NSString *)path {
     
     TrCustomCurvedAnimation* animation = [super animationWithKeyPath:path];
     

@@ -58,7 +58,7 @@
         CGFloat val1 = [self doubleValue];
         CGFloat val2 = [val doubleValue];
         
-        return [NSNumber numberWithDouble:((val2 - val1) * p) + val1];
+        return @(((val2 - val1) * p) + val1);
         
     }
     

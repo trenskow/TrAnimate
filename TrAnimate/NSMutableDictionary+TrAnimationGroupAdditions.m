@@ -64,7 +64,7 @@ NSString *const TrAnimationGroupAnimateAfterKey = @"TrAnimationGroupAnimateAfter
     [self willChangeValueForKey:@"animatedAfter"];
     
     if (animatedAfter)
-        [self setObject:animatedAfter forKey:TrAnimationGroupAnimateAfterKey];
+        self[TrAnimationGroupAnimateAfterKey] = animatedAfter;
     else
         [self removeObjectForKey:TrAnimationGroupAnimateAfterKey];
     
