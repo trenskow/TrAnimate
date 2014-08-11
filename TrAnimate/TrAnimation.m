@@ -98,7 +98,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 - (void)prepareAnimation:(TrCustomCurvedAnimation *)animation usingKey:(NSString *)key {
     
 #if defined(TR_ANIMATION_VIEW_DEBUG)
-    animation.duration = self.duration * 10.0f;
+    animation.duration = self.duration * 10.0;
 #else
     animation.duration = self.duration;
 #endif
@@ -121,7 +121,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
         [self performSelector:@selector(setupAnimations)
                    withObject:nil
 #if defined(TR_ANIMATION_VIEW_DEBUG)
-                   afterDelay:self.delay * 10.0f
+                   afterDelay:self.delay * 10.0
 #else
                    afterDelay:self.delay
 #endif

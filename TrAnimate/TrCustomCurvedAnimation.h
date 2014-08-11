@@ -33,7 +33,7 @@
 #import "NSValue+TrCustomCurvedAnimationAdditions.h"
 #import "NSNumber+TrCustomCurvedAnimationAdditions.h"
 
-typedef CGFloat(^TrCustomCurveBlock)(CGFloat t);
+typedef double(^TrCustomCurveBlock)(double t);
 
 TrCustomCurveBlock kTrAnimationCurveLinear;
 TrCustomCurveBlock kTrAnimationCurveEaseInSine;

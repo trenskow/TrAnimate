@@ -50,7 +50,7 @@
     
     [super animationStarted];
     
-    [self.layer setValue:[_startValue transitionToValue:_endValue withProgress:self.curve(1.0f)]
+    [self.layer setValue:[_startValue transitionToValue:_endValue withProgress:self.curve(1.0)]
               forKeyPath:_keyPath];
     
 }
@@ -62,7 +62,7 @@
     customAnimation.toValue = _endValue;
     
     [self.layer setValue:[_startValue transitionToValue:_endValue
-                                           withProgress:self.curve(.0f)]
+                                           withProgress:self.curve(.0)]
               forKeyPath:_keyPath];
     
     [self prepareAnimation:customAnimation usingKey:[NSString stringWithFormat:@"customAnimation.%@", _keyPath]];

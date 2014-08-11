@@ -97,7 +97,7 @@
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-              startAngle:.0f
+              startAngle:.0
                 endAngle:M_PI
                  options:kTrRotateAnimationOptionsAxisZ
                    curve:nil

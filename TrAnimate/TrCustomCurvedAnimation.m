@@ -33,45 +33,45 @@
 #pragma mark - Build-in Curves -
 
 #pragma mark kTrAnimationCurveLinear
-TrCustomCurveBlock kTrAnimationCurveLinear = ^(CGFloat t) {
-    return (CGFloat)t;
+TrCustomCurveBlock kTrAnimationCurveLinear = ^(double t) {
+    return t;
 };
 
 #pragma mark kTrAnimationCurveEaseInSine
 
-TrCustomCurveBlock kTrAnimationCurveEaseInSine = ^(CGFloat t) {
-    return (CGFloat)(-1.0f * cos(t * M_PI_2) + 1.0f);
+TrCustomCurveBlock kTrAnimationCurveEaseInSine = ^(double t) {
+    return (-1.0 * cos(t * M_PI_2) + 1.0);
 };
 
 #pragma mark kTrAnimationCurveEaseOutSine
-TrCustomCurveBlock kTrAnimationCurveEaseOutSine = ^(CGFloat t) {
-    return (CGFloat)sin(t * M_PI_2);
+TrCustomCurveBlock kTrAnimationCurveEaseOutSine = ^(double t) {
+    return sin(t * M_PI_2);
 };
 
 #pragma mark kTrAnimationCurveEaseInOutSine
-TrCustomCurveBlock kTrAnimationCurveEaseInOutSine = ^(CGFloat t) {
-    return (CGFloat)(-.5f * cos(M_PI*t) + .5f);
+TrCustomCurveBlock kTrAnimationCurveEaseInOutSine = ^(double t) {
+    return (-.5 * cos(M_PI*t) + .5);
 };
 
 #pragma mark kTrAnimationCurveEaseInCubic
-TrCustomCurveBlock kTrAnimationCurveEaseInCubic = ^(CGFloat t) {
+TrCustomCurveBlock kTrAnimationCurveEaseInCubic = ^(double t) {
     return t*t*t;
 };
 
 #pragma mark kTrAnimationCurveEaseOutCubic
-TrCustomCurveBlock kTrAnimationCurveEaseOutCubic = ^(CGFloat t) {
+TrCustomCurveBlock kTrAnimationCurveEaseOutCubic = ^(double t) {
     t = t - 1.0;
     return t*t*t + 1;
 };
 
 #pragma mark kTrAnimationCurveEaseInOutCubic
-TrCustomCurveBlock kTrAnimationCurveEaseInOutCubic = ^(CGFloat t) {
-    if (t < .5) return (CGFloat)(kTrAnimationCurveEaseInCubic(t * 2.0) / 2.0);
-    return (CGFloat)(kTrAnimationCurveEaseOutCubic((t - .5) * 2.0) / 2.0 + .5);
+TrCustomCurveBlock kTrAnimationCurveEaseInOutCubic = ^(double t) {
+    if (t < .5) return (kTrAnimationCurveEaseInCubic(t * 2.0) / 2.0);
+    return (kTrAnimationCurveEaseOutCubic((t - .5) * 2.0) / 2.0 + .5);
 };
 
 #pragma mark kTrAnimationCurveEaseOutBounce
-TrCustomCurveBlock kTrAnimationCurveEaseOutBounce = ^(CGFloat t) {
+TrCustomCurveBlock kTrAnimationCurveEaseOutBounce = ^(double t) {
     
     CGFloat r = 0.0;
     
@@ -93,60 +93,59 @@ TrCustomCurveBlock kTrAnimationCurveEaseOutBounce = ^(CGFloat t) {
 };
 
 #pragma mark kTrAnimationCurveEaseInExpo
-TrCustomCurveBlock kTrAnimationCurveEaseInExpo = ^(CGFloat t) {
-    return (CGFloat)(t == 0 ? .0f : pow(2.0f, 10.0f * (t - 1.0f)));
+TrCustomCurveBlock kTrAnimationCurveEaseInExpo = ^(double t) {
+    return (t == 0 ? .0 : pow(2.0, 10.0 * (t - 1.0)));
 };
 
 #pragma mark kTrAnimationCurveEaseOutExpo
-TrCustomCurveBlock kTrAnimationCurveEaseOutExpo = ^(CGFloat t) {
-    return (CGFloat)(-pow(2.0f, -10.0f * t) + 1.0f);
+TrCustomCurveBlock kTrAnimationCurveEaseOutExpo = ^(double t) {
+    return -pow(2.0, -10.0 * t) + 1.0;
 };
 
 #pragma mark kTrAnimationCurveEaseInBack
-TrCustomCurveBlock kTrAnimationCurveEaseInBack = ^(CGFloat t) {
-    return (CGFloat)(t*t*(2.70158*t - 1.70158));
+TrCustomCurveBlock kTrAnimationCurveEaseInBack = ^(double t) {
+    return t*t*(2.70158*t - 1.70158);
 };
 
 #pragma mark kTrAnimationCurveEaseOutBack
-TrCustomCurveBlock kTrAnimationCurveEaseOutBack = ^(CGFloat t) {
-    
-    t -= 1.0f;
-    return (CGFloat)(t*t*((1.70158f+1)*t + 1.70158f) + 1);
+TrCustomCurveBlock kTrAnimationCurveEaseOutBack = ^(double t) {
+    t -= 1.0;
+    return t*t*((1.70158f+1)*t + 1.70158f) + 1;
     
 };
 
 #pragma mark kTrAnimationCurveEaseInOutBack
-TrCustomCurveBlock kTrAnimationCurveEaseInOutBack = ^(CGFloat t) {
+TrCustomCurveBlock kTrAnimationCurveEaseInOutBack = ^(double t) {
     
-    CGFloat s = 1.70158f * 1.525f;
-    t /= .5f;
+    double s = 1.70158f * 1.525f;
+    t /= .5;
     
-    if (t < 1.0f)
-        return (.5f*(t*t*(((s)+1)*t - s))); //.5f * (t * t * (s+1) * t - s);
+    if (t < 1.0)
+        return (.5*(t*t*(((s)+1)*t - s)));
     
     t -= 2;
-    return .5f* ((t * t * ((s+1) * t + s) + 2));
+    return .5* ((t * t * ((s+1) * t + s) + 2));
     
 };
 
 #pragma mark kTrAnimationCurveEaseOutElastic
-TrCustomCurveBlock kTrAnimationCurveEaseOutElastic = ^(CGFloat t) {
+TrCustomCurveBlock kTrAnimationCurveEaseOutElastic = ^(double t) {
     
-    CGFloat s = 1.70158f;
-    CGFloat p = .0f;
-    CGFloat a = 1.0f;
+    double s = 1.70158;
+    double p = .0;
+    double a = 1.0;
     if (t==0)
-        return .0f;
+        return .0;
     if (t==1)
-        return 1.0f;
+        return 1.0;
     if (!p)
-        p=.3f;
-    if (a < fabs(1.0f)) {
-        a=1.0f;
+        p=.3;
+    if (a < fabs(1.0)) {
+        a=1.0;
         s=p/4;
     } else
-        s = p/(2*M_PI) * asin(1.0f/a);
-    return (CGFloat)(a*pow(2.0f,-10.0f*t) * sin((t-s)*(2*M_PI)/p) + 1.0f);
+        s = p/(2*M_PI) * asin(1.0/a);
+    return a*pow(2.0,-10.0*t) * sin((t-s)*(2*M_PI)/p) + 1.0;
     
 };
 

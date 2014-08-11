@@ -184,7 +184,7 @@ char TrAnimationGroupObserverContext;
 
 - (NSTimeInterval)duration {
     
-    NSTimeInterval duration = .0f;
+    NSTimeInterval duration = .0;
     
     /* Iterate animations and find the longest running */
     for (NSMutableDictionary *a in _animations) {
@@ -208,13 +208,13 @@ char TrAnimationGroupObserverContext;
         if (!a.animatedAfter)
             delay = MIN(delay, a.animation.delay);
     
-    return (delay < DBL_MAX ? delay : .0f);
+    return (delay < DBL_MAX ? delay : .0);
     
 }
 
 - (void)setDelay:(NSTimeInterval)delay {
     
-    NSTimeInterval delayDiff = MAX(delay, .0f) - self.delay;
+    NSTimeInterval delayDiff = MAX(delay, .0) - self.delay;
     
     [self willChangeValueForKey:@"delay"];
     for (NSMutableDictionary *a in _animations)
