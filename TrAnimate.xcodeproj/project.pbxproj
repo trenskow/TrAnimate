@@ -81,7 +81,7 @@
 		A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimationSubclass.h; sourceTree = "<group>"; };
 		A1145CE1194EF9F3001B0108 /* TrAnimate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrAnimate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1145CE4194EF9F3001B0108 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A11C7853178839720000B420 /* libTrAnimate_static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTrAnimate_static.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		A11C7853178839720000B420 /* libTrAnimate Static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTrAnimate Static.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A11C7856178839720000B420 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A11C785A178839720000B420 /* TrAnimate-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrAnimate-Prefix.pch"; sourceTree = "<group>"; };
 		A11C7867178839FA0000B420 /* TrAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimation.h; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		A11C7854178839720000B420 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A11C7853178839720000B420 /* libTrAnimate_static.a */,
+				A11C7853178839720000B420 /* libTrAnimate Static.a */,
 				A1145CE1194EF9F3001B0108 /* TrAnimate.framework */,
 			);
 			name = Products;
@@ -400,7 +400,7 @@
 			);
 			name = "TrAnimate Static";
 			productName = TrAnimate;
-			productReference = A11C7853178839720000B420 /* libTrAnimate_static.a */;
+			productReference = A11C7853178839720000B420 /* libTrAnimate Static.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
