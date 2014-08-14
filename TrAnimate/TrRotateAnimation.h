@@ -34,7 +34,6 @@
 
 typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
     
-    kTrRotateAnimationOptionReversed = kTrAnimationOptionReversed,
     kTrRotateAnimationOptionsAxisZ = 1 << 1,
     kTrRotateAnimationOptionsAxisX = 1 << 2,
     kTrRotateAnimationOptionsAxisY = 1 << 3

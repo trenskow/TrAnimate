@@ -92,7 +92,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrAnimationOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrRotateAnimationOptions)options completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
