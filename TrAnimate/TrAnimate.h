@@ -28,8 +28,10 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-FOUNDATION_EXPORT double TrAnimateVersionNumber = 1.2;
-FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[] = "1.2";
+#import <Foundation/Foundation.h>
+
+FOUNDATION_EXPORT double TrAnimateVersionNumber;
+FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 
 #import "NSValue+TrCustomCurvedAnimationAdditions.h"
 #import "NSNumber+TrCustomCurvedAnimationAdditions.h"
@@ -41,6 +43,10 @@ FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[] = "1.2";
 #import "TrCustomCurvedAnimation.h"
 
 #import "TrAnimation.h"
+#import "TrAnimationSubclass.h"
+
+#import "TrCustomAnimation.h"
+
 #import "TrOpacityAnimation.h"
 #import "TrPositionAnimation.h"
 #import "TrScaleAnimation.h"
