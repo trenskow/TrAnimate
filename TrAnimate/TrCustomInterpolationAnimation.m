@@ -44,7 +44,7 @@
         NSMutableArray *keyTimes = [[NSMutableArray alloc] init];
         NSMutableArray *values = [[NSMutableArray alloc] init];
         
-        for (NSTimeInterval t = .0 ; t <= 1.0 ; t += 1.0 / (50.0 * (duration / speed))) {
+        for (NSTimeInterval t = .0 ; t <= 1.0 ; t += 1.0 / (60.0 * (duration / speed))) {
             
             [keyTimes addObject:@(t)];
             [values addObject:self.interpolation(t)];
