@@ -341,9 +341,7 @@ TrCurve const TrCurveEaseInOutBounce = ^(double t) {
 
 - (void)setCurve:(TrCurve)curve {
     
-    [self willChangeValueForKey:@"curve"];
     _curve = [curve copy];
-    [self didChangeValueForKey:@"curve"];
     
     [self applyInterpolationIfSetupComplete];
     
@@ -351,9 +349,7 @@ TrCurve const TrCurveEaseInOutBounce = ^(double t) {
 
 - (void)setFromValue:(id<TrValueTransition>)fromValue {
     
-    [self willChangeValueForKey:@"fromValue"];
     _fromValue = fromValue;
-    [self didChangeValueForKey:@"fromValue"];
     
     [self applyInterpolationIfSetupComplete];
     
@@ -361,9 +357,7 @@ TrCurve const TrCurveEaseInOutBounce = ^(double t) {
 
 - (void)setToValue:(id<TrValueTransition>)toValue {
     
-    [self willChangeValueForKey:@"toValue"];
     _toValue = toValue;
-    [self didChangeValueForKey:@"toValue"];
     
     [self applyInterpolationIfSetupComplete];
     

@@ -70,9 +70,7 @@
 
 - (void)setInterpolation:(TrCustomInterpolationBlock)interpolation {
     
-    [self willChangeValueForKey:@"interpolation"];
     _interpolation = interpolation;
-    [self didChangeValueForKey:@"interpolation"];
     
     [self applyKeyTimesAndValuesIfSetupIsComplete];
     

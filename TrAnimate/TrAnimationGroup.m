@@ -216,11 +216,9 @@ char TrAnimationGroupObserverContext;
     
     NSTimeInterval delayDiff = MAX(delay, .0) - self.delay;
     
-    [self willChangeValueForKey:@"delay"];
     for (NSMutableDictionary *a in _animations)
         if (!a.animatedAfter)
             a.animation.delay += delayDiff;
-    [self didChangeValueForKey:@"delay"];
     
 }
 

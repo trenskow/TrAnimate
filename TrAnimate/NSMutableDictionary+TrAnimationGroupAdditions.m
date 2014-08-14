@@ -61,15 +61,11 @@ NSString *const TrAnimationGroupAnimateAfterKey = @"TrAnimationGroupAnimateAfter
 
 - (void)setAnimatedAfter:(id<TrAnimation>)animatedAfter {
     
-    [self willChangeValueForKey:@"animatedAfter"];
-    
     if (animatedAfter)
         self[TrAnimationGroupAnimateAfterKey] = animatedAfter;
     else
         [self removeObjectForKey:TrAnimationGroupAnimateAfterKey];
-    
-    [self didChangeValueForKey:@"animatedAfter"];
-    
+        
 }
 
 @end
