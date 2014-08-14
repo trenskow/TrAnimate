@@ -49,14 +49,14 @@
 
 #pragma mark - Transitioning
 
-- (id)transitionToValue:(id)val withProgress:(CGFloat)p {
+- (id)transitionToValue:(id)val withProgress:(double)p {
     
     NSAssert([val isKindOfClass:[NSNumber class]], @"NSNumber cannot transition to value of class %@", NSStringFromClass([NSNumber class]));
     
     if (self.isKindOfFloat && ((NSNumber *)val).isKindOfFloat) {
         
-        CGFloat val1 = [self doubleValue];
-        CGFloat val2 = [val doubleValue];
+        double val1 = [self doubleValue];
+        double val2 = [val doubleValue];
         
         return @(((val2 - val1) * p) + val1);
         

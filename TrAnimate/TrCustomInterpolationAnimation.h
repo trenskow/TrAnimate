@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-typedef id(^TrCustomInterpolationBlock)(CGFloat t);
+typedef id(^TrCustomInterpolationBlock)(double t);
 
 @interface TrCustomInterpolationAnimation : CAKeyframeAnimation
 

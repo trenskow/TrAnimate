@@ -28,10 +28,12 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import <UIKit/UIKit.h>
+
 @protocol TrValueTransition
 
 @required
 - (id)transitionToValue:(id)val
-           withProgress:(CGFloat)p;
+           withProgress:(double)p;
 
 @end
