@@ -28,6 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import <UIKit/UIKit.h>
+
 #import "TrAnimatable.h"
 
 @interface UIView (TrAnimateAdditions) <TrAnimatable>
