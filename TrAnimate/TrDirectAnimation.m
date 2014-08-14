@@ -42,7 +42,7 @@ const void *TrDirectAnimationKey;
     NSTimeInterval _delay;
     id<TrValueTransition> _startValue;
     id<TrValueTransition> _endValue;
-    TrCustomCurveBlock _curve;
+    TrCurve _curve;
     void (^_completionBlock)(BOOL);
     
     CADisplayLink *_displayLink;
@@ -61,7 +61,7 @@ const void *TrDirectAnimationKey;
 
 #pragma mark - Setup / Teardown
 
-- (instancetype)initWithWhat:(id)what keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(id<TrValueTransition>)startValue endValue:(id<TrValueTransition>)endValue curve:(TrCustomCurveBlock)curve completion:(void(^)(BOOL finished))completion {
+- (instancetype)initWithWhat:(id)what keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(id<TrValueTransition>)startValue endValue:(id<TrValueTransition>)endValue curve:(TrCurve)curve completion:(void(^)(BOOL finished))completion {
     
     if ((self = [super init])) {
         
@@ -71,7 +71,7 @@ const void *TrDirectAnimationKey;
         self.delay = delay;
         _startValue = startValue;
         _endValue = endValue;
-        _curve = (curve ?: kTrAnimationCurveLinear);
+        _curve = (curve ?: TrCurveLinear);
         _completionBlock = [completion copy];
         
         objc_setAssociatedObject(self, &TrDirectAnimationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -101,7 +101,7 @@ const void *TrDirectAnimationKey;
 
 - (void)displayDidUpdate:(CADisplayLink *)displayLink {
     
-    CGFloat progress = MIN([[NSDate date] timeIntervalSinceDate:_beginTime] / self.duration, 1.0);
+    double progress = MIN([[NSDate date] timeIntervalSinceDate:_beginTime] / self.duration, 1.0);
     
     if (progress >= 0 && progress <= 1.0)
         [_what setValue:[_startValue transitionToValue:_endValue
@@ -148,7 +148,7 @@ const void *TrDirectAnimationKey;
 
 #pragma mark - Creating Animation
 
-+ (instancetype)animate:(id)what keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(id<TrValueTransition>)startValue endValue:(id<TrValueTransition>)endValue curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)what keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(id<TrValueTransition>)startValue endValue:(id<TrValueTransition>)endValue curve:(TrCurve)curve completion:(void (^)(BOOL))completion {
     
     TrDirectAnimation *animation = [[self alloc] initWithWhat:what
                                                       keyPath:keyPath
@@ -165,7 +165,7 @@ const void *TrDirectAnimationKey;
     
 }
 
-+ (instancetype)animate:(id)what keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(id<TrValueTransition>)endValue curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)what keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(id<TrValueTransition>)endValue curve:(TrCurve)curve completion:(void (^)(BOOL))completion {
     
     return [self animate:what
                  keyPath:keyPath

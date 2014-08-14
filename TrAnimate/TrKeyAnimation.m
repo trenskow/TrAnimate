@@ -80,7 +80,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer layerKeyPath:(NSString *)keyPath startValue:(id<TrValueTransition>)startValue endValue:(id<TrValueTransition>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer layerKeyPath:(NSString *)keyPath startValue:(id<TrValueTransition>)startValue endValue:(id<TrValueTransition>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve)curve completion:(void (^)(BOOL))completion {
     
     [viewOrLayer.animationsLayer setValue:startValue forKeyPath:keyPath];
     
@@ -100,7 +100,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer layerKeyPath:(NSString *)keyPath endValue:(id<TrValueTransition>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer layerKeyPath:(NSString *)keyPath endValue:(id<TrValueTransition>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve)curve completion:(void (^)(BOOL))completion {
     
     TrKeyAnimation *animation = [self animate:viewOrLayer
                                     layerKeyPath:keyPath

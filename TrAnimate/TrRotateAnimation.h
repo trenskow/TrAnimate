@@ -60,7 +60,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
                   delay:(NSTimeInterval)delay
              startAngle:(CGFloat)startAngle
                endAngle:(CGFloat)endAngle
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
@@ -69,7 +69,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
              startAngle:(CGFloat)startAngle
                endAngle:(CGFloat)endAngle
                 options:(TrRotateAnimationOptions)options
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
              completion:(void (^)(BOOL finished))completion;
 
 @end

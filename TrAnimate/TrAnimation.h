@@ -54,7 +54,7 @@
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
              completion:(void(^)(BOOL finished))completion;
 
 @end

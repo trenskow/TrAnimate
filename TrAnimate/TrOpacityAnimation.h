@@ -32,8 +32,6 @@
 
 #import "TrKeyAnimation.h"
 
-#define TrFadeAnimation TrOpacityAnimation
-
 @interface TrOpacityAnimation : TrKeyAnimation
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
@@ -43,20 +41,20 @@
                   delay:(NSTimeInterval)delay
              startValue:(CGFloat)startValue
                endValue:(CGFloat)endValue
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                endValue:(CGFloat)endValue
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
                 fadesIn:(BOOL)fadesIn
              completion:(void (^)(BOOL finished))completion;
 

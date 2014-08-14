@@ -32,8 +32,6 @@
 
 #import "TrKeyAnimation.h"
 
-#define TrMoveAnimation TrPositionAnimation
-
 typedef NS_OPTIONS(NSUInteger, TrPositionAnimationsOptions) {
     kTrPositionAnimationsOptionOriginCenter = 0,
     kTrPositionAnimationsOptionOriginTopLeft
@@ -48,7 +46,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationsOptions) {
                   delay:(NSTimeInterval)delay
           startPosition:(CGPoint)startPosition
             endPosition:(CGPoint)endPosition
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
                 options:(TrPositionAnimationsOptions)options
              completion:(void (^)(BOOL finished))completion;
 
@@ -57,14 +55,14 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationsOptions) {
                   delay:(NSTimeInterval)delay
           startPosition:(CGPoint)startPosition
             endPosition:(CGPoint)endPosition
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
             endPosition:(CGPoint)endPosition
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
                 options:(TrPositionAnimationsOptions)options
              completion:(void (^)(BOOL finished))completion;
 
@@ -72,7 +70,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationsOptions) {
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
             endPosition:(CGPoint)endPosition
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
              completion:(void (^)(BOOL finished))completion;
 
 @end

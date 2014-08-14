@@ -28,31 +28,53 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "TrValueTransition.h"
 #import "TrCustomInterpolationAnimation.h"
 
-#import "NSValue+TrCustomCurvedAnimationAdditions.h"
-#import "NSNumber+TrCustomCurvedAnimationAdditions.h"
+/**
+ *  A block representing an animation curve.
+ *
+ *  @param t Linear position in time between zero and and.
+ *
+ *  @return The curve position.
+ */
+typedef double(^TrCurve)(double t);
 
-typedef double(^TrCustomCurveBlock)(double t);
-
-TrCustomCurveBlock kTrAnimationCurveLinear;
-TrCustomCurveBlock kTrAnimationCurveEaseInSine;
-TrCustomCurveBlock kTrAnimationCurveEaseOutSine;
-TrCustomCurveBlock kTrAnimationCurveEaseInOutSine;
-TrCustomCurveBlock kTrAnimationCurveEaseInCubic;
-TrCustomCurveBlock kTrAnimationCurveEaseOutCubic;
-TrCustomCurveBlock kTrAnimationCurveEaseInOutCubic;
-TrCustomCurveBlock kTrAnimationCurveEaseOutBounce;
-TrCustomCurveBlock kTrAnimationCurveEaseInExpo;
-TrCustomCurveBlock kTrAnimationCurveEaseOutExpo;
-TrCustomCurveBlock kTrAnimationCurveEaseInBack;
-TrCustomCurveBlock kTrAnimationCurveEaseOutBack;
-TrCustomCurveBlock kTrAnimationCurveEaseInOutBack;
-TrCustomCurveBlock kTrAnimationCurveEaseOutElastic;
+extern TrCurve const TrCurveLinear;
+extern TrCurve const TrCurveEaseInQuad;
+extern TrCurve const TrCurveEaseOutQuad;
+extern TrCurve const TrCurveEaseInOutQuad;
+extern TrCurve const TrCurveEaseInCubic;
+extern TrCurve const TrCurveEaseOutCubic;
+extern TrCurve const TrCurveEaseInOutCubic;
+extern TrCurve const TrCurveEaseInQuart;
+extern TrCurve const TrCurveEaseOutQuart;
+extern TrCurve const TrCurveEaseInOutQuart;
+extern TrCurve const TrCurveEaseInQuint;
+extern TrCurve const TrCurveEaseOutQuint;
+extern TrCurve const TrCurveEaseInOutQuint;
+extern TrCurve const TrCurveEaseInSine;
+extern TrCurve const TrCurveEaseOutSine;
+extern TrCurve const TrCurveEaseInOutSine;
+extern TrCurve const TrCurveEaseInExpo;
+extern TrCurve const TrCurveEaseOutExpo;
+extern TrCurve const TrCurveEaseInOutExpo;
+extern TrCurve const TrCurveEaseInCirc;
+extern TrCurve const TrCurveEaseOutCirc;
+extern TrCurve const TrCurveEaseInOutCirc;
+extern TrCurve const TrCurveEaseInElastic;
+extern TrCurve const TrCurveEaseOutElastic;
+extern TrCurve const TrCurveEaseInOutElastic;
+extern TrCurve const TrCurveEaseInBack;
+extern TrCurve const TrCurveEaseOutBack;
+extern TrCurve const TrCurveEaseInOutBack;
+extern TrCurve const TrCurveEaseInBounce;
+extern TrCurve const TrCurveEaseOutBounce;
+extern TrCurve const TrCurveEaseInOutBounce;
 
 @interface TrCustomCurvedAnimation : TrCustomInterpolationAnimation
 
-@property (copy,nonatomic) TrCustomCurveBlock curve;
+@property (copy,nonatomic) TrCurve curve;
 @property (nonatomic,strong) id<TrValueTransition> fromValue;
 @property (nonatomic,strong) id<TrValueTransition> toValue;
 

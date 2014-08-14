@@ -42,7 +42,7 @@
                endValue:(id<TrValueTransition>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
@@ -50,7 +50,7 @@
                endValue:(id<TrValueTransition>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                  curve:(TrCustomCurveBlock)curve
+                  curve:(TrCurve)curve
              completion:(void (^)(BOOL finished))completion;
 
 @end
