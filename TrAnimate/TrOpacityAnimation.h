@@ -32,6 +32,8 @@
 
 #import "TrKeyAnimation.h"
 
+#define TrFadeAnimation TrOpacityAnimation
+
 @interface TrOpacityAnimation : TrKeyAnimation
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;

@@ -32,6 +32,8 @@
 
 #import "TrKeyAnimation.h"
 
+#define TrMoveAnimation TrPositionAnimation
+
 typedef NS_OPTIONS(NSUInteger, TrPositionAnimationsOptions) {
     kTrPositionAnimationsOptionOriginCenter = 0,
     kTrPositionAnimationsOptionOriginTopLeft
