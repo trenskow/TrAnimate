@@ -31,8 +31,6 @@
 #import "TrAnimatable.h"
 #import "TrCustomCurvedAnimation.h"
 
-typedef NS_OPTIONS(NSUInteger, TrAnimationOptions) { kTrAnimationOptionReversed = 1 };
-
 @protocol TrAnimation
 
 @required
