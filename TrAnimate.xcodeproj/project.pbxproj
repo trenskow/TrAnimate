@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A1076B68199D279D00E452CB /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A1076B69199D279D00E452CB /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				A1076B6C199D27C100E452CB /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		A10A32A918E2DB5B000D4B49 /* TrKeyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A32A818E2DB5B000D4B49 /* TrKeyAnimation.m */; };
 		A1145CFA194EFA7D001B0108 /* TrCustomInterpolationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789217883BBA0000B420 /* TrCustomInterpolationAnimation.m */; };
@@ -57,6 +71,8 @@
 		A11C789F17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789D17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.m */; };
 		A11C78A117883C070000B420 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C78A017883C070000B420 /* QuartzCore.framework */; };
 		A11C78A317883C120000B420 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C78A217883C120000B420 /* UIKit.framework */; };
+		A1DA1A66199D51E700704B7A /* TrAnimatable.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E6EA9E1913B4DC00E4F179 /* TrAnimatable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1DA1A67199D523700704B7A /* TrValueTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789917883BE70000B420 /* TrValueTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1E6EA951912D98600E4F179 /* TrDirectAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EA941912D98600E4F179 /* TrDirectAnimation.m */; };
 		A1E6EAA11913B55300E4F179 /* UIView+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EAA01913B55300E4F179 /* UIView+TrAnimateAdditions.m */; };
 		A1E6EAA41913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EAA31913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m */; };
@@ -200,7 +216,7 @@
 		A11C7858178839720000B420 /* TrAnimate */ = {
 			isa = PBXGroup;
 			children = (
-				A11C7866178839B50000B420 /* Curves & Interpolation */,
+				A11C789417883BBE0000B420 /* Custom Core Animation */,
 				A11C788217883B6E0000B420 /* Animation Group */,
 				A11C7865178839AC0000B420 /* Animations */,
 				A10BC9A217883E9800F354FC /* TrAnimate.h */,
@@ -229,14 +245,6 @@
 				A11C7868178839FA0000B420 /* TrAnimation.m */,
 			);
 			name = Animations;
-			sourceTree = "<group>";
-		};
-		A11C7866178839B50000B420 /* Curves & Interpolation */ = {
-			isa = PBXGroup;
-			children = (
-				A11C789417883BBE0000B420 /* Custom Curve */,
-			);
-			name = "Curves & Interpolation";
 			sourceTree = "<group>";
 		};
 		A11C786A17883A0A0000B420 /* Position */ = {
@@ -307,7 +315,7 @@
 			name = "Custom Interpolation";
 			sourceTree = "<group>";
 		};
-		A11C789417883BBE0000B420 /* Custom Curve */ = {
+		A11C789417883BBE0000B420 /* Custom Core Animation */ = {
 			isa = PBXGroup;
 			children = (
 				A11C789017883BAD0000B420 /* Custom Interpolation */,
@@ -315,7 +323,7 @@
 				A11C789517883BD20000B420 /* TrCustomCurvedAnimation.h */,
 				A11C789617883BD20000B420 /* TrCustomCurvedAnimation.m */,
 			);
-			name = "Custom Curve";
+			name = "Custom Core Animation";
 			sourceTree = "<group>";
 		};
 		A11C789817883BD50000B420 /* Additions */ = {
@@ -349,8 +357,10 @@
 				A1145D18194EFB31001B0108 /* TrDirectAnimation.h in Headers */,
 				A1145D1A194EFB58001B0108 /* TrAnimationSubclass.h in Headers */,
 				A1145D0C194EFAF5001B0108 /* NSValue+TrCustomCurvedAnimationAdditions.h in Headers */,
+				A1DA1A67199D523700704B7A /* TrValueTransition.h in Headers */,
 				A1145D0F194EFB06001B0108 /* CALayer+TrAnimateAdditions.h in Headers */,
 				A1145D15194EFB31001B0108 /* TrScaleAnimation.h in Headers */,
+				A1DA1A66199D51E700704B7A /* TrAnimatable.h in Headers */,
 				A1145D13194EFB31001B0108 /* TrOpacityAnimation.h in Headers */,
 				A1145D0E194EFB06001B0108 /* UIView+TrAnimateAdditions.h in Headers */,
 				A1145D12194EFB31001B0108 /* TrAnimationGroup.h in Headers */,
@@ -412,6 +422,9 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = "Kristian Trenskow";
 				TargetAttributes = {
+					A1076B68199D279D00E452CB = {
+						CreatedOnToolsVersion = 6.0;
+					};
 					A1145CE0194EF9F3001B0108 = {
 						CreatedOnToolsVersion = 6.0;
 					};
@@ -431,6 +444,7 @@
 			targets = (
 				A11C7852178839720000B420 /* TrAnimate Static */,
 				A1145CE0194EF9F3001B0108 /* TrAnimate */,
+				A1076B68199D279D00E452CB /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -444,6 +458,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A1076B6C199D27C100E452CB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Trenskow\";\ncompanyID=\"com.trenskow.TrAnimate\";\ncompanyURL=\"https://github.com/trenskow/TrAnimate\";\ntarget=\"iphoneos\";\noutputPath=\"~/help\";\n# End constants\n/usr/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A1145CDC194EF9F3001B0108 /* Sources */ = {
@@ -497,6 +527,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		A1076B6A199D279D00E452CB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A1076B6B199D279D00E452CB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		A1145CF5194EF9F3001B0108 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -652,6 +696,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A1076B69199D279D00E452CB /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1076B6A199D279D00E452CB /* Debug */,
+				A1076B6B199D279D00E452CB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A1145CF4194EF9F3001B0108 /* Build configuration list for PBXNativeTarget "TrAnimate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
