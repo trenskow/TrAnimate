@@ -22,7 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		A10A32A918E2DB5B000D4B49 /* TrKeyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A32A818E2DB5B000D4B49 /* TrKeyAnimation.m */; };
-		A1145CFA194EFA7D001B0108 /* TrCustomInterpolationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789217883BBA0000B420 /* TrCustomInterpolationAnimation.m */; };
 		A1145CFB194EFA7D001B0108 /* NSValue+TrCustomCurvedAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789B17883BE70000B420 /* NSValue+TrCustomCurvedAnimationAdditions.m */; };
 		A1145CFC194EFA7D001B0108 /* NSNumber+TrCustomCurvedAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789D17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.m */; };
 		A1145CFD194EFA7D001B0108 /* TrCustomCurvedAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789617883BD20000B420 /* TrCustomCurvedAnimation.m */; };
@@ -44,7 +43,6 @@
 		A1145D0D194EFAF5001B0108 /* NSNumber+TrCustomCurvedAnimationAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789C17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D0E194EFB06001B0108 /* UIView+TrAnimateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E6EA9F1913B55300E4F179 /* UIView+TrAnimateAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D0F194EFB06001B0108 /* CALayer+TrAnimateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E6EAA21913B5CE00E4F179 /* CALayer+TrAnimateAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A1145D10194EFB13001B0108 /* TrCustomInterpolationAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789117883BBA0000B420 /* TrCustomInterpolationAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D11194EFB13001B0108 /* TrCustomCurvedAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789517883BD20000B420 /* TrCustomCurvedAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D12194EFB31001B0108 /* TrAnimationGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C788317883B7D0000B420 /* TrAnimationGroup.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D13194EFB31001B0108 /* TrOpacityAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C787517883B050000B420 /* TrOpacityAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -65,7 +63,6 @@
 		A11C788D17883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788817883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.m */; };
 		A11C788E17883B940000B420 /* NSArray+TrAnimationGroupAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788A17883B940000B420 /* NSArray+TrAnimationGroupAdditions.m */; };
 		A11C788F17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788C17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.m */; };
-		A11C789317883BBA0000B420 /* TrCustomInterpolationAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789217883BBA0000B420 /* TrCustomInterpolationAnimation.m */; };
 		A11C789717883BD20000B420 /* TrCustomCurvedAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789617883BD20000B420 /* TrCustomCurvedAnimation.m */; };
 		A11C789E17883BE70000B420 /* NSValue+TrCustomCurvedAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789B17883BE70000B420 /* NSValue+TrCustomCurvedAnimationAdditions.m */; };
 		A11C789F17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789D17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.m */; };
@@ -118,8 +115,6 @@
 		A11C788A17883B940000B420 /* NSArray+TrAnimationGroupAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSArray+TrAnimationGroupAdditions.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A11C788B17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSMutableArray+TrAnimationGroupAdditions.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A11C788C17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSMutableArray+TrAnimationGroupAdditions.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		A11C789117883BBA0000B420 /* TrCustomInterpolationAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrCustomInterpolationAnimation.h; sourceTree = "<group>"; };
-		A11C789217883BBA0000B420 /* TrCustomInterpolationAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrCustomInterpolationAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A11C789517883BD20000B420 /* TrCustomCurvedAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrCustomCurvedAnimation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A11C789617883BD20000B420 /* TrCustomCurvedAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrCustomCurvedAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A11C789917883BE70000B420 /* TrValueTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrValueTransition.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -306,19 +301,9 @@
 			name = Additions;
 			sourceTree = "<group>";
 		};
-		A11C789017883BAD0000B420 /* Custom Interpolation */ = {
-			isa = PBXGroup;
-			children = (
-				A11C789117883BBA0000B420 /* TrCustomInterpolationAnimation.h */,
-				A11C789217883BBA0000B420 /* TrCustomInterpolationAnimation.m */,
-			);
-			name = "Custom Interpolation";
-			sourceTree = "<group>";
-		};
 		A11C789417883BBE0000B420 /* Custom Core Animation */ = {
 			isa = PBXGroup;
 			children = (
-				A11C789017883BAD0000B420 /* Custom Interpolation */,
 				A11C789817883BD50000B420 /* Additions */,
 				A11C789517883BD20000B420 /* TrCustomCurvedAnimation.h */,
 				A11C789617883BD20000B420 /* TrCustomCurvedAnimation.m */,
@@ -436,6 +421,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = A11C784A178839720000B420;
 			productRefGroup = A11C7854178839720000B420 /* Products */;
@@ -487,7 +473,6 @@
 				A1145D03194EFA7D001B0108 /* CALayer+TrAnimateAdditions.m in Sources */,
 				A1145D02194EFA7D001B0108 /* UIView+TrAnimateAdditions.m in Sources */,
 				A1145D06194EFA7D001B0108 /* TrScaleAnimation.m in Sources */,
-				A1145CFA194EFA7D001B0108 /* TrCustomInterpolationAnimation.m in Sources */,
 				A1145CFE194EFA7D001B0108 /* NSMutableDictionary+TrAnimationGroupAdditions.m in Sources */,
 				A1145CFB194EFA7D001B0108 /* NSValue+TrCustomCurvedAnimationAdditions.m in Sources */,
 				A1145CFF194EFA7D001B0108 /* NSArray+TrAnimationGroupAdditions.m in Sources */,
@@ -515,7 +500,6 @@
 				A11C788D17883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.m in Sources */,
 				A11C788E17883B940000B420 /* NSArray+TrAnimationGroupAdditions.m in Sources */,
 				A11C788F17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.m in Sources */,
-				A11C789317883BBA0000B420 /* TrCustomInterpolationAnimation.m in Sources */,
 				A11C789717883BD20000B420 /* TrCustomCurvedAnimation.m in Sources */,
 				A11C789E17883BE70000B420 /* NSValue+TrCustomCurvedAnimationAdditions.m in Sources */,
 				A11C789F17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.m in Sources */,

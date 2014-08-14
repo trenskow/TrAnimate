@@ -28,11 +28,45 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "TrValueTransition.h"
-#import "TrCustomInterpolationAnimation.h"
 
 /**
- *  A block representing an animation curve.
+ *  A block representing an animation curve.<br />
+ *  <br />
+ *  Build-in curves available:<br />
+ *  TrCurveLinear<br />
+ *  TrCurveEaseInQuad<br />
+ *  TrCurveEaseOutQuad<br />
+ *  TrCurveEaseInOutQuad<br />
+ *  TrCurveEaseInCubic<br />
+ *  TrCurveEaseOutCubic<br />
+ *  TrCurveEaseInOutCubic<br />
+ *  TrCurveEaseInQuart<br />
+ *  TrCurveEaseOutQuart<br />
+ *  TrCurveEaseInOutQuart<br />
+ *  TrCurveEaseInQuint<br />
+ *  TrCurveEaseOutQuint<br />
+ *  TrCurveEaseInOutQuint<br />
+ *  TrCurveEaseInSine<br />
+ *  TrCurveEaseOutSine<br />
+ *  TrCurveEaseInOutSine<br />
+ *  TrCurveEaseInExpo<br />
+ *  TrCurveEaseOutExpo<br />
+ *  TrCurveEaseInOutExpo<br />
+ *  TrCurveEaseInCirc<br />
+ *  TrCurveEaseOutCirc<br />
+ *  TrCurveEaseInOutCirc<br />
+ *  TrCurveEaseInElastic<br />
+ *  TrCurveEaseOutElastic<br />
+ *  TrCurveEaseInOutElastic<br />
+ *  TrCurveEaseInBack<br />
+ *  TrCurveEaseOutBack<br />
+ *  TrCurveEaseInOutBack<br />
+ *  TrCurveEaseInBounce<br />
+ *  TrCurveEaseOutBounce<br />
+ *  TrCurveEaseInOutBounce<br />
  *
  *  @param t Linear position in time between zero and and.
  *
@@ -72,10 +106,21 @@ extern TrCurve const TrCurveEaseInBounce;
 extern TrCurve const TrCurveEaseOutBounce;
 extern TrCurve const TrCurveEaseInOutBounce;
 
-@interface TrCustomCurvedAnimation : TrCustomInterpolationAnimation
+@interface TrCustomCurvedAnimation : CAKeyframeAnimation
 
+/**
+ *  Gets or sets the curve for the animation.
+ */
 @property (copy,nonatomic) TrCurve curve;
+
+/**
+ *  Gets or sets the value from which the animation will begin.
+ */
 @property (nonatomic,strong) id<TrValueTransition> fromValue;
+
+/**
+ *  Gets or sets the value to which the animation should end.
+ */
 @property (nonatomic,strong) id<TrValueTransition> toValue;
 
 @end

@@ -322,18 +322,23 @@ TrCurve const TrCurveEaseInOutBounce = ^(double t) {
 
 - (void)applyInterpolationIfSetupComplete {
     
-    if (self.curve && self.fromValue && self.toValue) {
+    if (self.duration && self.curve && self.fromValue && self.toValue) {
         
-        TrCurve curve = self.curve;
-        id<TrValueTransition> fromValue = self.fromValue;
-        id<TrValueTransition> toValue = self.toValue;
+        NSMutableArray *keyTimes = [[NSMutableArray alloc] init];
+        NSMutableArray *values = [[NSMutableArray alloc] init];
         
-        self.interpolation = ^(double t) {
-            return [fromValue transitionToValue:toValue withProgress:curve(t)];
-        };
-    
+        for (NSTimeInterval t = .0 ; t <= 1.0 ; t += 1.0 / (60.0 * (self.duration / self.speed))) {
+            
+            [keyTimes addObject:@(t)];
+            [values addObject:[self.fromValue transitionToValue:self.toValue withProgress:self.curve(t)]];
+            
+        }
+        
+        self.keyTimes = keyTimes;
+        self.values = values;
+        
     } else
-        self.interpolation = nil;
+        self.keyTimes = self.values = nil;
     
 }
 
