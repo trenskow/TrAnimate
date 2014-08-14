@@ -28,6 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "NSNumber+TrCustomCurvedAnimationAdditions.h"
+
 #import "TrAnimationSubclass.h"
 
 #import "TrOpacityAnimation.h"

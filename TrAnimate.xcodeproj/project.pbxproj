@@ -353,7 +353,6 @@
 				A1145D0B194EFAE8001B0108 /* TrAnimate.h in Headers */,
 				A1145D11194EFB13001B0108 /* TrCustomCurvedAnimation.h in Headers */,
 				A1145D19194EFB31001B0108 /* TrAnimation.h in Headers */,
-				A1145D10194EFB13001B0108 /* TrCustomInterpolationAnimation.h in Headers */,
 				A1145D14194EFB31001B0108 /* TrPositionAnimation.h in Headers */,
 				A1145D17194EFB31001B0108 /* TrKeyAnimation.h in Headers */,
 				A1145D0D194EFAF5001B0108 /* NSNumber+TrCustomCurvedAnimationAdditions.h in Headers */,

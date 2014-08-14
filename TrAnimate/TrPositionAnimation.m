@@ -28,6 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "NSValue+TrCustomCurvedAnimationAdditions.h"
+
 #import "TrPositionAnimation.h"
 
 @implementation TrPositionAnimation
