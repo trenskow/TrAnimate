@@ -39,7 +39,6 @@ FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 #import "UIView+TrAnimateAdditions.h"
 #import "CALayer+TrAnimateAdditions.h"
 
-#import "TrCustomInterpolationAnimation.h"
 #import "TrCustomCurvedAnimation.h"
 
 #import "TrAnimation.h"
