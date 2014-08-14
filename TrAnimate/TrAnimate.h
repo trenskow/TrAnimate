@@ -44,7 +44,7 @@ FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 #import "TrAnimation.h"
 #import "TrAnimationSubclass.h"
 
-#import "TrCustomAnimation.h"
+#import "TrKeyAnimation.h"
 
 #import "TrOpacityAnimation.h"
 #import "TrPositionAnimation.h"
