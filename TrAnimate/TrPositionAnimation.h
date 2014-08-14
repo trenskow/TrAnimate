@@ -1,5 +1,5 @@
 //
-//  TrMoveAnimation.h
+//  TrPositionAnimation.h
 //  TrAnimate
 //
 //  Copyright (c) 2013, Kristian Trenskow All rights reserved.
@@ -30,14 +30,14 @@
 
 #import "TrCustomCurvedAnimation.h"
 
-#import "TrCustomAnimation.h"
+#import "TrKeyAnimation.h"
 
-typedef NS_OPTIONS(NSUInteger, TrMoveAnimationsOptions) {
-    kTrMoveAnimationsOptionOriginCenter = 0,
-    kTrMoveAnimationsOptionOriginTopLeft
+typedef NS_OPTIONS(NSUInteger, TrPositionAnimationsOptions) {
+    kTrPositionAnimationsOptionOriginCenter = 0,
+    kTrPositionAnimationsOptionOriginTopLeft
 };
 
-@interface TrMoveAnimation : TrCustomAnimation
+@interface TrPositionAnimation : TrKeyAnimation
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
@@ -47,7 +47,7 @@ typedef NS_OPTIONS(NSUInteger, TrMoveAnimationsOptions) {
           startPosition:(CGPoint)startPosition
             endPosition:(CGPoint)endPosition
                   curve:(TrCustomCurveBlock)curve
-                options:(TrMoveAnimationsOptions)options
+                options:(TrPositionAnimationsOptions)options
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
@@ -63,7 +63,7 @@ typedef NS_OPTIONS(NSUInteger, TrMoveAnimationsOptions) {
                   delay:(NSTimeInterval)delay
             endPosition:(CGPoint)endPosition
                   curve:(TrCustomCurveBlock)curve
-                options:(TrMoveAnimationsOptions)options
+                options:(TrPositionAnimationsOptions)options
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer

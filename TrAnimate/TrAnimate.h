@@ -41,8 +41,8 @@ FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[] = "1.2";
 #import "TrCustomCurvedAnimation.h"
 
 #import "TrAnimation.h"
-#import "TrMoveAnimation.h"
-#import "TrFadeAnimation.h"
+#import "TrOpacityAnimation.h"
+#import "TrPositionAnimation.h"
 #import "TrScaleAnimation.h"
 #import "TrRotateAnimation.h"
 

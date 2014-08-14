@@ -1,8 +1,8 @@
 //
-//  TrRotateAnimation.h
+//  TrOpacityAnimation.h
 //  TrAnimate
 //
-//  Copyright (c) 2014, Kristian Trenskow All rights reserved.
+//  Copyright (c) 2013, Kristian Trenskow All rights reserved.
 //
 //  Redistribution and use in source and binary forms, with or
 //  without modification, are permitted provided that the following
@@ -30,27 +30,43 @@
 
 #import "TrCustomCurvedAnimation.h"
 
-#import "TrAnimation.h"
+#import "TrKeyAnimation.h"
 
-@interface TrCustomAnimation : TrAnimation
+@interface TrOpacityAnimation : TrKeyAnimation
 
-+ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withKeyPath:(NSString *)keyPath;
++ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-           layerKeyPath:(NSString *)keyPath
-             startValue:(id<TrValueTransition>)startValue
-               endValue:(id<TrValueTransition>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
+             startValue:(CGFloat)startValue
+               endValue:(CGFloat)endValue
                   curve:(TrCustomCurveBlock)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-           layerKeyPath:(NSString *)keyPath
-               endValue:(id<TrValueTransition>)endValue
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+               endValue:(CGFloat)endValue
+                  curve:(TrCustomCurveBlock)curve
+             completion:(void (^)(BOOL finished))completion;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                   curve:(TrCustomCurveBlock)curve
+                fadesIn:(BOOL)fadesIn
              completion:(void (^)(BOOL finished))completion;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                fadesIn:(BOOL)fadesIn
+             completion:(void (^)(BOOL finished))completion;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                fadesIn:(BOOL)fadesIn;
 
 @end

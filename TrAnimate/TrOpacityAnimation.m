@@ -1,5 +1,5 @@
 //
-//  TrFadeOutAnimation.m
+//  TrOpacityAnimation.m
 //  TrAnimate
 //
 //  Copyright (c) 2013, Kristian Trenskow All rights reserved.
@@ -30,9 +30,9 @@
 
 #import "TrAnimationSubclass.h"
 
-#import "TrFadeAnimation.h"
+#import "TrOpacityAnimation.h"
 
-@implementation TrFadeAnimation
+@implementation TrOpacityAnimation
 
 #pragma mark - Internal
 
@@ -67,15 +67,13 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(CGFloat)endValue curve:(TrCustomCurveBlock)curve completion:(void (^)(BOOL))completion {
     
-    TrFadeAnimation *animation = [self animate:viewOrLayer
-                                      duration:duration
-                                         delay:delay
-                                    startValue:viewOrLayer.presentedLayer.opacity
-                                      endValue:endValue
-                                         curve:curve
-                                    completion:completion];
-    
-    return animation;
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+              startValue:viewOrLayer.presentedLayer.opacity
+                endValue:endValue
+                   curve:curve
+              completion:completion];
     
 }
 

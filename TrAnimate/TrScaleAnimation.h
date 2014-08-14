@@ -30,9 +30,9 @@
 
 #import "TrCustomCurvedAnimation.h"
 
-#import "TrCustomAnimation.h"
+#import "TrKeyAnimation.h"
 
-@interface TrScaleAnimation : TrCustomAnimation
+@interface TrScaleAnimation : TrKeyAnimation
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 

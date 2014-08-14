@@ -1,5 +1,5 @@
 //
-//  TrMoveAnimation.m
+//  TrPositionAnimation.m
 //  TrAnimate
 //
 //  Copyright (c) 2013, Kristian Trenskow All rights reserved.
@@ -28,15 +28,15 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrMoveAnimation.h"
+#import "TrPositionAnimation.h"
 
-@implementation TrMoveAnimation
+@implementation TrPositionAnimation
 
 #pragma mark - Internal
 
-+ (CGPoint)position:(CGPoint)position ofLayer:(CALayer *)layer fromOptions:(TrMoveAnimationsOptions)options {
++ (CGPoint)position:(CGPoint)position ofLayer:(CALayer *)layer fromOptions:(TrPositionAnimationsOptions)options {
     
-    if (options == kTrMoveAnimationsOptionOriginTopLeft)
+    if (options == kTrPositionAnimationsOptionOriginTopLeft)
         return CGPointMake(position.x + layer.bounds.size.width * layer.anchorPoint.x,
                            position.y + layer.bounds.size.height * layer.anchorPoint.y);
     
@@ -52,7 +52,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrPositionAnimationsOptions)options completion:(void (^)(BOOL))completion {
     
     return [super animate:viewOrLayer
              layerKeyPath:@"position"
@@ -78,13 +78,13 @@
              endPosition:endPosition
                    curve:curve
                  options:([viewOrLayer isKindOfClass:[UIView class]] ?
-                          kTrMoveAnimationsOptionOriginTopLeft :
-                          kTrMoveAnimationsOptionOriginCenter)
+                          kTrPositionAnimationsOptionOriginTopLeft :
+                          kTrPositionAnimationsOptionOriginCenter)
               completion:completion];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrMoveAnimationsOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCustomCurveBlock)curve options:(TrPositionAnimationsOptions)options completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
@@ -94,7 +94,7 @@
                                 ofLayer:viewOrLayer.animationsLayer
                             fromOptions:options]
                    curve:curve
-                 options:kTrMoveAnimationsOptionOriginCenter
+                 options:kTrPositionAnimationsOptionOriginCenter
               completion:completion];
     
 }
@@ -107,8 +107,8 @@
              endPosition:endPosition
                    curve:curve
                  options:([viewOrLayer isKindOfClass:[UIView class]] ?
-                          kTrMoveAnimationsOptionOriginTopLeft :
-                          kTrMoveAnimationsOptionOriginCenter)
+                          kTrPositionAnimationsOptionOriginTopLeft :
+                          kTrPositionAnimationsOptionOriginCenter)
               completion:completion];
     
 }
