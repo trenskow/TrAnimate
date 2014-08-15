@@ -344,6 +344,22 @@ TrCurve const TrCurveEaseInOutBounce = ^(double t) {
 
 #pragma mark - Keyframe Timing
 
+- (void)setSpeed:(float)speed {
+    
+    [super setSpeed:speed];
+    
+    [self applyInterpolationIfSetupComplete];
+    
+}
+
+- (void)setDuration:(CFTimeInterval)duration {
+    
+    [super setDuration:duration];
+    
+    [self applyInterpolationIfSetupComplete];
+    
+}
+
 - (void)setCurve:(TrCurve)curve {
     
     _curve = [curve copy];
