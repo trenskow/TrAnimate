@@ -655,6 +655,10 @@
 		A11C7862178839720000B420 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
 				DSTROOT = /tmp/TrAnimate.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TrAnimate/TrAnimate-Prefix.pch";
@@ -667,6 +671,10 @@
 		A11C7863178839720000B420 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = (
+					"$(ARCHS_STANDARD)",
+					armv7s,
+				);
 				DSTROOT = /tmp/TrAnimate.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TrAnimate/TrAnimate-Prefix.pch";
