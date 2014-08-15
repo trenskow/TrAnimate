@@ -208,7 +208,7 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
 
 #pragma mark - Transitioning
 
-- (id)transitionToValue:(id)val withProgress:(CGFloat)p {
+- (id)transitionToValue:(id)val withProgress:(double)p {
     
     NSAssert([val isKindOfClass:[NSValue class]], @"NSValue cannot transition to value of class %@", NSStringFromClass([val class]));
     const char* valType = [val objCType];
