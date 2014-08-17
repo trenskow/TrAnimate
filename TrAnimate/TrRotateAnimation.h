@@ -32,12 +32,22 @@
 
 #import "TrKeyAnimation.h"
 
+/**
+ *  Speciefies the rotation axis.
+ */
 typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
-    
+    /**
+     *  Rotate around the z-axis.
+     */
     kTrRotateAnimationOptionsAxisZ = 1 << 1,
+    /**
+     *  Rotate around the x-axis.
+     */
     kTrRotateAnimationOptionsAxisX = 1 << 2,
+    /**
+     *  Rotate around the y-axis.
+     */
     kTrRotateAnimationOptionsAxisY = 1 << 3
-    
 };
 
 @interface TrRotateAnimation : TrKeyAnimation
