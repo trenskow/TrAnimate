@@ -30,6 +30,9 @@
 
 #import "TrTransitionable.h"
 
+/**
+ *  Category of `NSNumber` that implements the `TrTransitionable` protocol.
+ */
 @interface NSNumber (TrCustomCurvedAnimationAdditions) <TrTransitionable>
 
 @end

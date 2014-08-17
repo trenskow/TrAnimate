@@ -30,6 +30,9 @@
 
 #import "TrTransitionable.h"
 
+/**
+ *  Category of `NSValue` that implements the [TrTransitionable](TrTransitionable) protocol.
+ */
 @interface NSValue (TrCustomCurvedAnimationAdditions) <TrTransitionable>
 
 @end

@@ -31,7 +31,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- *  Implemented by value objects that are able to transition it's own state to another state. Used in animations when animations need to determine the value doing an animation. Currently `NSValue` and `NSNumber` conforms to this protocol.
+ *  Implemented by value objects that are able to transition it's own state to another state. Used in animations when animations need to determine the value doing an animation. Currently TrAnimate implements this in `NSNumber` and `NSNumber`.
  */
 @protocol TrTransitionable
 
