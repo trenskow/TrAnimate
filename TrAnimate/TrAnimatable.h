@@ -32,7 +32,7 @@
 
 @protocol TrAnimatable <NSObject>
 
-@property (nonatomic,readonly) CALayer *animationsLayer;
+@property (nonatomic,readonly) CALayer *animationLayer;
 @property (nonatomic,readonly) CALayer *presentedLayer;
 
 @end

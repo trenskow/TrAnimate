@@ -34,7 +34,7 @@
 
 #pragma mark - Public Properties
 
-- (CALayer *)animationsLayer {
+- (CALayer *)animationLayer {
     
     return self;
     

@@ -76,14 +76,14 @@
     
     NSString *key = [NSString stringWithFormat:@"customAnimation.%@", keyPath];
     
-    TrCustomCurvedAnimation *animation = (TrCustomCurvedAnimation *)[viewOrLayer.animationsLayer animationForKey:key];
+    TrCustomCurvedAnimation *animation = (TrCustomCurvedAnimation *)[viewOrLayer.animationLayer animationForKey:key];
     return (animation && [animation.keyPath isEqualToString:keyPath]);
     
 }
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer layerKeyPath:(NSString *)keyPath startValue:(id<TrTransitionable>)startValue endValue:(id<TrTransitionable>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve)curve completion:(void (^)(BOOL))completion {
     
-    [viewOrLayer.animationsLayer setValue:startValue forKeyPath:keyPath];
+    [viewOrLayer.animationLayer setValue:startValue forKeyPath:keyPath];
     
     TrKeyAnimation *animation = [super animate:viewOrLayer
                                          duration:duration

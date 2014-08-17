@@ -152,7 +152,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
         return nil;
     
     /* Setup animation object */
-    id animation = [[[self class] alloc] initWithLayer:viewOrLayer.animationsLayer
+    id animation = [[[self class] alloc] initWithLayer:viewOrLayer.animationLayer
                                               duration:duration
                                                  delay:delay
                                                  curve:curve

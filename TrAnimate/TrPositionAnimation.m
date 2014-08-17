@@ -59,10 +59,10 @@
     return [super animate:viewOrLayer
              layerKeyPath:@"position"
                startValue:[NSValue valueWithCGPoint:[self position:startPosition
-                                                           ofLayer:viewOrLayer.animationsLayer
+                                                           ofLayer:viewOrLayer.animationLayer
                                                        fromOptions:options]]
                  endValue:[NSValue valueWithCGPoint:[self position:endPosition
-                                                           ofLayer:viewOrLayer.animationsLayer
+                                                           ofLayer:viewOrLayer.animationLayer
                                                        fromOptions:options]]
                  duration:duration
                     delay:delay
@@ -91,9 +91,9 @@
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-           startPosition:viewOrLayer.animationsLayer.position
+           startPosition:viewOrLayer.animationLayer.position
              endPosition:[self position:endPosition
-                                ofLayer:viewOrLayer.animationsLayer
+                                ofLayer:viewOrLayer.animationLayer
                             fromOptions:options]
                    curve:curve
                  options:kTrPositionAnimationsOptionOriginCenter
