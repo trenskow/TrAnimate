@@ -38,8 +38,8 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
            layerKeyPath:(NSString *)keyPath
-             startValue:(id<TrValueTransition>)startValue
-               endValue:(id<TrValueTransition>)endValue
+             startValue:(id<TrTransitionable>)startValue
+               endValue:(id<TrTransitionable>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                   curve:(TrCurve)curve
@@ -47,7 +47,7 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
            layerKeyPath:(NSString *)keyPath
-               endValue:(id<TrValueTransition>)endValue
+               endValue:(id<TrTransitionable>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                   curve:(TrCurve)curve

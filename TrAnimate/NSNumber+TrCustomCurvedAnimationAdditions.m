@@ -49,7 +49,9 @@
 
 #pragma mark - Transitioning
 
-- (id)transitionToValue:(id)val withProgress:(double)p {
+- (id<TrTransitionable>)transitionTo:(id<TrTransitionable>)value withProgress:(double)progress {
+    
+    id val = value;
     
     NSAssert([val isKindOfClass:[NSNumber class]], @"NSNumber cannot transition to value of class %@", NSStringFromClass([NSNumber class]));
     
@@ -58,7 +60,7 @@
         double val1 = [self doubleValue];
         double val2 = [val doubleValue];
         
-        return @(((val2 - val1) * p) + val1);
+        return @(((val2 - val1) * progress) + val1);
         
     }
     

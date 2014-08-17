@@ -30,7 +30,7 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-#import "TrValueTransition.h"
+#import "TrTransitionable.h"
 
 /**
  *  A block representing an animation curve.<br />
@@ -106,6 +106,9 @@ extern TrCurve const TrCurveEaseInBounce;
 extern TrCurve const TrCurveEaseOutBounce;
 extern TrCurve const TrCurveEaseInOutBounce;
 
+/**
+ *  A `CAKeyframeAnimation` subclass which support custom curves.
+ */
 @interface TrCustomCurvedAnimation : CAKeyframeAnimation
 
 /**
@@ -116,11 +119,11 @@ extern TrCurve const TrCurveEaseInOutBounce;
 /**
  *  Gets or sets the value from which the animation will begin.
  */
-@property (nonatomic,strong) id<TrValueTransition> fromValue;
+@property (nonatomic,strong) id<TrTransitionable> fromValue;
 
 /**
  *  Gets or sets the value to which the animation should end.
  */
-@property (nonatomic,strong) id<TrValueTransition> toValue;
+@property (nonatomic,strong) id<TrTransitionable> toValue;
 
 @end

@@ -28,8 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrValueTransition.h"
+#import "TrTransitionable.h"
 
-@interface NSNumber (TrCustomCurvedAnimationAdditions) <TrValueTransition>
+@interface NSNumber (TrCustomCurvedAnimationAdditions) <TrTransitionable>
 
 @end

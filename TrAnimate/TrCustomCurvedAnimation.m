@@ -330,7 +330,7 @@ TrCurve const TrCurveEaseInOutBounce = ^(double t) {
         for (NSTimeInterval t = .0 ; t <= 1.0 ; t += 1.0 / (60.0 * (self.duration / self.speed))) {
             
             [keyTimes addObject:@(t)];
-            [values addObject:[self.fromValue transitionToValue:self.toValue withProgress:self.curve(t)]];
+            [values addObject:[self.fromValue transitionTo:self.toValue withProgress:self.curve(t)]];
             
         }
         
@@ -368,7 +368,7 @@ TrCurve const TrCurveEaseInOutBounce = ^(double t) {
     
 }
 
-- (void)setFromValue:(id<TrValueTransition>)fromValue {
+- (void)setFromValue:(id<TrTransitionable>)fromValue {
     
     _fromValue = fromValue;
     
@@ -376,7 +376,7 @@ TrCurve const TrCurveEaseInOutBounce = ^(double t) {
     
 }
 
-- (void)setToValue:(id<TrValueTransition>)toValue {
+- (void)setToValue:(id<TrTransitionable>)toValue {
     
     _toValue = toValue;
     

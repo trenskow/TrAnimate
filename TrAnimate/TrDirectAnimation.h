@@ -36,8 +36,8 @@
                 keyPath:(NSString *)keyPath
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-             startValue:(id<TrValueTransition>)startValue
-               endValue:(id<TrValueTransition>)endValue
+             startValue:(id<TrTransitionable>)startValue
+               endValue:(id<TrTransitionable>)endValue
                   curve:(TrCurve)curve
              completion:(void(^)(BOOL finished))completion;
 
@@ -45,7 +45,7 @@
                 keyPath:(NSString *)keyPath
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-               endValue:(id<TrValueTransition>)endValue
+               endValue:(id<TrTransitionable>)endValue
                   curve:(TrCurve)curve
              completion:(void(^)(BOOL finished))completion;
 

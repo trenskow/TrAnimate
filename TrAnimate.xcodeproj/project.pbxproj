@@ -69,7 +69,7 @@
 		A11C78A117883C070000B420 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C78A017883C070000B420 /* QuartzCore.framework */; };
 		A11C78A317883C120000B420 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C78A217883C120000B420 /* UIKit.framework */; };
 		A1DA1A66199D51E700704B7A /* TrAnimatable.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E6EA9E1913B4DC00E4F179 /* TrAnimatable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A1DA1A67199D523700704B7A /* TrValueTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789917883BE70000B420 /* TrValueTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1DA1A67199D523700704B7A /* TrTransitionable.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789917883BE70000B420 /* TrTransitionable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1E6EA951912D98600E4F179 /* TrDirectAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EA941912D98600E4F179 /* TrDirectAnimation.m */; };
 		A1E6EAA11913B55300E4F179 /* UIView+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EAA01913B55300E4F179 /* UIView+TrAnimateAdditions.m */; };
 		A1E6EAA41913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EAA31913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m */; };
@@ -117,7 +117,7 @@
 		A11C788C17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSMutableArray+TrAnimationGroupAdditions.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A11C789517883BD20000B420 /* TrCustomCurvedAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrCustomCurvedAnimation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A11C789617883BD20000B420 /* TrCustomCurvedAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrCustomCurvedAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		A11C789917883BE70000B420 /* TrValueTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrValueTransition.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		A11C789917883BE70000B420 /* TrTransitionable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrTransitionable.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A11C789A17883BE70000B420 /* NSValue+TrCustomCurvedAnimationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSValue+TrCustomCurvedAnimationAdditions.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A11C789B17883BE70000B420 /* NSValue+TrCustomCurvedAnimationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSValue+TrCustomCurvedAnimationAdditions.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A11C789C17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSNumber+TrCustomCurvedAnimationAdditions.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -314,7 +314,7 @@
 		A11C789817883BD50000B420 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				A11C789917883BE70000B420 /* TrValueTransition.h */,
+				A11C789917883BE70000B420 /* TrTransitionable.h */,
 				A11C789A17883BE70000B420 /* NSValue+TrCustomCurvedAnimationAdditions.h */,
 				A11C789B17883BE70000B420 /* NSValue+TrCustomCurvedAnimationAdditions.m */,
 				A11C789C17883BE70000B420 /* NSNumber+TrCustomCurvedAnimationAdditions.h */,
@@ -342,7 +342,7 @@
 				A1145D18194EFB31001B0108 /* TrDirectAnimation.h in Headers */,
 				A1145D1A194EFB58001B0108 /* TrAnimationSubclass.h in Headers */,
 				A1145D0C194EFAF5001B0108 /* NSValue+TrCustomCurvedAnimationAdditions.h in Headers */,
-				A1DA1A67199D523700704B7A /* TrValueTransition.h in Headers */,
+				A1DA1A67199D523700704B7A /* TrTransitionable.h in Headers */,
 				A1145D0F194EFB06001B0108 /* CALayer+TrAnimateAdditions.h in Headers */,
 				A1145D15194EFB31001B0108 /* TrScaleAnimation.h in Headers */,
 				A1DA1A66199D51E700704B7A /* TrAnimatable.h in Headers */,
@@ -456,7 +456,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#appledoc Xcode script\n# Start constants\ncompany=\"Trenskow\";\ncompanyID=\"com.trenskow.TrAnimate\";\ncompanyURL=\"https://github.com/trenskow/TrAnimate\";\ntarget=\"iphoneos\";\noutputPath=\"~/help\";\n# End constants\n/usr/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"${company}\" \\\n--company-id \"${companyID}\" \\\n--docset-atom-filename \"${company}.atom\" \\\n--docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n--docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n--docset-fallback-url \"${companyURL}/${company}\" \\\n--output \"${outputPath}\" \\\n--publish-docset \\\n--docset-platform-family \"${target}\" \\\n--logformat xcode \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--exit-threshold 2 \\\n\"${PROJECT_DIR}\"";
+			shellScript = "# Check for appledoc availability\nappledoc=`/usr/bin/which appledoc`\nif [ $? -eq 0 ]; then\n    #appledoc Xcode script\n    # Start constants\n    company=\"Trenskow\";\n    companyID=\"com.trenskow.TrAnimate\";\n    companyURL=\"https://github.com/trenskow/TrAnimate\";\n    target=\"iphoneos\";\n    outputPath=\"~/help\";\n    # End constants\n    $appledoc \\\n    --project-name \"${PROJECT_NAME}\" \\\n    --project-company \"${company}\" \\\n    --company-id \"${companyID}\" \\\n    --docset-atom-filename \"${company}.atom\" \\\n    --docset-feed-url \"${companyURL}/${company}/%DOCSETATOMFILENAME\" \\\n    --docset-package-url \"${companyURL}/${company}/%DOCSETPACKAGEFILENAME\" \\\n    --docset-fallback-url \"${companyURL}/${company}\" \\\n    --output \"${outputPath}\" \\\n    --publish-docset \\\n    --docset-platform-family \"${target}\" \\\n    --logformat xcode \\\n    --keep-intermediate-files \\\n    --no-repeat-first-par \\\n    --no-warn-invalid-crossref \\\n    --exit-threshold 2 \\\n    \"${PROJECT_DIR}\"\nelse\n    echo \"warning: appledoc not installed on system. To build and install documentation install appledoc from https://github.com/tomaz/appledoc.\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
