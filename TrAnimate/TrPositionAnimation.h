@@ -32,8 +32,17 @@
 
 #import "TrKeyAnimation.h"
 
-typedef NS_OPTIONS(NSUInteger, TrPositionAnimationsOptions) {
+/**
+ *  Specifies the origin of the position.
+ */
+typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOptions) {
+    /**
+     *  Origin in the center of the view or layer. Default when animating `CALayer`s.
+     */
     kTrPositionAnimationsOptionOriginCenter = 0,
+    /**
+     *  Origin at the top left of the view or layer. Default when animating `UIView`s.
+     */
     kTrPositionAnimationsOptionOriginTopLeft
 };
 
@@ -47,7 +56,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationsOptions) {
           startPosition:(CGPoint)startPosition
             endPosition:(CGPoint)endPosition
                   curve:(TrCurve)curve
-                options:(TrPositionAnimationsOptions)options
+                options:(TrPositionAnimationOptions)options
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
@@ -63,7 +72,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationsOptions) {
                   delay:(NSTimeInterval)delay
             endPosition:(CGPoint)endPosition
                   curve:(TrCurve)curve
-                options:(TrPositionAnimationsOptions)options
+                options:(TrPositionAnimationOptions)options
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer

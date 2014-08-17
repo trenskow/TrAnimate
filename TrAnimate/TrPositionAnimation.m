@@ -36,7 +36,7 @@
 
 #pragma mark - Internal
 
-+ (CGPoint)position:(CGPoint)position ofLayer:(CALayer *)layer fromOptions:(TrPositionAnimationsOptions)options {
++ (CGPoint)position:(CGPoint)position ofLayer:(CALayer *)layer fromOptions:(TrPositionAnimationOptions)options {
     
     if (options == kTrPositionAnimationsOptionOriginTopLeft)
         return CGPointMake(position.x + layer.bounds.size.width * layer.anchorPoint.x,
@@ -54,7 +54,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCurve)curve options:(TrPositionAnimationsOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCurve)curve options:(TrPositionAnimationOptions)options completion:(void (^)(BOOL))completion {
     
     return [super animate:viewOrLayer
              layerKeyPath:@"position"
@@ -86,7 +86,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCurve)curve options:(TrPositionAnimationsOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCurve)curve options:(TrPositionAnimationOptions)options completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
