@@ -28,14 +28,40 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+/**
+ *  The `TrAnimation` protocol defines a set of methods and properties that are common to all types of animations. As an example the `TrAnimationGroup` only adds animations of objects that conform to this protocol.
+ */
 @protocol TrAnimation
 
 @required
 
+///------------------------------------
+/// @name Getting Animation Information
+///------------------------------------
+
+/**
+ *  Returns `YES` if the animation is currently in progress.
+ */
 @property (nonatomic,readonly,getter = isAnimating) BOOL animating;
+
+/**
+ *  Returns `YES` if the animation has completed.
+ */
 @property (nonatomic,readonly,getter = isComplete) BOOL complete;
+
+/**
+ *  Returns `YES` if the animation has completed and the animation actually finished.
+ */
 @property (nonatomic,readonly,getter = isFinished) BOOL finished;
+
+/**
+ *  Returns the duration of the animation.
+ */
 @property (nonatomic,readonly) NSTimeInterval duration;
+
+/**
+ *  Returns the delay before the animation will begin.
+ */
 @property (nonatomic) NSTimeInterval delay;
 
 - (void)postponeAnimation;
@@ -46,9 +72,22 @@
 @class TrCurve;
 @protocol TrAnimatable;
 
+/**
+ *  The `TrAnimation` is an abstract class used by many animations that uses Core Animation as the animation technology.
+ *
+ *  @discussion Do not instantiate this class - as it does no animation on its own. Instead instantiate one of the many subclasses. If this an instance of this class is added to a TrAnimationGroup instance, the animation will never complete.
+ */
 @interface TrAnimation : NSObject <TrAnimation>
 
-@property (weak,nonatomic) CALayer *layer;
+///------------------------------------
+/// @name Getting Animation Information
+///------------------------------------
+
+/**
+ *  Returns the animated layer.
+ */
+@property (weak,readonly,nonatomic) CALayer *layer;
+
 @property (nonatomic) NSTimeInterval duration;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer

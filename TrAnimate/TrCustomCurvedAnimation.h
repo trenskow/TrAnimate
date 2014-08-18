@@ -34,24 +34,10 @@
 
 @class TrCurve;
 
-/**
- *  A `CAKeyframeAnimation` subclass which support custom curves.
- */
 @interface TrCustomCurvedAnimation : CAKeyframeAnimation
 
-/**
- *  Gets or sets the curve for the animation.
- */
 @property (copy,nonatomic) TrCurve *curve;
-
-/**
- *  Gets or sets the value from which the animation will begin.
- */
 @property (nonatomic,strong) id<TrInterpolatable> fromValue;
-
-/**
- *  Gets or sets the value to which the animation should end.
- */
 @property (nonatomic,strong) id<TrInterpolatable> toValue;
 
 @end

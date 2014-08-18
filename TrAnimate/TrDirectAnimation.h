@@ -32,8 +32,29 @@
 
 @protocol TrInterpolatable;
 
+/**
+ *  The `TrDirectAnimation` is a class enables animating anything not normally animatable. The `TrDirectAnimation` does not use Core Animation. Instead it sets the values of properties directly on objects. This is useful when you want to animate as an example the `contentOffset` of a `UIScrollView` instance - or the `volume` property of a `AVAudioPlayer` instance.
+ */
 @interface TrDirectAnimation : NSObject <TrAnimation>
 
+/// ---------------------------
+/// @name Creating an Animation
+/// ---------------------------
+
+/**
+ *  Creates and returns an animation with a start value and an end value.
+ *
+ *  @param object     The object which key path you want to animate.
+ *  @param keyPath    The key path of the animated property.
+ *  @param duration   The duration of the animation.
+ *  @param delay      The delay before the animation begins.
+ *  @param startValue The start value of the property.
+ *  @param endValue   The end value of the property.
+ *  @param curve      The curvature of the animation. Providing `nil` makes the animation linear.
+ *  @param completion A block that is invoked when the animation has completed.
+ *
+ *  @return An animation ready to animate the `keyPath` of `object`.
+ */
 + (instancetype)animate:(id)object
                 keyPath:(NSString *)keyPath
                duration:(NSTimeInterval)duration
@@ -43,6 +64,19 @@
                   curve:(TrCurve *)curve
              completion:(void(^)(BOOL finished))completion;
 
+/**
+ *  Creates and returns an animation with an end value. The start value is the current value of the key path.
+ *
+ *  @param object     The object which key path you want to animate.
+ *  @param keyPath    The key path of the animated property.
+ *  @param duration   The duration of the animation.
+ *  @param delay      The delay before the animation begins.
+ *  @param endValue   The end value of the property.
+ *  @param curve      The curvature of the animation. Providing `nil` makes the animation linear.
+ *  @param completion A block that is invoked when the animation has completed.
+ *
+ *  @return An animation ready to animate the `keyPath` of `object`.
+ */
 + (instancetype)animate:(id)object
                 keyPath:(NSString *)keyPath
                duration:(NSTimeInterval)duration

@@ -49,6 +49,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 @property (nonatomic,getter = isFinished) BOOL finished;
 @property (copy,nonatomic) TrCurve *curve;
 @property (copy,nonatomic) void(^completionBlock)(BOOL finished);
+@property (weak,readwrite,nonatomic) CALayer *layer;
 
 @end
 

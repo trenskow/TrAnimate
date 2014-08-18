@@ -30,6 +30,9 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+/**
+ *  The `TrAnimatable` protocol is implemented by classes that are animatable. Currently TrAnimate implements this in `UIView` and `CALayer`.
+ */
 @protocol TrAnimatable <NSObject>
 
 @property (nonatomic,readonly) CALayer *animationLayer;
