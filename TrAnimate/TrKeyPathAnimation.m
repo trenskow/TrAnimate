@@ -71,7 +71,7 @@
                                                 atPosition:[self.curve transform:1.0]]
               forKeyPath:_keyPath];
     
-    [self prepareAnimation:customAnimation usingKey:[NSString stringWithFormat:@"customAnimation.%@", _keyPath]];
+    [self prepareAnimation:customAnimation usingKey:[NSString stringWithFormat:@"keyPathAnimation.%@", _keyPath]];
         
 }
 
@@ -79,7 +79,7 @@
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withKeyPath:(NSString *)keyPath {
     
-    NSString *key = [NSString stringWithFormat:@"customAnimation.%@", keyPath];
+    NSString *key = [NSString stringWithFormat:@"keyPathAnimation.%@", keyPath];
     
     TrCustomCurvedAnimation *animation = (TrCustomCurvedAnimation *)[viewOrLayer.animationLayer animationForKey:key];
     return (animation && [animation.keyPath isEqualToString:keyPath]);
