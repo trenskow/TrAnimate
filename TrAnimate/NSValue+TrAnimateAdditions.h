@@ -28,11 +28,11 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrTransitionable.h"
+#import "TrInterpolatable.h"
 
 /**
- *  Category of `NSValue` that implements the [TrTransitionable](TrTransitionable) protocol.
+ *  Category of `NSValue` that implements the [TrInterpolatable](TrInterpolatable) protocol.
  */
-@interface NSValue (TrCustomCurvedAnimationAdditions) <TrTransitionable>
+@interface NSValue (TrAnimateAdditions) <TrInterpolatable>
 
 @end

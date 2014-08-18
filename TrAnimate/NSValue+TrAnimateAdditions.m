@@ -35,7 +35,7 @@
  
  */
 
-#import "NSValue+TrCustomCurvedAnimationAdditions.h"
+#import "NSValue+TrAnimateAdditions.h"
 
 typedef struct _GSQuartzCoreQuaternion
 {
@@ -204,11 +204,11 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
     
 }
 
-@implementation NSValue (TrCustomCurvedAnimationAdditions)
+@implementation NSValue (TrAnimateAdditions)
 
 #pragma mark - Transitioning
 
-- (id<TrTransitionable>)transitionTo:(id<TrTransitionable>)value withProgress:(double)progress {
+- (id<TrInterpolatable>)interpolateWithValue:(id<TrInterpolatable>)value atPosition:(double)position {
     
     id val = value;
     
@@ -221,26 +221,26 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
         CGPoint val1 = [self CGPointValue];
         CGPoint val2 = [val CGPointValue];
         
-        return [NSValue valueWithCGPoint:CGPointMake(((val2.x - val1.x) * progress) + val1.x,
-                                                     ((val2.y - val1.y) * progress) + val1.y)];
+        return [NSValue valueWithCGPoint:CGPointMake(((val2.x - val1.x) * position) + val1.x,
+                                                     ((val2.y - val1.y) * position) + val1.y)];
         
     } else if (0 == strcmp(valType, @encode(CGSize))) {
         
         CGSize val1 = [self CGSizeValue];
         CGSize val2 = [val CGSizeValue];
         
-        return [NSValue valueWithCGSize:CGSizeMake(((val2.width - val1.width) * progress) + val1.width,
-                                                   ((val2.height - val1.height) * progress) + val1.height)];
+        return [NSValue valueWithCGSize:CGSizeMake(((val2.width - val1.width) * position) + val1.width,
+                                                   ((val2.height - val1.height) * position) + val1.height)];
         
     } else if (0 == strcmp(valType, @encode(CGRect))) {
         
         CGRect val1 = [self CGRectValue];
         CGRect val2 = [val CGRectValue];
         
-        return [NSValue valueWithCGRect:CGRectMake(((val2.origin.x - val1.origin.x) * progress) + val1.origin.x,
-                                                   ((val2.origin.y - val1.origin.y) * progress) + val1.origin.y,
-                                                   ((val2.size.width - val1.size.width) * progress) + val1.size.width,
-                                                   ((val2.size.height - val1.size.height) * progress) + val1.size.height)];
+        return [NSValue valueWithCGRect:CGRectMake(((val2.origin.x - val1.origin.x) * position) + val1.origin.x,
+                                                   ((val2.origin.y - val1.origin.y) * position) + val1.origin.y,
+                                                   ((val2.size.width - val1.size.width) * position) + val1.size.width,
+                                                   ((val2.size.height - val1.size.height) * position) + val1.size.height)];
         
     } else if (0 == strcmp(valType, @encode(CATransform3D))) {
         
@@ -269,9 +269,9 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
         CGFloat fromTX = fromTf.m14, fromTY = fromTf.m24, fromTZ = fromTf.m34;
         CGFloat   toTX =   toTf.m14,   toTY =   toTf.m24,   toTZ =   toTf.m34;
         
-        CGFloat valueTX = linearInterpolation(fromTX, toTX, progress);
-        CGFloat valueTY = linearInterpolation(fromTY, toTY, progress);
-        CGFloat valueTZ = linearInterpolation(fromTZ, toTZ, progress);
+        CGFloat valueTX = linearInterpolation(fromTX, toTX, position);
+        CGFloat valueTY = linearInterpolation(fromTY, toTY, position);
+        CGFloat valueTZ = linearInterpolation(fromTZ, toTZ, position);
         
         /* scale */
 #define GSQC_POW2(x) ((x)*(x))
@@ -284,9 +284,9 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
         CGFloat toSZ = sqrt(GSQC_POW2(toTf.m31) + GSQC_POW2(toTf.m32) + GSQC_POW2(toTf.m33));
 #undef GSQC_POW2
         
-        CGFloat valueSX = linearInterpolation(fromSX, toSX, progress);
-        CGFloat valueSY = linearInterpolation(fromSY, toSY, progress);
-        CGFloat valueSZ = linearInterpolation(fromSZ, toSZ, progress);
+        CGFloat valueSX = linearInterpolation(fromSX, toSX, position);
+        CGFloat valueSY = linearInterpolation(fromSY, toSY, position);
+        CGFloat valueSZ = linearInterpolation(fromSZ, toSZ, position);
         
         
         /* rotation */
@@ -347,7 +347,7 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
         toQuat.w /= toQuatLen;
         
         GSQuartzCoreQuaternion valueQuat;
-        valueQuat = linearInterpolationQuaternion(fromQuat, toQuat, progress);
+        valueQuat = linearInterpolationQuaternion(fromQuat, toQuat, position);
         
         valueTf = quaternionToMatrix(valueQuat);
         

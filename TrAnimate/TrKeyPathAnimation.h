@@ -31,7 +31,7 @@
 #import "TrAnimation.h"
 
 @protocol TrAnimatable;
-@protocol TrTransitionable;
+@protocol TrInterpolatable;
 
 @interface TrKeyPathAnimation : TrAnimation
 
@@ -39,8 +39,8 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
            layerKeyPath:(NSString *)keyPath
-             startValue:(id<TrTransitionable>)startValue
-               endValue:(id<TrTransitionable>)endValue
+             startValue:(id<TrInterpolatable>)startValue
+               endValue:(id<TrInterpolatable>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                   curve:(TrCurve *)curve
@@ -48,7 +48,7 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
            layerKeyPath:(NSString *)keyPath
-               endValue:(id<TrTransitionable>)endValue
+               endValue:(id<TrInterpolatable>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                   curve:(TrCurve *)curve

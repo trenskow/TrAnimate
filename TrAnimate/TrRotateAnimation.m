@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "NSNumber+TrCustomCurvedAnimationAdditions.h"
+#import "NSNumber+TrAnimateAdditions.h"
 
 #import "TrRotateAnimation.h"
 

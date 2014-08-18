@@ -67,8 +67,8 @@
         for (NSTimeInterval t = .0 ; t <= 1.0 ; t += 1.0 / (60.0 * (self.duration / self.speed))) {
             
             [keyTimes addObject:@(t)];
-            [values addObject:[self.fromValue transitionTo:self.toValue
-                                              withProgress:[self.curve transform:t]]];
+            [values addObject:[self.fromValue interpolateWithValue:self.toValue
+                                                        atPosition:[self.curve transform:t]]];
             
         }
         
@@ -106,7 +106,7 @@
     
 }
 
-- (void)setFromValue:(id<TrTransitionable>)fromValue {
+- (void)setFromValue:(id<TrInterpolatable>)fromValue {
     
     _fromValue = fromValue;
     
@@ -114,7 +114,7 @@
     
 }
 
-- (void)setToValue:(id<TrTransitionable>)toValue {
+- (void)setToValue:(id<TrInterpolatable>)toValue {
     
     _toValue = toValue;
     

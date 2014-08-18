@@ -1,5 +1,5 @@
 //
-//  TrTransitionable.h
+//  NSNumber+TrCustomCurvedAnimationAdditions.h
 //  TrAnimate
 //
 //  Copyright (c) 2013, Kristian Trenskow All rights reserved.
@@ -28,23 +28,11 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <UIKit/UIKit.h>
+#import "TrInterpolatable.h"
 
 /**
- *  Implemented by value objects that are able to transition it's own state to another state. Used in animations when animations need to determine the value doing an animation. Currently TrAnimate implements this in `NSNumber` and `NSNumber`.
+ *  Category of `NSNumber` that implements the `TrInterpolatable` protocol.
  */
-@protocol TrTransitionable
-
-@required
-/**
- *  Required. Transition the receiving object's value from one to another's with a progress value specifying the intermediate state.
- *
- *  @param value    The value to transition to.
- *  @param progress A value between zero and one that represents the wanted intermediate state. Zero equals the receiving objects value - one equals the `value`s value. 0.5 means in the middle of the receiving and `value`.
- *
- *  @return A new object that holds the resulting value.
- */
-- (id<TrTransitionable>)transitionTo:(id<TrTransitionable>)value
-      withProgress:(double)progress;
+@interface NSNumber (TrAnimateAdditions) <TrInterpolatable>
 
 @end

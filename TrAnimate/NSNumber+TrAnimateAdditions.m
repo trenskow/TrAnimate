@@ -1,5 +1,5 @@
 //
-//  NSNumber+TrCustomCurvedAnimationAdditions.h
+//  NSNumber+TrCustomCurvedAnimationAdditions.m
 //  TrAnimate
 //
 //  Copyright (c) 2013, Kristian Trenskow All rights reserved.
@@ -28,11 +28,45 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrTransitionable.h"
+#import "NSNumber+TrAnimateAdditions.h"
 
-/**
- *  Category of `NSNumber` that implements the `TrTransitionable` protocol.
- */
-@interface NSNumber (TrCustomCurvedAnimationAdditions) <TrTransitionable>
+@interface NSNumber (TrAnimatePrivateAdditions)
+
+@property (nonatomic,readonly) BOOL isKindOfFloat;
+
+@end
+
+@implementation NSNumber (TrAnimateAdditions)
+
+#pragma mark - Private Properties
+
+- (BOOL)isKindOfFloat {
+    
+    const char* valType = [self objCType];
+    return (0 == strcmp(valType, @encode(float)) || 0 == strcmp(valType, @encode(double)));
+    
+}
+
+#pragma mark - Transitioning
+
+- (id<TrInterpolatable>)interpolateWithValue:(id<TrInterpolatable>)value atPosition:(double)position {
+    
+    id val = value;
+    
+    NSAssert([val isKindOfClass:[NSNumber class]], @"NSNumber cannot transition to value of class %@", NSStringFromClass([NSNumber class]));
+    
+    if (self.isKindOfFloat && ((NSNumber *)val).isKindOfFloat) {
+        
+        double val1 = [self doubleValue];
+        double val2 = [val doubleValue];
+        
+        return @(((val2 - val1) * position) + val1);
+        
+    }
+    
+    NSAssert(NO, @"NSValue only support float and doubles.");
+    return nil;
+    
+}
 
 @end

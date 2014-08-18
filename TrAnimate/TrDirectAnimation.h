@@ -30,7 +30,7 @@
 
 #import "TrAnimation.h"
 
-@protocol TrTransitionable;
+@protocol TrInterpolatable;
 
 @interface TrDirectAnimation : NSObject <TrAnimation>
 
@@ -38,8 +38,8 @@
                 keyPath:(NSString *)keyPath
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-             startValue:(id<TrTransitionable>)startValue
-               endValue:(id<TrTransitionable>)endValue
+             startValue:(id<TrInterpolatable>)startValue
+               endValue:(id<TrInterpolatable>)endValue
                   curve:(TrCurve *)curve
              completion:(void(^)(BOOL finished))completion;
 
@@ -47,7 +47,7 @@
                 keyPath:(NSString *)keyPath
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-               endValue:(id<TrTransitionable>)endValue
+               endValue:(id<TrInterpolatable>)endValue
                   curve:(TrCurve *)curve
              completion:(void(^)(BOOL finished))completion;
 

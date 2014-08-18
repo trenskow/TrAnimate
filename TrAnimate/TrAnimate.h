@@ -33,10 +33,10 @@
 FOUNDATION_EXPORT double TrAnimateVersionNumber;
 FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 
-#import "TrTransitionable.h"
+#import "TrInterpolatable.h"
 
-#import "NSNumber+TrCustomCurvedAnimationAdditions.h"
-#import "NSValue+TrCustomCurvedAnimationAdditions.h"
+#import "NSNumber+TrAnimateAdditions.h"
+#import "NSValue+TrAnimateAdditions.h"
 
 #import "TrAnimatable.h"
 

@@ -1,5 +1,5 @@
 //
-//  NSNumber+TrCustomCurvedAnimationAdditions.m
+//  TrInterpolatable.h
 //  TrAnimate
 //
 //  Copyright (c) 2013, Kristian Trenskow All rights reserved.
@@ -28,45 +28,23 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "NSNumber+TrCustomCurvedAnimationAdditions.h"
+#import <UIKit/UIKit.h>
 
-@interface NSNumber (TrCustomCurvedAnimationPrivateAdditions)
+/**
+ *  Implemented by value objects that are able to transition it's own state to another state. Used in animations when animations need to determine the value doing an animation. Currently TrAnimate implements this in `NSNumber` and `NSNumber`.
+ */
+@protocol TrInterpolatable
 
-@property (nonatomic,readonly) BOOL isKindOfFloat;
-
-@end
-
-@implementation NSNumber (TrCustomCurvedAnimationAdditions)
-
-#pragma mark - Private Properties
-
-- (BOOL)isKindOfFloat {
-    
-    const char* valType = [self objCType];
-    return (0 == strcmp(valType, @encode(float)) || 0 == strcmp(valType, @encode(double)));
-    
-}
-
-#pragma mark - Transitioning
-
-- (id<TrTransitionable>)transitionTo:(id<TrTransitionable>)value withProgress:(double)progress {
-    
-    id val = value;
-    
-    NSAssert([val isKindOfClass:[NSNumber class]], @"NSNumber cannot transition to value of class %@", NSStringFromClass([NSNumber class]));
-    
-    if (self.isKindOfFloat && ((NSNumber *)val).isKindOfFloat) {
-        
-        double val1 = [self doubleValue];
-        double val2 = [val doubleValue];
-        
-        return @(((val2 - val1) * progress) + val1);
-        
-    }
-    
-    NSAssert(NO, @"NSValue only support float and doubles.");
-    return nil;
-    
-}
+@required
+/**
+ *  Required. Transition the receiving object's value from one to another's with a progress value specifying the intermediate state.
+ *
+ *  @param value    The value to transition to.
+ *  @param progress A value between zero and one that represents the wanted intermediate state. Zero equals the receiving objects value - one equals the `value`s value. 0.5 means in the middle of the receiving and `value`.
+ *
+ *  @return A new object that holds the resulting value.
+ */
+- (id<TrInterpolatable>)interpolateWithValue:(id<TrInterpolatable>)value
+                                  atPosition:(double)position;
 
 @end
