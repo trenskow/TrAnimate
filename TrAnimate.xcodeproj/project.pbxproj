@@ -21,7 +21,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		A10A32A918E2DB5B000D4B49 /* TrKeyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A32A818E2DB5B000D4B49 /* TrKeyAnimation.m */; };
+		A10A32A918E2DB5B000D4B49 /* TrKeyPathAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A32A818E2DB5B000D4B49 /* TrKeyPathAnimation.m */; };
 		A10D78DA19A279530013E5F5 /* TrCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D78D819A279530013E5F5 /* TrCurve.h */; };
 		A10D78DB19A279530013E5F5 /* TrCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = A10D78D919A279530013E5F5 /* TrCurve.m */; };
 		A10D78DC19A279530013E5F5 /* TrCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = A10D78D919A279530013E5F5 /* TrCurve.m */; };
@@ -38,7 +38,7 @@
 		A1145D05194EFA7D001B0108 /* TrPositionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C787117883AE60000B420 /* TrPositionAnimation.m */; };
 		A1145D06194EFA7D001B0108 /* TrScaleAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C787A17883B260000B420 /* TrScaleAnimation.m */; };
 		A1145D07194EFA7D001B0108 /* TrRotateAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C788017883B430000B420 /* TrRotateAnimation.m */; };
-		A1145D08194EFA7D001B0108 /* TrKeyAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A32A818E2DB5B000D4B49 /* TrKeyAnimation.m */; };
+		A1145D08194EFA7D001B0108 /* TrKeyPathAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A32A818E2DB5B000D4B49 /* TrKeyPathAnimation.m */; };
 		A1145D09194EFA7D001B0108 /* TrDirectAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EA941912D98600E4F179 /* TrDirectAnimation.m */; };
 		A1145D0A194EFA7D001B0108 /* TrAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C7868178839FA0000B420 /* TrAnimation.m */; };
 		A1145D0B194EFAE8001B0108 /* TrAnimate.h in Headers */ = {isa = PBXBuildFile; fileRef = A10BC9A217883E9800F354FC /* TrAnimate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -49,7 +49,7 @@
 		A1145D14194EFB31001B0108 /* TrPositionAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C787017883AE60000B420 /* TrPositionAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D15194EFB31001B0108 /* TrScaleAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C787917883B260000B420 /* TrScaleAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D16194EFB31001B0108 /* TrRotateAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C787F17883B430000B420 /* TrRotateAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A1145D17194EFB31001B0108 /* TrKeyAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A10A32A718E2DB5B000D4B49 /* TrKeyAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1145D17194EFB31001B0108 /* TrKeyPathAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A10A32A718E2DB5B000D4B49 /* TrKeyPathAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D18194EFB31001B0108 /* TrDirectAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E6EA931912D98600E4F179 /* TrDirectAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D19194EFB31001B0108 /* TrAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C7867178839FA0000B420 /* TrAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D1A194EFB58001B0108 /* TrAnimationSubclass.h in Headers */ = {isa = PBXBuildFile; fileRef = A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -96,8 +96,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A10A32A718E2DB5B000D4B49 /* TrKeyAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrKeyAnimation.h; sourceTree = "<group>"; };
-		A10A32A818E2DB5B000D4B49 /* TrKeyAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrKeyAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		A10A32A718E2DB5B000D4B49 /* TrKeyPathAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrKeyPathAnimation.h; sourceTree = "<group>"; };
+		A10A32A818E2DB5B000D4B49 /* TrKeyPathAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrKeyPathAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A10BC9A217883E9800F354FC /* TrAnimate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimate.h; sourceTree = "<group>"; };
 		A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimationSubclass.h; sourceTree = "<group>"; };
 		A10D78AC19A274C40013E5F5 /* TrAnimatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrAnimatable.h; sourceTree = "<group>"; };
@@ -165,17 +165,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A10A32A618E2DB24000D4B49 /* Keyed */ = {
+		A10A32A618E2DB24000D4B49 /* Key-Path Animation */ = {
 			isa = PBXGroup;
 			children = (
 				A11C786C17883A180000B420 /* Opacity */,
 				A11C786A17883A0A0000B420 /* Position */,
 				A11C786E17883AB70000B420 /* Scale */,
 				A11C786F17883ABF0000B420 /* Rotate */,
-				A10A32A718E2DB5B000D4B49 /* TrKeyAnimation.h */,
-				A10A32A818E2DB5B000D4B49 /* TrKeyAnimation.m */,
+				A10A32A718E2DB5B000D4B49 /* TrKeyPathAnimation.h */,
+				A10A32A818E2DB5B000D4B49 /* TrKeyPathAnimation.m */,
 			);
-			name = Keyed;
+			name = "Key-Path Animation";
 			sourceTree = "<group>";
 		};
 		A10A32B418E2E646000D4B49 /* Additions */ = {
@@ -244,7 +244,7 @@
 			children = (
 				A11C788217883B6E0000B420 /* Animation Group */,
 				A10A32B418E2E646000D4B49 /* Additions */,
-				A10A32A618E2DB24000D4B49 /* Keyed */,
+				A10A32A618E2DB24000D4B49 /* Key-Path Animation */,
 				A1E6EA921912D96B00E4F179 /* Direct */,
 				A11C7867178839FA0000B420 /* TrAnimation.h */,
 				A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */,
@@ -365,7 +365,7 @@
 				A1145D0B194EFAE8001B0108 /* TrAnimate.h in Headers */,
 				A1145D19194EFB31001B0108 /* TrAnimation.h in Headers */,
 				A1145D14194EFB31001B0108 /* TrPositionAnimation.h in Headers */,
-				A1145D17194EFB31001B0108 /* TrKeyAnimation.h in Headers */,
+				A1145D17194EFB31001B0108 /* TrKeyPathAnimation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,7 +477,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1145D01194EFA7D001B0108 /* TrAnimationGroup.m in Sources */,
-				A1145D08194EFA7D001B0108 /* TrKeyAnimation.m in Sources */,
+				A1145D08194EFA7D001B0108 /* TrKeyPathAnimation.m in Sources */,
 				A1145D07194EFA7D001B0108 /* TrRotateAnimation.m in Sources */,
 				A1145D05194EFA7D001B0108 /* TrPositionAnimation.m in Sources */,
 				A1145D03194EFA7D001B0108 /* CALayer+TrAnimateAdditions.m in Sources */,
@@ -506,7 +506,7 @@
 				A11C787B17883B2A0000B420 /* TrOpacityAnimation.m in Sources */,
 				A11C787D17883B2A0000B420 /* TrScaleAnimation.m in Sources */,
 				A11C788117883B450000B420 /* TrRotateAnimation.m in Sources */,
-				A10A32A918E2DB5B000D4B49 /* TrKeyAnimation.m in Sources */,
+				A10A32A918E2DB5B000D4B49 /* TrKeyPathAnimation.m in Sources */,
 				A11C788517883B7F0000B420 /* TrAnimationGroup.m in Sources */,
 				A11C788D17883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.m in Sources */,
 				A11C788E17883B940000B420 /* NSArray+TrAnimationGroupAdditions.m in Sources */,

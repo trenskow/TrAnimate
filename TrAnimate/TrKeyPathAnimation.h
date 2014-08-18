@@ -1,5 +1,5 @@
 //
-//  TrKeyAnimation.h
+//  TrKeyPathAnimation.h
 //  TrAnimate
 //
 //  Copyright (c) 2014, Kristian Trenskow All rights reserved.
@@ -33,7 +33,7 @@
 @protocol TrAnimatable;
 @protocol TrTransitionable;
 
-@interface TrKeyAnimation : TrAnimation
+@interface TrKeyPathAnimation : TrAnimation
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withKeyPath:(NSString *)keyPath;
 

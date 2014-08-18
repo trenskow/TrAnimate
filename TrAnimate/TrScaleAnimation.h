@@ -28,11 +28,9 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrCustomCurvedAnimation.h"
+#import "TrKeyPathAnimation.h"
 
-#import "TrKeyAnimation.h"
-
-@interface TrScaleAnimation : TrKeyAnimation
+@interface TrScaleAnimation : TrKeyPathAnimation
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 

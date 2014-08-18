@@ -1,5 +1,5 @@
 //
-//  TrKeyAnimation.m
+//  TrKeyPathAnimation.m
 //  TrAnimate
 //
 //  Copyright (c) 2014, Kristian Trenskow All rights reserved.
@@ -34,9 +34,9 @@
 
 #import "TrAnimationSubclass.h"
 
-#import "TrKeyAnimation.h"
+#import "TrKeyPathAnimation.h"
 
-@interface TrKeyAnimation () {
+@interface TrKeyPathAnimation () {
     
     NSString *_keyPath;
     id<TrTransitionable> _startValue;
@@ -46,7 +46,7 @@
 
 @end
 
-@implementation TrKeyAnimation
+@implementation TrKeyPathAnimation
 
 #pragma mark - Internal
 
@@ -89,7 +89,7 @@
     
     [viewOrLayer.animationLayer setValue:startValue forKeyPath:keyPath];
     
-    TrKeyAnimation *animation = [super animate:viewOrLayer
+    TrKeyPathAnimation *animation = [super animate:viewOrLayer
                                          duration:duration
                                             delay:delay
                                             curve:curve
@@ -107,7 +107,7 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer layerKeyPath:(NSString *)keyPath endValue:(id<TrTransitionable>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
     
-    TrKeyAnimation *animation = [self animate:viewOrLayer
+    TrKeyPathAnimation *animation = [self animate:viewOrLayer
                                     layerKeyPath:keyPath
                                        startValue:[viewOrLayer.presentedLayer valueForKeyPath:keyPath]
                                         endValue:endValue

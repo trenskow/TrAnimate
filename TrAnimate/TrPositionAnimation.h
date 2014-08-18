@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrKeyAnimation.h"
+#import "TrKeyPathAnimation.h"
 
 /**
  *  Specifies the origin of the position.
@@ -44,7 +44,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOptions) {
     kTrPositionAnimationsOptionOriginTopLeft
 };
 
-@interface TrPositionAnimation : TrKeyAnimation
+@interface TrPositionAnimation : TrKeyPathAnimation
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 

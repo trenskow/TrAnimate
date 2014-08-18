@@ -28,9 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrCustomCurvedAnimation.h"
-
-#import "TrKeyAnimation.h"
+#import "TrKeyPathAnimation.h"
 
 /**
  *  Speciefies the rotation axis.
@@ -50,7 +48,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
     kTrRotateAnimationOptionsAxisY = 1 << 3
 };
 
-@interface TrRotateAnimation : TrKeyAnimation
+@interface TrRotateAnimation : TrKeyPathAnimation
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration

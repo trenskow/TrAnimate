@@ -28,9 +28,9 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrKeyAnimation.h"
+#import "TrKeyPathAnimation.h"
 
-@interface TrOpacityAnimation : TrKeyAnimation
+@interface TrOpacityAnimation : TrKeyPathAnimation
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
