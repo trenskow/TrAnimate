@@ -33,6 +33,14 @@
 FOUNDATION_EXPORT double TrAnimateVersionNumber;
 FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 
+#import "CALayer+TrAnimateAdditions.h"
+#import "UIView+TrAnimateAdditions.h"
+
+#import "NSNumber+TrCustomCurvedAnimationAdditions.h"
+#import "NSValue+TrCustomCurvedAnimationAdditions.h"
+
+#import "TrCurve.h"
+
 #import "TrAnimation.h"
 
 #import "TrKeyAnimation.h"
