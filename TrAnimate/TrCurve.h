@@ -44,4 +44,6 @@
 
 + (instancetype)curveWithBlock:(double (^)(double t))block;
 
+- (id)objectForKeyedSubscript:(id<NSCopying>)t;
+
 @end
