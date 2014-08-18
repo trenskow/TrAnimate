@@ -39,7 +39,7 @@ const void *TrDirectAnimationKey;
 
 @interface TrDirectAnimation () {
     
-    id _what;
+    id _object;
     NSString *_keyPath;
     NSTimeInterval _duration;
     NSTimeInterval _delay;
@@ -64,11 +64,11 @@ const void *TrDirectAnimationKey;
 
 #pragma mark - Setup / Teardown
 
-- (instancetype)initWithWhat:(id)what keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(id<TrTransitionable>)startValue endValue:(id<TrTransitionable>)endValue curve:(TrCurve *)curve completion:(void(^)(BOOL finished))completion {
+- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(id<TrTransitionable>)startValue endValue:(id<TrTransitionable>)endValue curve:(TrCurve *)curve completion:(void(^)(BOOL finished))completion {
     
     if ((self = [super init])) {
         
-        _what = what;
+        _object = object;
         _keyPath = keyPath;
         self.duration = duration;
         self.delay = delay;
@@ -107,8 +107,8 @@ const void *TrDirectAnimationKey;
     double progress = MIN([[NSDate date] timeIntervalSinceDate:_beginTime] / self.duration, 1.0);
     
     if (progress >= 0 && progress <= 1.0)
-        [_what setValue:[_startValue transitionTo:_endValue withProgress:[_curve transform:progress]]
-             forKeyPath:_keyPath];
+        [_object setValue:[_startValue transitionTo:_endValue withProgress:[_curve transform:progress]]
+               forKeyPath:_keyPath];
     
     if (progress == 1.0)
         [self endAnimation];
@@ -150,16 +150,16 @@ const void *TrDirectAnimationKey;
 
 #pragma mark - Creating Animation
 
-+ (instancetype)animate:(id)what keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(id<TrTransitionable>)startValue endValue:(id<TrTransitionable>)endValue curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)object keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(id<TrTransitionable>)startValue endValue:(id<TrTransitionable>)endValue curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
     
-    TrDirectAnimation *animation = [[self alloc] initWithWhat:what
-                                                      keyPath:keyPath
-                                                     duration:duration
-                                                        delay:delay
-                                                   startValue:startValue
-                                                     endValue:endValue
-                                                        curve:curve
-                                                   completion:completion];
+    TrDirectAnimation *animation = [[self alloc] initWithObject:object
+                                                        keyPath:keyPath
+                                                       duration:duration
+                                                          delay:delay
+                                                     startValue:startValue
+                                                       endValue:endValue
+                                                          curve:curve
+                                                     completion:completion];
     
     [animation performSelector:@selector(beginAnimation) withObject:nil afterDelay:0.0 inModes:@[NSRunLoopCommonModes]];
     
@@ -167,13 +167,13 @@ const void *TrDirectAnimationKey;
     
 }
 
-+ (instancetype)animate:(id)what keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(id<TrTransitionable>)endValue curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)object keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(id<TrTransitionable>)endValue curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
     
-    return [self animate:what
+    return [self animate:object
                  keyPath:keyPath
                 duration:duration
                    delay:delay
-              startValue:[what valueForKeyPath:keyPath]
+              startValue:[object valueForKeyPath:keyPath]
                 endValue:endValue
                    curve:curve
               completion:completion];

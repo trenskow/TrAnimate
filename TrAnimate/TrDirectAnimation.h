@@ -34,7 +34,7 @@
 
 @interface TrDirectAnimation : NSObject <TrAnimation>
 
-+ (instancetype)animate:(id)what
++ (instancetype)animate:(id)object
                 keyPath:(NSString *)keyPath
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -43,7 +43,7 @@
                   curve:(TrCurve *)curve
              completion:(void(^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id)what
++ (instancetype)animate:(id)object
                 keyPath:(NSString *)keyPath
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
