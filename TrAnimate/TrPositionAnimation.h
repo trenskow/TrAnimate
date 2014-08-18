@@ -28,8 +28,6 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrCustomCurvedAnimation.h"
-
 #import "TrKeyAnimation.h"
 
 /**
@@ -55,7 +53,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOptions) {
                   delay:(NSTimeInterval)delay
           startPosition:(CGPoint)startPosition
             endPosition:(CGPoint)endPosition
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
                 options:(TrPositionAnimationOptions)options
              completion:(void (^)(BOOL finished))completion;
 
@@ -64,14 +62,14 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOptions) {
                   delay:(NSTimeInterval)delay
           startPosition:(CGPoint)startPosition
             endPosition:(CGPoint)endPosition
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
             endPosition:(CGPoint)endPosition
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
                 options:(TrPositionAnimationOptions)options
              completion:(void (^)(BOOL finished))completion;
 
@@ -79,7 +77,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOptions) {
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
             endPosition:(CGPoint)endPosition
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 @end

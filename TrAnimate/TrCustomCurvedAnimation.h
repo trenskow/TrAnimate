@@ -32,79 +32,7 @@
 
 #import "TrTransitionable.h"
 
-/**
- *  A block representing an animation curve.<br />
- *  <br />
- *  Build-in curves available:<br />
- *  TrCurveLinear<br />
- *  `TrCurveEaseInQuad`<br />
- *  `TrCurveEaseOutQuad`<br />
- *  `TrCurveEaseInOutQuad`<br />
- *  `TrCurveEaseInCubic`<br />
- *  `TrCurveEaseOutCubic`<br />
- *  `TrCurveEaseInOutCubic`<br />
- *  `TrCurveEaseInQuart`<br />
- *  `TrCurveEaseOutQuart`<br />
- *  `TrCurveEaseInOutQuart`<br />
- *  `TrCurveEaseInQuint`<br />
- *  `TrCurveEaseOutQuint`<br />
- *  `TrCurveEaseInOutQuint`<br />
- *  `TrCurveEaseInSine`<br />
- *  `TrCurveEaseOutSine`<br />
- *  `TrCurveEaseInOutSine`<br />
- *  `TrCurveEaseInExpo`<br />
- *  `TrCurveEaseOutExpo`<br />
- *  `TrCurveEaseInOutExpo`<br />
- *  `TrCurveEaseInCirc`<br />
- *  `TrCurveEaseOutCirc`<br />
- *  `TrCurveEaseInOutCirc`<br />
- *  `TrCurveEaseInElastic`<br />
- *  `TrCurveEaseOutElastic`<br />
- *  `TrCurveEaseInOutElastic`<br />
- *  `TrCurveEaseInBack`<br />
- *  `TrCurveEaseOutBack`<br />
- *  `TrCurveEaseInOutBack`<br />
- *  `TrCurveEaseInBounce`<br />
- *  `TrCurveEaseOutBounce`<br />
- *  `TrCurveEaseInOutBounce`<br />
- *
- *  @param t Linear position in time between zero and and.
- *
- *  @return The curve position.
- */
-typedef double(^TrCurve)(double t);
-
-extern TrCurve const TrCurveLinear;
-extern TrCurve const TrCurveEaseInQuad;
-extern TrCurve const TrCurveEaseOutQuad;
-extern TrCurve const TrCurveEaseInOutQuad;
-extern TrCurve const TrCurveEaseInCubic;
-extern TrCurve const TrCurveEaseOutCubic;
-extern TrCurve const TrCurveEaseInOutCubic;
-extern TrCurve const TrCurveEaseInQuart;
-extern TrCurve const TrCurveEaseOutQuart;
-extern TrCurve const TrCurveEaseInOutQuart;
-extern TrCurve const TrCurveEaseInQuint;
-extern TrCurve const TrCurveEaseOutQuint;
-extern TrCurve const TrCurveEaseInOutQuint;
-extern TrCurve const TrCurveEaseInSine;
-extern TrCurve const TrCurveEaseOutSine;
-extern TrCurve const TrCurveEaseInOutSine;
-extern TrCurve const TrCurveEaseInExpo;
-extern TrCurve const TrCurveEaseOutExpo;
-extern TrCurve const TrCurveEaseInOutExpo;
-extern TrCurve const TrCurveEaseInCirc;
-extern TrCurve const TrCurveEaseOutCirc;
-extern TrCurve const TrCurveEaseInOutCirc;
-extern TrCurve const TrCurveEaseInElastic;
-extern TrCurve const TrCurveEaseOutElastic;
-extern TrCurve const TrCurveEaseInOutElastic;
-extern TrCurve const TrCurveEaseInBack;
-extern TrCurve const TrCurveEaseOutBack;
-extern TrCurve const TrCurveEaseInOutBack;
-extern TrCurve const TrCurveEaseInBounce;
-extern TrCurve const TrCurveEaseOutBounce;
-extern TrCurve const TrCurveEaseInOutBounce;
+@class TrCurve;
 
 /**
  *  A `CAKeyframeAnimation` subclass which support custom curves.
@@ -114,7 +42,7 @@ extern TrCurve const TrCurveEaseInOutBounce;
 /**
  *  Gets or sets the curve for the animation.
  */
-@property (copy,nonatomic) TrCurve curve;
+@property (copy,nonatomic) TrCurve *curve;
 
 /**
  *  Gets or sets the value from which the animation will begin.

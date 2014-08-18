@@ -28,276 +28,13 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "TrCurve+Private.h"
+
 #import "TrCustomCurvedAnimation.h"
-
-#pragma mark - Build-in Curves -
-
-#pragma mark TrCurveLinear
-TrCurve const TrCurveLinear = ^(double t) {
-    return t;
-};
-
-#pragma mark TrCurveEaseInQuad
-TrCurve const TrCurveEaseInQuad = ^(double t) {
-    return pow(t, 2.0);
-};
-
-#pragma mark TrCurveEaseOutQuad
-TrCurve const TrCurveEaseOutQuad = ^(double t) {
-    return -1.0 * t * (t - 2.0);
-};
-
-#pragma mark TrCurveEaseInOutQuad
-TrCurve const TrCurveEaseInOutQuad = ^(double t) {
-    t /= .5;
-    if (t < 1.0) return .5*pow(t, 2.0);
-    t -= 1.0;
-    return -.5 * (t*(t - 2.0) - 1.0);
-};
-
-#pragma mark TrCurveEaseInCubic
-TrCurve const TrCurveEaseInCubic = ^(double t) {
-    return pow(t, 3.0);
-};
-
-#pragma mark TrCurveEaseOutCubic
-TrCurve const TrCurveEaseOutCubic = ^(double t) {
-    t = t - 1.0;
-    return pow(t, 3.0) + 1;
-};
-
-#pragma mark TrCurveEaseInOutCubic
-TrCurve const TrCurveEaseInOutCubic = ^(double t) {
-    if (t < .5) return (TrCurveEaseInCubic(t * 2.0) / 2.0);
-    return (TrCurveEaseOutCubic((t - .5) * 2.0) / 2.0 + .5);
-};
-
-#pragma mark TrCurveEaseInQuart
-TrCurve const TrCurveEaseInQuart = ^(double t) {
-    return pow(t, 4.0);
-};
-
-#pragma mark TrCurveEaseOutQuart
-TrCurve const TrCurveEaseOutQuart = ^(double t) {
-    t -= 1.0;
-    return -1.0 * (pow(t, 4.0) - 1);
-};
-
-#pragma mark TrCurveEaseInOutQuart
-TrCurve const TrCurveEaseInOutQuart = ^(double t) {
-    t /= .5;
-    if (t < 1.0) return .5 * pow(t, 4.0);
-    t -= 2.0;
-    return -.5 * (pow(t, 4.0) - 2.0);
-};
-
-#pragma mark TrCurveEaseInQuint
-TrCurve const TrCurveEaseInQuint = ^(double t) {
-    return pow(t, 5.0);
-};
-
-#pragma mark TrCurveEaseOutQuint
-TrCurve const TrCurveEaseOutQuint = ^(double t) {
-    t -= 1.0;
-    return 1.0 * (pow(t, 5.0) + 1.0);
-};
-
-#pragma mark TrCurveEaseInOutQuint
-TrCurve const TrCurveEaseInOutQuint = ^(double t) {
-    t /= .5;
-    if (t < 1) return .5*pow(t, 5.0);
-    t -= 2.0;
-    return .5 * (pow(t, 5.0) + 2.0);
-};
-
-#pragma mark TrCurveEaseInSine
-TrCurve const TrCurveEaseInSine = ^(double t) {
-    return (-1.0 * cos(t * M_PI_2) + 1.0);
-};
-
-#pragma mark TrCurveEaseOutSine
-TrCurve const TrCurveEaseOutSine = ^(double t) {
-    return sin(t * M_PI_2);
-};
-
-#pragma mark TrCurveEaseInOutSine
-TrCurve const TrCurveEaseInOutSine = ^(double t) {
-    return (-.5 * cos(M_PI*t) + .5);
-};
-
-#pragma mark TrCurveEaseInExpo
-TrCurve const TrCurveEaseInExpo = ^(double t) {
-    return (t == 0 ? .0 : pow(2.0, 10.0 * (t - 1.0)));
-};
-
-#pragma mark TrCurveEaseOutExpo
-TrCurve const TrCurveEaseOutExpo = ^(double t) {
-    return -pow(2.0, -10.0 * t) + 1.0;
-};
-
-#pragma mark TrCurveEaseInOutExpo
-TrCurve const TrCurveEaseInOutExpo = ^(double t) {
-    if (t == .0) return .0;
-    if (t == 1.0) return 1.0;
-    t /= .5;
-    if (t < 1) return .5 * pow(2, 10 * (t - 1));
-    return .5 * (-pow(2, -10 * --t) + 2);
-};
-
-#pragma mark TrCurveEaseInCirc
-TrCurve const TrCurveEaseInCirc = ^(double t) {
-    return -1.0 * (sqrt(1.0 - pow(t, 2.0)) - 1.0);
-};
-
-#pragma mark TrCurveEaseOutCirc
-TrCurve const TrCurveEaseOutCirc = ^(double t) {
-    return sqrt(1.0 - pow(t-1.0, 2));
-};
-
-#pragma mark TrCurveEaseInOutCirc
-TrCurve const TrCurveEaseInOutCirc = ^(double t) {
-    t /= .5;
-    if (t < 1.0) return -.5 * (sqrt(1.0 - pow(t, 2.0)) - 1.0);
-    return .5 * (sqrt(1.0 - pow(t - 2.0, 2.0)) + 1.0);
-};
-
-#pragma mark TrCurveEaseInElastic
-TrCurve const TrCurveEaseInElastic = ^(double t) {
-    
-    double s = 1.70158;
-    double p = .0;
-    double a = 1.0;
-    
-    if (t == 0.0)
-        return .0;
-    if (t == 1.0)
-        return 1.0;
-    if (!p)
-        p = .3;
-    if (a < 1.0) {
-        a = 1.0;
-        s=p / 4.0;
-    } else
-        s = p / (2.0 * M_PI) * asin(1.0/a);
-    
-    t -= 1.0;
-    
-    return -(a * pow(2.0, 10.0 * t) * sin((t - s) * (2.0 * M_PI) / p));
-    
-};
-
-#pragma mark TrCurveEaseOutElastic
-TrCurve const TrCurveEaseOutElastic = ^(double t) {
-    
-    double s = 1.70158;
-    double p = .0;
-    double a = 1.0;
-    if (t==0)
-        return .0;
-    if (t==1)
-        return 1.0;
-    if (!p)
-        p=.3;
-    if (a < 1.0) {
-        a=1.0;
-        s=p/4;
-    } else
-        s = p / (2.0 * M_PI) * asin(1.0 / a);
-    return a * pow(2.0, -10.0 * t) * sin((t - s) * (2 * M_PI) / p) + 1.0;
-    
-};
-
-#pragma mark TrCurveEaseInOutElastic
-TrCurve const TrCurveEaseInOutElastic = ^(double t) {
-    double s = 1.70158;
-    double p = 0;
-    double a = 1.0;
-    if (t == 0.0)
-        return .0;
-    t /= .5;
-    if (t == 2.0)
-        return 1.0;
-    if (!p)
-        p = (.3 * 1.5);
-    
-    if (a < 1.0) {
-        a = 1.0;
-        s = p / 4.0;
-    }
-    else
-        s = p / (2.0 * M_PI) * asin (1.0 / a);
-    if (t < 1) {
-        t -= 1.0;
-        return -.5 * (a * pow(2.0,10.0 * t) * sin((t - s) * (2.0 * M_PI) / p));
-    }
-    t -= 1.0;
-    return a * pow(2.0, -10.0 * t) * sin((t - s) * (2.0 * M_PI) / p) *.5 + 1.0;
-};
-
-#pragma mark TrCurveEaseInBack
-TrCurve const TrCurveEaseInBack = ^(double t) {
-    return t*t*(2.70158*t - 1.70158);
-};
-
-#pragma mark TrCurveEaseOutBack
-TrCurve const TrCurveEaseOutBack = ^(double t) {
-    t -= 1.0;
-    return t*t*((1.70158f+1)*t + 1.70158f) + 1;
-    
-};
-
-#pragma mark TrCurveEaseInOutBack
-TrCurve const TrCurveEaseInOutBack = ^(double t) {
-    
-    double s = 1.70158f * 1.525f;
-    t /= .5;
-    
-    if (t < 1.0)
-        return (.5*(t*t*(((s)+1)*t - s)));
-    
-    t -= 2;
-    return .5* ((t * t * ((s+1) * t + s) + 2));
-    
-};
-
-#pragma mark TrCurveEaseInBounce
-TrCurve const TrCurveEaseInBounce = ^(double t) {
-    return 1.0 - TrCurveEaseOutBounce(1.0 - t);
-};
-
-#pragma mark TrCurveEaseOutBounce
-TrCurve const TrCurveEaseOutBounce = ^(double t) {
-    
-    double r = 0.0;
-    
-    if (t < (1/2.75)) {
-        r = 7.5625*t*t;
-    } else if (t < (2/2.75)) {
-        t -= 1.5 / 2.75;
-        r = 7.5625*t*t + .75;
-    } else if (t < (2.5/2.75)) {
-        t -= 2.25 / 2.75;
-        r = 7.5625*t*t + .9375;
-    } else {
-        t -= 2.625 / 2.75;
-        r = 7.5625*t*t + .984375;
-    }
-    
-    return r;
-    
-};
-
-#pragma mark TrCurveEaseInOutBounce
-TrCurve const TrCurveEaseInOutBounce = ^(double t) {
-    if (t < .5) return TrCurveEaseInBounce(t * 2.0) * .5;
-    return TrCurveEaseOutBounce(t * 2.0 - 1.0) * .5 + .5;
-};
-
-#pragma mark -
 
 @interface TrCustomCurvedAnimation () {
     
-    TrCurve _curve;
+    TrCurve *_curve;
     
 }
 
@@ -312,7 +49,7 @@ TrCurve const TrCurveEaseInOutBounce = ^(double t) {
     TrCustomCurvedAnimation* animation = [super animationWithKeyPath:path];
     
     if (animation)
-        animation.curve = TrCurveLinear;
+        animation.curve = [TrCurve linear];
     
     return animation;
     
@@ -330,7 +67,8 @@ TrCurve const TrCurveEaseInOutBounce = ^(double t) {
         for (NSTimeInterval t = .0 ; t <= 1.0 ; t += 1.0 / (60.0 * (self.duration / self.speed))) {
             
             [keyTimes addObject:@(t)];
-            [values addObject:[self.fromValue transitionTo:self.toValue withProgress:self.curve(t)]];
+            [values addObject:[self.fromValue transitionTo:self.toValue
+                                              withProgress:[self.curve transform:t]]];
             
         }
         
@@ -360,7 +98,7 @@ TrCurve const TrCurveEaseInOutBounce = ^(double t) {
     
 }
 
-- (void)setCurve:(TrCurve)curve {
+- (void)setCurve:(TrCurve *)curve {
     
     _curve = [curve copy];
     

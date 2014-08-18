@@ -28,8 +28,6 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrCustomCurvedAnimation.h"
-
 #import "TrKeyAnimation.h"
 
 @interface TrOpacityAnimation : TrKeyAnimation
@@ -41,20 +39,20 @@
                   delay:(NSTimeInterval)delay
              startValue:(CGFloat)startValue
                endValue:(CGFloat)endValue
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                endValue:(CGFloat)endValue
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
                 fadesIn:(BOOL)fadesIn
              completion:(void (^)(BOOL finished))completion;
 

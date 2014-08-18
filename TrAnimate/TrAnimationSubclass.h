@@ -37,10 +37,10 @@
 - (instancetype)initWithLayer:(CALayer *)layer
                      duration:(NSTimeInterval)duration
                         delay:(NSTimeInterval)delay
-                        curve:(TrCurve)curve
+                        curve:(TrCurve *)curve
                    completion:(void (^)(BOOL))completion;
 
-@property (copy,nonatomic,readonly) TrCurve curve;
+@property (copy,nonatomic,readonly) TrCurve *curve;
 
 - (void)prepareAnimation:(TrCustomCurvedAnimation *)animation
                 usingKey:(NSString *)key;

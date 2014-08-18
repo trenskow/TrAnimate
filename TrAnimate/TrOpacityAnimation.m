@@ -30,6 +30,9 @@
 
 #import "NSNumber+TrCustomCurvedAnimationAdditions.h"
 
+#import "TrCurve+Private.h"
+#import "TrAnimatable.h"
+
 #import "TrAnimationSubclass.h"
 
 #import "TrOpacityAnimation.h"
@@ -54,7 +57,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(CGFloat)startValue endValue:(CGFloat)endValue curve:(TrCurve)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(CGFloat)startValue endValue:(CGFloat)endValue curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
             layerKeyPath:@"opacity"
@@ -67,7 +70,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(CGFloat)endValue curve:(TrCurve)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(CGFloat)endValue curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
@@ -79,7 +82,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve)curve fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve *)curve fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
@@ -95,7 +98,7 @@
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-                   curve:TrCurveLinear
+                   curve:[TrCurve linear]
                  fadesIn:fadesIn
               completion:completion];
     

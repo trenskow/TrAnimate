@@ -31,6 +31,9 @@
 #import <objc/runtime.h>
 
 #import "TrCustomCurvedAnimation.h"
+#import "TrAnimatable.h"
+#import "TrCurve+Private.h"
+
 #import "TrAnimation.h"
 
 //#define TR_ANIMATION_VIEW_DEBUG
@@ -44,7 +47,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 @property (nonatomic,getter = isAnimating) BOOL animating;
 @property (nonatomic,getter = isComplete) BOOL complete;
 @property (nonatomic,getter = isFinished) BOOL finished;
-@property (copy,nonatomic) TrCurve curve;
+@property (copy,nonatomic) TrCurve *curve;
 @property (copy,nonatomic) void(^completionBlock)(BOOL finished);
 
 @end
@@ -53,14 +56,14 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Setup / Teardown
 
-- (instancetype)initWithLayer:(CALayer *)layer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve)curve completion:(void (^)(BOOL))completion {
+- (instancetype)initWithLayer:(CALayer *)layer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
     
     if ((self = [super init])) {
         
         self.layer = layer;
         self.duration = duration;
         self.delay = delay;
-        self.curve = (curve ?: TrCurveLinear);
+        self.curve = (curve ?: [TrCurve linear]);
         self.completionBlock = completion;
         
         /* Associate animation object with view, so it won't be released doing animation */
@@ -146,7 +149,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Creating Animation
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
     
     if (!viewOrLayer)
         return nil;

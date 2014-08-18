@@ -36,19 +36,19 @@
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayerg
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
          startZoomLevel:(CGFloat)startZoomLevel
            endZoomLevel:(CGFloat)endZoomLevel
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            endZoomLevel:(CGFloat)endZoomLevel
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer

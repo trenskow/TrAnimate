@@ -28,9 +28,10 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrCustomCurvedAnimation.h"
-
 #import "TrAnimation.h"
+
+@protocol TrAnimatable;
+@protocol TrTransitionable;
 
 @interface TrKeyAnimation : TrAnimation
 
@@ -42,7 +43,7 @@
                endValue:(id<TrTransitionable>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
@@ -50,7 +51,7 @@
                endValue:(id<TrTransitionable>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 @end

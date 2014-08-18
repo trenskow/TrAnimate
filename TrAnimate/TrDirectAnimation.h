@@ -30,6 +30,8 @@
 
 #import "TrAnimation.h"
 
+@protocol TrTransitionable;
+
 @interface TrDirectAnimation : NSObject <TrAnimation>
 
 + (instancetype)animate:(id)what
@@ -38,7 +40,7 @@
                   delay:(NSTimeInterval)delay
              startValue:(id<TrTransitionable>)startValue
                endValue:(id<TrTransitionable>)endValue
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
              completion:(void(^)(BOOL finished))completion;
 
 + (instancetype)animate:(id)what
@@ -46,7 +48,7 @@
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                endValue:(id<TrTransitionable>)endValue
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
              completion:(void(^)(BOOL finished))completion;
 
 @end

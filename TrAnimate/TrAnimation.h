@@ -28,9 +28,6 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrAnimatable.h"
-#import "TrCustomCurvedAnimation.h"
-
 @protocol TrAnimation
 
 @required
@@ -46,6 +43,9 @@
 
 @end
 
+@class TrCurve;
+@protocol TrAnimatable;
+
 @interface TrAnimation : NSObject <TrAnimation>
 
 @property (weak,nonatomic) CALayer *layer;
@@ -54,7 +54,7 @@
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                  curve:(TrCurve)curve
+                  curve:(TrCurve *)curve
              completion:(void(^)(BOOL finished))completion;
 
 @end
