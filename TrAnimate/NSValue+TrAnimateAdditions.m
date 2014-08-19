@@ -37,174 +37,165 @@
 
 #import "NSValue+TrAnimateAdditions.h"
 
-typedef struct _GSQuartzCoreQuaternion
-{
-    CGFloat x, y, z, w;
-} GSQuartzCoreQuaternion;
+typedef struct {
+    CGFloat x;
+    CGFloat y;
+    CGFloat z;
+    CGFloat w;
+} NSValueQuaternion;
 
-static CGFloat linearInterpolation(CGFloat from, CGFloat to, CGFloat fraction)
-{
-    return from + (to-from)*fraction;
+@implementation NSValue (TrAnimateAdditions)
+
+#pragma mark - CATransform3D Helper Methods
+
+- (CGFloat)interpolateFromSource:(CGFloat)source dest:(CGFloat)dest progress:(CGFloat)progress {
+    
+    return (dest - source) * progress + source;
+    
 }
 
-static GSQuartzCoreQuaternion matrixToQuaternion(CATransform3D m)
-{
-    /* note: how about we use reciprocal square root, too? */
-    /* see:
-     http://en.wikipedia.org/wiki/Methods_of_computing_square_roots#Reciprocal_of_the_square_root
-     http://en.wikipedia.org/wiki/Fast_inverse_square_root
-     */
+- (NSValueQuaternion)matrixQuaternion:(CATransform3D)m {
     
-    GSQuartzCoreQuaternion q;
+    NSValueQuaternion q;
     
-    m = m;
-    if (m.m11 + m.m22 + m.m33 > 0)
-    {
-        CGFloat t = m.m11 + m.m22 + m.m33 + 1.;
-        CGFloat s = 0.5/sqrt(t);
+    if (m.m11 + m.m22 + m.m33 > 0) {
         
-        q.w = s*t;
-        q.z = (m.m12 - m.m21)*s;
-        q.y = (m.m31 - m.m13)*s;
-        q.x = (m.m23 - m.m32)*s;
-    }
-    else if (m.m11 > m.m22 && m.m11 > m.m33)
-    {
-        CGFloat t = m.m11 - m.m22 - m.m33 + 1;
-        CGFloat s = 0.5/sqrt(t);
+        CGFloat t = m.m11 + m.m22 + m.m33 + 1.0;
+        CGFloat s = .5 / sqrt(t);
         
-        q.x = s*t;
-        q.y = (m.m12 + m.m21)*s;
-        q.z = (m.m31 + m.m13)*s;
-        q.w = (m.m23 - m.m32)*s;
-    }
-    else if (m.m22 > m.m33)
-    {
-        CGFloat t = -m.m11 + m.m22 - m.m33 + 1;
-        CGFloat s = 0.5/sqrt(t);
+        q.w = s * t;
+        q.z = (m.m12 - m.m21) * s;
+        q.y = (m.m31 - m.m13) * s;
+        q.x = (m.m23 - m.m32) * s;
         
-        q.y = s*t;
-        q.x = (m.m12 + m.m21)*s;
-        q.w = (m.m31 - m.m13)*s;
-        q.z = (m.m23 + m.m32)*s;
-    }
-    else
-    {
-        CGFloat t = -m.m11 - m.m22 + m.m33 + 1;
-        CGFloat s = 0.5/sqrt(t);
+    } else if (m.m11 > m.m22 && m.m11 > m.m33) {
         
-        q.z = s*t;
-        q.w = (m.m12 - m.m21)*s;
-        q.x = (m.m31 + m.m13)*s;
-        q.y = (m.m23 + m.m32)*s;
+        CGFloat t = m.m11 - m.m22 - m.m33 + 1.0;
+        CGFloat s = .5 / sqrt(t);
+        
+        q.x = s * t;
+        q.y = (m.m12 + m.m21) * s;
+        q.z = (m.m31 + m.m13) * s;
+        q.w = (m.m23 - m.m32) * s;
+        
+    } else if (m.m22 > m.m33) {
+        
+        CGFloat t = -m.m11 + m.m22 - m.m33 + 1.0;
+        CGFloat s = .5 / sqrt(t);
+        
+        q.y = s * t;
+        q.x = (m.m12 + m.m21) * s;
+        q.w = (m.m31 - m.m13) * s;
+        q.z = (m.m23 + m.m32) * s;
+        
+    } else {
+        
+        CGFloat t = -m.m11 - m.m22 + m.m33 + 1.0;
+        CGFloat s = .5 / sqrt(t);
+        
+        q.z = s * t;
+        q.w = (m.m12 - m.m21) * s;
+        q.x = (m.m31 + m.m13) * s;
+        q.y = (m.m23 + m.m32) * s;
+        
     }
     
     return q;
+    
 }
 
-static CATransform3D transpose(CATransform3D m)
-{
+- (CATransform3D)transpose:(CATransform3D)m {
+    
     CATransform3D r;
-    CGFloat *mF = (CGFloat *)&m;
-    CGFloat *rF = (CGFloat *)&r;
-    for(int i = 0; i < 16; i++)
-    {
-        int col = i % 4;
-        int row = i / 4;
-        int j = col * 4 + row;
-        rF[j] = mF[i];
+    
+    CGFloat *mT = (CGFloat *)&m;
+    CGFloat *rT = (CGFloat *)&r;
+    
+    for(NSInteger i = 0; i < 16; i++) {
+        
+        NSInteger col = i % 4;
+        NSInteger row = i / 4;
+        NSInteger j = col * 4 + row;
+        
+        rT[j] = mT[i];
+        
     }
     
     return r;
+    
 }
 
-static CATransform3D quaternionToMatrix(GSQuartzCoreQuaternion q)
-{
+- (CATransform3D)quaternionMatrix:(NSValueQuaternion)q {
+    
     CATransform3D m;
-    CGFloat x=q.x, y=q.y, z=q.z, w=q.w;
     
-    m.m11 = 1 - 2*y*y - 2*z*z;
-    m.m12 = 2*x*y + 2*w*z;
-    m.m13 = 2*x*z - 2*w*y;
-    m.m14 = 0;
+    m.m11 = 1.0 - 2.0 * pow(q.y, 2.0) - 2.0 * pow(q.z, 2.0);
+    m.m12 = 2.0 * q.x * q.y + 2.0 * q.w * q.z;
+    m.m13 = 2.0 * q.x * q.z - 2.0 * q.w * q.y;
+    m.m14 = .0;
     
-    m.m21 = 2*x*y - 2*w*z;
-    m.m22 = 1 - 2*x*x - 2*z*z;
-    m.m23 = 2*y*z + 2*w*x;
-    m.m24 = 0;
+    m.m21 = 2.0 * q.x * q.y - 2.0 * q.w * q.z;
+    m.m22 = 1.0 - 2.0 * pow(q.x, 2.0) - 2.0 * pow(q.z, 2.0);
+    m.m23 = 2.0 * q.y * q.z + 2.0 * q.w * q.x;
+    m.m24 = .0;
     
-    m.m31 = 2*x*z + 2*w*y;
-    m.m32 = 2*y*z - 2*w*x;
-    m.m33 = 1 - 2*x*x - 2*y*y;
-    m.m34 = 0;
+    m.m31 = 2.0 * q.x * q.z + 2.0 * q.w * q.y;
+    m.m32 = 2.0 * q.y * q.z - 2.0 * q.w * q.x;
+    m.m33 = 1.0 - 2.0 * pow(q.x, 2.0) - 2.0 * pow(q.y, 2.0);
+    m.m34 = .0;
     
-    m.m41 = 0;
-    m.m42 = 0;
-    m.m43 = 0;
-    m.m44 = 1;
+    m.m41 = .0;
+    m.m42 = .0;
+    m.m43 = .0;
+    m.m44 = 1.0;
     
     return m;
+    
 }
 
-static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaternion a, GSQuartzCoreQuaternion b, CGFloat fraction)
-{
-    // slerp
-	GSQuartzCoreQuaternion qr;
+- (NSValueQuaternion)interpolateQuaternion:(NSValueQuaternion)a b:(NSValueQuaternion)b progress:(CGFloat)progress {
     
-    /* reduction of calculations */
+    NSValueQuaternion q;
+    
     if (!memcmp(&a, &b, sizeof(a)))
-    {
-        /* aside from making less calculations, this will also
-         fix NaNs that would be returned if quaternions are equal */
         return a;
-    }
-    if (fraction == 0.)
-    {
+    
+    if (progress == .0)
         return a;
-    }
-    if (fraction == 1.)
-    {
+    
+    if (progress == 1.0)
         return b;
-    }
     
-    CGFloat dotproduct = a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
-	CGFloat theta, st, sut, sout, coeff1, coeff2;
+    CGFloat dp = a.x * b.x + a.y * b.y + a.z * b.z + a.w * b.w;
+    CGFloat theta, st, sut, sout, coeff1, coeff2;
     
-	theta = acos(dotproduct);
-    if (theta == 0.0)
-    {
-        /* shouldn't happen, since we already checked for equality of
-         inbound quaternions */
-        /* if we didn't make this check, we'd get a lot of NaNs. */
+    theta = acos(dp);
+    if (theta == .0)
         return a;
-    }
     
-	if (theta<0.0)
-        theta=-theta;
-	
-	st = sin(theta);
-	sut = sin(fraction*theta);
-	sout = sin((1-fraction)*theta);
-	coeff1 = sout/st;
-	coeff2 = sut/st;
+    if (theta < .0)
+        theta *= -1.0;
     
-	qr.x = coeff1*a.x + coeff2*b.x;
-	qr.y = coeff1*a.y + coeff2*b.y;
-	qr.z = coeff1*a.z + coeff2*b.z;
-	qr.w = coeff1*a.w + coeff2*b.w;
+    st = sin(theta);
+    sut = sin(progress * theta);
+    sout = sin((1.0 - progress) * theta);
+    coeff1 = sout / st;
+    coeff2 = sut / st;
     
-    // normalize
-    CGFloat qrLen = sqrt(qr.x*qr.x + qr.y*qr.y + qr.z*qr.z + qr.w*qr.w);
-    qr.x /= qrLen;
-    qr.y /= qrLen;
-    qr.z /= qrLen;
-    qr.w /= qrLen;
+    q.x = coeff1 * a.x + coeff2 * b.x;
+    q.y = coeff1 * a.y + coeff2 * b.y;
+    q.z = coeff1 * a.z + coeff2 * b.z;
+    q.w = coeff1 * a.w + coeff2 * b.w;
     
-    return qr;
+    CGFloat qLen = sqrt(q.x * q.x + q.y * q.y + q.z * q.z + q.w * q.w);
+    q.x /= qLen;
+    q.y /= qLen;
+    q.z /= qLen;
+    q.w /= qLen;
+    
+    return q;
     
 }
-
-@implementation NSValue (TrAnimateAdditions)
 
 #pragma mark - Transitioning
 
@@ -247,84 +238,79 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
         CATransform3D fromTf = [self CATransform3DValue];
         CATransform3D toTf = [val CATransform3DValue];
         CATransform3D valueTf;
+        
         memcpy(&valueTf, &CATransform3DIdentity, sizeof(valueTf));
         
-        /* A simple implementation of matrix decomposition based on:
-         http://www.gamedev.net/topic/441695-transform-matrix-decomposition/
-         Also incorrect; on the other hand, it's simple, and can later be
-         replaced by something "smarter" and more complex
-         
-         Decomposition will be useful in implementing valueForKeypath: for
-         transform "subproperties" such as .translation, .translation.x,
-         .rotation, etc.
-         */
+        fromTf = [self transpose:fromTf];
+        toTf = [self transpose:toTf];
         
-        /* FIXME! Adjust the code below as well as quaternion<->matrix conversion
-         to avoid calls to transpose(). */
-        fromTf = transpose(fromTf);
-        toTf = transpose(toTf);
-        /* FIXME! */
+        NSValueQuaternion from;
+        NSValueQuaternion to;
+        from.x = fromTf.m14;
+        from.y = fromTf.m24;
+        from.z = fromTf.m34;
         
-        /* translation */
-        CGFloat fromTX = fromTf.m14, fromTY = fromTf.m24, fromTZ = fromTf.m34;
-        CGFloat   toTX =   toTf.m14,   toTY =   toTf.m24,   toTZ =   toTf.m34;
+        to.x = toTf.m14;
+        to.y = toTf.m24;
+        to.z = toTf.m34;
         
-        CGFloat valueTX = linearInterpolation(fromTX, toTX, position);
-        CGFloat valueTY = linearInterpolation(fromTY, toTY, position);
-        CGFloat valueTZ = linearInterpolation(fromTZ, toTZ, position);
+        CGFloat vTX = [self interpolateFromSource:from.x dest:to.x progress:position];
+        CGFloat vTY = [self interpolateFromSource:from.y dest:to.y progress:position];
+        CGFloat vTZ = [self interpolateFromSource:from.z dest:to.z progress:position];
         
-        /* scale */
-#define GSQC_POW2(x) ((x)*(x))
-        CGFloat fromSX = sqrt(GSQC_POW2(fromTf.m11) + GSQC_POW2(fromTf.m12) + GSQC_POW2(fromTf.m13));
-        CGFloat fromSY = sqrt(GSQC_POW2(fromTf.m21) + GSQC_POW2(fromTf.m22) + GSQC_POW2(fromTf.m23));
-        CGFloat fromSZ = sqrt(GSQC_POW2(fromTf.m31) + GSQC_POW2(fromTf.m32) + GSQC_POW2(fromTf.m33));
+        NSValueQuaternion fromS;
+        NSValueQuaternion toS;
         
-        CGFloat toSX = sqrt(GSQC_POW2(toTf.m11) + GSQC_POW2(toTf.m12) + GSQC_POW2(toTf.m13));
-        CGFloat toSY = sqrt(GSQC_POW2(toTf.m21) + GSQC_POW2(toTf.m22) + GSQC_POW2(toTf.m23));
-        CGFloat toSZ = sqrt(GSQC_POW2(toTf.m31) + GSQC_POW2(toTf.m32) + GSQC_POW2(toTf.m33));
-#undef GSQC_POW2
+        fromS.x = sqrt(pow(fromTf.m11, 2.0) + pow(fromTf.m12, 2.0) + pow(fromTf.m13, 2.0));
+        fromS.y = sqrt(pow(fromTf.m21, 2.0) + pow(fromTf.m22, 2.0) + pow(fromTf.m23, 2.0));
+        fromS.z = sqrt(pow(fromTf.m31, 2.0) + pow(fromTf.m32, 2.0) + pow(fromTf.m33, 2.0));
         
-        CGFloat valueSX = linearInterpolation(fromSX, toSX, position);
-        CGFloat valueSY = linearInterpolation(fromSY, toSY, position);
-        CGFloat valueSZ = linearInterpolation(fromSZ, toSZ, position);
+        toS.x = sqrt(pow(toTf.m11, 2.0) + pow(toTf.m12, 2.0) + pow(toTf.m13, 2.0));
+        toS.y = sqrt(pow(toTf.m21, 2.0) + pow(toTf.m22, 2.0) + pow(toTf.m23, 2.0));
+        toS.z = sqrt(pow(toTf.m31, 2.0) + pow(toTf.m32, 2.0) + pow(toTf.m33, 2.0));
         
+        NSValueQuaternion vS;
         
-        /* rotation */
+        vS.x = [self interpolateFromSource:fromS.x dest:toS.x progress:position];
+        vS.y = [self interpolateFromSource:fromS.y dest:toS.y progress:position];
+        vS.z = [self interpolateFromSource:fromS.z dest:toS.z progress:position];
+        
         CATransform3D fromRotation;
-        fromRotation.m11 = fromTf.m11 / fromSX;
-        fromRotation.m12 = fromTf.m12 / fromSX;
-        fromRotation.m13 = fromTf.m13 / fromSX;
-        fromRotation.m14 = 0;
         
-        fromRotation.m21 = fromTf.m21 / fromSY;
-        fromRotation.m22 = fromTf.m22 / fromSY;
-        fromRotation.m23 = fromTf.m23 / fromSY;
-        fromRotation.m24 = 0;
+        fromRotation.m11 = fromTf.m11 / fromS.x;
+        fromRotation.m12 = fromTf.m12 / fromS.x;
+        fromRotation.m13 = fromTf.m13 / fromS.x;
+        fromRotation.m14 = .0;
         
-        fromRotation.m31 = fromTf.m31 / fromSZ;
-        fromRotation.m32 = fromTf.m32 / fromSZ;
-        fromRotation.m33 = fromTf.m33 / fromSZ;
-        fromRotation.m34 = 0;
+        fromRotation.m21 = fromTf.m21 / fromS.y;
+        fromRotation.m22 = fromTf.m22 / fromS.y;
+        fromRotation.m23 = fromTf.m23 / fromS.y;
+        fromRotation.m24 = .0;
         
-        fromRotation.m41 = 0;
-        fromRotation.m42 = 0;
-        fromRotation.m43 = 0;
-        fromRotation.m44 = 1;
+        fromRotation.m31 = fromTf.m31 / fromS.z;
+        fromRotation.m32 = fromTf.m32 / fromS.z;
+        fromRotation.m33 = fromTf.m33 / fromS.z;
+        fromRotation.m34 = .0;
+        
+        fromRotation.m41 = .0;
+        fromRotation.m42 = .0;
+        fromRotation.m43 = .0;
+        fromRotation.m44 = 1.0;
         
         CATransform3D toRotation;
-        toRotation.m11 = toTf.m11 / toSX;
-        toRotation.m12 = toTf.m12 / toSX;
-        toRotation.m13 = toTf.m13 / toSX;
-        toRotation.m14 = 0;
+        toRotation.m11 = toTf.m11 / toS.x;
+        toRotation.m12 = toTf.m12 / toS.x;
+        toRotation.m13 = toTf.m13 / toS.x;
+        toRotation.m14 = 0.0;
         
-        toRotation.m21 = toTf.m21 / toSY;
-        toRotation.m22 = toTf.m22 / toSY;
-        toRotation.m23 = toTf.m23 / toSY;
+        toRotation.m21 = toTf.m21 / toS.y;
+        toRotation.m22 = toTf.m22 / toS.y;
+        toRotation.m23 = toTf.m23 / toS.y;
         toRotation.m24 = 0;
         
-        toRotation.m31 = toTf.m31 / toSZ;
-        toRotation.m32 = toTf.m32 / toSZ;
-        toRotation.m33 = toTf.m33 / toSZ;
+        toRotation.m31 = toTf.m31 / toS.z;
+        toRotation.m32 = toTf.m32 / toS.z;
+        toRotation.m33 = toTf.m33 / toS.z;
         toRotation.m34 = 0;
         
         toRotation.m41 = 0;
@@ -332,8 +318,8 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
         toRotation.m43 = 0;
         toRotation.m44 = 1;
         
-        GSQuartzCoreQuaternion fromQuat = matrixToQuaternion(fromRotation);
-        GSQuartzCoreQuaternion toQuat = matrixToQuaternion(toRotation);
+        NSValueQuaternion fromQuat = [self matrixQuaternion:fromRotation];
+        NSValueQuaternion toQuat = [self matrixQuaternion:toRotation];
         
         CGFloat fromQuatLen = sqrt(fromQuat.x*fromQuat.x + fromQuat.y*fromQuat.y + fromQuat.z*fromQuat.z + fromQuat.w*fromQuat.w);
         fromQuat.x /= fromQuatLen;
@@ -346,32 +332,32 @@ static GSQuartzCoreQuaternion linearInterpolationQuaternion(GSQuartzCoreQuaterni
         toQuat.z /= toQuatLen;
         toQuat.w /= toQuatLen;
         
-        GSQuartzCoreQuaternion valueQuat;
-        valueQuat = linearInterpolationQuaternion(fromQuat, toQuat, position);
+        NSValueQuaternion valueQuat;
+        valueQuat = [self interpolateQuaternion:fromQuat
+                                              b:toQuat
+                                       progress:position];
         
-        valueTf = quaternionToMatrix(valueQuat);
+        valueTf = [self quaternionMatrix:valueQuat];
         
-        /* apply scale */
-        valueTf.m11 *= valueSX;
-        valueTf.m12 *= valueSX;
-        valueTf.m13 *= valueSX;
+        valueTf.m11 *= vS.x;
+        valueTf.m12 *= vS.x;
+        valueTf.m13 *= vS.x;
         
-        valueTf.m21 *= valueSY;
-        valueTf.m22 *= valueSY;
-        valueTf.m23 *= valueSY;
+        valueTf.m21 *= vS.y;
+        valueTf.m22 *= vS.y;
+        valueTf.m23 *= vS.y;
         
-        valueTf.m31 *= valueSZ;
-        valueTf.m32 *= valueSZ;
-        valueTf.m33 *= valueSZ;
+        valueTf.m31 *= vS.z;
+        valueTf.m32 *= vS.z;
+        valueTf.m33 *= vS.z;
         
-        /* apply translation */
-        valueTf.m14 = valueTX;
-        valueTf.m24 = valueTY;
-        valueTf.m34 = valueTZ;
+        valueTf.m14 = vTX;
+        valueTf.m24 = vTY;
+        valueTf.m34 = vTZ;
         
-        valueTf = transpose(valueTf);
+        valueTf = [self transpose:valueTf];
         
-        return [NSValue valueWithCATransform3D: valueTf];
+        return [NSValue valueWithCATransform3D:valueTf];
         
     }
     
