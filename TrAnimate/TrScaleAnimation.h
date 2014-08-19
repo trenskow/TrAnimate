@@ -30,10 +30,41 @@
 
 #import "TrKeyPathAnimation.h"
 
+/**
+ *  Creates an animation that scales a `UIView` or `CALayer`.
+ */
 @interface TrScaleAnimation : TrKeyPathAnimation
 
+/// --------------------------------
+/// @name Examining Views and Layers
+/// --------------------------------
+
+/**
+ *  Checks if a scale animation is in progress on a `UIView` or `CALayer` instance.
+ *
+ *  @param viewOrLayer The `UIView` or `CALayer` you want to examine.
+ *
+ *  @return Returns `YES` if the `UIView` or `CALayer` has a scale animation in progress.
+ */
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
+/// --------------------------
+/// @name Creating Animaitions
+/// --------------------------
+
+/**
+ *  Creates and returns a scale animation.
+ *
+ *  @param viewOrLayer      The `UIView` or `CALayer` you want to animate.
+ *  @param duration         The duration of the animation.
+ *  @param delay            The delay before the animation begins.
+ *  @param startScaleFactor The start scale factor of the animation.
+ *  @param endScaleFactor   The end scale factor of the animation.
+ *  @param curve            The curvature of the animation. Providing `nil` makes the animation linear.
+ *  @param completion       A block that gets invoked when the animation completes.
+ *
+ *  @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -42,6 +73,18 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/**
+ *  Creates and returns a scale animation. The animations start scale factor will be the `UIView`s or `CALayer`s current scale value.
+ *
+ *  @param viewOrLayer    The `UIView` or `CALayer` you want to animate.
+ *  @param duration       The duration of the animation.
+ *  @param delay          The delay before the animation begins.
+ *  @param endScaleFactor The end scale factor of the animation.
+ *  @param curve          The curvature of the animation. Providing `nil` makes the animation linear.
+ *  @param completion     A block that gets invoked when the animation completes.
+ *
+ *  @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -49,6 +92,17 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/**
+ *  Creates an returns a scale animation.
+ *
+ *  @param viewOrLayer      The `UIView` or `CALayer` you want to animate.
+ *  @param duration         The duration of the animation.
+ *  @param delay            The delay before the animation begins.
+ *  @param startScaleFactor The start scale factor of the animation.
+ *  @param endScaleFactor   The end scale factor of the animation.
+ *
+ *  @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
