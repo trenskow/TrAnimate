@@ -34,25 +34,25 @@
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayerg
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-         startZoomLevel:(CGFloat)startZoomLevel
-           endZoomLevel:(CGFloat)endZoomLevel
+       startScaleFactor:(CGFloat)startScaleFactor
+         endScaleFactor:(CGFloat)endScaleFactor
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           endZoomLevel:(CGFloat)endZoomLevel
+         endScaleFactor:(CGFloat)endScaleFactor
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-         startZoomLevel:(CGFloat)startZoomLevel
-           endZoomLevel:(CGFloat)endZoomLevel;
+       startScaleFactor:(CGFloat)startScaleFactor
+         endScaleFactor:(CGFloat)endScaleFactor;
 
 @end

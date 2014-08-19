@@ -48,8 +48,8 @@
     
     return [super animate:viewOrLayer
              layerKeyPath:@"transform.scale"
-               startValue:@(startZoomLevel)
-                 endValue:@(endZoomLevel)
+               startValue:@(startScaleFactor)
+                 endValue:@(endScaleFactor)
                  duration:duration
                     delay:delay
                     curve:curve
@@ -62,8 +62,8 @@
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-          startZoomLevel:[[viewOrLayer.presentedLayer valueForKeyPath:@"transform.scale.x"] floatValue]
-            endZoomLevel:endZoomLevel
+        startScaleFactor:[[viewOrLayer.presentedLayer valueForKeyPath:@"transform.scale.x"] floatValue]
+          endScaleFactor:endScaleFactor
                    curve:curve
               completion:completion];
     
@@ -74,8 +74,8 @@
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-          startZoomLevel:startZoomLevel
-            endZoomLevel:endZoomLevel
+        startScaleFactor:startScaleFactor
+          endScaleFactor:endScaleFactor
                    curve:nil
               completion:nil];
     
