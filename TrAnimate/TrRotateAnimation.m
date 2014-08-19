@@ -36,12 +36,12 @@
 
 #pragma mark - Creating Animation
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle options:(TrRotateAnimationOptions)options curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle axis:(TrRotateAnimationAxis)axis curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
     
     NSString *keyPath = @"transform.rotation.z";
-    if (options == kTrRotateAnimationOptionsAxisX)
+    if (axis == TrRotateAnimationAxisX)
         keyPath = @"transform.rotation.x";
-    else if (options == kTrRotateAnimationOptionsAxisY)
+    else if (axis == TrRotateAnimationAxisX)
         keyPath = @"transform.rotation.y";
     
     return [super animate:viewOrLayer
@@ -62,7 +62,7 @@
                    delay:delay
               startAngle:startAngle
                 endAngle:endAngle
-                 options:kTrRotateAnimationOptionsAxisZ
+                    axis:TrRotateAnimationAxisZ
                    curve:curve
               completion:completion];
     
@@ -75,35 +75,22 @@
                    delay:delay
               startAngle:startAngle
                 endAngle:endAngle
-                 options:kTrRotateAnimationOptionsAxisZ
+                    axis:TrRotateAnimationAxisZ
                    curve:nil
               completion:nil];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle options:(TrRotateAnimationOptions)options {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle axis:(TrRotateAnimationAxis)axis {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
               startAngle:startAngle
                 endAngle:endAngle
-                 options:options
+                    axis:axis
                    curve:nil
               completion:nil];
-    
-}
-
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay options:(TrRotateAnimationOptions)options completion:(void (^)(BOOL))completion {
-    
-    return [self animate:viewOrLayer
-                duration:duration
-                   delay:delay
-              startAngle:.0
-                endAngle:M_PI
-                 options:kTrRotateAnimationOptionsAxisZ
-                   curve:nil
-              completion:completion];
     
 }
 

@@ -38,9 +38,9 @@
 
 #pragma mark - Internal
 
-+ (CGPoint)position:(CGPoint)position ofLayer:(CALayer *)layer fromOptions:(TrPositionAnimationOptions)options {
++ (CGPoint)position:(CGPoint)position ofLayer:(CALayer *)layer fromOrigin:(TrPositionAnimationOrigin)origin {
     
-    if (options == kTrPositionAnimationsOptionOriginTopLeft)
+    if (origin == TrPositionAnimationsOriginTopLeft)
         return CGPointMake(position.x + layer.bounds.size.width * layer.anchorPoint.x,
                            position.y + layer.bounds.size.height * layer.anchorPoint.y);
     
@@ -56,16 +56,16 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCurve *)curve options:(TrPositionAnimationOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCurve *)curve origin:(TrPositionAnimationOrigin)origin completion:(void (^)(BOOL))completion {
     
     return [super animate:viewOrLayer
              layerKeyPath:@"position"
                startValue:[NSValue valueWithCGPoint:[self position:startPosition
                                                            ofLayer:viewOrLayer.animationLayer
-                                                       fromOptions:options]]
+                                                        fromOrigin:origin]]
                  endValue:[NSValue valueWithCGPoint:[self position:endPosition
                                                            ofLayer:viewOrLayer.animationLayer
-                                                       fromOptions:options]]
+                                                        fromOrigin:origin]]
                  duration:duration
                     delay:delay
                     curve:curve
@@ -81,14 +81,12 @@
            startPosition:startPosition
              endPosition:endPosition
                    curve:curve
-                 options:([viewOrLayer isKindOfClass:[UIView class]] ?
-                          kTrPositionAnimationsOptionOriginTopLeft :
-                          kTrPositionAnimationsOptionOriginCenter)
+                  origin:([viewOrLayer isKindOfClass:[UIView class]] ? TrPositionAnimationsOriginTopLeft : TrPositionAnimationsOriginCenter)
               completion:completion];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCurve *)curve options:(TrPositionAnimationOptions)options completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCurve *)curve origin:(TrPositionAnimationOrigin)origin completion:(void (^)(BOOL))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
@@ -96,9 +94,9 @@
            startPosition:viewOrLayer.animationLayer.position
              endPosition:[self position:endPosition
                                 ofLayer:viewOrLayer.animationLayer
-                            fromOptions:options]
+                             fromOrigin:origin]
                    curve:curve
-                 options:kTrPositionAnimationsOptionOriginCenter
+                  origin:TrPositionAnimationsOriginCenter
               completion:completion];
     
 }
@@ -110,9 +108,7 @@
                    delay:delay
              endPosition:endPosition
                    curve:curve
-                 options:([viewOrLayer isKindOfClass:[UIView class]] ?
-                          kTrPositionAnimationsOptionOriginTopLeft :
-                          kTrPositionAnimationsOptionOriginCenter)
+                 origin:([viewOrLayer isKindOfClass:[UIView class]] ? TrPositionAnimationsOriginTopLeft : TrPositionAnimationsOriginCenter)
               completion:completion];
     
 }

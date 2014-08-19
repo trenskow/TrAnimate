@@ -33,19 +33,19 @@
 /**
  *  Speciefies the rotation axis.
  */
-typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
+typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
     /**
      *  Rotate around the z-axis. Default.
      */
-    kTrRotateAnimationOptionsAxisZ = 0,
+    TrRotateAnimationAxisZ = 0,
     /**
      *  Rotate around the x-axis.
      */
-    kTrRotateAnimationOptionsAxisX,
+    TrRotateAnimationAxisX,
     /**
      *  Rotate around the y-axis.
      */
-    kTrRotateAnimationOptionsAxisY
+    TrRotateAnimationAxisY
 };
 
 /**
@@ -82,7 +82,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
  *  @param delay       The delay of the animation.
  *  @param startAngle  The start angle of the rotation.
  *  @param endAngle    The end angle of the rotation.
- *  @param options     Options indicating the axis on which the animation will occur.
+ *  @param axis        The axis on which the animation will occur.
  *
  *  @return An animation ready to animate.
  */
@@ -91,7 +91,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
                   delay:(NSTimeInterval)delay
              startAngle:(CGFloat)startAngle
                endAngle:(CGFloat)endAngle
-                options:(TrRotateAnimationOptions)options;
+                   axis:(TrRotateAnimationAxis)axis;
 
 /**
  *  Creates and returns a new rotation animation.
@@ -122,7 +122,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
  *  @param delay       The delay before the animation begins.
  *  @param startAngle  The start angle of the rotation.
  *  @param endAngle    The end angle of the rotation.
- *  @param options     Options indicating the axis on which the animation will occur.
+ *  @param axis        The axis on which the animation will occur.
  *  @param curve       The curvature of the animation. Providing `nil` makes a linear animation.
  *  @param completion  A block that gets invoked when the animation completes.
  *
@@ -133,7 +133,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
                   delay:(NSTimeInterval)delay
              startAngle:(CGFloat)startAngle
                endAngle:(CGFloat)endAngle
-                options:(TrRotateAnimationOptions)options
+                   axis:(TrRotateAnimationAxis)axis
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 

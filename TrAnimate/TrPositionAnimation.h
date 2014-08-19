@@ -33,15 +33,15 @@
 /**
  *  Specifies the origin of the position.
  */
-typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOptions) {
+typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOrigin) {
     /**
      *  Origin in the center of the view or layer. Default when animating `CALayer`s.
      */
-    kTrPositionAnimationsOptionOriginCenter = 0,
+    TrPositionAnimationsOriginCenter = 0,
     /**
      *  Origin at the top left of the view or layer. Default when animating `UIView`s.
      */
-    kTrPositionAnimationsOptionOriginTopLeft
+    TrPositionAnimationsOriginTopLeft
 };
 
 @interface TrPositionAnimation : TrKeyPathAnimation
@@ -54,7 +54,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOptions) {
           startPosition:(CGPoint)startPosition
             endPosition:(CGPoint)endPosition
                   curve:(TrCurve *)curve
-                options:(TrPositionAnimationOptions)options
+                 origin:(TrPositionAnimationOrigin)origin
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
@@ -70,7 +70,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOptions) {
                   delay:(NSTimeInterval)delay
             endPosition:(CGPoint)endPosition
                   curve:(TrCurve *)curve
-                options:(TrPositionAnimationOptions)options
+                 origin:(TrPositionAnimationOrigin)origin
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
