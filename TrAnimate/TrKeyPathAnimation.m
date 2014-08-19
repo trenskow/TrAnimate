@@ -91,10 +91,10 @@
     [viewOrLayer.animationLayer setValue:startValue forKeyPath:keyPath];
     
     TrKeyPathAnimation *animation = [super animate:viewOrLayer
-                                         duration:duration
-                                            delay:delay
-                                            curve:curve
-                                       completion:completion];
+                                          duration:duration
+                                             delay:delay
+                                             curve:curve
+                                        completion:completion];
     
     if (animation) {
         animation->_keyPath = keyPath;
@@ -109,13 +109,13 @@
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer layerKeyPath:(NSString *)keyPath endValue:(id<TrInterpolatable>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
     
     TrKeyPathAnimation *animation = [self animate:viewOrLayer
-                                    layerKeyPath:keyPath
+                                     layerKeyPath:keyPath
                                        startValue:[viewOrLayer.presentedLayer valueForKeyPath:keyPath]
-                                        endValue:endValue
-                                        duration:duration
-                                           delay:delay
-                                           curve:curve
-                                      completion:completion];
+                                         endValue:endValue
+                                         duration:duration
+                                            delay:delay
+                                            curve:curve
+                                       completion:completion];
     
     if (animation)
         animation->_startValue = [animation.layer valueForKeyPath:keyPath];
