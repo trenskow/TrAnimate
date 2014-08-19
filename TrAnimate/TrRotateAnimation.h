@@ -48,14 +48,44 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
     kTrRotateAnimationOptionsAxisY = 1 << 3
 };
 
+/**
+ *  A animation that rotates a `UIView` or `CALayer` around an axis.
+ */
 @interface TrRotateAnimation : TrKeyPathAnimation
 
+/// -------------------------
+/// @name Creating Animations
+/// -------------------------
+
+/**
+ *  Creates and returns a new rotation animation.
+ *
+ *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ *  @param duration    The duration of the animation.
+ *  @param delay       The delay before the animation begins.
+ *  @param startAngle  The start angle of the rotation.
+ *  @param endAngle    The end angle of the rotation.
+ *
+ *  @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
              startAngle:(CGFloat)startAngle
                endAngle:(CGFloat)endAngle;
 
+/**
+ *  Creates and returns a new rotation animation.
+ *
+ *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ *  @param duration    The duration of the animation.
+ *  @param delay       The delay of the animation.
+ *  @param startAngle  The start angle of the rotation.
+ *  @param endAngle    The end angle of the rotation.
+ *  @param options     Options indicating the axis on which the animation will occur.
+ *
+ *  @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -63,6 +93,19 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
                endAngle:(CGFloat)endAngle
                 options:(TrRotateAnimationOptions)options;
 
+/**
+ *  Creates and returns a new rotation animation.
+ *
+ *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ *  @param duration    The duration of the animation.
+ *  @param delay       The delay before the animation begins.
+ *  @param startAngle  The start angle of the rotation.
+ *  @param endAngle    The end angle of the rotation.
+ *  @param curve       The curvature of the animation. Providing `nil` makes a linear animation.
+ *  @param completion  A block that gets invoked when the animation completes.
+ *
+ *  @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -71,6 +114,20 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/**
+ *  Creates and returns a new rotation animation.
+ *
+ *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ *  @param duration    The duration of the animation.
+ *  @param delay       The delay before the animation begins.
+ *  @param startAngle  The start angle of the rotation.
+ *  @param endAngle    The end angle of the rotation.
+ *  @param options     Options indicating the axis on which the animation will occur.
+ *  @param curve       The curvature of the animation. Providing `nil` makes a linear animation.
+ *  @param completion  A block that gets invoked when the animation completes.
+ *
+ *  @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
