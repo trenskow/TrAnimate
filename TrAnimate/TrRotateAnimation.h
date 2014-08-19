@@ -35,17 +35,17 @@
  */
 typedef NS_OPTIONS(NSUInteger, TrRotateAnimationOptions) {
     /**
-     *  Rotate around the z-axis.
+     *  Rotate around the z-axis. Default.
      */
-    kTrRotateAnimationOptionsAxisZ = 1 << 1,
+    kTrRotateAnimationOptionsAxisZ = 0,
     /**
      *  Rotate around the x-axis.
      */
-    kTrRotateAnimationOptionsAxisX = 1 << 2,
+    kTrRotateAnimationOptionsAxisX,
     /**
      *  Rotate around the y-axis.
      */
-    kTrRotateAnimationOptionsAxisY = 1 << 3
+    kTrRotateAnimationOptionsAxisY
 };
 
 /**

@@ -39,9 +39,9 @@
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle options:(TrRotateAnimationOptions)options curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
     
     NSString *keyPath = @"transform.rotation.z";
-    if (options & kTrRotateAnimationOptionsAxisX)
+    if (options == kTrRotateAnimationOptionsAxisX)
         keyPath = @"transform.rotation.x";
-    else if (options & kTrRotateAnimationOptionsAxisY)
+    else if (options == kTrRotateAnimationOptionsAxisY)
         keyPath = @"transform.rotation.y";
     
     return [super animate:viewOrLayer
