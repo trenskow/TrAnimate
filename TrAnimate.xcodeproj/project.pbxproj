@@ -181,7 +181,6 @@
 		A10A32B418E2E646000D4B49 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				A10D78AC19A274C40013E5F5 /* TrAnimatable.h */,
 				A1E6EA9F1913B55300E4F179 /* UIView+TrAnimateAdditions.h */,
 				A1E6EAA01913B55300E4F179 /* UIView+TrAnimateAdditions.m */,
 				A1E6EAA21913B5CE00E4F179 /* CALayer+TrAnimateAdditions.h */,
@@ -246,6 +245,7 @@
 				A10A32B418E2E646000D4B49 /* Additions */,
 				A10A32A618E2DB24000D4B49 /* Key-Path Animation */,
 				A1E6EA921912D96B00E4F179 /* Direct */,
+				A10D78AC19A274C40013E5F5 /* TrAnimatable.h */,
 				A11C7867178839FA0000B420 /* TrAnimation.h */,
 				A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */,
 				A11C7868178839FA0000B420 /* TrAnimation.m */,
@@ -574,11 +574,12 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = TrAnimate/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -611,7 +612,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = TrAnimate/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -684,12 +685,16 @@
 					"$(ARCHS_STANDARD)",
 					armv7s,
 				);
+				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/TrAnimate.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TrAnimate/TrAnimate-Prefix.pch";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TrAnimate/TrAnimate Static-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -700,12 +705,15 @@
 					"$(ARCHS_STANDARD)",
 					armv7s,
 				);
+				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/TrAnimate.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TrAnimate/TrAnimate-Prefix.pch";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "TrAnimate/TrAnimate Static-Bridging-Header.h";
 			};
 			name = Release;
 		};
