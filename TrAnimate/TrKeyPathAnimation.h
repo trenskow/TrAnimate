@@ -33,10 +33,43 @@
 @protocol TrAnimatable;
 @protocol TrInterpolatable;
 
+/**
+ *  The `TrKeyPathAnimation` provides animation on any animatable property of CALayer. Use this animation if you need to do custom animations on a layer that is not directly implemented in TrAnimate as an explicit animation.
+ */
 @interface TrKeyPathAnimation : TrAnimation
 
+/// --------------------------------
+/// @name Examining Views and Layers
+/// --------------------------------
+
+/**
+*  Checks if an animation is in progress on a `UIView` or `CALayer` instance at a perticular property.
+*
+*  @param viewOrLayer The `UIView` or `CALayer` you want to examine.
+*  @param keyPath     The key path of the property that you want to examine.
+*
+*  @return Returns `YES` if the `UIView` or `CALayer` is animating on the property of `keyPath`.
+*/
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withKeyPath:(NSString *)keyPath;
 
+/// -------------------------
+/// @name Creating Animations
+/// -------------------------
+
+/**
+ *  Creates and returns an animation.
+ *
+ *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ *  @param keyPath     The key path of the property you want to animate. If a `UIView` is provided in *viewOrLayer* this must be the key path of the views layer.
+ *  @param startValue  The property's start value.
+ *  @param endValue    The property's end value.
+ *  @param duration    The duration of the animation.
+ *  @param delay       The delay before the animation begins.
+ *  @param curve       The curvature of the animation. Provide `nil` makes the animation linear.
+ *  @param completion  A block that gets invoked when the animation completes.
+ *
+ *  @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
            layerKeyPath:(NSString *)keyPath
              startValue:(id<TrInterpolatable>)startValue
@@ -46,6 +79,19 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/**
+ *  Creates and returns an animation which offsets in the key paths current value.
+ *
+ *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ *  @param keyPath     The key path of the property you want to animate. If a `UIView` is provided in *viewOrLayer* this must be the key path of the views layer.
+ *  @param endValue    The property's end value.
+ *  @param duration    The duration of the animation
+ *  @param delay       The delay before the animation begins.
+ *  @param curve       The curvature of the animation. Provide `nil` makes the animation linear.
+ *  @param completion  A block that gets invoked when the animation completes.
+ *
+ *  @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
            layerKeyPath:(NSString *)keyPath
                endValue:(id<TrInterpolatable>)endValue

@@ -64,7 +64,18 @@
  */
 @property (nonatomic) NSTimeInterval delay;
 
+/// ------------------------
+/// @name Managing Animation
+/// ------------------------
+
+/**
+ *  Tells the reciever to postpone the animation.
+ */
 - (void)postponeAnimation;
+
+/**
+ *  Tells the receiver to begin the animation. This is done automatically when an animation is created, but you can use this to explicitly start it. Also use this if you have previously postponed the animation using `postponeAnimation`.
+ */
 - (void)beginAnimation;
 
 @end
@@ -73,9 +84,7 @@
 @protocol TrAnimatable;
 
 /**
- *  The `TrAnimation` is an abstract class used by many animations that uses Core Animation as the animation technology.
- *
- *  @discussion Do not instantiate this class - as it does no animation on its own. Instead instantiate one of the many subclasses. If this an instance of this class is added to a TrAnimationGroup instance, the animation will never complete.
+ *  The `TrAnimation` is an abstract class used by animations that needs Core Animation as their animation technology.
  */
 @interface TrAnimation : NSObject <TrAnimation>
 
@@ -88,6 +97,9 @@
  */
 @property (weak,readonly,nonatomic) CALayer *layer;
 
+/**
+ *  The duration of the animation.
+ */
 @property (nonatomic) NSTimeInterval duration;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
