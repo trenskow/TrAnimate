@@ -103,7 +103,6 @@
 		A10D78AC19A274C40013E5F5 /* TrAnimatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrAnimatable.h; sourceTree = "<group>"; };
 		A10D78D819A279530013E5F5 /* TrCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrCurve.h; sourceTree = "<group>"; };
 		A10D78D919A279530013E5F5 /* TrCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrCurve.m; sourceTree = "<group>"; };
-		A10D78DD19A2864B0013E5F5 /* TrCurve+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "TrCurve+Private.h"; sourceTree = "<group>"; };
 		A1145CE1194EF9F3001B0108 /* TrAnimate.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TrAnimate.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1145CE4194EF9F3001B0108 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A11C7853178839720000B420 /* libTrAnimate Static.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libTrAnimate Static.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -318,7 +317,6 @@
 				A11C789817883BD50000B420 /* Additions */,
 				A11C789917883BE70000B420 /* TrInterpolatable.h */,
 				A10D78D819A279530013E5F5 /* TrCurve.h */,
-				A10D78DD19A2864B0013E5F5 /* TrCurve+Private.h */,
 				A10D78D919A279530013E5F5 /* TrCurve.m */,
 				A11C789517883BD20000B420 /* TrCustomCurvedAnimation.h */,
 				A11C789617883BD20000B420 /* TrCustomCurvedAnimation.m */,

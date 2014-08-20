@@ -30,7 +30,7 @@
 
 #import "NSNumber+TrAnimateAdditions.h"
 
-#import "TrCurve+Private.h"
+#import "TrCurve.h"
 #import "TrAnimatable.h"
 
 #import "TrAnimationSubclass.h"

@@ -37,7 +37,7 @@
     }); \
     return curve
 
-#import "TrCurve+Private.h"
+#import "TrCurve.h"
 
 @interface TrCurve () {
     
@@ -74,7 +74,7 @@
 + (TrCurve *)easeInOutQuad {
     RETURN_SINGLETON(^(double t) {
         t /= .5;
-        if (t < 1.0) return .5*pow(t, 2.0);
+        if (t < 1.0) return .5 * pow(t, 2.0);
         t -= 1.0;
         return -.5 * (t*(t - 2.0) - 1.0);
     });
@@ -102,6 +102,7 @@
         if (t < .5) return [easeInCubic transform:t * 2.0] / 2.0;
         return [easeOutCubic transform:(t - .5) * 2.0] / 2.0 + .5;
     });
+    
 }
 
 + (TrCurve *)easeInQuart {
@@ -377,21 +378,15 @@
     
 }
 
-#pragma mark - Protected Methods
+#pragma mark - Calculating Curve
 
-- (double)transform:(double)t {
+- (double)transform:(double)positionInTime {
     
-    return _block(t);
+    return _block(MIN(1.0, MAX(.0, positionInTime)));
     
 }
 
-#pragma mark - Public Methods
-
-- (id)objectForKeyedSubscript:(id<NSCopying>)t {
-    
-    return @([self transform:[(id)t doubleValue]]);
-    
-}
+#pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
     

@@ -30,7 +30,7 @@
 
 #import <objc/runtime.h>
 
-#import "TrCurve+Private.h"
+#import "TrCurve.h"
 #import "TrInterpolatable.h"
 
 #import "TrDirectAnimation.h"

@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrCurve+Private.h"
+#import "TrCurve.h"
 #import "TrCustomCurvedAnimation.h"
 #import "TrAnimatable.h"
 #import "TrInterpolatable.h"
