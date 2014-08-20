@@ -31,7 +31,7 @@
 #import "TrKeyPathAnimation.h"
 
 /**
- *  Creates an animation that scales a `UIView` or `CALayer`.
+ *  The `TrScaleAnimation` scales a `UIView` or `CALayer`.
  */
 @interface TrScaleAnimation : TrKeyPathAnimation
 
