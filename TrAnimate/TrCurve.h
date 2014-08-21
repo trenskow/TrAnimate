@@ -261,7 +261,7 @@
 /// ---------------------
 
 /**
- *  Creates and Returns a new curve using a block.
+ *  Creates and returns a new curve using a block.
  *
  *  @param block A block that takes a value in time *t* between one and zero and returns the relative position on the curve.
  *

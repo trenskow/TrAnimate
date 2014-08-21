@@ -240,6 +240,7 @@
 		A11C7865178839AC0000B420 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
+				A1525C9919A4DD9F00024B4A /* Curvature */,
 				A11C788217883B6E0000B420 /* Animation Group */,
 				A10A32B418E2E646000D4B49 /* Additions */,
 				A10A32A618E2DB24000D4B49 /* Key-Path Animation */,
@@ -316,8 +317,6 @@
 			children = (
 				A11C789817883BD50000B420 /* Additions */,
 				A11C789917883BE70000B420 /* TrInterpolatable.h */,
-				A10D78D819A279530013E5F5 /* TrCurve.h */,
-				A10D78D919A279530013E5F5 /* TrCurve.m */,
 				A11C789517883BD20000B420 /* TrCustomCurvedAnimation.h */,
 				A11C789617883BD20000B420 /* TrCustomCurvedAnimation.m */,
 			);
@@ -333,6 +332,15 @@
 				A11C789D17883BE70000B420 /* NSNumber+TrAnimateAdditions.m */,
 			);
 			name = Additions;
+			sourceTree = "<group>";
+		};
+		A1525C9919A4DD9F00024B4A /* Curvature */ = {
+			isa = PBXGroup;
+			children = (
+				A10D78D819A279530013E5F5 /* TrCurve.h */,
+				A10D78D919A279530013E5F5 /* TrCurve.m */,
+			);
+			name = Curvature;
 			sourceTree = "<group>";
 		};
 		A1E6EA921912D96B00E4F179 /* Direct */ = {

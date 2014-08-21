@@ -44,9 +44,20 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOrigin) {
     TrPositionAnimationsOriginTopLeft
 };
 
+/**
+ *  The `TrPositionAnimation` moves a `UIView` or `CALayer`
+ */
 @interface TrPositionAnimation : TrKeyPathAnimation
 
+/// --------------------------------
+/// @name Examining Views and Layers
+/// --------------------------------
+
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
+
+/// --------------------------
+/// @name Creating Animaitions
+/// --------------------------
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
