@@ -33,7 +33,7 @@
 #import "TrAnimatable.h"
 #import "TrInterpolatable.h"
 
-#import "TrAnimationSubclass.h"
+#import "TrAnimation+Private.h"
 
 #import "TrKeyPathAnimation.h"
 

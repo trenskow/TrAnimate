@@ -34,12 +34,6 @@
 
 @interface TrAnimation ()
 
-- (instancetype)initWithLayer:(CALayer *)layer
-                     duration:(NSTimeInterval)duration
-                        delay:(NSTimeInterval)delay
-                        curve:(TrCurve *)curve
-                   completion:(void (^)(BOOL))completion;
-
 @property (copy,nonatomic,readonly) TrCurve *curve;
 
 - (void)prepareAnimation:(TrCustomCurvedAnimation *)animation

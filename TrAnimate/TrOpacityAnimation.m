@@ -33,7 +33,7 @@
 #import "TrCurve.h"
 #import "TrAnimatable.h"
 
-#import "TrAnimationSubclass.h"
+#import "TrAnimation+Private.h"
 
 #import "TrOpacityAnimation.h"
 

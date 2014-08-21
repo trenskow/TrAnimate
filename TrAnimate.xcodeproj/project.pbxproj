@@ -52,7 +52,6 @@
 		A1145D17194EFB31001B0108 /* TrKeyPathAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A10A32A718E2DB5B000D4B49 /* TrKeyPathAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D18194EFB31001B0108 /* TrDirectAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A1E6EA931912D98600E4F179 /* TrDirectAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1145D19194EFB31001B0108 /* TrAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C7867178839FA0000B420 /* TrAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A1145D1A194EFB58001B0108 /* TrAnimationSubclass.h in Headers */ = {isa = PBXBuildFile; fileRef = A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A11C7857178839720000B420 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C7856178839720000B420 /* Foundation.framework */; };
 		A11C7869178839FC0000B420 /* TrAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C7868178839FA0000B420 /* TrAnimation.m */; };
 		A11C787217883AE60000B420 /* TrPositionAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C787117883AE60000B420 /* TrPositionAnimation.m */; };
@@ -68,6 +67,10 @@
 		A11C789F17883BE70000B420 /* NSNumber+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789D17883BE70000B420 /* NSNumber+TrAnimateAdditions.m */; };
 		A11C78A117883C070000B420 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C78A017883C070000B420 /* QuartzCore.framework */; };
 		A11C78A317883C120000B420 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A11C78A217883C120000B420 /* UIKit.framework */; };
+		A1876C2119A6712800C1639A /* NSValue+TrAnimateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789A17883BE70000B420 /* NSValue+TrAnimateAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1876C2219A6712C00C1639A /* NSNumber+TrAnimateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789C17883BE70000B420 /* NSNumber+TrAnimateAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1876C2319A6713100C1639A /* TrInterpolatable.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789917883BE70000B420 /* TrInterpolatable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1876C2419A6714200C1639A /* TrAnimatable.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D78AC19A274C40013E5F5 /* TrAnimatable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1E6EA951912D98600E4F179 /* TrDirectAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EA941912D98600E4F179 /* TrDirectAnimation.m */; };
 		A1E6EAA11913B55300E4F179 /* UIView+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EAA01913B55300E4F179 /* UIView+TrAnimateAdditions.m */; };
 		A1E6EAA41913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EAA31913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m */; };
@@ -89,7 +92,7 @@
 		A10A32A718E2DB5B000D4B49 /* TrKeyPathAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrKeyPathAnimation.h; sourceTree = "<group>"; };
 		A10A32A818E2DB5B000D4B49 /* TrKeyPathAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrKeyPathAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A10BC9A217883E9800F354FC /* TrAnimate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimate.h; sourceTree = "<group>"; };
-		A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimationSubclass.h; sourceTree = "<group>"; };
+		A10BC9E017899EF200F354FC /* TrAnimation+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrAnimation+Private.h"; sourceTree = "<group>"; };
 		A10D78AC19A274C40013E5F5 /* TrAnimatable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrAnimatable.h; sourceTree = "<group>"; };
 		A10D78D819A279530013E5F5 /* TrCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrCurve.h; sourceTree = "<group>"; };
 		A10D78D919A279530013E5F5 /* TrCurve.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrCurve.m; sourceTree = "<group>"; };
@@ -235,7 +238,7 @@
 				A1E6EA921912D96B00E4F179 /* Direct */,
 				A10D78AC19A274C40013E5F5 /* TrAnimatable.h */,
 				A11C7867178839FA0000B420 /* TrAnimation.h */,
-				A10BC9E017899EF200F354FC /* TrAnimationSubclass.h */,
+				A10BC9E017899EF200F354FC /* TrAnimation+Private.h */,
 				A11C7868178839FA0000B420 /* TrAnimation.m */,
 			);
 			name = Animations;
@@ -348,16 +351,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1145D18194EFB31001B0108 /* TrDirectAnimation.h in Headers */,
-				A1145D1A194EFB58001B0108 /* TrAnimationSubclass.h in Headers */,
 				A10D78DA19A279530013E5F5 /* TrCurve.h in Headers */,
+				A1876C2319A6713100C1639A /* TrInterpolatable.h in Headers */,
 				A1145D0F194EFB06001B0108 /* CALayer+TrAnimateAdditions.h in Headers */,
 				A1145D15194EFB31001B0108 /* TrScaleAnimation.h in Headers */,
 				A1145D13194EFB31001B0108 /* TrOpacityAnimation.h in Headers */,
 				A1145D0E194EFB06001B0108 /* UIView+TrAnimateAdditions.h in Headers */,
 				A1145D12194EFB31001B0108 /* TrAnimationGroup.h in Headers */,
+				A1876C2419A6714200C1639A /* TrAnimatable.h in Headers */,
 				A1145D16194EFB31001B0108 /* TrRotateAnimation.h in Headers */,
 				A1145D0B194EFAE8001B0108 /* TrAnimate.h in Headers */,
 				A1145D19194EFB31001B0108 /* TrAnimation.h in Headers */,
+				A1876C2219A6712C00C1639A /* NSNumber+TrAnimateAdditions.h in Headers */,
+				A1876C2119A6712800C1639A /* NSValue+TrAnimateAdditions.h in Headers */,
 				A1145D14194EFB31001B0108 /* TrPositionAnimation.h in Headers */,
 				A1145D17194EFB31001B0108 /* TrKeyPathAnimation.h in Headers */,
 			);
