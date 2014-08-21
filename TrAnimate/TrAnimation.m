@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 
 #import "TrCustomCurvedAnimation.h"
 #import "TrAnimatable.h"

@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 FOUNDATION_EXPORT double TrAnimateVersionNumber;
 FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];

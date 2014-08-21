@@ -28,7 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
+@import UIKit;
 
 #import "TrCurve.h"
 #import "TrInterpolatable.h"

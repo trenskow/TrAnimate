@@ -28,12 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-/*
- 
- CATransform3D decomposition and interpolation code taken from
- http://svn.gna.org/svn/gnustep/libs/quartzcore/trunk/Source/CAAnimation.m
- 
- */
+@import UIKit;
 
 #import "NSValue+TrAnimateAdditions.h"
 

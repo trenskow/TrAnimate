@@ -28,6 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+@import Foundation;
+
 @protocol TrAnimation;
 
 @interface NSMutableDictionary (TrAnimationGroupAdditions)

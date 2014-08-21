@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 
 /**
  *  The `TrCurve` class provides curvature for animations. Use one of the many build-in curves or create your own customized curves either using a block or by subclassing this class.

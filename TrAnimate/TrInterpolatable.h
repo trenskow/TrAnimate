@@ -28,8 +28,6 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <UIKit/UIKit.h>
-
 /**
  *  The `TrInterpolatable` is implemented by classes that are able to interpolate their value with other objects. Currently TrAnimate implements this in `NSNumber` and `NSValue`.
  */

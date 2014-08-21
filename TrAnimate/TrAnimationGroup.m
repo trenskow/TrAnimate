@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <objc/runtime.h>
+@import ObjectiveC.runtime;
 
 #import "NSMutableArray+TrAnimationGroupAdditions.h"
 #import "NSMutableDictionary+TrAnimationGroupAdditions.h"

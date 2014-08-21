@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <QuartzCore/QuartzCore.h>
+@import QuartzCore;
 
 /**
  *  The `TrAnimatable` protocol is implemented by classes that are animatable. Currently TrAnimate implements this in `UIView` and `CALayer`.

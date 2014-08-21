@@ -28,6 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+@import UIKit;
+
 #import "NSValue+TrAnimateAdditions.h"
 
 #import "TrAnimatable.h"
