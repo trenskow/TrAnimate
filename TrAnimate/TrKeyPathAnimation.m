@@ -40,8 +40,8 @@
 @interface TrKeyPathAnimation () {
     
     NSString *_keyPath;
-    id<TrInterpolatable> _startValue;
-    id<TrInterpolatable> _endValue;
+    id<TrInterpolatable> _fromValue;
+    id<TrInterpolatable> _toValue;
     
 }
 
@@ -55,8 +55,8 @@
     
     [super animationStarted];
     
-    [self.layer setValue:[_startValue interpolateWithValue:_endValue
-                                                atPosition:[self.curve transform:1.0]]
+    [self.layer setValue:[_fromValue interpolateWithValue:_toValue
+                                               atPosition:[self.curve transform:1.0]]
               forKeyPath:_keyPath];
     
 }
@@ -64,15 +64,15 @@
 - (void)setupAnimations {
     
     TrCustomCurvedAnimation *customAnimation = [TrCustomCurvedAnimation animationWithKeyPath:_keyPath];
-    customAnimation.fromValue = _startValue;
-    customAnimation.toValue = _endValue;
+    customAnimation.fromValue = _fromValue;
+    customAnimation.toValue = _toValue;
     
-    [self.layer setValue:[_startValue interpolateWithValue:_endValue
+    [self.layer setValue:[_fromValue interpolateWithValue:_toValue
                                                 atPosition:[self.curve transform:1.0]]
               forKeyPath:_keyPath];
     
     [self prepareAnimation:customAnimation usingKey:[NSString stringWithFormat:@"keyPathAnimation.%@", _keyPath]];
-        
+    
 }
 
 #pragma mark - Creating Animation
@@ -86,9 +86,16 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer layerKeyPath:(NSString *)keyPath startValue:(id<TrInterpolatable>)startValue endValue:(id<TrInterpolatable>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
     
-    [viewOrLayer.animationLayer setValue:startValue forKeyPath:keyPath];
+    [viewOrLayer.animationLayer setValue:fromValue forKeyPath:keyPath];
     
     TrKeyPathAnimation *animation = [super animate:viewOrLayer
                                           duration:duration
@@ -98,29 +105,100 @@
     
     if (animation) {
         animation->_keyPath = keyPath;
-        animation->_startValue = startValue;
-        animation->_endValue = endValue;
+        animation->_fromValue = fromValue;
+        animation->_toValue = toValue;
     }
     
     return animation;
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer layerKeyPath:(NSString *)keyPath endValue:(id<TrInterpolatable>)endValue duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve {
     
-    TrKeyPathAnimation *animation = [self animate:viewOrLayer
-                                     layerKeyPath:keyPath
-                                       startValue:[viewOrLayer.presentedLayer valueForKeyPath:keyPath]
-                                         endValue:endValue
-                                         duration:duration
-                                            delay:delay
-                                            curve:curve
-                                       completion:completion];
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+            layerKeyPath:keyPath
+               fromValue:fromValue
+                 toValue:toValue
+                   curve:curve
+              completion:nil];
     
-    if (animation)
-        animation->_startValue = [animation.layer valueForKeyPath:keyPath];
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue {
     
-    return animation;
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+            layerKeyPath:keyPath
+               fromValue:fromValue
+                 toValue:toValue
+                   curve:nil
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+            layerKeyPath:keyPath
+               fromValue:[viewOrLayer.presentedLayer valueForKeyPath:keyPath]
+                 toValue:toValue
+                   curve:curve
+              completion:completion];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+            layerKeyPath:keyPath
+                 toValue:toValue
+                   curve:curve
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+            layerKeyPath:keyPath
+                 toValue:toValue
+                   curve:nil
+              completion:nil];
     
 }
 

@@ -95,7 +95,7 @@ char TrAnimationGroupObserverContext;
     
 }
 
-+ (instancetype)animationGroupWithCompletion:(void (^)(BOOL))completion {
++ (instancetype)animationGroupWithCompletion:(void (^)(BOOL finished))completion {
     
     return [self animationGroupWithAnimations:nil completion:completion];
     

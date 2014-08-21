@@ -41,48 +41,49 @@
 /// @name Creating an Animation
 /// ---------------------------
 
-/**
- *  Creates and returns an animation with a start value and an end value.
- *
- *  @param object     The object which key path you want to animate.
- *  @param keyPath    The key path of the animated property.
- *  @param duration   The duration of the animation.
- *  @param delay      The delay before the animation begins.
- *  @param startValue The start value of the property.
- *  @param endValue   The end value of the property.
- *  @param curve      The curvature of the animation. Providing `nil` makes the animation linear.
- *  @param completion A block that is invoked when the animation has completed.
- *
- *  @return An animation ready to animate.
- */
 + (instancetype)animate:(id)object
-                keyPath:(NSString *)keyPath
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-             startValue:(id<TrInterpolatable>)startValue
-               endValue:(id<TrInterpolatable>)endValue
+                keyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve
-             completion:(void(^)(BOOL finished))completion;
+             completion:(void (^)(BOOL finished))completion;
 
-/**
- *  Creates and returns an animation with an end value. The start value is the current value of the key path.
- *
- *  @param object     The object which key path you want to animate.
- *  @param keyPath    The key path of the animated property.
- *  @param duration   The duration of the animation.
- *  @param delay      The delay before the animation begins.
- *  @param endValue   The end value of the property.
- *  @param curve      The curvature of the animation. Providing `nil` makes the animation linear.
- *  @param completion A block that is invoked when the animation has completed.
- *
- *  @return An animation ready to animate.
- */
 + (instancetype)animate:(id)object
-                keyPath:(NSString *)keyPath
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-               endValue:(id<TrInterpolatable>)endValue
+                keyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve;
+
++ (instancetype)animate:(id)object
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                keyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue;
+
++ (instancetype)animate:(id)object
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                keyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve
-             completion:(void(^)(BOOL finished))completion;
+             completion:(void (^)(BOOL finished))completion;
+
++ (instancetype)animate:(id)object
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                keyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve;
+
++ (instancetype)animate:(id)object
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                keyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue;
 
 @end

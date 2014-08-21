@@ -29,66 +29,163 @@
 //
 
 #import "NSNumber+TrAnimateAdditions.h"
+#import "TrAnimatable.h"
 
 #import "TrRotateAnimation.h"
 
 @implementation TrRotateAnimation
 
+#pragma mark - Internal
+
++ (NSString *)keyPathForAxis:(TrRotateAnimationAxis)axis {
+    
+    if (axis == TrRotateAnimationAxisX)
+        return @"transform.rotation.x";
+    if (axis == TrRotateAnimationAxisY)
+        return @"transform.rotation.y";
+    
+    return @"transform.rotation.z";
+    
+}
+
 #pragma mark - Creating Animation
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle axis:(TrRotateAnimationAxis)axis curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
-    
-    NSString *keyPath = @"transform.rotation.z";
-    if (axis == TrRotateAnimationAxisX)
-        keyPath = @"transform.rotation.x";
-    else if (axis == TrRotateAnimationAxisX)
-        keyPath = @"transform.rotation.y";
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+              fromAngle:(CGFloat)fromAngle
+                toAngle:(CGFloat)toAngle
+                   axis:(TrRotateAnimationAxis)axis
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
     
     return [super animate:viewOrLayer
-             layerKeyPath:keyPath
-               startValue:@(startAngle)
-                 endValue:@(endAngle)
                  duration:duration
                     delay:delay
+             layerKeyPath:[self keyPathForAxis:axis]
+                fromValue:@(fromAngle)
+                  toValue:@(toAngle)
                     curve:curve
                completion:completion];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+              fromAngle:(CGFloat)fromAngle
+                toAngle:(CGFloat)toAngle
+                   axis:(TrRotateAnimationAxis)axis
+                  curve:(TrCurve *)curve {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-              startAngle:startAngle
-                endAngle:endAngle
-                    axis:TrRotateAnimationAxisZ
+               fromAngle:fromAngle
+                 toAngle:toAngle
+                    axis:axis
                    curve:curve
-              completion:completion];
+              completion:nil];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+              fromAngle:(CGFloat)fromAngle
+                toAngle:(CGFloat)toAngle
+                   axis:(TrRotateAnimationAxis)axis {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-              startAngle:startAngle
-                endAngle:endAngle
+               fromAngle:fromAngle
+                 toAngle:toAngle
+                    axis:axis
+                   curve:nil
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+              fromAngle:(CGFloat)fromAngle
+                toAngle:(CGFloat)toAngle {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+               fromAngle:fromAngle
+                 toAngle:toAngle
                     axis:TrRotateAnimationAxisZ
                    curve:nil
               completion:nil];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle axis:(TrRotateAnimationAxis)axis {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                toAngle:(CGFloat)toAngle
+                   axis:(TrRotateAnimationAxis)axis
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-              startAngle:startAngle
-                endAngle:endAngle
+               fromAngle:[[viewOrLayer.presentedLayer valueForKeyPath:[self keyPathForAxis:axis]] doubleValue]
+                 toAngle:toAngle
                     axis:axis
+                   curve:curve
+              completion:completion];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                toAngle:(CGFloat)toAngle
+                   axis:(TrRotateAnimationAxis)axis
+                  curve:(TrCurve *)curve {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+                 toAngle:toAngle
+                    axis:axis
+                   curve:curve
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                toAngle:(CGFloat)toAngle
+                   axis:(TrRotateAnimationAxis)axis {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+                 toAngle:toAngle
+                    axis:axis
+                   curve:nil
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                toAngle:(CGFloat)toAngle {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+                 toAngle:toAngle
+                    axis:TrRotateAnimationAxisZ
                    curve:nil
               completion:nil];
     

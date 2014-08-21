@@ -42,11 +42,20 @@
 
 + (CGPoint)position:(CGPoint)position ofLayer:(CALayer *)layer fromOrigin:(TrPositionAnimationOrigin)origin {
     
-    if (origin == TrPositionAnimationsOriginTopLeft)
+    if (origin == TrPositionAnimationOriginTopLeft)
         return CGPointMake(position.x + layer.bounds.size.width * layer.anchorPoint.x,
                            position.y + layer.bounds.size.height * layer.anchorPoint.y);
     
     return position;
+    
+}
+
++ (TrPositionAnimationOrigin)originForViewOrLayer:(id<TrAnimatable>)viewOrLayer withOrigin:(TrPositionAnimationOrigin)origin {
+    
+    if (origin == TrPositionAnimationOriginAutomatic)
+        return ([viewOrLayer isKindOfClass:[UIView class]] ? TrPositionAnimationOriginTopLeft : TrPositionAnimationOriginCenter);
+    
+    return origin;
     
 }
 
@@ -58,60 +67,158 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCurve *)curve origin:(TrPositionAnimationOrigin)origin completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           fromPosition:(CGPoint)fromPosition
+             toPosition:(CGPoint)toPosition
+                 origin:(TrPositionAnimationOrigin)origin
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
+    
+    TrPositionAnimationOrigin useOrigin = [self originForViewOrLayer:viewOrLayer
+                                                          withOrigin:origin];
     
     return [super animate:viewOrLayer
-             layerKeyPath:@"position"
-               startValue:[NSValue valueWithCGPoint:[self position:startPosition
-                                                           ofLayer:viewOrLayer.animationLayer
-                                                        fromOrigin:origin]]
-                 endValue:[NSValue valueWithCGPoint:[self position:endPosition
-                                                           ofLayer:viewOrLayer.animationLayer
-                                                        fromOrigin:origin]]
                  duration:duration
                     delay:delay
+             layerKeyPath:@"position"
+                fromValue:[NSValue valueWithCGPoint:[self position:fromPosition
+                                                           ofLayer:viewOrLayer.animationLayer
+                                                        fromOrigin:useOrigin]]
+                  toValue:[NSValue valueWithCGPoint:[self position:toPosition
+                                                           ofLayer:viewOrLayer.animationLayer
+                                                        fromOrigin:useOrigin]]
                     curve:curve
                completion:completion];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startPosition:(CGPoint)startPosition endPosition:(CGPoint)endPosition curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           fromPosition:(CGPoint)fromPosition
+             toPosition:(CGPoint)toPosition
+                 origin:(TrPositionAnimationOrigin)origin
+                  curve:(TrCurve *)curve {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-           startPosition:startPosition
-             endPosition:endPosition
+            fromPosition:fromPosition
+              toPosition:toPosition
+                  origin:origin
                    curve:curve
-                  origin:([viewOrLayer isKindOfClass:[UIView class]] ? TrPositionAnimationsOriginTopLeft : TrPositionAnimationsOriginCenter)
-              completion:completion];
+              completion:nil];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCurve *)curve origin:(TrPositionAnimationOrigin)origin completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           fromPosition:(CGPoint)fromPosition
+             toPosition:(CGPoint)toPosition
+                 origin:(TrPositionAnimationOrigin)origin {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-           startPosition:viewOrLayer.animationLayer.position
-             endPosition:[self position:endPosition
+            fromPosition:fromPosition
+              toPosition:toPosition
+                  origin:origin
+                   curve:nil
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           fromPosition:(CGPoint)fromPosition
+             toPosition:(CGPoint)toPosition {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+            fromPosition:fromPosition
+              toPosition:toPosition
+                  origin:TrPositionAnimationOriginAutomatic
+                   curve:nil
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             toPosition:(CGPoint)toPosition
+                 origin:(TrPositionAnimationOrigin)origin
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
+    
+    // We already convert toPosition to center origin here.
+    
+    TrPositionAnimationOrigin useOrigin = [self originForViewOrLayer:viewOrLayer
+                                                          withOrigin:origin];
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+            fromPosition:viewOrLayer.presentedLayer.position
+              toPosition:[self position:toPosition
                                 ofLayer:viewOrLayer.animationLayer
-                             fromOrigin:origin]
+                             fromOrigin:useOrigin]
+                  origin:TrPositionAnimationOriginCenter
                    curve:curve
-                  origin:TrPositionAnimationsOriginCenter
               completion:completion];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endPosition:(CGPoint)endPosition curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             toPosition:(CGPoint)toPosition
+                 origin:(TrPositionAnimationOrigin)origin
+                  curve:(TrCurve *)curve {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-             endPosition:endPosition
+              toPosition:toPosition
+                  origin:origin
                    curve:curve
-                 origin:([viewOrLayer isKindOfClass:[UIView class]] ? TrPositionAnimationsOriginTopLeft : TrPositionAnimationsOriginCenter)
-              completion:completion];
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             toPosition:(CGPoint)toPosition
+                 origin:(TrPositionAnimationOrigin)origin {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+              toPosition:toPosition
+                  origin:origin
+                   curve:nil
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             toPosition:(CGPoint)toPosition {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+              toPosition:toPosition
+                  origin:TrPositionAnimationOriginAutomatic
+                   curve:nil
+              completion:nil];
     
 }
 

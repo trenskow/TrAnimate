@@ -57,84 +57,60 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 /// @name Creating Animations
 /// -------------------------
 
-/**
- *  Creates and returns a new rotation animation.
- *
- *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
- *  @param duration    The duration of the animation.
- *  @param delay       The delay before the animation begins.
- *  @param startAngle  The start angle of the rotation.
- *  @param endAngle    The end angle of the rotation.
- *
- *  @return An animation ready to animate.
- */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-             startAngle:(CGFloat)startAngle
-               endAngle:(CGFloat)endAngle;
-
-/**
- *  Creates and returns a new rotation animation.
- *
- *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
- *  @param duration    The duration of the animation.
- *  @param delay       The delay of the animation.
- *  @param startAngle  The start angle of the rotation.
- *  @param endAngle    The end angle of the rotation.
- *  @param axis        The axis on which the animation will occur.
- *
- *  @return An animation ready to animate.
- */
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-             startAngle:(CGFloat)startAngle
-               endAngle:(CGFloat)endAngle
-                   axis:(TrRotateAnimationAxis)axis;
-
-/**
- *  Creates and returns a new rotation animation.
- *
- *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
- *  @param duration    The duration of the animation.
- *  @param delay       The delay before the animation begins.
- *  @param startAngle  The start angle of the rotation.
- *  @param endAngle    The end angle of the rotation.
- *  @param curve       The curvature of the animation. Providing `nil` makes a linear animation.
- *  @param completion  A block that gets invoked when the animation completes.
- *
- *  @return An animation ready to animate.
- */
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-             startAngle:(CGFloat)startAngle
-               endAngle:(CGFloat)endAngle
-                  curve:(TrCurve *)curve
-             completion:(void (^)(BOOL finished))completion;
-
-/**
- *  Creates and returns a new rotation animation.
- *
- *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
- *  @param duration    The duration of the animation.
- *  @param delay       The delay before the animation begins.
- *  @param startAngle  The start angle of the rotation.
- *  @param endAngle    The end angle of the rotation.
- *  @param axis        The axis on which the animation will occur.
- *  @param curve       The curvature of the animation. Providing `nil` makes a linear animation.
- *  @param completion  A block that gets invoked when the animation completes.
- *
- *  @return An animation ready to animate.
- */
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-             startAngle:(CGFloat)startAngle
-               endAngle:(CGFloat)endAngle
+              fromAngle:(CGFloat)fromAngle
+                toAngle:(CGFloat)toAngle
                    axis:(TrRotateAnimationAxis)axis
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+              fromAngle:(CGFloat)fromAngle
+                toAngle:(CGFloat)toAngle
+                   axis:(TrRotateAnimationAxis)axis
+                  curve:(TrCurve *)curve;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+              fromAngle:(CGFloat)fromAngle
+                toAngle:(CGFloat)toAngle
+                   axis:(TrRotateAnimationAxis)axis;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+              fromAngle:(CGFloat)fromAngle
+                toAngle:(CGFloat)toAngle;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                toAngle:(CGFloat)toAngle
+                   axis:(TrRotateAnimationAxis)axis
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                toAngle:(CGFloat)toAngle
+                   axis:(TrRotateAnimationAxis)axis
+                  curve:(TrCurve *)curve;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                toAngle:(CGFloat)toAngle
+                   axis:(TrRotateAnimationAxis)axis;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                toAngle:(CGFloat)toAngle;
 
 @end

@@ -57,56 +57,101 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(CGFloat)startValue endValue:(CGFloat)endValue curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+            fromOpacity:(CGFloat)fromOpacity
+              toOpacity:(CGFloat)toOpacity
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
+    
+    return [super animate:viewOrLayer
+                 duration:duration
+                    delay:delay
+             layerKeyPath:@"opacity"
+                fromValue:@(fromOpacity)
+                  toValue:@(toOpacity)
+                    curve:curve
+               completion:completion];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+            fromOpacity:(CGFloat)fromOpacity
+              toOpacity:(CGFloat)toOpacity
+                  curve:(TrCurve *)curve {
     
     return [self animate:viewOrLayer
-            layerKeyPath:@"opacity"
-              startValue:@(startValue)
-                endValue:@(endValue)
                 duration:duration
                    delay:delay
+             fromOpacity:fromOpacity
+               toOpacity:toOpacity
+                   curve:curve
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+            fromOpacity:(CGFloat)fromOpacity
+              toOpacity:(CGFloat)toOpacity {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+             fromOpacity:fromOpacity
+               toOpacity:toOpacity
+                   curve:nil
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+              toOpacity:(CGFloat)toOpacity
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+             fromOpacity:viewOrLayer.presentedLayer.opacity
+               toOpacity:toOpacity
                    curve:curve
               completion:completion];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(CGFloat)endValue curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+              toOpacity:(CGFloat)toOpacity
+                  curve:(TrCurve *)curve {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-              startValue:viewOrLayer.presentedLayer.opacity
-                endValue:endValue
+               toOpacity:toOpacity
                    curve:curve
-              completion:completion];
+              completion:nil];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay curve:(TrCurve *)curve fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+              toOpacity:(CGFloat)toOpacity {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-                endValue:(fadesIn ? 1.0 : .0)
-                   curve:curve
-              completion:completion];
-    
-}
-
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay fadesIn:(BOOL)fadesIn completion:(void (^)(BOOL))completion {
-    
-    return [self animate:viewOrLayer
-                duration:duration
-                   delay:delay
-                   curve:[TrCurve linear]
-                 fadesIn:fadesIn
-              completion:completion];
-    
-}
-
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay fadesIn:(BOOL)fadesIn {
-    
-    return [self animate:viewOrLayer duration:duration delay:delay fadesIn:fadesIn completion:nil];
+               toOpacity:toOpacity
+                   curve:nil
+              completion:nil];
     
 }
 

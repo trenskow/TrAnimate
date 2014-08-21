@@ -44,8 +44,8 @@ const void *TrDirectAnimationKey;
     NSString *_keyPath;
     NSTimeInterval _duration;
     NSTimeInterval _delay;
-    id<TrInterpolatable> _startValue;
-    id<TrInterpolatable> _endValue;
+    id<TrInterpolatable> _fromValue;
+    id<TrInterpolatable> _toValue;
     TrCurve *_curve;
     void (^_completionBlock)(BOOL);
     
@@ -65,7 +65,14 @@ const void *TrDirectAnimationKey;
 
 #pragma mark - Setup / Teardown
 
-- (instancetype)initWithObject:(id)object keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(id<TrInterpolatable>)startValue endValue:(id<TrInterpolatable>)endValue curve:(TrCurve *)curve completion:(void(^)(BOOL finished))completion {
+- (instancetype)initWithObject:(id)object
+                      duration:(NSTimeInterval)duration
+                         delay:(NSTimeInterval)delay
+                       keyPath:(NSString *)keyPath
+                     fromValue:(id<TrInterpolatable>)fromValue
+                       toValue:(id<TrInterpolatable>)toValue
+                         curve:(TrCurve *)curve
+                    completion:(void (^)(BOOL finished))completion {
     
     if ((self = [super init])) {
         
@@ -73,8 +80,8 @@ const void *TrDirectAnimationKey;
         _keyPath = keyPath;
         self.duration = duration;
         self.delay = delay;
-        _startValue = startValue;
-        _endValue = endValue;
+        _fromValue = fromValue;
+        _toValue = toValue;
         _curve = (curve ?: [TrCurve linear]);
         _completionBlock = [completion copy];
         
@@ -108,8 +115,8 @@ const void *TrDirectAnimationKey;
     double progress = MIN([[NSDate date] timeIntervalSinceDate:_beginTime] / self.duration, 1.0);
     
     if (progress >= 0 && progress <= 1.0)
-        [_object setValue:[_startValue interpolateWithValue:_endValue
-                                                 atPosition:[_curve transform:progress]]
+        [_object setValue:[_fromValue interpolateWithValue:_toValue
+                                                atPosition:[_curve transform:progress]]
                forKeyPath:_keyPath];
     
     if (progress == 1.0)
@@ -152,14 +159,21 @@ const void *TrDirectAnimationKey;
 
 #pragma mark - Creating Animation
 
-+ (instancetype)animate:(id)object keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startValue:(id<TrInterpolatable>)startValue endValue:(id<TrInterpolatable>)endValue curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)object
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                keyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
     
     TrDirectAnimation *animation = [[self alloc] initWithObject:object
-                                                        keyPath:keyPath
                                                        duration:duration
                                                           delay:delay
-                                                     startValue:startValue
-                                                       endValue:endValue
+                                                        keyPath:keyPath
+                                                      fromValue:fromValue
+                                                        toValue:toValue
                                                           curve:curve
                                                      completion:completion];
     
@@ -169,18 +183,93 @@ const void *TrDirectAnimationKey;
     
 }
 
-+ (instancetype)animate:(id)object keyPath:(NSString *)keyPath duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endValue:(id<TrInterpolatable>)endValue curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id)object
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                keyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve {
     
     return [self animate:object
-                 keyPath:keyPath
                 duration:duration
                    delay:delay
-              startValue:[object valueForKeyPath:keyPath]
-                endValue:endValue
+                 keyPath:keyPath
+               fromValue:fromValue
+                 toValue:toValue
+                   curve:curve
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id)object
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                keyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue {
+    
+    return [self animate:object
+                duration:duration
+                   delay:delay
+                 keyPath:keyPath
+               fromValue:fromValue
+                 toValue:toValue
+                   curve:nil
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id)object
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                keyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
+    
+    return [self animate:object
+                duration:duration
+                   delay:delay
+                 keyPath:keyPath
+               fromValue:[object valueForKeyPath:keyPath]
+                 toValue:toValue
                    curve:curve
               completion:completion];
     
 }
 
++ (instancetype)animate:(id)object
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                keyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve {
+    
+    return [self animate:object
+                duration:duration
+                   delay:delay
+                 keyPath:keyPath
+                 toValue:toValue
+                   curve:curve
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id)object
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+                keyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue {
+    
+    return [self animate:object
+                duration:duration
+                   delay:delay
+                 keyPath:keyPath
+                 toValue:toValue
+                   curve:nil
+              completion:nil];
+    
+}
 
 @end

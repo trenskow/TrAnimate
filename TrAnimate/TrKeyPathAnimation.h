@@ -56,48 +56,49 @@
 /// @name Creating Animations
 /// -------------------------
 
-/**
- *  Creates and returns an animation.
- *
- *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
- *  @param keyPath     The key path of the property you want to animate. If a `UIView` is provided in *viewOrLayer* this must be the key path of the views layer.
- *  @param startValue  The property's start value.
- *  @param endValue    The property's end value.
- *  @param duration    The duration of the animation.
- *  @param delay       The delay before the animation begins.
- *  @param curve       The curvature of the animation. Provide `nil` makes the animation linear.
- *  @param completion  A block that gets invoked when the animation completes.
- *
- *  @return An animation ready to animate.
- */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-           layerKeyPath:(NSString *)keyPath
-             startValue:(id<TrInterpolatable>)startValue
-               endValue:(id<TrInterpolatable>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
-/**
- *  Creates and returns an animation which offsets in the key paths current value.
- *
- *  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
- *  @param keyPath     The key path of the property you want to animate. If a `UIView` is provided in *viewOrLayer* this must be the key path of the views layer.
- *  @param endValue    The property's end value.
- *  @param duration    The duration of the animation
- *  @param delay       The delay before the animation begins.
- *  @param curve       The curvature of the animation. Provide `nil` makes the animation linear.
- *  @param completion  A block that gets invoked when the animation completes.
- *
- *  @return An animation ready to animate.
- */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-           layerKeyPath:(NSString *)keyPath
-               endValue:(id<TrInterpolatable>)endValue
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+              fromValue:(id<TrInterpolatable>)fromValue
+                toValue:(id<TrInterpolatable>)toValue;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue
+                  curve:(TrCurve *)curve;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           layerKeyPath:(NSString *)keyPath
+                toValue:(id<TrInterpolatable>)toValue;
 
 @end

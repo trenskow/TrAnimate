@@ -30,6 +30,7 @@
 
 #import "TrKeyPathAnimation.h"
 
+
 @interface TrOpacityAnimation : TrKeyPathAnimation
 
 /// --------------------------------
@@ -45,34 +46,40 @@
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-             startValue:(CGFloat)startValue
-               endValue:(CGFloat)endValue
+            fromOpacity:(CGFloat)fromOpacity
+              toOpacity:(CGFloat)toOpacity
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-               endValue:(CGFloat)endValue
+            fromOpacity:(CGFloat)fromOpacity
+              toOpacity:(CGFloat)toOpacity
+                  curve:(TrCurve *)curve;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+            fromOpacity:(CGFloat)fromOpacity
+              toOpacity:(CGFloat)toOpacity;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+              toOpacity:(CGFloat)toOpacity
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                  curve:(TrCurve *)curve
-                fadesIn:(BOOL)fadesIn
-             completion:(void (^)(BOOL finished))completion;
+              toOpacity:(CGFloat)toOpacity
+                  curve:(TrCurve *)curve;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-                fadesIn:(BOOL)fadesIn
-             completion:(void (^)(BOOL finished))completion;
-
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-                fadesIn:(BOOL)fadesIn;
+              toOpacity:(CGFloat)toOpacity;
 
 @end

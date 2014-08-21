@@ -71,6 +71,9 @@
 		A1876C2219A6712C00C1639A /* NSNumber+TrAnimateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789C17883BE70000B420 /* NSNumber+TrAnimateAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1876C2319A6713100C1639A /* TrInterpolatable.h in Headers */ = {isa = PBXBuildFile; fileRef = A11C789917883BE70000B420 /* TrInterpolatable.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1876C2419A6714200C1639A /* TrAnimatable.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D78AC19A274C40013E5F5 /* TrAnimatable.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1876C2719A6753300C1639A /* TrFadeAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A1876C2519A6753300C1639A /* TrFadeAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1876C2819A6753300C1639A /* TrFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1876C2619A6753300C1639A /* TrFadeAnimation.m */; };
+		A1876C2919A6753300C1639A /* TrFadeAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1876C2619A6753300C1639A /* TrFadeAnimation.m */; };
 		A1E6EA951912D98600E4F179 /* TrDirectAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EA941912D98600E4F179 /* TrDirectAnimation.m */; };
 		A1E6EAA11913B55300E4F179 /* UIView+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EAA01913B55300E4F179 /* UIView+TrAnimateAdditions.m */; };
 		A1E6EAA41913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EAA31913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m */; };
@@ -89,7 +92,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A10A32A718E2DB5B000D4B49 /* TrKeyPathAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrKeyPathAnimation.h; sourceTree = "<group>"; };
+		A10A32A718E2DB5B000D4B49 /* TrKeyPathAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrKeyPathAnimation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A10A32A818E2DB5B000D4B49 /* TrKeyPathAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrKeyPathAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A10BC9A217883E9800F354FC /* TrAnimate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrAnimate.h; sourceTree = "<group>"; };
 		A10BC9E017899EF200F354FC /* TrAnimation+Private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TrAnimation+Private.h"; sourceTree = "<group>"; };
@@ -127,6 +130,8 @@
 		A11C789D17883BE70000B420 /* NSNumber+TrAnimateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSNumber+TrAnimateAdditions.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A11C78A017883C070000B420 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		A11C78A217883C120000B420 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A1876C2519A6753300C1639A /* TrFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrFadeAnimation.h; sourceTree = "<group>"; };
+		A1876C2619A6753300C1639A /* TrFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrFadeAnimation.m; sourceTree = "<group>"; };
 		A1E6EA931912D98600E4F179 /* TrDirectAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrDirectAnimation.h; sourceTree = "<group>"; };
 		A1E6EA941912D98600E4F179 /* TrDirectAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrDirectAnimation.m; sourceTree = "<group>"; };
 		A1E6EA9F1913B55300E4F179 /* UIView+TrAnimateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+TrAnimateAdditions.h"; sourceTree = "<group>"; };
@@ -256,6 +261,7 @@
 		A11C786C17883A180000B420 /* Opacity */ = {
 			isa = PBXGroup;
 			children = (
+				A1876C2A19A6753600C1639A /* Fade */,
 				A11C787517883B050000B420 /* TrOpacityAnimation.h */,
 				A11C787617883B050000B420 /* TrOpacityAnimation.m */,
 			);
@@ -334,6 +340,15 @@
 			name = Curvature;
 			sourceTree = "<group>";
 		};
+		A1876C2A19A6753600C1639A /* Fade */ = {
+			isa = PBXGroup;
+			children = (
+				A1876C2519A6753300C1639A /* TrFadeAnimation.h */,
+				A1876C2619A6753300C1639A /* TrFadeAnimation.m */,
+			);
+			name = Fade;
+			sourceTree = "<group>";
+		};
 		A1E6EA921912D96B00E4F179 /* Direct */ = {
 			isa = PBXGroup;
 			children = (
@@ -350,6 +365,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1876C2719A6753300C1639A /* TrFadeAnimation.h in Headers */,
 				A1145D18194EFB31001B0108 /* TrDirectAnimation.h in Headers */,
 				A10D78DA19A279530013E5F5 /* TrCurve.h in Headers */,
 				A1876C2319A6713100C1639A /* TrInterpolatable.h in Headers */,
@@ -489,6 +505,7 @@
 				A10D78DC19A279530013E5F5 /* TrCurve.m in Sources */,
 				A1145D0A194EFA7D001B0108 /* TrAnimation.m in Sources */,
 				A1145CFC194EFA7D001B0108 /* NSNumber+TrAnimateAdditions.m in Sources */,
+				A1876C2919A6753300C1639A /* TrFadeAnimation.m in Sources */,
 				A1145D00194EFA7D001B0108 /* NSMutableArray+TrAnimationGroupAdditions.m in Sources */,
 				A1145D04194EFA7D001B0108 /* TrOpacityAnimation.m in Sources */,
 				A1145D09194EFA7D001B0108 /* TrDirectAnimation.m in Sources */,
@@ -513,6 +530,7 @@
 				A10D78DB19A279530013E5F5 /* TrCurve.m in Sources */,
 				A11C789717883BD20000B420 /* TrCustomCurvedAnimation.m in Sources */,
 				A11C789E17883BE70000B420 /* NSValue+TrAnimateAdditions.m in Sources */,
+				A1876C2819A6753300C1639A /* TrFadeAnimation.m in Sources */,
 				A11C789F17883BE70000B420 /* NSNumber+TrAnimateAdditions.m in Sources */,
 				A1E6EAA11913B55300E4F179 /* UIView+TrAnimateAdditions.m in Sources */,
 				A1E6EA951912D98600E4F179 /* TrDirectAnimation.m in Sources */,
@@ -674,8 +692,6 @@
 				);
 				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/TrAnimate.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TrAnimate/TrAnimate-Prefix.pch";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -694,8 +710,6 @@
 				);
 				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/TrAnimate.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TrAnimate/TrAnimate-Prefix.pch";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

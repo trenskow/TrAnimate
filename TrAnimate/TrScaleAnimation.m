@@ -44,38 +44,99 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startScaleFactor:(CGFloat)startScaleFactor endScaleFactor:(CGFloat)endScaleFactor curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+        fromScaleFactor:(CGFloat)fromScaleFactor
+          toScaleFactor:(CGFloat)toScaleFactor
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
     
     return [super animate:viewOrLayer
-             layerKeyPath:@"transform.scale"
-               startValue:@(startScaleFactor)
-                 endValue:@(endScaleFactor)
                  duration:duration
                     delay:delay
+             layerKeyPath:@"transform.scale"
+                fromValue:@(fromScaleFactor)
+                  toValue:@(toScaleFactor)
                     curve:curve
                completion:completion];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay endScaleFactor:(CGFloat)endScaleFactor curve:(TrCurve *)curve completion:(void (^)(BOOL))completion {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+        fromScaleFactor:(CGFloat)fromScaleFactor
+          toScaleFactor:(CGFloat)toScaleFactor
+                  curve:(TrCurve *)curve {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-        startScaleFactor:[[viewOrLayer.presentedLayer valueForKeyPath:@"transform.scale.x"] floatValue]
-          endScaleFactor:endScaleFactor
+         fromScaleFactor:fromScaleFactor
+           toScaleFactor:toScaleFactor
+                   curve:curve
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+        fromScaleFactor:(CGFloat)fromScaleFactor
+          toScaleFactor:(CGFloat)toScaleFactor {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+         fromScaleFactor:fromScaleFactor
+           toScaleFactor:toScaleFactor
+                   curve:nil
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+          toScaleFactor:(CGFloat)toScaleFactor
+                  curve:(TrCurve *)curve
+             completion:(void (^)(BOOL finished))completion {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+         fromScaleFactor:[[viewOrLayer.presentedLayer valueForKeyPath:@"transform.scale.x"] floatValue]
+           toScaleFactor:toScaleFactor
                    curve:curve
               completion:completion];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration delay:(NSTimeInterval)delay startScaleFactor:(CGFloat)startScaleFactor endScaleFactor:(CGFloat)endScaleFactor {
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+          toScaleFactor:(CGFloat)toScaleFactor
+                  curve:(TrCurve *)curve {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
-        startScaleFactor:startScaleFactor
-          endScaleFactor:endScaleFactor
+           toScaleFactor:toScaleFactor
+                   curve:curve
+              completion:nil];
+    
+}
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+          toScaleFactor:(CGFloat)toScaleFactor {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+                   delay:delay
+           toScaleFactor:toScaleFactor
                    curve:nil
               completion:nil];
     

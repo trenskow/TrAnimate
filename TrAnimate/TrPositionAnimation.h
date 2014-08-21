@@ -35,13 +35,17 @@
  */
 typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOrigin) {
     /**
-     *  Origin in the center of the view or layer. Default when animating `CALayer`s.
+     *  Automatically detect origin. `UIView` is anchored top left. `CALayer` is anchored center. Default.
      */
-    TrPositionAnimationsOriginCenter = 0,
+    TrPositionAnimationOriginAutomatic = 0,
     /**
-     *  Origin at the top left of the view or layer. Default when animating `UIView`s.
+     *  Origin in the center of the view or layer.
      */
-    TrPositionAnimationsOriginTopLeft
+    TrPositionAnimationOriginCenter,
+    /**
+     *  Origin at the top left of the view or layer.
+     */
+    TrPositionAnimationOriginTopLeft
 };
 
 /**
@@ -62,33 +66,57 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOrigin) {
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-          startPosition:(CGPoint)startPosition
-            endPosition:(CGPoint)endPosition
-                  curve:(TrCurve *)curve
+           fromPosition:(CGPoint)fromPosition
+             toPosition:(CGPoint)toPosition
                  origin:(TrPositionAnimationOrigin)origin
-             completion:(void (^)(BOOL finished))completion;
-
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-          startPosition:(CGPoint)startPosition
-            endPosition:(CGPoint)endPosition
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-            endPosition:(CGPoint)endPosition
-                  curve:(TrCurve *)curve
+           fromPosition:(CGPoint)fromPosition
+             toPosition:(CGPoint)toPosition
                  origin:(TrPositionAnimationOrigin)origin
+                  curve:(TrCurve *)curve;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           fromPosition:(CGPoint)fromPosition
+             toPosition:(CGPoint)toPosition
+                 origin:(TrPositionAnimationOrigin)origin;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+           fromPosition:(CGPoint)fromPosition
+             toPosition:(CGPoint)toPosition;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             toPosition:(CGPoint)toPosition
+                 origin:(TrPositionAnimationOrigin)origin
+                  curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-            endPosition:(CGPoint)endPosition
-                  curve:(TrCurve *)curve
-             completion:(void (^)(BOOL finished))completion;
+             toPosition:(CGPoint)toPosition
+                 origin:(TrPositionAnimationOrigin)origin
+                  curve:(TrCurve *)curve;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             toPosition:(CGPoint)toPosition
+                 origin:(TrPositionAnimationOrigin)origin;
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             toPosition:(CGPoint)toPosition;
 
 @end
