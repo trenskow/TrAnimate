@@ -73,16 +73,6 @@
 		A1E6EAA41913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1E6EAA31913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		A10D78AA19A273F00013E5F5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A11C784B178839720000B420 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A1076B68199D279D00E452CB;
-			remoteInfo = Documentation;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		A11C7851178839720000B420 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -390,7 +380,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A10D78AB19A273F00013E5F5 /* PBXTargetDependency */,
 			);
 			name = TrAnimate;
 			productName = TrAnimate;
@@ -527,14 +516,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A10D78AB19A273F00013E5F5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A1076B68199D279D00E452CB /* Documentation */;
-			targetProxy = A10D78AA19A273F00013E5F5 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		A1076B6A199D279D00E452CB /* Debug */ = {
