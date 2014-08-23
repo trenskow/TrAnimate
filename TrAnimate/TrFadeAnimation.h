@@ -30,22 +30,22 @@
 
 #import <TrAnimate/TrAnimate.h>
 
-/**
- *  Specifies the fade direction.
+/*!
+ Specifies the fade direction.
  */
 typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
-    /**
-     *  Fade in.
+    /*!
+     Fade in.
      */
     TrFadeAnimationDirectionIn = 0,
-    /**
-     *  Fade out.
+    /*!
+     Fade out.
      */
     TrFadeAnimationDirectionOut
 };
 
-/**
- *  The `TrFadeAnimation` fades in or out a `UIView` or `CALayer`.
+/*!
+ The `TrFadeAnimation` fades in or out a `UIView` or `CALayer`.
  */
 @interface TrFadeAnimation : TrOpacityAnimation
 

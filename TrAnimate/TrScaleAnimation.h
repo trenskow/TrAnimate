@@ -30,8 +30,8 @@
 
 #import "TrKeyPathAnimation.h"
 
-/**
- *  The `TrScaleAnimation` scales a `UIView` or `CALayer`.
+/*!
+ The `TrScaleAnimation` scales a `UIView` or `CALayer`.
  */
 @interface TrScaleAnimation : TrKeyPathAnimation
 
@@ -39,12 +39,12 @@
 /// @name Examining Views and Layers
 /// --------------------------------
 
-/**
- *  Checks if a scale animation is in progress on a `UIView` or `CALayer` instance.
- *
- *  @param viewOrLayer The `UIView` or `CALayer` you want to examine.
- *
- *  @return Returns `YES` if the `UIView` or `CALayer` has a scale animation in progress.
+/*!
+ Checks if a scale animation is in progress on a `UIView` or `CALayer` instance.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to examine.
+ 
+ @return Returns `YES` if the `UIView` or `CALayer` has a scale animation in progress.
  */
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 

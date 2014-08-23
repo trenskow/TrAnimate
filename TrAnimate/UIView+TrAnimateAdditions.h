@@ -32,8 +32,8 @@
 
 #import "TrAnimatable.h"
 
-/**
- *  Category of `UIView` that implements the `TrAnimatable` protocol.
+/*!
+ Category of `UIView` that implements the `TrAnimatable` protocol.
  */
 @interface UIView (TrAnimateAdditions) <TrAnimatable>
 

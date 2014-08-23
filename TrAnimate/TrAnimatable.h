@@ -30,8 +30,8 @@
 
 @import QuartzCore;
 
-/**
- *  The `TrAnimatable` protocol is implemented by classes that are animatable. Currently TrAnimate implements this in `UIView` and `CALayer`.
+/*!
+ The `TrAnimatable` protocol is implemented by classes that are animatable. Currently TrAnimate implements this in `UIView` and `CALayer`.
  */
 @protocol TrAnimatable <NSObject>
 

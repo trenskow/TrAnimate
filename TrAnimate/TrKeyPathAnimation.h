@@ -33,8 +33,8 @@
 @protocol TrAnimatable;
 @protocol TrInterpolatable;
 
-/**
- *  The `TrKeyPathAnimation` provides animation on any animatable property of CALayer. Use this animation if you need to do custom animations on a layer that is not directly implemented in TrAnimate as an explicit animation.
+/*!
+ The `TrKeyPathAnimation` provides animation on any animatable property of CALayer. Use this animation if you need to do custom animations on a layer that is not directly implemented in TrAnimate as an explicit animation.
  */
 @interface TrKeyPathAnimation : TrAnimation
 
@@ -42,7 +42,7 @@
 /// @name Examining Views and Layers
 /// --------------------------------
 
-/**
+/*!
 *  Checks if an animation is in progress on a `UIView` or `CALayer` instance at a perticular property.
 *
 *  @param viewOrLayer The `UIView` or `CALayer` you want to examine.

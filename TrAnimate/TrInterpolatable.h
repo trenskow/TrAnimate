@@ -28,8 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-/**
- *  The `TrInterpolatable` is implemented by classes that are able to interpolate their value with other objects. Currently TrAnimate implements this in `NSNumber` and `NSValue`.
+/*!
+ The `TrInterpolatable` is implemented by classes that are able to interpolate their value with other objects. Currently TrAnimate implements this in `NSNumber` and `NSValue`.
  */
 @protocol TrInterpolatable
 

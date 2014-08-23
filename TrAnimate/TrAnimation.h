@@ -30,8 +30,8 @@
 
 @import QuartzCore;
 
-/**
- *  The `TrAnimation` protocol defines a set of methods and properties that are common to all types of animations. As an example the `TrAnimationGroup` only adds animations of objects that conform to this protocol.
+/*!
+ The `TrAnimation` protocol defines a set of methods and properties that are common to all types of animations. As an example the `TrAnimationGroup` only adds animations of objects that conform to this protocol.
  */
 @protocol TrAnimation
 
@@ -41,28 +41,28 @@
 /// @name Getting Animation Information
 ///------------------------------------
 
-/**
- *  Returns `YES` if the animation is currently in progress.
+/*!
+ Returns `YES` if the animation is currently in progress.
  */
 @property (nonatomic,readonly,getter = isAnimating) BOOL animating;
 
-/**
- *  Returns `YES` if the animation has completed.
+/*!
+ Returns `YES` if the animation has completed.
  */
 @property (nonatomic,readonly,getter = isComplete) BOOL complete;
 
-/**
- *  Returns `YES` if the animation has completed and the animation actually finished.
+/*!
+ Returns `YES` if the animation has completed and the animation actually finished.
  */
 @property (nonatomic,readonly,getter = isFinished) BOOL finished;
 
-/**
- *  Returns the duration of the animation.
+/*!
+ Returns the duration of the animation.
  */
 @property (nonatomic,readonly) NSTimeInterval duration;
 
-/**
- *  Returns the delay before the animation will begin.
+/*!
+ Returns the delay before the animation will begin.
  */
 @property (nonatomic) NSTimeInterval delay;
 
@@ -70,13 +70,13 @@
 /// @name Managing Animation
 /// ------------------------
 
-/**
- *  Tells the reciever to postpone the animation.
+/*!
+ Tells the reciever to postpone the animation.
  */
 - (void)postponeAnimation;
 
-/**
- *  Tells the receiver to begin the animation. This is done automatically when an animation is created, but you can use this to explicitly start it. Also use this if you have previously postponed the animation using `postponeAnimation`.
+/*!
+ Tells the receiver to begin the animation. This is done automatically when an animation is created, but you can use this to explicitly start it. Also use this if you have previously postponed the animation using `postponeAnimation`.
  */
 - (void)beginAnimation;
 
@@ -85,8 +85,8 @@
 @class TrCurve;
 @protocol TrAnimatable;
 
-/**
- *  The `TrAnimation` is an abstract class used by animations that needs Core Animation as their animation technology.
+/*!
+ The `TrAnimation` is an abstract class used by animations that needs Core Animation as their animation technology.
  */
 @interface TrAnimation : NSObject <TrAnimation>
 
@@ -94,13 +94,13 @@
 /// @name Getting Animation Information
 ///------------------------------------
 
-/**
- *  Returns the animated layer.
+/*!
+ Returns the animated layer.
  */
 @property (weak,readonly,nonatomic) CALayer *layer;
 
-/**
- *  The duration of the animation.
+/*!
+ The duration of the animation.
  */
 @property (nonatomic) NSTimeInterval duration;
 

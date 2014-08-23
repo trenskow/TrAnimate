@@ -30,8 +30,8 @@
 
 #import "TrAnimatable.h"
 
-/**
- *  Category of `CALayer` that implements the `TrAnimatable` protocol.
+/*!
+ Category of `CALayer` that implements the `TrAnimatable` protocol.
  */
 @interface CALayer (TrAnimatable) <TrAnimatable>
 

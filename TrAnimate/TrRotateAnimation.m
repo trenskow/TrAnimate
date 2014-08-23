@@ -50,6 +50,12 @@
 
 #pragma mark - Creating Animation
 
++ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withAxis:(TrRotateAnimationAxis)axis {
+    
+    return [super inProgressOn:viewOrLayer withKeyPath:[self keyPathForAxis:axis]];
+    
+}
+
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay

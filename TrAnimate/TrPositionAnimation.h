@@ -30,26 +30,26 @@
 
 #import "TrKeyPathAnimation.h"
 
-/**
- *  Specifies the origin of the position.
+/*!
+ Specifies the origin of the position.
  */
 typedef NS_OPTIONS(NSUInteger, TrPositionAnimationOrigin) {
-    /**
-     *  Automatically detect origin. `UIView` is anchored top left. `CALayer` is anchored center. Default.
+    /*!
+     Automatically detect origin. `UIView` is anchored top left. `CALayer` is anchored center. Default.
      */
     TrPositionAnimationOriginAutomatic = 0,
-    /**
-     *  Origin in the center of the view or layer.
+    /*!
+     Origin in the center of the view or layer.
      */
     TrPositionAnimationOriginCenter,
-    /**
-     *  Origin at the top left of the view or layer.
+    /*!
+     Origin at the top left of the view or layer.
      */
     TrPositionAnimationOriginTopLeft
 };
 
-/**
- *  The `TrPositionAnimation` moves a `UIView` or `CALayer`
+/*!
+ The `TrPositionAnimation` moves a `UIView` or `CALayer`.
  */
 @interface TrPositionAnimation : TrKeyPathAnimation
 

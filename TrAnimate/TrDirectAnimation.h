@@ -32,8 +32,8 @@
 
 @protocol TrInterpolatable;
 
-/**
- *  The `TrDirectAnimation` class enables animating anything not normally animatable. The `TrDirectAnimation` does not use Core Animation. Instead it sets the values of properties directly on objects. This is useful when you want to animate as an example the `contentOffset` of a `UIScrollView` instance - or the `volume` property of a `AVAudioPlayer` instance.
+/*!
+ The `TrDirectAnimation` class enables animating anything not normally animatable. The `TrDirectAnimation` does not use Core Animation. Instead it sets the values of properties directly on objects. This is useful when you want to animate as an example the `contentOffset` of a `UIScrollView` instance - or the `volume` property of a `AVAudioPlayer` instance.
  */
 @interface TrDirectAnimation : NSObject <TrAnimation>
 

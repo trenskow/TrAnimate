@@ -32,8 +32,8 @@
 
 #import "TrInterpolatable.h"
 
-/**
- *  Category of `NSNumber` that implements the `TrInterpolatable` protocol.
+/*!
+ Category of `NSNumber` that implements the `TrInterpolatable` protocol.
  */
 @interface NSNumber (TrAnimateAdditions) <TrInterpolatable>
 

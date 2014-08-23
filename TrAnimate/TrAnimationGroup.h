@@ -30,64 +30,64 @@
 
 #import "TrAnimation.h"
 
-/**
- *  `TrAnimationGroup` is a class that provides the ability to group animations into a single entity. Animations can be added to the animation group - even other animation groups can be added, to build a complex chain of animations. A completion handler can be provided on creation that gets invoked when all animations in the group has completed.
+/*!
+ `TrAnimationGroup` is a class that provides the ability to group animations into a single entity. Animations can be added to the animation group - even other animation groups can be added, to build a complex chain of animations. A completion handler can be provided on creation that gets invoked when all animations in the group has completed.
  */
 @interface TrAnimationGroup : NSObject <TrAnimation>
 
 #pragma mark - Creating animation groups
 
-/**
- *  Creates a new instance of `TrAnimationGroup`.
- *
- *  @param animations An NSArray containing animations which should be added to the group. The animations provided will all animate at the same time.
- *  @param completion A block that gets invoked when all the animations in the group has completed.
- *
- *  @return Returns a `TrAnimationGroup` object.
+/*!
+ Creates a new instance of `TrAnimationGroup`.
+ 
+ @param animations An NSArray containing animations which should be added to the group. The animations provided will all animate at the same time.
+ @param completion A block that gets invoked when all the animations in the group has completed.
+ 
+ @return Returns a `TrAnimationGroup` object.
  */
 + (instancetype)animationGroupWithAnimations:(NSArray *)animations
                                   completion:(void(^)(BOOL finished))completion;
 
-/**
- *  Create a new instance of `TrAnimationGroup`.
- *
- *  @param animations An NSArray containing animation which should be added to the group. The animations provided will all animate at the same time.
- *
- *  @return Returns a `TrAnimationGroup` object.
+/*!
+ Create a new instance of `TrAnimationGroup`.
+ 
+ @param animations An NSArray containing animation which should be added to the group. The animations provided will all animate at the same time.
+ 
+ @return Returns a `TrAnimationGroup` object.
  */
 + (instancetype)animationGroupWithAnimations:(NSArray *)animations;
 
-/**
- *  Creates a new instance of `TrAnimationGroup`.
- *
- *  @param completion A block that gets invoked when all animations in the group has completed.
- *
- *  @return Returns a `TrAnimationGroup` object.
+/*!
+ Creates a new instance of `TrAnimationGroup`.
+ 
+ @param completion A block that gets invoked when all animations in the group has completed.
+ 
+ @return Returns a `TrAnimationGroup` object.
  */
 + (instancetype)animationGroupWithCompletion:(void(^)(BOOL finished))completion;
 
-/**
- *  Creates a new instance of `TrAnimationGroup`.
- *
- *  @return Returns a `TrAnimationGroup` object.
+/*!
+ Creates a new instance of `TrAnimationGroup`.
+ 
+ @return Returns a `TrAnimationGroup` object.
  */
 + (instancetype)animationGroup;
 
 #pragma mark - Adding animations
 
-/**
- *  Adds an animation to the group.
- *
- *  @param animation    The animation to add to the group.
- *  @param animateAfter An animation which must complete before the added animation in `animation` begins. This animation must already have been added to the group.
+/*!
+ Adds an animation to the group.
+ 
+ @param animation    The animation to add to the group.
+ @param animateAfter An animation which must complete before the added animation in `animation` begins. This animation must already have been added to the group.
  */
 - (void)addAnimation:(id<TrAnimation>)animation
         animateAfter:(id<TrAnimation>)animateAfter;
 
-/**
- *  Adds an animation to the group.
- *
- *  @param animation The animation to add to the group.
+/*!
+ Adds an animation to the group.
+ 
+ @param animation The animation to add to the group.
  */
 - (void)addAnimation:(id<TrAnimation>)animation;
 
