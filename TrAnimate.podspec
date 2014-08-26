@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TrAnimate"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "An animation library for iOS."
   s.description      = <<-DESC
                        TrAnimate is an iOS animation library designed to make it easy to create complex animations without the need for Core Animation.
