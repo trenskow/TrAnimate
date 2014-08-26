@@ -46,7 +46,7 @@
 /*!
 *  Checks if an animation is in progress on a `UIView` or `CALayer` instance at a perticular property.
 *
-*  @param viewOrLayer The `UIView` or `CALayer` you want to examine.
+*  @param layer       The `CALayer` you want to examine.
 *  @param keyPath     The key path of the property that you want to examine.
 *
 *  @return Returns `YES` if the `UIView` or `CALayer` is animating on the property of `keyPath`.
