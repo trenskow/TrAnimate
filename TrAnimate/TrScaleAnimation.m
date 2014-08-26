@@ -56,7 +56,7 @@
     return [super animate:viewOrLayer.animationLayer
                  duration:duration
                     delay:delay
-             layerKeyPath:@"transform.scale"
+                  keyPath:@"transform.scale"
                 fromValue:@(fromScaleFactor)
                   toValue:@(toScaleFactor)
                     curve:curve

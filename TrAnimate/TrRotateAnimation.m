@@ -70,7 +70,7 @@
     return [super animate:viewOrLayer.animationLayer
                  duration:duration
                     delay:delay
-             layerKeyPath:[self keyPathForAxis:axis]
+                  keyPath:[self keyPathForAxis:axis]
                 fromValue:@(fromAngle)
                   toValue:@(toAngle)
                     curve:curve

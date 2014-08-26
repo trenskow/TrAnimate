@@ -89,7 +89,7 @@
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
               fromValue:(id<TrInterpolatable>)fromValue
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve
@@ -111,7 +111,7 @@
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
               fromValue:(id<TrInterpolatable>)fromValue
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve;
@@ -131,7 +131,7 @@
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
               fromValue:(id<TrInterpolatable>)fromValue
                 toValue:(id<TrInterpolatable>)toValue;
 
@@ -151,7 +151,7 @@
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
@@ -171,7 +171,7 @@
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve;
 
@@ -189,7 +189,7 @@
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
                 toValue:(id<TrInterpolatable>)toValue;
 
 @end

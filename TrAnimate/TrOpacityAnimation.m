@@ -69,7 +69,7 @@
     return [super animate:viewOrLayer.animationLayer
                  duration:duration
                     delay:delay
-             layerKeyPath:@"opacity"
+                  keyPath:@"opacity"
                 fromValue:@(fromOpacity)
                   toValue:@(toOpacity)
                     curve:curve

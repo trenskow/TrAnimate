@@ -66,7 +66,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 - (instancetype)initWithLayer:(CALayer *)layer
                      duration:(NSTimeInterval)duration
                         delay:(NSTimeInterval)delay
-                 layerKeyPath:(NSString *)keyPath
+                      keyPath:(NSString *)keyPath
                     fromValue:(id<TrInterpolatable>)fromValue
                       toValue:(id<TrInterpolatable>)toValue
                         curve:(TrCurve *)curve
@@ -198,7 +198,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
               fromValue:(id<TrInterpolatable>)fromValue
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve
@@ -210,7 +210,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     TrLayerAnimation *animation = [[self alloc] initWithLayer:layer
                                                      duration:duration
                                                         delay:delay
-                                                 layerKeyPath:keyPath
+                                                      keyPath:keyPath
                                                     fromValue:fromValue
                                                       toValue:toValue
                                                         curve:curve
@@ -227,7 +227,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
               fromValue:(id<TrInterpolatable>)fromValue
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve {
@@ -235,7 +235,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     return [self animate:layer
                 duration:duration
                    delay:delay
-            layerKeyPath:keyPath
+                 keyPath:keyPath
                fromValue:fromValue
                  toValue:toValue
                    curve:curve
@@ -246,14 +246,14 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
               fromValue:(id<TrInterpolatable>)fromValue
                 toValue:(id<TrInterpolatable>)toValue {
     
     return [self animate:layer
                 duration:duration
                    delay:delay
-            layerKeyPath:keyPath
+                 keyPath:keyPath
                fromValue:fromValue
                  toValue:toValue
                    curve:nil
@@ -264,7 +264,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
@@ -272,7 +272,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     return [self animate:layer
                 duration:duration
                    delay:delay
-            layerKeyPath:keyPath
+                 keyPath:keyPath
                fromValue:[layer valueForKeyPath:keyPath]
                  toValue:toValue
                    curve:curve
@@ -283,14 +283,14 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve {
     
     return [self animate:layer
                 duration:duration
                    delay:delay
-            layerKeyPath:keyPath
+                 keyPath:keyPath
                  toValue:toValue
                    curve:curve
               completion:nil];
@@ -300,13 +300,13 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-           layerKeyPath:(NSString *)keyPath
+                keyPath:(NSString *)keyPath
                 toValue:(id<TrInterpolatable>)toValue {
     
     return [self animate:layer
                 duration:duration
                    delay:delay
-            layerKeyPath:keyPath
+                 keyPath:keyPath
                  toValue:toValue
                    curve:nil
               completion:nil];

@@ -82,7 +82,7 @@
     return [super animate:viewOrLayer.animationLayer
                  duration:duration
                     delay:delay
-             layerKeyPath:@"position"
+                  keyPath:@"position"
                 fromValue:[NSValue valueWithCGPoint:[self position:fromPosition
                                                            ofLayer:viewOrLayer.animationLayer
                                                         fromAnchor:useAnchor]]
