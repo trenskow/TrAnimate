@@ -1,4 +1,4 @@
-[New documentation is currently being written and is available here](https://github.com/trenskow/TrAnimate/wiki)
+(A programming guide is currently being written)
 
 # TrAnimate iOS Animation Library
 
@@ -6,30 +6,43 @@ TrAnimate is an iOS animation library designed to make it easy to create complex
 
 ## Setting up TrAnimate
 
+### By Copying Source Files
+
 There are two ways of incorporating TrAnimate into your project. First is to copy all sources into your current project and include the headers by adding the following.
 
     #inport "TrAnimate.h"
 
-### Using Git
+### As a Framework or Module Using Git
 
-Alternatively you can use git's submodule feature and the subproject feature of Xcode to incorporate TrAnimate into your project. This also gives you the benefit of being able to update TrAnimate whenever the master branch is updated. A simple pull gives you the latest and greatest features from the TrAnimate repository.
+Alternatively you can use git's submodule feature and the subproject feature of Xcode to incorporate TrAnimate into your project - givin' it uses git. This also gives you the benefit of being able to update TrAnimate whenever the master branch is updated. A simple pull gives you the latest and greatest features from the TrAnimate repository.
 
 #### Adding a submodule and subproject to your project
 
-1. Open a terminal and go to the root of your project Xcode project, and type the following.
-   - `git submodule add https://github.com/trenskow/TrAnimate.git TrAnimate`
-   - This will add TrAnimate as a subproject and download all sources from Github.
-2. Drag the TrAnimate.xcodeproject (which is now in the subfolder TrAnimate of your project) into your project source tree in Xcode.
-3. Go to the application settings in Xcode
+Open a terminal and go to the root of your Xcode project and type the following.
+
+    git submodule add https://github.com/trenskow/TrAnimate.git TrAnimate`.
+
+This will add TrAnimate as a subproject and download all sources from Github.
+
+Next drag the TrAnimate.xcodeproject (which is now in the subfolder TrAnimate of your project) into your project source tree in Xcode.
+
+##### Add as a Module (iOS 8)
+
+Simply add it as a module to your sources by importing the module in your sources.
+
+    @import TrAnimate
+
+
+##### Add as a Statically Linked Framework (iOS 7 and below)
+
+- Go to the application settings in Xcode
    - Choose the "Build Phases" tab.
-      - Add TrAnimate to your "Target Dependencies" and add libTrAnimate.a to your linked binaries.
+      - Add `TrAnimate Static` to your "Target Dependencies" and add `libTrAnimate Static.a` to your linked binaries.
    - Choose the "Build Settings" tab.
      - Add the following to your "Header Search Paths".
        - `$(SRCROOT)/TrAnimate`
 
-Now you are setup for using TrAnimate.
-
-Whenever you need TrAnimate simple import the headers like this.
+Now import the umbrella header in your sources when you need TrAnimate.
 
     #import <TrAnimate/TrAnimate.h>
 
@@ -37,127 +50,149 @@ Whenever you need TrAnimate simple import the headers like this.
 
 ### Introduction
 
-An example of using TrAnimate
+An example of a fade animation using TrAnimate
 
-    [TrFadeAnimation animateWithView:aView
-                            duration:.3f
-                               delay:.0f
-                             fadesIn:YES];
+    [TrFadeAnimation animate:aView
+                    duration:.3f
+                       delay:.0f
+                   direction:TrFadeAnimationDirectionIn];
     
-This code fades the view in immidiately.
+The above code will fade `aView` immidiately.
 
 Another example could be
 
-    [TrMoveInAnimation animateWithView:aView
-                              duration:1.0f
-                                 delay:.0f
-                               options:kTrMoveInAnimationOptionDirectionTop
-                                 curve:kTrAnimationCurveEaseOutBounce
-                            completion:^(BOOL finished) {
-    	                        NSLog(@"Move in complete!")
-                            }];
+    [TrPositionAnimation animate:aView
+                        duration:1.0
+                           delay:.0f
+                      toPosition:CGPointMake(100.0, 100.0)
+                          anchor:TrPositionAnimationAnchorAutomatic
+                           curve:[TrCurve easeInBounce]
+                      completion:^(BOOL finished) {
+                          NSLog(@"Move in complete!")
+                      }];
 
-This will move in the view from it's superview's bounds. The curve specifies, that the view should bounce out.
+This will move `aView` to position 100.0, 100.0. The curve specifies that `aView` should bounce out. Lastly the completion block logs `Move is complete!` when the animation completes.
 
 ### Available animations
 
-The individual animations has special creation methods available. Look in the header files of each animation to see how to create them.
+The individual animations has special creator methods available. Look in the documentation of each animation to see how to create them.
 
-#### TrMoveAnimation
+#### TrPositionAnimation
 
-Moves a view from one location to another, not affecting the views size.
-
-#### TrMoveInAnimation
-
-Moves a view into screen. You specify using the option from which direction the view should appear. By default it moves from outside it's superview's bounds and into it's initial location. Specifying the kTrMoveInAnimationOptionFromScreenBounds moves the view from outside the screen's bounds.
-
-The same animation is used to move a view out. Specifying the kTrMoveInAnimationOptionReversed options will reverse the animation.
+Moves a view from one location to another, not affecting the view's size.
 
 #### TrFadeAnimation
 
-Fades in a view. The fadeIn parameter specifies, if the view fades in or out.
+Fades in a view. The view can either fade in or out.
 
-#### TrFlipAnimation
+#### TrOpacityAnimation
 
-This flips a view. Either flipping the view 180 degrees or flipping from one view to another. The creation methods determines if it's a single view flip or from one view to another.
+Changes the opacity of a view.
 
-#### TrZoomAnimation
+#### TrScaleAnimation
 
-Zooms the view from a start value to an end value.
+Scale a view from an optional start value to an end value.
 
 #### TrRotateAnimation
 
-Rotates the view around the Z-axis from a start value to an end value.
+Rotates the view around an axies from an optional start value to an end value.
+
+#### TrLayerAnimation
+
+This is for all your animation needs on `CALayer` not avaiable above. `TrLayerAnimation` takes a `CALayer` and a key path and animates it.
+
+#### TrDirectAnimation
+
+`TrDirectAnimation` animates without the use of Core Animation and is therefore useful if you want to animate properties of objects not supported by Core Animation. An example could be the `contentOffset` of a `UIScrollView` or even the `volume` property of a `AVAudioPlayer`.
 
 ### Curves
 
 #### Predefined Curves
 
-Many animations support custom animation curves. Curves are implemented using blocks, but there are some predefined curves, which is adapted from [jQuery UI](https://github.com/jquery/jquery-ui). Not all of the curves has yet been implemented, but they are pretty easy to implement yourself.
+All animations support custom animation curves. Curves are implemented using blocks, but there are some build-in curves which is adapted from [jQuery UI](https://github.com/jquery/jquery-ui). A curve is represented using the `TrCurve` class which has also holds the build-in curves.
 
-Amongst the predefined curves are:
+The build-in curves are:
 
-- `kTrAnimationCurveLinear`
-- `kTrAnimationCurveEaseInSine`
-- `kTrAnimationCurveEaseOutSine`
-- `kTrAnimationCurveEaseInOutSine`
-- `kTrAnimationCurveEaseOutBounce`
-- `kTrAnimationCurveEaseInExpo`
-- `kTrAnimationCurveEaseOutExpo`
-- `kTrAnimationCurveInBack`
-- `kTrAnimationCurveOutBack`
-- `kTrAnimationCurveInOutBack`
-- `kTrAnimationCurveOutElastic`
+- linear
+- easeInQuad
+- easeOutQuad
+- easeInOutQuad
+- easeInCubic
+- easeOutCubic
+- easeInOutCubic
+- easeInQuart
+- easeOutQuart
+- easeInOutQuart
+- easeInQuint
+- easeOutQuint
+- easeInOutQuint
+- easeInSine
+- easeOutSine
+- easeInOutSine
+- easeInExpo
+- easeOutExpo
+- easeInOutExpo
+- easeInCirc
+- easeOutCirc
+- easeInOutCirc
+- easeInElastic
+- easeOutElastic
+- easeInOutElastic
+- easeInBack
+- easeOutBack
+- easeInOutBack
+- easeInBounce
+- easeOutBounce
+- easeInOutBounce
 
 For a visual representation of the curves please see [easings.net](http://easings.net/).
 
 #### Custom Curves
 
-Custom curves can be implented like this.
+Custom curves can be implemeted either by subclassing `TrCurve` and overriding the `transform:` method - or they can be created using blocks as below.
 
-    ^(CGFloat t) {
-    	return (CGFloat) (-1.0f * cos(t * M_PI_2) + 1.0f);
-    };
+    [TrCurve curveWithBlock:^(double t) {
+    	return (-1.0 * cos(t * M_PI_2) - 1.0);
+    }];
 
-Above is the actual implementation of the `kTrAnimationCurveEaseInSine` curve. The parameter t represents a value between 0.0 and 1.0. Animation block must return a CGFloat.
+Above is the actual implementation of the `[TrCurve easeInSine]` curve. The parameter t represents a value between 0.0 and 1.0. Animation blocks must return a `double`.
 
-In the same way custom curves can be used directly in animations that support it.
+In the same way custom curves can be used directly in animations as below.
 
     [TrRotateAnimation animateView:aView
                           duration:.3f
                              delay:.0f
-                        startAngle:.0f
-                          endAngle:M_PI_4
-                             curve:^(CGFloat t) {
-                                 return (CGFloat)t / 2.0f
-                             }
-                         completed:nil];
+                           toAngle:M_PI_4
+                              axis:TrRotateAnimationAxisZ
+                             curve:[TrCurve curveWithBlock:^(double t) {
+                                 return t / 2.0;
+                             }]];
 
-The above will rotate `aView` from zero radians to M_PI_4. But the curve provided will effectively half the endAngle because `t` is devided a factor of 2.
+The above will rotate `aView` from zero radians to M_PI_4. But the curve provided will effectively half the endAngle because `t` is divided by `2`.
 
 ### Animation Groups
 
-Animation groups allow you to group animations and determine when which animations should run. It allows you to group other animation groups, and really is a powerful tool.
+Animation groups allow you to group animations and determine when which animations should run. It allows you to group other animation groups and really is a powerful tool for chaining animations.
 
-(This documentation will be updated to explain in more details how animation groups work).tr
+(This documentation will be updated to explain in more details how animation groups work)
 
 ## About TrAnimate
 
-TrAnimate was created out of the need to create complex animations, without the constant need of using complex Core Animation setups. Also to accomodate the lack of custom interpolation and curves provided by Core Animation.
+TrAnimate was created out of the need to create complex animations without the constant need of using complex Core Animation setups. Also to accomodate the lack of custom interpolation and curves provided by Core Animation.
 
 ### State of Development
 
-TrAnimate has been spun off from the application from which it origins and made available as an open source project.
+TrAnimate has been spun off from the application from which it origins and made available as an open source project. The application in question is the KREAFUNK app - download it on the [App Store](https://itunes.apple.com/app/kreafunk-listen-to-anything/id807353001?mt=8))
 
-TrAnimate is **not** complete. Lot's of features are still to be added, and lots of useful animations and curves are currently not yet implemented.
+TrAnimate is **not** complete. It is constantly developed to add more features. Transitions are currently in the process of being implemented.
 
 ### Contribution
 
-Contributions are always appreciated. Especially for specialized animations and curves. If you have any additions, that you wish to have incorporated into the library, please make a pull request against the *dev* branch.
+Contributions are always appreciated. Especially for specialized animations. If you have any additions, that you wish to have incorporated into the library please create a pull request.
 
 ### Acknowledgements
 
-All curves has been adapted from the [jQuery UI](https://github.com/jquery/jquery-ui) library. The *jQuery* and *jQuery UI* libraries are designed for high quality browser interaction and animations, and provide a rich set of animation curves. Some [jQuery UI animation curves](http://easings.net/) are yet to be implemented into TrAnimate.
+All curves has been adapted from the [jQuery UI](https://github.com/jquery/jquery-ui) library. The *jQuery* and *jQuery UI* libraries are designed for high quality browser interaction and animations, and provide a rich set of animation curves.
 
 ## Notes
-TrAnimate requires ARC (Automatic Reference Count) enabled.
+TrAnimate requires ARC.
