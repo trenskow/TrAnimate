@@ -34,17 +34,11 @@
  Speciefies the rotation axis.
  */
 typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
-    /*!
-     Rotate around the z-axis. Default.
-     */
+    /*! Rotate around the z-axis. Default. */
     TrRotateAnimationAxisZ = 0,
-    /*!
-     Rotate around the x-axis.
-     */
+    /*! Rotate around the x-axis. */
     TrRotateAnimationAxisX,
-    /*!
-     Rotate around the y-axis.
-     */
+    /*! Rotate around the y-axis. */
     TrRotateAnimationAxisY
 };
 

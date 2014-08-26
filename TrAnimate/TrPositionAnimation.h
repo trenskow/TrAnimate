@@ -34,21 +34,11 @@
  Specifies the anchor point of the position.
  */
 typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
-/*!
-Automatically detect origin.
-
-- `UIView` is anchored top left.
-- `CALayer` is anchored center. Default.
-
-*/
+    /*! Automatically detect origin. `UIView`s is anchored top left. `CALayer`s is anchored center. Default. */
     TrPositionAnimationAnchorAutomatic = 0,
-/*!
- Origin in the center of the view or layer.
-*/
+    /*! Origin in the center of the view or layer. */
     TrPositionAnimationAnchorCenter,
-/*!
- Origin at the top left of the view or layer.
-*/
+    /*! Origin at the top left of the view or layer. */
     TrPositionAnimationAnchorTopLeft
 };
 

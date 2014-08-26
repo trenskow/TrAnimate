@@ -8,9 +8,13 @@ TrAnimate is an iOS animation library designed to make it easy to create complex
 
 ### By Copying Source Files
 
-There are two ways of incorporating TrAnimate into your project. First is to copy all sources into your current project and include the headers by adding the following.
+There are three ways of incorporating TrAnimate into your project. First is to copy all sources into your current project and include the headers by adding the following.
 
     #import "TrAnimate.h"
+
+### Using CocoaPods
+
+See [cocoapods.org](cocoapods.org).
 
 ### As a Framework or Module Using Git
 

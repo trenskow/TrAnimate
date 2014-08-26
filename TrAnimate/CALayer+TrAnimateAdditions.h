@@ -33,6 +33,6 @@
 /*!
  Category of `CALayer` that implements the `TrAnimatable` protocol.
  */
-@interface CALayer (TrAnimatable) <TrAnimatable>
+@interface CALayer (TrAnimateAdditions) <TrAnimatable>
 
 @end

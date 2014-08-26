@@ -34,13 +34,9 @@
  Specifies the fade direction.
  */
 typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
-    /*!
-     Fade in.
-     */
+    /*! Fade in. */
     TrFadeAnimationDirectionIn = 0,
-    /*!
-     Fade out.
-     */
+    /*! Fade out. */
     TrFadeAnimationDirectionOut
 };
 
