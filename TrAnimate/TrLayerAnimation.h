@@ -57,6 +57,20 @@
 /// @name Creating Animations
 /// -------------------------
 
+/*!
+ Creates and returns an animation that animates the key path of a layer.
+ 
+ @param layer      The `CALayer` you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property you want to animate.
+ @param fromValue  The value from which to animate from.
+ @param toValue    The value from which to animate to.
+ @param curve      The curvature of the animation.
+ @param completion A block that gets invoked when the animation completes.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -66,6 +80,19 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns an animation that animates the key path of a layer.
+ 
+ @param layer      The `CALayer` you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property you want to animate.
+ @param fromValue  The value from which to animate from.
+ @param toValue    The value from which to animate to.
+ @param curve      The curvature of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -74,6 +101,18 @@
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns an animation that animates the key path of a layer.
+ 
+ @param layer      The `CALayer` you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property you want to animate.
+ @param fromValue  The value from which to animate from.
+ @param toValue    The value from which to animate to.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -81,6 +120,19 @@
               fromValue:(id<TrInterpolatable>)fromValue
                 toValue:(id<TrInterpolatable>)toValue;
 
+/*!
+ Creates and returns an animation that animates the key path of a layer. The animation animates from the key path's current value.
+ 
+ @param layer      The `CALayer` you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property you want to animate.
+ @param toValue    The value from which to animate to.
+ @param curve      The curvature of the animation.
+ @param completion A block that gets invoked when the animation completes.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -89,6 +141,18 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns an animation that animates the key path of a layer. The animation animates from the key path's current value.
+ 
+ @param layer      The `CALayer` you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property you want to animate.
+ @param toValue    The value from which to animate to.
+ @param curve      The curvature of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -96,6 +160,17 @@
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns an animation that animates the key path of a layer. The animation animates from the key path's current value.
+ 
+ @param layer      The `CALayer` you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property you want to animate.
+ @param toValue    The value from which to animate to.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
