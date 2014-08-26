@@ -40,9 +40,9 @@
 
 #pragma mark - Internal
 
-+ (CGPoint)position:(CGPoint)position ofLayer:(CALayer *)layer fromOrigin:(TrPositionAnimationOrigin)origin {
++ (CGPoint)position:(CGPoint)position ofLayer:(CALayer *)layer fromAnchor:(TrPositionAnimationAnchor)anchor {
     
-    if (origin == TrPositionAnimationOriginTopLeft)
+    if (anchor == TrPositionAnimationAnchorTopLeft)
         return CGPointMake(position.x + layer.bounds.size.width * layer.anchorPoint.x,
                            position.y + layer.bounds.size.height * layer.anchorPoint.y);
     
@@ -50,12 +50,12 @@
     
 }
 
-+ (TrPositionAnimationOrigin)originForViewOrLayer:(id<TrAnimatable>)viewOrLayer withOrigin:(TrPositionAnimationOrigin)origin {
++ (TrPositionAnimationAnchor)anchorForViewOrLayer:(id<TrAnimatable>)viewOrLayer withAnchor:(TrPositionAnimationAnchor)anchor {
     
-    if (origin == TrPositionAnimationOriginAutomatic)
-        return ([viewOrLayer isKindOfClass:[UIView class]] ? TrPositionAnimationOriginTopLeft : TrPositionAnimationOriginCenter);
+    if (anchor == TrPositionAnimationAnchorAutomatic)
+        return ([viewOrLayer isKindOfClass:[UIView class]] ? TrPositionAnimationAnchorTopLeft : TrPositionAnimationAnchorCenter);
     
-    return origin;
+    return anchor;
     
 }
 
@@ -72,12 +72,12 @@
                   delay:(NSTimeInterval)delay
            fromPosition:(CGPoint)fromPosition
              toPosition:(CGPoint)toPosition
-                 origin:(TrPositionAnimationOrigin)origin
+                 anchor:(TrPositionAnimationAnchor)anchor
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
-    TrPositionAnimationOrigin useOrigin = [self originForViewOrLayer:viewOrLayer
-                                                          withOrigin:origin];
+    TrPositionAnimationAnchor useAnchor = [self anchorForViewOrLayer:viewOrLayer
+                                                          withAnchor:anchor];
     
     return [super animate:viewOrLayer
                  duration:duration
@@ -85,10 +85,10 @@
              layerKeyPath:@"position"
                 fromValue:[NSValue valueWithCGPoint:[self position:fromPosition
                                                            ofLayer:viewOrLayer.animationLayer
-                                                        fromOrigin:useOrigin]]
+                                                        fromAnchor:useAnchor]]
                   toValue:[NSValue valueWithCGPoint:[self position:toPosition
                                                            ofLayer:viewOrLayer.animationLayer
-                                                        fromOrigin:useOrigin]]
+                                                        fromAnchor:useAnchor]]
                     curve:curve
                completion:completion];
     
@@ -99,7 +99,7 @@
                   delay:(NSTimeInterval)delay
            fromPosition:(CGPoint)fromPosition
              toPosition:(CGPoint)toPosition
-                 origin:(TrPositionAnimationOrigin)origin
+                 anchor:(TrPositionAnimationAnchor)anchor
                   curve:(TrCurve *)curve {
     
     return [self animate:viewOrLayer
@@ -107,7 +107,7 @@
                    delay:delay
             fromPosition:fromPosition
               toPosition:toPosition
-                  origin:origin
+                  anchor:anchor
                    curve:curve
               completion:nil];
     
@@ -118,14 +118,14 @@
                   delay:(NSTimeInterval)delay
            fromPosition:(CGPoint)fromPosition
              toPosition:(CGPoint)toPosition
-                 origin:(TrPositionAnimationOrigin)origin {
+                 anchor:(TrPositionAnimationAnchor)anchor {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
             fromPosition:fromPosition
               toPosition:toPosition
-                  origin:origin
+                  anchor:anchor
                    curve:nil
               completion:nil];
     
@@ -142,7 +142,7 @@
                    delay:delay
             fromPosition:fromPosition
               toPosition:toPosition
-                  origin:TrPositionAnimationOriginAutomatic
+                  anchor:TrPositionAnimationAnchorAutomatic
                    curve:nil
               completion:nil];
     
@@ -152,14 +152,14 @@
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
              toPosition:(CGPoint)toPosition
-                 origin:(TrPositionAnimationOrigin)origin
+                 anchor:(TrPositionAnimationAnchor)anchor
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
     // We already convert toPosition to center origin here.
     
-    TrPositionAnimationOrigin useOrigin = [self originForViewOrLayer:viewOrLayer
-                                                          withOrigin:origin];
+    TrPositionAnimationAnchor useAnchor = [self anchorForViewOrLayer:viewOrLayer
+                                                          withAnchor:anchor];
     
     return [self animate:viewOrLayer
                 duration:duration
@@ -167,8 +167,8 @@
             fromPosition:viewOrLayer.presentedLayer.position
               toPosition:[self position:toPosition
                                 ofLayer:viewOrLayer.animationLayer
-                             fromOrigin:useOrigin]
-                  origin:TrPositionAnimationOriginCenter
+                             fromAnchor:useAnchor]
+                  anchor:TrPositionAnimationAnchorCenter
                    curve:curve
               completion:completion];
     
@@ -178,14 +178,14 @@
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
              toPosition:(CGPoint)toPosition
-                 origin:(TrPositionAnimationOrigin)origin
+                 anchor:(TrPositionAnimationAnchor)anchor
                   curve:(TrCurve *)curve {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
               toPosition:toPosition
-                  origin:origin
+                  anchor:anchor
                    curve:curve
               completion:nil];
     
@@ -195,13 +195,13 @@
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
              toPosition:(CGPoint)toPosition
-                 origin:(TrPositionAnimationOrigin)origin {
+                 anchor:(TrPositionAnimationAnchor)anchor {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
               toPosition:toPosition
-                  origin:origin
+                  anchor:anchor
                    curve:nil
               completion:nil];
     
@@ -216,7 +216,7 @@
                 duration:duration
                    delay:delay
               toPosition:toPosition
-                  origin:TrPositionAnimationOriginAutomatic
+                  anchor:TrPositionAnimationAnchorAutomatic
                    curve:nil
               completion:nil];
     
