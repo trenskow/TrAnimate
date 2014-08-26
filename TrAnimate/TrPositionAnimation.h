@@ -79,7 +79,7 @@ Automatically detect origin.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
- @param delay        The delay of the animation.
+ @param delay        The delay before the animation begins.
  @param fromPosition The start position of the animation.
  @param toPosition   The end position of the animation.
  @param anchor       The anchor of position.
@@ -102,7 +102,7 @@ Automatically detect origin.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
- @param delay        The delay of the animation.
+ @param delay        The delay before the animation begins.
  @param fromPosition The start position of the animation.
  @param toPosition   The end position of the animation.
  @param anchor       The anchor of position.
@@ -123,7 +123,7 @@ Automatically detect origin.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
- @param delay        The delay of the animation.
+ @param delay        The delay before the animation begins.
  @param fromPosition The start position of the animation.
  @param toPosition   The end position of the animation.
  @param anchor       The anchor of position.
@@ -142,7 +142,7 @@ Automatically detect origin.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
- @param delay        The delay of the animation.
+ @param delay        The delay before the animation begins.
  @param fromPosition The start position of the animation.
  @param toPosition   The end position of the animation.
  
@@ -159,7 +159,7 @@ Automatically detect origin.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
- @param delay        The delay of the animation.
+ @param delay        The delay before the animation begins.
  @param toPosition   The end position of the animation.
  @param anchor       The anchor of position.
  @param curve        The curvature of the animation.
@@ -180,7 +180,7 @@ Automatically detect origin.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
- @param delay        The delay of the animation.
+ @param delay        The delay before the animation begins.
  @param toPosition   The end position of the animation.
  @param anchor       The anchor of position.
  @param curve        The curvature of the animation.
@@ -199,7 +199,7 @@ Automatically detect origin.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
- @param delay        The delay of the animation.
+ @param delay        The delay before the animation begins.
  @param toPosition   The end position of the animation.
  @param anchor       The anchor of position.
  
@@ -216,7 +216,7 @@ Automatically detect origin.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
- @param delay        The delay of the animation.
+ @param delay        The delay before the animation begins.
  @param toPosition   The end position of the animation.
  
  @return An animation ready to animate.

@@ -57,7 +57,7 @@
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.
- @param delay           The delay of the animation.
+ @param delay           The delay before the animation begins.
  @param fromScaleFactor The scale factor to animate from.
  @param toScaleFactor   The scale factor to animate to.
  @param curve           The curvature of the animation.
@@ -78,7 +78,7 @@
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.
- @param delay           The delay of the animation.
+ @param delay           The delay before the animation begins.
  @param fromScaleFactor The scale factor to animate from.
  @param toScaleFactor   The scale factor to animate to.
  @param curve           The curvature of the animation.
@@ -97,7 +97,7 @@
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.
- @param delay           The delay of the animation.
+ @param delay           The delay before the animation begins.
  @param fromScaleFactor The scale factor to animate from.
  @param toScaleFactor   The scale factor to animate to.
  
@@ -114,7 +114,7 @@
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.
- @param delay           The delay of the animation.
+ @param delay           The delay before the animation begins.
  @param toScaleFactor   The scale factor to animate to.
  @param curve           The curvature of the animation.
  @param completion      A block that gets invoked when the animation completes.
@@ -133,7 +133,7 @@
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.
- @param delay           The delay of the animation.
+ @param delay           The delay before the animation begins.
  @param toScaleFactor   The scale factor to animate to.
  @param curve           The curvature of the animation.
  
@@ -150,7 +150,7 @@
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.
- @param delay           The delay of the animation.
+ @param delay           The delay before the animation begins.
  @param toScaleFactor   The scale factor to animate to.
  
  @return An animation ready to animate.
