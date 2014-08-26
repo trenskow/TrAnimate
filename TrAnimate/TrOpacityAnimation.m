@@ -34,7 +34,7 @@
 #import "TrCurve.h"
 #import "TrAnimatable.h"
 
-#import "TrAnimation+Private.h"
+#import "TrLayerAnimation+Private.h"
 
 #import "TrOpacityAnimation.h"
 

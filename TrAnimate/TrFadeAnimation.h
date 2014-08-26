@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <TrAnimate/TrAnimate.h>
+#import "TrOpacityAnimation.h"
 
 /*!
  Specifies the fade direction.

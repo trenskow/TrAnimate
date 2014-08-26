@@ -28,40 +28,147 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+@import ObjectiveC.runtime;
+
 #import "CALayer+TrAnimateAdditions.h"
 
+#import "TrAnimation.h"
 #import "TrCurve.h"
 #import "TrCustomCurvedAnimation.h"
 #import "TrAnimatable.h"
 #import "TrInterpolatable.h"
 
-#import "TrAnimation+Private.h"
+#import "TrLayerAnimation+Private.h"
 
-#import "TrLayerAnimation.h"
+const void *TrAnimationLayerKey;
 
-@interface TrLayerAnimation () {
-    
-    NSString *_keyPath;
-    id<TrInterpolatable> _fromValue;
-    id<TrInterpolatable> _toValue;
-    
-}
+NSString *const TrAnimationKey = @"TrAnimationKey";
+
+@interface TrLayerAnimation ()
+
+@property (nonatomic,copy) NSString *keyPath;
+@property (nonatomic,copy) id<TrInterpolatable> fromValue;
+@property (nonatomic,copy) id<TrInterpolatable> toValue;
+
+@property (nonatomic,getter = isAnimating) BOOL animating;
+@property (nonatomic,getter = isComplete) BOOL complete;
+@property (nonatomic,getter = isFinished) BOOL finished;
+@property (copy,nonatomic) TrCurve *curve;
+@property (copy,nonatomic) void(^completionBlock)(BOOL finished);
+@property (weak,readwrite,nonatomic) CALayer *layer;
 
 @end
 
 @implementation TrLayerAnimation
 
+#pragma mark - Setup / Teardown
+
+- (instancetype)initWithLayer:(CALayer *)layer
+                     duration:(NSTimeInterval)duration
+                        delay:(NSTimeInterval)delay
+                 layerKeyPath:(NSString *)keyPath
+                    fromValue:(id<TrInterpolatable>)fromValue
+                      toValue:(id<TrInterpolatable>)toValue
+                        curve:(TrCurve *)curve
+                   completion:(void (^)(BOOL finished))completion {
+    
+    if ((self = [super init])) {
+        
+        self.layer = layer;
+        self.duration = duration;
+        self.delay = delay;
+        self.keyPath = keyPath;
+        self.fromValue = fromValue;
+        self.toValue = toValue;
+        self.curve = (curve ?: [TrCurve linear]);
+        self.completionBlock = completion;
+        
+        /* Associate animation object with view, so it won't be released doing animation */
+        objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+    }
+    
+    return self;
+    
+}
+
+#pragma mark - Properties
+
+@synthesize delay=_delay;
+
 #pragma mark - Internal
 
-- (void)animationStarted {
+- (void)animationDidStart:(TrCustomCurvedAnimation *)anim {
     
-    [super animationStarted];
+    [self animationStarted];
+    
+}
+
+- (void)animationDidStop:(TrCustomCurvedAnimation *)anim finished:(BOOL)flag {
+    
+    [self animationCompleted:flag];
+    
+    if (self.completionBlock)
+        self.completionBlock(flag);
+    
+    self.complete = YES;
+    self.finished = flag;
+    
+    /* Remove animation from view so it can be released */
+    objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+}
+
+- (void)prepareAnimation:(TrCustomCurvedAnimation *)animation usingKey:(NSString *)key {
+    
+#if defined(TR_ANIMATION_VIEW_DEBUG)
+    animation.duration = self.duration * 10.0;
+#else
+    animation.duration = self.duration;
+#endif
+    
+    animation.curve = self.curve;
+    
+    [animation setValue:key forKey:TrAnimationKey];
+    
+    animation.delegate = self;
+    
+    [self.layer addAnimation:animation forKey:key];
+    
+}
+
+- (void)beginAnimation {
+    
+    if (!self.isAnimating) {
+        [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(beginAnimation) object:nil];
+        self.animating = YES;
+        [self performSelector:@selector(setupAnimations)
+                   withObject:nil
+#if defined(TR_ANIMATION_VIEW_DEBUG)
+                   afterDelay:self.delay * 10.0
+#else
+                   afterDelay:self.delay
+#endif
+                      inModes:@[NSRunLoopCommonModes]];
+    }
+    
+}
+
+- (void)postponeAnimation {
+    
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(beginAnimation) object:nil];
+    
+}
+
+- (void)animationStarted {
     
     [self.layer setValue:[_fromValue interpolateWithValue:_toValue
                                                atPosition:[self.curve transform:1.0]]
               forKeyPath:_keyPath];
     
 }
+
+- (void)animationCompleted:(BOOL)finished { }
 
 - (void)setupAnimations {
     
@@ -70,7 +177,7 @@
     customAnimation.toValue = _toValue;
     
     [self.layer setValue:[_fromValue interpolateWithValue:_toValue
-                                                atPosition:[self.curve transform:1.0]]
+                                               atPosition:[self.curve transform:1.0]]
               forKeyPath:_keyPath];
     
     [self prepareAnimation:customAnimation usingKey:[NSString stringWithFormat:@"keyPathAnimation.%@", _keyPath]];
@@ -97,19 +204,21 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
+    if (!layer)
+        return nil;
+    
+    TrLayerAnimation *animation = [[self alloc] initWithLayer:layer
+                                                     duration:duration
+                                                        delay:delay
+                                                 layerKeyPath:keyPath
+                                                    fromValue:fromValue
+                                                      toValue:toValue
+                                                        curve:curve
+                                                   completion:completion];
+    
     [layer setValue:fromValue forKeyPath:keyPath];
     
-    TrLayerAnimation *animation = [super animate:layer
-                                        duration:duration
-                                           delay:delay
-                                           curve:curve
-                                      completion:completion];
-    
-    if (animation) {
-        animation->_keyPath = keyPath;
-        animation->_fromValue = fromValue;
-        animation->_toValue = toValue;
-    }
+    [animation performSelector:@selector(beginAnimation) withObject:nil afterDelay:0.0 inModes:@[NSRunLoopCommonModes]];
     
     return animation;
     

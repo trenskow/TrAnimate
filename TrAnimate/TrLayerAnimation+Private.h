@@ -28,11 +28,11 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrAnimation.h"
+#import "TrLayerAnimation.h"
 
 @class TrCustomCurvedAnimation;
 
-@interface TrAnimation ()
+@interface TrLayerAnimation (Private)
 
 @property (copy,nonatomic,readonly) TrCurve *curve;
 

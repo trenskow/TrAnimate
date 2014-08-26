@@ -33,11 +33,12 @@
 #import "TrAnimation.h"
 
 @protocol TrInterpolatable;
+@class TrCurve;
 
 /*!
  The `TrLayerAnimation` provides animation on any animatable property of CALayer. Use this animation if you need to do custom animations on a layer that is not directly implemented in TrAnimate as an explicit animation.
  */
-@interface TrLayerAnimation : TrAnimation
+@interface TrLayerAnimation : NSObject <TrAnimation>
 
 /// --------------------------------
 /// @name Examining Views and Layers
@@ -52,6 +53,20 @@
 *  @return Returns `YES` if the `UIView` or `CALayer` is animating on the property of `keyPath`.
 */
 + (BOOL)inProgressOn:(CALayer *)layer withKeyPath:(NSString *)keyPath;
+
+///------------------------------------
+/// @name Getting Animation Information
+///------------------------------------
+
+/*!
+ Returns the animated layer.
+ */
+@property (weak,readonly,nonatomic) CALayer *layer;
+
+/*!
+ The duration of the animation.
+ */
+@property (nonatomic) NSTimeInterval duration;
 
 /// -------------------------
 /// @name Creating Animations

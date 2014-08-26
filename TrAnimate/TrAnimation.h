@@ -28,8 +28,6 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-@import QuartzCore;
-
 /*!
  The `TrAnimation` protocol defines a set of methods and properties that are common to all types of animations. As an example the `TrAnimationGroup` only adds animations of objects that conform to this protocol.
  */
@@ -79,35 +77,5 @@
  Tells the receiver to begin the animation. This is done automatically when an animation is created, but you can use this to explicitly start it. Also use this if you have previously postponed the animation using `postponeAnimation`.
  */
 - (void)beginAnimation;
-
-@end
-
-@class TrCurve;
-@protocol TrAnimatable;
-
-/*!
- The `TrAnimation` is an abstract class used by animations that needs Core Animation as their animation technology.
- */
-@interface TrAnimation : NSObject <TrAnimation>
-
-///------------------------------------
-/// @name Getting Animation Information
-///------------------------------------
-
-/*!
- Returns the animated layer.
- */
-@property (weak,readonly,nonatomic) CALayer *layer;
-
-/*!
- The duration of the animation.
- */
-@property (nonatomic) NSTimeInterval duration;
-
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-                  curve:(TrCurve *)curve
-             completion:(void(^)(BOOL finished))completion;
 
 @end
