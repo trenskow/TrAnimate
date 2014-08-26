@@ -161,20 +161,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A10A32A618E2DB24000D4B49 /* Key-Path Animation */ = {
+		A10A32A618E2DB24000D4B49 /* Core Animation */ = {
 			isa = PBXGroup;
 			children = (
-				A11C786C17883A180000B420 /* Opacity */,
-				A11C786A17883A0A0000B420 /* Position */,
-				A11C786E17883AB70000B420 /* Scale */,
-				A11C786F17883ABF0000B420 /* Rotate */,
+				A1D5FCD719ACE5EA00C9EB4B /* Additions */,
+				A1D5FCD519ACE59300C9EB4B /* Custom Animations */,
 				A10A32A718E2DB5B000D4B49 /* TrLayerAnimation.h */,
 				A10A32A818E2DB5B000D4B49 /* TrLayerAnimation.m */,
 			);
-			name = "Key-Path Animation";
+			name = "Core Animation";
 			sourceTree = "<group>";
 		};
-		A10A32B418E2E646000D4B49 /* Additions */ = {
+		A10A32B418E2E646000D4B49 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				A1E6EA9F1913B55300E4F179 /* UIView+TrAnimateAdditions.h */,
@@ -182,7 +180,7 @@
 				A1E6EAA21913B5CE00E4F179 /* CALayer+TrAnimateAdditions.h */,
 				A1E6EAA31913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m */,
 			);
-			name = Additions;
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		A11C784A178839720000B420 = {
@@ -217,7 +215,9 @@
 		A11C7858178839720000B420 /* TrAnimate */ = {
 			isa = PBXGroup;
 			children = (
-				A11C789417883BBE0000B420 /* Custom Core Animation */,
+				A1D5FCD619ACE5C700C9EB4B /* Interpolation */,
+				A1525C9919A4DD9F00024B4A /* Curvature */,
+				A11C788217883B6E0000B420 /* Animation Group */,
 				A11C7865178839AC0000B420 /* Animations */,
 				A10BC9A217883E9800F354FC /* TrAnimate.h */,
 			);
@@ -236,10 +236,7 @@
 		A11C7865178839AC0000B420 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				A1525C9919A4DD9F00024B4A /* Curvature */,
-				A11C788217883B6E0000B420 /* Animation Group */,
-				A10A32B418E2E646000D4B49 /* Additions */,
-				A10A32A618E2DB24000D4B49 /* Key-Path Animation */,
+				A10A32A618E2DB24000D4B49 /* Core Animation */,
 				A1E6EA921912D96B00E4F179 /* Direct */,
 				A10D78AC19A274C40013E5F5 /* TrAnimatable.h */,
 				A11C7867178839FA0000B420 /* TrAnimation.h */,
@@ -299,34 +296,24 @@
 		A11C788617883B870000B420 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				A11C788717883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.h */,
-				A11C788817883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.m */,
-				A11C788917883B940000B420 /* NSArray+TrAnimationGroupAdditions.h */,
-				A11C788A17883B940000B420 /* NSArray+TrAnimationGroupAdditions.m */,
-				A11C788B17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.h */,
-				A11C788C17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.m */,
+				A1D5FCD919ACE62100C9EB4B /* Categories */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
 		};
-		A11C789417883BBE0000B420 /* Custom Core Animation */ = {
+		A11C789417883BBE0000B420 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A11C789817883BD50000B420 /* Additions */,
-				A11C789917883BE70000B420 /* TrInterpolatable.h */,
 				A11C789517883BD20000B420 /* TrCustomCurvedAnimation.h */,
 				A11C789617883BD20000B420 /* TrCustomCurvedAnimation.m */,
 			);
-			name = "Custom Core Animation";
+			name = "Custom Classes";
 			sourceTree = "<group>";
 		};
 		A11C789817883BD50000B420 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				A11C789A17883BE70000B420 /* NSValue+TrAnimateAdditions.h */,
-				A11C789B17883BE70000B420 /* NSValue+TrAnimateAdditions.m */,
-				A11C789C17883BE70000B420 /* NSNumber+TrAnimateAdditions.h */,
-				A11C789D17883BE70000B420 /* NSNumber+TrAnimateAdditions.m */,
+				A1D5FCD819ACE60D00C9EB4B /* Categories */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -347,6 +334,59 @@
 				A1876C2619A6753300C1639A /* TrFadeAnimation.m */,
 			);
 			name = Fade;
+			sourceTree = "<group>";
+		};
+		A1D5FCD519ACE59300C9EB4B /* Custom Animations */ = {
+			isa = PBXGroup;
+			children = (
+				A11C786C17883A180000B420 /* Opacity */,
+				A11C786A17883A0A0000B420 /* Position */,
+				A11C786E17883AB70000B420 /* Scale */,
+				A11C786F17883ABF0000B420 /* Rotate */,
+			);
+			name = "Custom Animations";
+			sourceTree = "<group>";
+		};
+		A1D5FCD619ACE5C700C9EB4B /* Interpolation */ = {
+			isa = PBXGroup;
+			children = (
+				A11C789817883BD50000B420 /* Additions */,
+				A11C789917883BE70000B420 /* TrInterpolatable.h */,
+			);
+			name = Interpolation;
+			sourceTree = "<group>";
+		};
+		A1D5FCD719ACE5EA00C9EB4B /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				A11C789417883BBE0000B420 /* Custom Classes */,
+				A10A32B418E2E646000D4B49 /* Categories */,
+			);
+			name = Additions;
+			sourceTree = "<group>";
+		};
+		A1D5FCD819ACE60D00C9EB4B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A11C789A17883BE70000B420 /* NSValue+TrAnimateAdditions.h */,
+				A11C789B17883BE70000B420 /* NSValue+TrAnimateAdditions.m */,
+				A11C789C17883BE70000B420 /* NSNumber+TrAnimateAdditions.h */,
+				A11C789D17883BE70000B420 /* NSNumber+TrAnimateAdditions.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		A1D5FCD919ACE62100C9EB4B /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A11C788717883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.h */,
+				A11C788817883B940000B420 /* NSMutableDictionary+TrAnimationGroupAdditions.m */,
+				A11C788917883B940000B420 /* NSArray+TrAnimationGroupAdditions.h */,
+				A11C788A17883B940000B420 /* NSArray+TrAnimationGroupAdditions.m */,
+				A11C788B17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.h */,
+				A11C788C17883B940000B420 /* NSMutableArray+TrAnimationGroupAdditions.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 		A1E6EA921912D96B00E4F179 /* Direct */ = {
