@@ -53,10 +53,34 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
  */
 @interface TrRotateAnimation : TrKeyPathAnimation
 
+/*!
+ Checks if a rotation animation is in progress on a `UIView` or `CALayer` instance.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to examine.
+ @param axis The axis on which the animation is rotating.
+ 
+ @return Returns `YES` if the `UIView` or `CALayer` has a rotation animation in progress.
+ */
++ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withAxis:(TrRotateAnimationAxis)axis;
+
 /// -------------------------
 /// @name Creating Animations
 /// -------------------------
 
+/*!
+ Creates and returns an animation that rotates around a specified axis.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param duration    The duration of the animation.
+ @param delay       The delay of the animation.
+ @param fromAngle   The angle to animate from.
+ @param toAngle     The angle to animate to.
+ @param axis        The axis of rotation.
+ @param curve       The curvature of the animation.
+ @param completion  A block that gets invokes when the animation completes.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -66,6 +90,19 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns an animation that rotates around a specified axis.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param duration    The duration of the animation.
+ @param delay       The delay of the animation.
+ @param fromAngle   The angle to animate from.
+ @param toAngle     The angle to animate to.
+ @param axis        The axis of rotation.
+ @param curve       The curvature of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -74,6 +111,18 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
                    axis:(TrRotateAnimationAxis)axis
                   curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns an animation that rotates around a specified axis.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param duration    The duration of the animation.
+ @param delay       The delay of the animation.
+ @param fromAngle   The angle to animate from.
+ @param toAngle     The angle to animate to.
+ @param axis        The axis of rotation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -81,12 +130,36 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
                 toAngle:(CGFloat)toAngle
                    axis:(TrRotateAnimationAxis)axis;
 
+/*!
+ Creates and returns an animation that rotates around a specified axis. Animation rotates around the Z-axis.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param duration    The duration of the animation.
+ @param delay       The delay of the animation.
+ @param fromAngle   The angle to animate from.
+ @param toAngle     The angle to animate to.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
               fromAngle:(CGFloat)fromAngle
                 toAngle:(CGFloat)toAngle;
 
+/*!
+ Creates and returns an animation that rotates around a specified axis. The rotation angle will animate from the current angle.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param duration    The duration of the animation.
+ @param delay       The delay of the animation.
+ @param toAngle     The angle to animate to.
+ @param axis        The axis of rotation.
+ @param curve       The curvature of the animation.
+ @param completion  A block that gets invokes when the animation completes.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -95,6 +168,18 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns an animation that rotates around a specified axis. The rotation angle will animate from the current angle.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param duration    The duration of the animation.
+ @param delay       The delay of the animation.
+ @param toAngle     The angle to animate to.
+ @param axis        The axis of rotation.
+ @param curve       The curvature of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -102,12 +187,33 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
                    axis:(TrRotateAnimationAxis)axis
                   curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns an animation that rotates around a specified axis. The rotation angle will animate from the current angle.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param duration    The duration of the animation.
+ @param delay       The delay of the animation.
+ @param toAngle     The angle to animate to.
+ @param axis        The axis of rotation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
                 toAngle:(CGFloat)toAngle
                    axis:(TrRotateAnimationAxis)axis;
 
+/*!
+ Creates and returns an animation that rotates around a specified axis. The rotation angle will animate from the current angle. Animation rotates around the Z-axis.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param duration    The duration of the animation.
+ @param delay       The delay of the animation.
+ @param toAngle     The angle to animate to.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay

@@ -31,7 +31,7 @@
 #import "TrKeyPathAnimation.h"
 
 /*!
- Specifies the origin of the position.
+ Specifies the anchor point of the position.
  */
 typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
 /*!
@@ -53,7 +53,7 @@ Automatically detect origin.
 };
 
 /*!
- The `TrPositionAnimation` moves a `UIView` or `CALayer`.
+ The `TrPositionAnimation` changes the positions a `UIView` or `CALayer`.
  */
 @interface TrPositionAnimation : TrKeyPathAnimation
 
@@ -61,12 +61,33 @@ Automatically detect origin.
 /// @name Examining Views and Layers
 /// --------------------------------
 
+/*!
+ Checks if a position animation is in progress on a `UIView` or `CALayer` instance.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to examine.
+ 
+ @return Returns `YES` if the `UIView` or `CALayer` has an move animation in progress.
+ */
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
 /// --------------------------
 /// @name Creating Animaitions
 /// --------------------------
 
+/*!
+ Creates and returns an animation that moves a `UIView` or `CALayer`.
+ 
+ @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param duration     The duration of the animation.
+ @param delay        The delay of the animation.
+ @param fromPosition The start position of the animation.
+ @param toPosition   The end position of the animation.
+ @param anchor       The anchor of position.
+ @param curve        The curvature of the animation.
+ @param completion   A block that gets invokes when animation completes.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -76,6 +97,19 @@ Automatically detect origin.
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns an animation that moves a `UIView` or `CALayer`.
+ 
+ @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param duration     The duration of the animation.
+ @param delay        The delay of the animation.
+ @param fromPosition The start position of the animation.
+ @param toPosition   The end position of the animation.
+ @param anchor       The anchor of position.
+ @param curve        The curvature of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -84,6 +118,18 @@ Automatically detect origin.
                  anchor:(TrPositionAnimationAnchor)anchor
                   curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns an animation that moves a `UIView` or `CALayer`.
+ 
+ @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param duration     The duration of the animation.
+ @param delay        The delay of the animation.
+ @param fromPosition The start position of the animation.
+ @param toPosition   The end position of the animation.
+ @param anchor       The anchor of position.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -91,12 +137,36 @@ Automatically detect origin.
              toPosition:(CGPoint)toPosition
                  anchor:(TrPositionAnimationAnchor)anchor;
 
+/*!
+ Creates and returns an animation that moves a `UIView` or `CALayer`.
+ 
+ @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param duration     The duration of the animation.
+ @param delay        The delay of the animation.
+ @param fromPosition The start position of the animation.
+ @param toPosition   The end position of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            fromPosition:(CGPoint)fromPosition
              toPosition:(CGPoint)toPosition;
 
+/*!
+ Creates and returns an animation that moves a `UIView` or `CALayer`. The animation position will animate from the current position.
+ 
+ @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param duration     The duration of the animation.
+ @param delay        The delay of the animation.
+ @param toPosition   The end position of the animation.
+ @param anchor       The anchor of position.
+ @param curve        The curvature of the animation.
+ @param completion   A block that gets invokes when animation completes.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -105,6 +175,18 @@ Automatically detect origin.
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns an animation that moves a `UIView` or `CALayer`. The animation position will animate from the current position.
+ 
+ @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param duration     The duration of the animation.
+ @param delay        The delay of the animation.
+ @param toPosition   The end position of the animation.
+ @param anchor       The anchor of position.
+ @param curve        The curvature of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -112,12 +194,33 @@ Automatically detect origin.
                  anchor:(TrPositionAnimationAnchor)anchor
                   curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns an animation that moves a `UIView` or `CALayer`. The animation position will animate from the current position.
+ 
+ @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param duration     The duration of the animation.
+ @param delay        The delay of the animation.
+ @param toPosition   The end position of the animation.
+ @param anchor       The anchor of position.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
              toPosition:(CGPoint)toPosition
                  anchor:(TrPositionAnimationAnchor)anchor;
 
+/*!
+ Creates and returns an animation that moves a `UIView` or `CALayer`. The animation position will animate from the current position.
+ 
+ @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param duration     The duration of the animation.
+ @param delay        The delay of the animation.
+ @param toPosition   The end position of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay

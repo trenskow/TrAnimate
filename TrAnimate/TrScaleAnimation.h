@@ -52,6 +52,19 @@
 /// @name Creating Animaitions
 /// --------------------------
 
+/*!
+ Creates and returns an animation that scales a `UIView` or `CALayer`.
+ 
+ @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param duration        The duration of the animation.
+ @param delay           The delay of the animation.
+ @param fromScaleFactor The scale factor to animate from.
+ @param toScaleFactor   The scale factor to animate to.
+ @param curve           The curvature of the animation.
+ @param completion      A block that gets invoked when the animation completes.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -60,6 +73,18 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns an animation that scales a `UIView` or `CALayer`.
+ 
+ @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param duration        The duration of the animation.
+ @param delay           The delay of the animation.
+ @param fromScaleFactor The scale factor to animate from.
+ @param toScaleFactor   The scale factor to animate to.
+ @param curve           The curvature of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -67,12 +92,35 @@
           toScaleFactor:(CGFloat)toScaleFactor
                   curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns an animation that scales a `UIView` or `CALayer`.
+ 
+ @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param duration        The duration of the animation.
+ @param delay           The delay of the animation.
+ @param fromScaleFactor The scale factor to animate from.
+ @param toScaleFactor   The scale factor to animate to.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
         fromScaleFactor:(CGFloat)fromScaleFactor
           toScaleFactor:(CGFloat)toScaleFactor;
 
+/*!
+ Creates and returns an animation that scales a `UIView` or `CALayer`. The animation scale will animate from the current scale.
+ 
+ @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param duration        The duration of the animation.
+ @param delay           The delay of the animation.
+ @param toScaleFactor   The scale factor to animate to.
+ @param curve           The curvature of the animation.
+ @param completion      A block that gets invoked when the animation completes.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -80,12 +128,33 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns an animation that scales a `UIView` or `CALayer`. The animation scale will animate from the current scale.
+ 
+ @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param duration        The duration of the animation.
+ @param delay           The delay of the animation.
+ @param toScaleFactor   The scale factor to animate to.
+ @param curve           The curvature of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
           toScaleFactor:(CGFloat)toScaleFactor
                   curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns an animation that scales a `UIView` or `CALayer`. The animation scale will animate from the current scale.
+ 
+ @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param duration        The duration of the animation.
+ @param delay           The delay of the animation.
+ @param toScaleFactor   The scale factor to animate to.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay

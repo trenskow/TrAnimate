@@ -53,6 +53,18 @@ typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
 /// @name Creating Animaitions
 /// --------------------------
 
+/*!
+ Creates and returns an animation that fades in or out a `UIView` or `CALayer`.
+
+ @param viewOrLayer The `UIView` or `CALayer` you want to fade.
+ @param duration    The duration of the fade.
+ @param delay       The delay before the fade begins.
+ @param direction   Indicates if the animation should fade in or out.
+ @param curve       A curvature for the animation.
+ @param completion  A block that gets invokes when the animation completes.
+
+ @return An fade animation ready to animate.
+*/
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -60,12 +72,35 @@ typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns an animation that fades in or out a `UIView` or `CALayer`.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to fade.
+ @param duration    The duration of the fade.
+ @param delay       The delay before the fade begins.
+ @param direction   Indicates if the animation should fade in or out.
+ @param curve       A curvature for the animation.
+ 
+ @return An fade animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
               direction:(TrFadeAnimationDirection)direction
                   curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns an animation that fades in or out a `UIView` or `CALayer`.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to fade.
+ @param duration    The duration of the fade.
+ @param delay       The delay before the fade begins.
+ @param direction   Indicates if the animation should fade in or out.
+ 
+ @discussion Creates an animation with a linear curvature to it.
+ 
+ @return An fade animation ready to animate.
+ */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
