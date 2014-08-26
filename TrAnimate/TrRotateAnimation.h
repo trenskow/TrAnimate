@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrKeyPathAnimation.h"
+#import "TrLayerAnimation.h"
 
 /*!
  Speciefies the rotation axis.
@@ -51,7 +51,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 /*!
  A animation that rotates a `UIView` or `CALayer` around an axis.
  */
-@interface TrRotateAnimation : TrKeyPathAnimation
+@interface TrRotateAnimation : TrLayerAnimation
 
 /*!
  Checks if a rotation animation is in progress on a `UIView` or `CALayer` instance.

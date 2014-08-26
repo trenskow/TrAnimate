@@ -28,12 +28,12 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrKeyPathAnimation.h"
+#import "TrLayerAnimation.h"
 
 /*!
  The `TrScaleAnimation` scales a `UIView` or `CALayer`.
  */
-@interface TrScaleAnimation : TrKeyPathAnimation
+@interface TrScaleAnimation : TrLayerAnimation
 
 /// --------------------------------
 /// @name Examining Views and Layers

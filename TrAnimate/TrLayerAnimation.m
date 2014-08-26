@@ -1,5 +1,5 @@
 //
-//  TrKeyPathAnimation.m
+//  TrLayerAnimation.m
 //  TrAnimate
 //
 //  Copyright (c) 2014, Kristian Trenskow All rights reserved.
@@ -35,9 +35,9 @@
 
 #import "TrAnimation+Private.h"
 
-#import "TrKeyPathAnimation.h"
+#import "TrLayerAnimation.h"
 
-@interface TrKeyPathAnimation () {
+@interface TrLayerAnimation () {
     
     NSString *_keyPath;
     id<TrInterpolatable> _fromValue;
@@ -47,7 +47,7 @@
 
 @end
 
-@implementation TrKeyPathAnimation
+@implementation TrLayerAnimation
 
 #pragma mark - Internal
 
@@ -97,7 +97,7 @@
     
     [viewOrLayer.animationLayer setValue:fromValue forKeyPath:keyPath];
     
-    TrKeyPathAnimation *animation = [super animate:viewOrLayer
+    TrLayerAnimation *animation = [super animate:viewOrLayer
                                           duration:duration
                                              delay:delay
                                              curve:curve

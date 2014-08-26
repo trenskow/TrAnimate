@@ -28,7 +28,7 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrKeyPathAnimation.h"
+#import "TrLayerAnimation.h"
 
 /*!
  Specifies the anchor point of the position.
@@ -55,7 +55,7 @@ Automatically detect origin.
 /*!
  The `TrPositionAnimation` changes the positions a `UIView` or `CALayer`.
  */
-@interface TrPositionAnimation : TrKeyPathAnimation
+@interface TrPositionAnimation : TrLayerAnimation
 
 /// --------------------------------
 /// @name Examining Views and Layers

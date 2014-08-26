@@ -28,12 +28,12 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrKeyPathAnimation.h"
+#import "TrLayerAnimation.h"
 
 /*!
  The `TrOpacityAnimation` class animates the opacity of a `UIView` or `CALayer`.
  */
-@interface TrOpacityAnimation : TrKeyPathAnimation
+@interface TrOpacityAnimation : TrLayerAnimation
 
 /// --------------------------------
 /// @name Examining Views and Layers

@@ -1,5 +1,5 @@
 //
-//  TrKeyPathAnimation.h
+//  TrLayerAnimation.h
 //  TrAnimate
 //
 //  Copyright (c) 2014, Kristian Trenskow All rights reserved.
@@ -34,9 +34,9 @@
 @protocol TrInterpolatable;
 
 /*!
- The `TrKeyPathAnimation` provides animation on any animatable property of CALayer. Use this animation if you need to do custom animations on a layer that is not directly implemented in TrAnimate as an explicit animation.
+ The `TrLayerAnimation` provides animation on any animatable property of CALayer. Use this animation if you need to do custom animations on a layer that is not directly implemented in TrAnimate as an explicit animation.
  */
-@interface TrKeyPathAnimation : TrAnimation
+@interface TrLayerAnimation : TrAnimation
 
 /// --------------------------------
 /// @name Examining Views and Layers
