@@ -63,7 +63,7 @@
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer {
     
-    return [self inProgressOn:viewOrLayer withKeyPath:@"position"];
+    return [self inProgressOn:viewOrLayer.presentedLayer withKeyPath:@"position"];
     
 }
 
@@ -79,7 +79,7 @@
     TrPositionAnimationAnchor useAnchor = [self anchorForViewOrLayer:viewOrLayer
                                                           withAnchor:anchor];
     
-    return [super animate:viewOrLayer
+    return [super animate:viewOrLayer.animationLayer
                  duration:duration
                     delay:delay
              layerKeyPath:@"position"

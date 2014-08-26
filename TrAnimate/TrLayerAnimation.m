@@ -28,6 +28,8 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "CALayer+TrAnimateAdditions.h"
+
 #import "TrCurve.h"
 #import "TrCustomCurvedAnimation.h"
 #import "TrAnimatable.h"
@@ -77,16 +79,16 @@
 
 #pragma mark - Creating Animation
 
-+ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withKeyPath:(NSString *)keyPath {
++ (BOOL)inProgressOn:(CALayer *)layer withKeyPath:(NSString *)keyPath {
     
     NSString *key = [NSString stringWithFormat:@"keyPathAnimation.%@", keyPath];
     
-    TrCustomCurvedAnimation *animation = (TrCustomCurvedAnimation *)[viewOrLayer.animationLayer animationForKey:key];
+    TrCustomCurvedAnimation *animation = (TrCustomCurvedAnimation *)[layer animationForKey:key];
     return (animation && [animation.keyPath isEqualToString:keyPath]);
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath
@@ -95,13 +97,13 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
-    [viewOrLayer.animationLayer setValue:fromValue forKeyPath:keyPath];
+    [layer setValue:fromValue forKeyPath:keyPath];
     
-    TrLayerAnimation *animation = [super animate:viewOrLayer
-                                          duration:duration
-                                             delay:delay
-                                             curve:curve
-                                        completion:completion];
+    TrLayerAnimation *animation = [super animate:layer
+                                        duration:duration
+                                           delay:delay
+                                           curve:curve
+                                      completion:completion];
     
     if (animation) {
         animation->_keyPath = keyPath;
@@ -113,7 +115,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath
@@ -121,7 +123,7 @@
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve {
     
-    return [self animate:viewOrLayer
+    return [self animate:layer
                 duration:duration
                    delay:delay
             layerKeyPath:keyPath
@@ -132,14 +134,14 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath
               fromValue:(id<TrInterpolatable>)fromValue
                 toValue:(id<TrInterpolatable>)toValue {
     
-    return [self animate:viewOrLayer
+    return [self animate:layer
                 duration:duration
                    delay:delay
             layerKeyPath:keyPath
@@ -150,7 +152,7 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath
@@ -158,25 +160,25 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
-    return [self animate:viewOrLayer
+    return [self animate:layer
                 duration:duration
                    delay:delay
             layerKeyPath:keyPath
-               fromValue:[viewOrLayer.presentedLayer valueForKeyPath:keyPath]
+               fromValue:[layer valueForKeyPath:keyPath]
                  toValue:toValue
                    curve:curve
               completion:completion];
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve {
     
-    return [self animate:viewOrLayer
+    return [self animate:layer
                 duration:duration
                    delay:delay
             layerKeyPath:keyPath
@@ -186,13 +188,13 @@
     
 }
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath
                 toValue:(id<TrInterpolatable>)toValue {
     
-    return [self animate:viewOrLayer
+    return [self animate:layer
                 duration:duration
                    delay:delay
             layerKeyPath:keyPath

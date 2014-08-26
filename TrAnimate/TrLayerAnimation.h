@@ -28,9 +28,10 @@
 //  ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //
 
+@import QuartzCore;
+
 #import "TrAnimation.h"
 
-@protocol TrAnimatable;
 @protocol TrInterpolatable;
 
 /*!
@@ -50,13 +51,13 @@
 *
 *  @return Returns `YES` if the `UIView` or `CALayer` is animating on the property of `keyPath`.
 */
-+ (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withKeyPath:(NSString *)keyPath;
++ (BOOL)inProgressOn:(CALayer *)layer withKeyPath:(NSString *)keyPath;
 
 /// -------------------------
 /// @name Creating Animations
 /// -------------------------
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath
@@ -65,7 +66,7 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath
@@ -73,14 +74,14 @@
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve;
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath
               fromValue:(id<TrInterpolatable>)fromValue
                 toValue:(id<TrInterpolatable>)toValue;
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath
@@ -88,14 +89,14 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve;
 
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
++ (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
            layerKeyPath:(NSString *)keyPath

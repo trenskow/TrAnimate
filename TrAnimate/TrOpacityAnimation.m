@@ -29,6 +29,7 @@
 //
 
 #import "NSNumber+TrAnimateAdditions.h"
+#import "CALayer+TrAnimateAdditions.h"
 
 #import "TrCurve.h"
 #import "TrAnimatable.h"
@@ -53,7 +54,7 @@
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer {
     
-    return [self inProgressOn:viewOrLayer withKeyPath:@"opacity"];
+    return [self inProgressOn:viewOrLayer.presentedLayer withKeyPath:@"opacity"];
     
 }
 
@@ -65,7 +66,7 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
-    return [super animate:viewOrLayer
+    return [super animate:viewOrLayer.animationLayer
                  duration:duration
                     delay:delay
              layerKeyPath:@"opacity"
@@ -83,7 +84,7 @@
               toOpacity:(CGFloat)toOpacity
                   curve:(TrCurve *)curve {
     
-    return [self animate:viewOrLayer
+    return [self animate:viewOrLayer.animationLayer
                 duration:duration
                    delay:delay
              fromOpacity:fromOpacity

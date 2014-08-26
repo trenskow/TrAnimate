@@ -29,6 +29,8 @@
 //
 
 #import "NSNumber+TrAnimateAdditions.h"
+#import "CALayer+TrAnimateAdditions.h"
+
 #import "TrAnimatable.h"
 
 #import "TrRotateAnimation.h"
@@ -52,7 +54,7 @@
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withAxis:(TrRotateAnimationAxis)axis {
     
-    return [super inProgressOn:viewOrLayer withKeyPath:[self keyPathForAxis:axis]];
+    return [super inProgressOn:viewOrLayer.presentedLayer withKeyPath:[self keyPathForAxis:axis]];
     
 }
 
@@ -65,7 +67,7 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
-    return [super animate:viewOrLayer
+    return [super animate:viewOrLayer.animationLayer
                  duration:duration
                     delay:delay
              layerKeyPath:[self keyPathForAxis:axis]

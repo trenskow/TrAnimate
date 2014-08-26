@@ -29,6 +29,7 @@
 //
 
 #import "NSNumber+TrAnimateAdditions.h"
+#import "CALayer+TrAnimateAdditions.h"
 
 #import "TrAnimatable.h"
 
@@ -40,7 +41,7 @@
 
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer {
     
-    return [self inProgressOn:viewOrLayer withKeyPath:@"transform.scale"];
+    return [self inProgressOn:viewOrLayer.presentedLayer withKeyPath:@"transform.scale"];
     
 }
 
@@ -52,7 +53,7 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
-    return [super animate:viewOrLayer
+    return [super animate:viewOrLayer.animationLayer
                  duration:duration
                     delay:delay
              layerKeyPath:@"transform.scale"
