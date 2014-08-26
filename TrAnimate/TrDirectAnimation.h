@@ -41,6 +41,20 @@
 /// @name Creating an Animation
 /// ---------------------------
 
+/*!
+ Creates and returns an animation that is driven by directly manipulating the key path of an object on every screen update.
+ 
+ @param object     The object which property you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property.
+ @param fromValue  The value from which the property will animate from.
+ @param toValue    The value from which the property will animate to.
+ @param curve      The curvature of the animation.
+ @param completion A block that gets invokes when the animation completes.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id)object
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -50,6 +64,19 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns an animation that is driven by directly manipulating the key path of an object on every screen update.
+ 
+ @param object     The object which property you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property.
+ @param fromValue  The value from which the property will animate from.
+ @param toValue    The value from which the property will animate to.
+ @param curve      The curvature of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id)object
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -58,6 +85,18 @@
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns an animation that is driven by directly manipulating the key path of an object on every screen update.
+ 
+ @param object     The object which property you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property.
+ @param fromValue  The value from which the property will animate from.
+ @param toValue    The value from which the property will animate to.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id)object
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -65,6 +104,19 @@
               fromValue:(id<TrInterpolatable>)fromValue
                 toValue:(id<TrInterpolatable>)toValue;
 
+/*!
+ Creates and returns an animation that is driven by directly manipulating the key path of an object on every screen update. The animation animates from the property's current value.
+ 
+ @param object     The object which property you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property.
+ @param toValue    The value from which the property will animate to.
+ @param curve      The curvature of the animation.
+ @param completion A block that gets invokes when the animation completes.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id)object
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -73,6 +125,18 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns an animation that is driven by directly manipulating the key path of an object on every screen update. The animation animates from the property's current value.
+ 
+ @param object     The object which property you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property.
+ @param toValue    The value from which the property will animate to.
+ @param curve      The curvature of the animation.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id)object
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
@@ -80,6 +144,17 @@
                 toValue:(id<TrInterpolatable>)toValue
                   curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns an animation that is driven by directly manipulating the key path of an object on every screen update. The animation animates from the property's current value.
+ 
+ @param object     The object which property you want to animate.
+ @param duration   The duration of the animation.
+ @param delay      The delay before the animation begins.
+ @param keyPath    The key path of the property.
+ @param toValue    The value from which the property will animate to.
+ 
+ @return An animation ready to animate.
+ */
 + (instancetype)animate:(id)object
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
