@@ -53,7 +53,7 @@
     
     id val = value;
     
-    NSAssert([val isKindOfClass:[NSNumber class]], @"NSNumber cannot transition to value of class %@", NSStringFromClass([NSNumber class]));
+    NSAssert([val isKindOfClass:[NSNumber class]], @"NSNumber cannot interpolate to value of class %@", NSStringFromClass([NSNumber class]));
     
     if (self.isKindOfFloat && ((NSNumber *)val).isKindOfFloat) {
         

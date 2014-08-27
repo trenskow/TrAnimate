@@ -198,9 +198,9 @@ typedef struct {
     
     id val = value;
     
-    NSAssert([val isKindOfClass:[NSValue class]], @"NSValue cannot transition to value of class %@", NSStringFromClass([val class]));
+    NSAssert([val isKindOfClass:[NSValue class]], @"NSValue cannot interpolate to value of class %@", NSStringFromClass([val class]));
     const char* valType = [val objCType];
-    NSAssert(0 == strcmp(valType, [self objCType]), @"NSValue of Obj-C type %s cannot transition to NSValue of Ojb-C type %s", [self objCType], valType);
+    NSAssert(0 == strcmp(valType, [self objCType]), @"NSValue of Obj-C type %s cannot interpolate to NSValue of Ojb-C type %s", [self objCType], valType);
     
     if (0 == strcmp(valType, @encode(CGPoint))) {
         
@@ -356,7 +356,7 @@ typedef struct {
         
     }
     
-    NSAssert(YES, @"NSValue cannot transition values of type %s", valType);
+    NSAssert(NO, @"NSValue cannot interpolate values of type %s", valType);
     return nil;
     
 }
