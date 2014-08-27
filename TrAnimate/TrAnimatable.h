@@ -31,11 +31,22 @@
 @import QuartzCore;
 
 /*!
- The `TrAnimatable` protocol is implemented by classes that are animatable. Currently TrAnimate implements this in `UIView` and `CALayer`.
+ The `TrAnimatable` protocol is implemented by classes that are animatable by Core Animation. Currently TrAnimate implements this in `UIView` and `CALayer`.
  */
 @protocol TrAnimatable <NSObject>
 
+@required
+/*!
+ Returns the animation layer. This layer is the actual layer being animated on an animatable object.
+ 
+ @discussion This is used by TrAnimate to determine the layer on which to apply animations on an animatable object.
+ */
 @property (nonatomic,readonly) CALayer *animationLayer;
+/*!
+ Returns the layer that holds the current visible state of `animationLayer`.
+ 
+ @discussion This is used by TrAnimate to get the current visible state of a layer.
+ */
 @property (nonatomic,readonly) CALayer *presentedLayer;
 
 @end
