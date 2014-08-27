@@ -29,11 +29,19 @@
 //
 
 /*!
- The `TrInterpolatable` is implemented by classes that are able to interpolate their value with other objects. Currently TrAnimate implements this in `NSNumber` and `NSValue`.
+ The `TrInterpolatable` is implemented by classes that are able to interpolate their value with other values. Currently TrAnimate implements this on `NSNumber` and `NSValue`.
  */
 @protocol TrInterpolatable
 
 @required
+/*!
+ Interpolate receiver with another value at a specific position.
+ 
+ @param value    The value to interpolate towards.
+ @param position The inbetween position of the interpolation between zero and one.
+ 
+ @return A new value with the interpolated result.
+ */
 - (id<TrInterpolatable>)interpolateWithValue:(id<TrInterpolatable>)value
                                   atPosition:(double)position;
 
