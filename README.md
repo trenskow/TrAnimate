@@ -14,7 +14,7 @@ There are three ways of incorporating TrAnimate into your project. First is to c
 
 ### Using CocoaPods
 
-See [cocoapods.org](cocoapods.org).
+See [cocoapods.org](http://cocoapods.org/).
 
 ### As a Framework or Module Using Git
 
