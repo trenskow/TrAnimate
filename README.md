@@ -117,39 +117,47 @@ All animations support custom animation curves. Curves are implemented using blo
 
 The build-in curves are:
 
-- linear
-- easeInQuad
-- easeOutQuad
-- easeInOutQuad
-- easeInCubic
-- easeOutCubic
-- easeInOutCubic
-- easeInQuart
-- easeOutQuart
-- easeInOutQuart
-- easeInQuint
-- easeOutQuint
-- easeInOutQuint
-- easeInSine
-- easeOutSine
-- easeInOutSine
-- easeInExpo
-- easeOutExpo
-- easeInOutExpo
-- easeInCirc
-- easeOutCirc
-- easeInOutCirc
-- easeInElastic
-- easeOutElastic
-- easeInOutElastic
-- easeInBack
-- easeOutBack
-- easeInOutBack
-- easeInBounce
-- easeOutBounce
-- easeInOutBounce
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/linear.png" style="width: 150px; height: 150px" alt="linear" />
 
-For a visual representation of the curves please see [easings.net](http://easings.net/).
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInQuad.png" style="width: 150px; height: 150px" alt="easeInQuad" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeOutQuad.png" style="width: 150px; height: 150px" alt="easeOutQuad" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInOutQuad.png" style="width: 150px; height: 150px" alt="easeInOutQuad" />
+
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInCubic.png" style="width: 150px; height: 150px" alt="easeInCubic" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeOutCubic.png" style="width: 150px; height: 150px" alt="easeOutCubic" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInOutCubic.png" style="width: 150px; height: 150px" alt="easeInOutCubic" />
+
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInQuart.png" style="width: 150px; height: 150px" alt="easeInQuart" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeOutQuart.png" style="width: 150px; height: 150px" alt="easeOutQuart" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInOutQuart.png" style="width: 150px; height: 150px" alt="easeInOutQuart" />
+
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInQuint.png" style="width: 150px; height: 150px" alt="easeInQuint" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeOutQuint.png" style="width: 150px; height: 150px" alt="easeOutQuint" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInOutQuint.png" style="width: 150px; height: 150px" alt="easeInOutQuint" />
+
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInSine.png" style="width: 150px; height: 150px" alt="easeInSine" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeOutSine.png" style="width: 150px; height: 150px" alt="easeOutSine" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInOutSine.png" style="width: 150px; height: 150px" alt="easeInOutSine" />
+
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInExpo.png" style="width: 150px; height: 150px" alt="easeInExpo" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeOutExpo.png" style="width: 150px; height: 150px" alt="easeOutExpo" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInOutExpo.png" style="width: 150px; height: 150px" alt="easeInOutExpo" />
+
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInCirc.png" style="width: 150px; height: 150px" alt="easeInCirc" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeOutCirc.png" style="width: 150px; height: 150px" alt="easeOutCirc" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInOutCirc.png" style="width: 150px; height: 150px" alt="easeInOutCirc" />
+
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInElastic.png" style="width: 150px; height: 150px" alt="easeInElastic" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeOutElastic.png" style="width: 150px; height: 150px" alt="easeOutElastic" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInOutElastic.png" style="width: 150px; height: 150px" alt="easeInOutElastic" />
+
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInBack.png" style="width: 150px; height: 150px" alt="easeInBack" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeOutBack.png" style="width: 150px; height: 150px" alt="easeOutBack" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInOutBack.png" style="width: 150px; height: 150px" alt="easeInOutBack" />
+
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInBounce.png" style="width: 150px; height: 150px" alt="easeInBounce" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeOutBounce.png" style="width: 150px; height: 150px" alt="easeOutBounce" />
+<img src="https://raw.githubusercontent.com/trenskow/TrAnimate/master/assets/curves/easeInOutBounce.png" style="width: 150px; height: 150px" alt="easeInOutBounce" />
 
 #### Custom Curves
 
