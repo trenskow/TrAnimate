@@ -34,7 +34,7 @@
 
 #import "TrAnimation.h"
 #import "TrCurve.h"
-#import "TrCustomCurvedAnimation.h"
+#import "TrBasicAnimation.h"
 #import "TrAnimatable.h"
 #import "TrInterpolatable.h"
 
@@ -98,13 +98,13 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Internal
 
-- (void)animationDidStart:(TrCustomCurvedAnimation *)anim {
+- (void)animationDidStart:(TrBasicAnimation *)anim {
     
     [self animationStarted];
     
 }
 
-- (void)animationDidStop:(TrCustomCurvedAnimation *)anim finished:(BOOL)flag {
+- (void)animationDidStop:(TrBasicAnimation *)anim finished:(BOOL)flag {
     
     [self animationCompleted:flag];
     
@@ -119,7 +119,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     
 }
 
-- (void)prepareAnimation:(TrCustomCurvedAnimation *)animation usingKey:(NSString *)key {
+- (void)prepareAnimation:(TrBasicAnimation *)animation usingKey:(NSString *)key {
     
 #if defined(TR_ANIMATION_VIEW_DEBUG)
     animation.duration = self.duration * 10.0;
@@ -172,7 +172,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 - (void)setupAnimations {
     
-    TrCustomCurvedAnimation *customAnimation = [TrCustomCurvedAnimation animationWithKeyPath:_keyPath];
+    TrBasicAnimation *customAnimation = [TrBasicAnimation animationWithKeyPath:_keyPath];
     customAnimation.fromValue = _fromValue;
     customAnimation.toValue = _toValue;
     
@@ -190,7 +190,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     
     NSString *key = [NSString stringWithFormat:@"keyPathAnimation.%@", keyPath];
     
-    TrCustomCurvedAnimation *animation = (TrCustomCurvedAnimation *)[layer animationForKey:key];
+    TrBasicAnimation *animation = (TrBasicAnimation *)[layer animationForKey:key];
     return (animation && [animation.keyPath isEqualToString:keyPath]);
     
 }

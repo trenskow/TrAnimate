@@ -1,5 +1,5 @@
 //
-//  TrCustomCurvedAnimation.h
+//  TrBasicAnimation.h
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
@@ -34,10 +34,28 @@
 
 @class TrCurve;
 
-@interface TrCustomCurvedAnimation : CAKeyframeAnimation
+/*!
+ The `TrBasicAnimation` class is a `CAAnimation` subclass that provides basic animation of a `CALayer` property. This class is much like Core Animation's `CABasicAnimation` except it allows for custom interpolation using `TrCurve`.
+ */
+@interface TrBasicAnimation : CAKeyframeAnimation
 
+/// --------------------------
+/// @name Interpolation values
+/// --------------------------
+
+/*!
+ Returns the curve used by the animation. Default is a linear curve.
+ */
 @property (copy,nonatomic) TrCurve *curve;
+
+/*!
+ The value at which the animation should begin.
+ */
 @property (nonatomic,strong) id<TrInterpolatable> fromValue;
+
+/*!
+ The value at which the animation ends.
+ */
 @property (nonatomic,strong) id<TrInterpolatable> toValue;
 
 @end

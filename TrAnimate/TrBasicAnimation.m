@@ -1,5 +1,5 @@
 //
-//  TrCustomCurvedAnimation.m
+//  TrBasicAnimation.m
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
@@ -30,9 +30,9 @@
 
 #import "TrCurve.h"
 
-#import "TrCustomCurvedAnimation.h"
+#import "TrBasicAnimation.h"
 
-@interface TrCustomCurvedAnimation () {
+@interface TrBasicAnimation () {
     
     TrCurve *_curve;
     
@@ -40,13 +40,13 @@
 
 @end
 
-@implementation TrCustomCurvedAnimation
+@implementation TrBasicAnimation
 
 #pragma mark - Creating an Animation
 
 + (instancetype)animationWithKeyPath:(NSString *)path {
     
-    TrCustomCurvedAnimation* animation = [super animationWithKeyPath:path];
+    TrBasicAnimation* animation = [super animationWithKeyPath:path];
     
     if (animation)
         animation.curve = [TrCurve linear];

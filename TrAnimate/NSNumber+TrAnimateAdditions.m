@@ -1,5 +1,5 @@
 //
-//  NSNumber+TrCustomCurvedAnimationAdditions.m
+//  NSNumber+TrBasicAnimationAdditions.m
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow

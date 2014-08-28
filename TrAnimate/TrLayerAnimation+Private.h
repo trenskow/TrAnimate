@@ -30,13 +30,13 @@
 
 #import "TrLayerAnimation.h"
 
-@class TrCustomCurvedAnimation;
+@class TrBasicAnimation;
 
 @interface TrLayerAnimation (Private)
 
 @property (copy,nonatomic,readonly) TrCurve *curve;
 
-- (void)prepareAnimation:(TrCustomCurvedAnimation *)animation
+- (void)prepareAnimation:(TrBasicAnimation *)animation
                 usingKey:(NSString *)key;
 
 - (void)animationStarted;
