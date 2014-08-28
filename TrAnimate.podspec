@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "TrAnimate"
-  s.version          = "1.0.2"
+  s.version          = "1.0.3"
   s.summary          = "An animation library for iOS."
   s.description      = <<-DESC
                        TrAnimate is an iOS animation library designed to make it easy to create complex animations without the need for Core Animation.
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.social_media_url = "https://twitter.com/trenskow"
 
   s.platform         = :ios, "6.0"
-  s.source           = { :git => "https://github.com/trenskow/TrAnimate.git", :tag => "1.0.2" }
+  s.source           = { :git => "https://github.com/trenskow/TrAnimate.git", :tag => "1.0.3" }
 
   s.source_files     = "TrAnimate/*.{h,m}"
 
