@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
 
   s.source_files     = "TrAnimate/*.{h,m}"
 
-  s.public_header_files = "TrAnimate.h/TrCurve.h", "TrAnimate/TrFadeAnimation.h", "TrAnimate/TrDirectAnimation.h", "TrAnimate/TrInterpolatable.h", "TrAnimate/CALayer+TrAnimateAdditions.h", "TrAnimate/TrScaleAnimation.h", "TrAnimate/TrOpacityAnimation.h", "TrAnimate/UIView+TrAnimateAdditions.h", "TrAnimate/TrAnimationGroup.h", "TrAnimate/TrAnimatable.h", "TrAnimate/TrRotateAnimation.h", "TrAnimate/TrAnimate.h", "TrAnimate/TrAnimation.h", "TrAnimate/NSNumber+TrAnimateAdditions.h", "TrAnimate/NSValue+TrAnimateAdditions.h", "TrAnimate/TrPositionAnimation.h", "TrAnimate/TrLayerAnimation.h"
+  s.public_header_files = "TrAnimate/TrCurve.h", "TrAnimate/TrFadeAnimation.h", "TrAnimate/TrDirectAnimation.h", "TrAnimate/TrInterpolatable.h", "TrAnimate/CALayer+TrAnimateAdditions.h", "TrAnimate/TrScaleAnimation.h", "TrAnimate/TrOpacityAnimation.h", "TrAnimate/UIView+TrAnimateAdditions.h", "TrAnimate/TrAnimationGroup.h", "TrAnimate/TrAnimatable.h", "TrAnimate/TrRotateAnimation.h", "TrAnimate/TrAnimate.h", "TrAnimate/TrAnimation.h", "TrAnimate/NSNumber+TrAnimateAdditions.h", "TrAnimate/NSValue+TrAnimateAdditions.h", "TrAnimate/TrPositionAnimation.h", "TrAnimate/TrLayerAnimation.h"
   
   s.framework  = "QuartzCore", "UIKit", "Foundation"
   s.requires_arc = true
