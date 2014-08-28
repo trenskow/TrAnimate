@@ -42,7 +42,7 @@
 
 const void *TrAnimationLayerKey;
 
-NSString *const TrAnimationKey = @"TrAnimationKey";
+NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
 @interface TrLayerAnimation ()
 
@@ -129,7 +129,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
     
     animation.curve = self.curve;
     
-    [animation setValue:key forKey:TrAnimationKey];
+    [animation setValue:key forKey:TrLayerAnimationKey];
     
     animation.delegate = self;
     
@@ -180,7 +180,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
                                                atPosition:[self.curve transform:1.0]]
               forKeyPath:_keyPath];
     
-    [self prepareAnimation:customAnimation usingKey:[NSString stringWithFormat:@"keyPathAnimation.%@", _keyPath]];
+    [self prepareAnimation:customAnimation usingKey:[NSString stringWithFormat:@"layerAnimation.%@", _keyPath]];
     
 }
 
@@ -188,7 +188,7 @@ NSString *const TrAnimationKey = @"TrAnimationKey";
 
 + (BOOL)inProgressOn:(CALayer *)layer withKeyPath:(NSString *)keyPath {
     
-    NSString *key = [NSString stringWithFormat:@"keyPathAnimation.%@", keyPath];
+    NSString *key = [NSString stringWithFormat:@"layerAnimation.%@", keyPath];
     
     TrBasicAnimation *animation = (TrBasicAnimation *)[layer animationForKey:key];
     return (animation && [animation.keyPath isEqualToString:keyPath]);
