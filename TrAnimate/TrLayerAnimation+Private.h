@@ -1,5 +1,5 @@
 //
-//  TrAnimationSubclass.h
+//  TrLayerAnimation+Private.h
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
