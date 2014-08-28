@@ -22,7 +22,7 @@
 
 /* Begin PBXBuildFile section */
 		A10A32A918E2DB5B000D4B49 /* TrLayerAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A10A32A818E2DB5B000D4B49 /* TrLayerAnimation.m */; };
-		A10D78DA19A279530013E5F5 /* TrCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D78D819A279530013E5F5 /* TrCurve.h */; };
+		A10D78DA19A279530013E5F5 /* TrCurve.h in Headers */ = {isa = PBXBuildFile; fileRef = A10D78D819A279530013E5F5 /* TrCurve.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A10D78DB19A279530013E5F5 /* TrCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = A10D78D919A279530013E5F5 /* TrCurve.m */; };
 		A10D78DC19A279530013E5F5 /* TrCurve.m in Sources */ = {isa = PBXBuildFile; fileRef = A10D78D919A279530013E5F5 /* TrCurve.m */; };
 		A1145CFB194EFA7D001B0108 /* NSValue+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A11C789B17883BE70000B420 /* NSValue+TrAnimateAdditions.m */; };
@@ -672,7 +672,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = TrAnimate/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -708,7 +708,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = TrAnimate/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
