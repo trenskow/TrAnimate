@@ -39,15 +39,13 @@ typedef struct {
     CGFloat w;
 } NSValueQuaternion;
 
+inline CGFloat interpolate(CGFloat val1, CGFloat val2, CGFloat p) {
+    return (val2 - val1) * p + val1;
+}
+
 @implementation NSValue (TrAnimateAdditions)
 
 #pragma mark - CATransform3D Helper Methods
-
-- (CGFloat)interpolateFromSource:(CGFloat)source dest:(CGFloat)dest progress:(CGFloat)progress {
-    
-    return (dest - source) * progress + source;
-    
-}
 
 - (NSValueQuaternion)matrixQuaternion:(CATransform3D)m {
     
@@ -207,26 +205,25 @@ typedef struct {
         CGPoint val1 = [self CGPointValue];
         CGPoint val2 = [val CGPointValue];
         
-        return [NSValue valueWithCGPoint:CGPointMake(((val2.x - val1.x) * position) + val1.x,
-                                                     ((val2.y - val1.y) * position) + val1.y)];
+        return [NSValue valueWithCGPoint:CGPointMake(interpolate(val1.x, val2.x, position),
+                                                     interpolate(val1.y, val2.y, position))];
         
     } else if (0 == strcmp(valType, @encode(CGSize))) {
         
         CGSize val1 = [self CGSizeValue];
         CGSize val2 = [val CGSizeValue];
         
-        return [NSValue valueWithCGSize:CGSizeMake(((val2.width - val1.width) * position) + val1.width,
-                                                   ((val2.height - val1.height) * position) + val1.height)];
+        return [NSValue valueWithCGSize:CGSizeMake(interpolate(val1.width, val2.width, position),
+                                                   interpolate(val1.height, val2.height, position))];
         
     } else if (0 == strcmp(valType, @encode(CGRect))) {
         
         CGRect val1 = [self CGRectValue];
         CGRect val2 = [val CGRectValue];
         
-        return [NSValue valueWithCGRect:CGRectMake(((val2.origin.x - val1.origin.x) * position) + val1.origin.x,
-                                                   ((val2.origin.y - val1.origin.y) * position) + val1.origin.y,
-                                                   ((val2.size.width - val1.size.width) * position) + val1.size.width,
-                                                   ((val2.size.height - val1.size.height) * position) + val1.size.height)];
+        return [NSValue valueWithCGRect:CGRectMake(interpolate(val1.origin.x, val2.origin.x, position),
+                                                   interpolate(val1.origin.y, val2.origin.y, position),
+                                                   interpolate(val1.size.width, val2.size.width, position),
         
     } else if (0 == strcmp(valType, @encode(CATransform3D))) {
         
@@ -249,9 +246,9 @@ typedef struct {
         to.y = toTf.m24;
         to.z = toTf.m34;
         
-        CGFloat vTX = [self interpolateFromSource:from.x dest:to.x progress:position];
-        CGFloat vTY = [self interpolateFromSource:from.y dest:to.y progress:position];
-        CGFloat vTZ = [self interpolateFromSource:from.z dest:to.z progress:position];
+        CGFloat vTX = interpolate(from.x, to.x, position);
+        CGFloat vTY = interpolate(from.y, to.y, position);
+        CGFloat vTZ = interpolate(from.z, to.z, position);
         
         NSValueQuaternion fromS;
         NSValueQuaternion toS;
@@ -266,9 +263,9 @@ typedef struct {
         
         NSValueQuaternion vS;
         
-        vS.x = [self interpolateFromSource:fromS.x dest:toS.x progress:position];
-        vS.y = [self interpolateFromSource:fromS.y dest:toS.y progress:position];
-        vS.z = [self interpolateFromSource:fromS.z dest:toS.z progress:position];
+        vS.x = interpolate(fromS.x, toS.x, position);
+        vS.y = interpolate(fromS.y, toS.y, position);
+        vS.z = interpolate(fromS.z, toS.z, position);
         
         CATransform3D fromRotation;
         
