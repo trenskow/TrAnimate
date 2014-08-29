@@ -1,3 +1,6 @@
 .DS_Store
 xcuserdata
-doc/
+doc/*
+!doc
+/doc/*
+!doc/assets
