@@ -34,6 +34,16 @@
 
 /*!
  Category of `NSValue` that implements the [TrInterpolatable](TrInterpolatable) protocol.
+ 
+ ## Interpolatable Types
+ 
+ - `CGFloat`
+ - `CGPoint`
+ - `CGSize`
+ - `CGRect`
+ - `CGVector`
+ - `CATransform3D`
+ 
  */
 @interface NSValue (TrAnimateAdditions) <TrInterpolatable>
 

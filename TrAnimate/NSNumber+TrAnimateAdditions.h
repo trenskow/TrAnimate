@@ -34,6 +34,13 @@
 
 /*!
  Category of `NSNumber` that implements the `TrInterpolatable` protocol.
+ 
+ ## Interpolatable Types
+ 
+ - `CGFloat`
+ - `float`
+ - `double`
+ 
  */
 @interface NSNumber (TrAnimateAdditions) <TrInterpolatable>
 
