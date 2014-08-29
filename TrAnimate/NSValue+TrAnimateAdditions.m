@@ -224,6 +224,15 @@ inline CGFloat interpolate(CGFloat val1, CGFloat val2, CGFloat p) {
         return [NSValue valueWithCGRect:CGRectMake(interpolate(val1.origin.x, val2.origin.x, position),
                                                    interpolate(val1.origin.y, val2.origin.y, position),
                                                    interpolate(val1.size.width, val2.size.width, position),
+                                                   interpolate(val1.size.height, val2.size.height, position))];
+        
+    } else if (0 == strcmp(valType, @encode(CGVector))) {
+        
+        CGVector val1 = [self CGVectorValue];
+        CGVector val2 = [val CGVectorValue];
+        
+        return [NSValue valueWithCGVector:CGVectorMake(interpolate(val1.dx, val2.dx, position),
+                                                       interpolate(val1.dy, val2.dy, position))];
         
     } else if (0 == strcmp(valType, @encode(CATransform3D))) {
         
