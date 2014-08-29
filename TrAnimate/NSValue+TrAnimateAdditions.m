@@ -39,7 +39,7 @@ typedef struct {
     CGFloat w;
 } NSValueQuaternion;
 
-inline CGFloat interpolate(CGFloat val1, CGFloat val2, CGFloat p) {
+static inline CGFloat interpolate(CGFloat val1, CGFloat val2, CGFloat p) {
     return (val2 - val1) * p + val1;
 }
 
