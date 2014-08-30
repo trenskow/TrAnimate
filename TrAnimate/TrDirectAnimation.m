@@ -72,6 +72,8 @@ const void *TrDirectAnimationKey;
     
     if ((self = [super init])) {
         
+        [[self class] cancelAnimationOn:object withKeyPath:keyPath];
+        
         self.object = object;
         self.keyPath = keyPath;
         self.duration = duration;
@@ -81,7 +83,9 @@ const void *TrDirectAnimationKey;
         self.curve = (curve ?: [TrCurve linear]);
         self.completionBlock = [completion copy];
         
-        objc_setAssociatedObject(_object, &TrDirectAnimationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(self.object, &TrDirectAnimationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        
+        [self performSelector:@selector(beginAnimation) withObject:nil afterDelay:0.0 inModes:@[NSRunLoopCommonModes]];
         
     }
     
@@ -178,18 +182,14 @@ const void *TrDirectAnimationKey;
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
-    TrDirectAnimation *animation = [[self alloc] initWithObject:object
-                                                       duration:duration
-                                                          delay:delay
-                                                        keyPath:keyPath
-                                                      fromValue:fromValue
-                                                        toValue:toValue
-                                                          curve:curve
-                                                     completion:completion];
-    
-    [animation performSelector:@selector(beginAnimation) withObject:nil afterDelay:0.0 inModes:@[NSRunLoopCommonModes]];
-    
-    return animation;
+    return [[self alloc] initWithObject:object
+                               duration:duration
+                                  delay:delay
+                                keyPath:keyPath
+                              fromValue:fromValue
+                                toValue:toValue
+                                  curve:curve
+                             completion:completion];
     
 }
 
