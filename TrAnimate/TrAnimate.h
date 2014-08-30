@@ -58,3 +58,5 @@ FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 #import "TrDirectAnimation.h"
 
 #import "TrAnimationGroup.h"
+
+#import "TrPopInAnimation.h"
