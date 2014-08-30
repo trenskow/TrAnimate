@@ -81,7 +81,7 @@
 /// -------------------------
 
 /*!
- Creates and returns an animation that animates the key path of a layer.
+ Creates and returns an animation that animates the key path of a `CALayer` object.
  
  @param layer      The `CALayer` you want to animate.
  @param duration   The duration of the animation.
@@ -104,7 +104,7 @@
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates and returns an animation that animates the key path of a layer.
+ Creates and returns an animation that animates the key path of a `CALayer` object.
  
  @param layer      The `CALayer` you want to animate.
  @param duration   The duration of the animation.
@@ -125,7 +125,7 @@
                   curve:(TrCurve *)curve;
 
 /*!
- Creates and returns an animation that animates the key path of a layer.
+ Creates and returns an animation that animates the key path of a `CALayer` object.
  
  @param layer      The `CALayer` you want to animate.
  @param duration   The duration of the animation.
@@ -144,7 +144,7 @@
                 toValue:(id<TrInterpolatable>)toValue;
 
 /*!
- Creates and returns an animation that animates the key path of a layer. The animation animates from the key path's current value.
+ Creates and returns an animation that animates the key path of a `CALayer` object. The animation animates from the key path's current value.
  
  @param layer      The `CALayer` you want to animate.
  @param duration   The duration of the animation.
@@ -165,7 +165,7 @@
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates and returns an animation that animates the key path of a layer. The animation animates from the key path's current value.
+ Creates and returns an animation that animates the key path of a `CALayer` object. The animation animates from the key path's current value.
  
  @param layer      The `CALayer` you want to animate.
  @param duration   The duration of the animation.
@@ -184,7 +184,7 @@
                   curve:(TrCurve *)curve;
 
 /*!
- Creates and returns an animation that animates the key path of a layer. The animation animates from the key path's current value.
+ Creates and returns an animation that animates the key path of a `CALayer` object. The animation animates from the key path's current value.
  
  @param layer      The `CALayer` you want to animate.
  @param duration   The duration of the animation.

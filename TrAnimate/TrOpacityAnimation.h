@@ -31,7 +31,7 @@
 #import "TrLayerAnimation.h"
 
 /*!
- The `TrOpacityAnimation` class animates the opacity of a `UIView` or `CALayer`.
+ The `TrOpacityAnimation` class animates the opacity of a `UIView` or `CALayer` object.
  */
 @interface TrOpacityAnimation : TrLayerAnimation
 
@@ -47,7 +47,7 @@
 + (void)cancelAnimationOn:(id<TrAnimatable>)viewOrLayer;
 
 /*!
- Checks if a opacity animation is in progress on a `UIView` or `CALayer` instance.
+ Checks if a opacity animation is in progress on a `UIView` or `CALayer` object.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to examine.
  
@@ -60,7 +60,7 @@
 /// -------------------------
 
 /*!
- Creates an returns an animation that changes the opacity of a `UIView` or `CALayer`.
+ Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -81,7 +81,7 @@
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates an returns an animation that changes the opacity of a `UIView` or `CALayer`.
+ Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -100,7 +100,7 @@
                   curve:(TrCurve *)curve;
 
 /*!
- Creates an returns an animation that changes the opacity of a `UIView` or `CALayer`.
+ Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -117,7 +117,7 @@
               toOpacity:(CGFloat)toOpacity;
 
 /*!
- Creates an returns an animation that changes the opacity of a `UIView` or `CALayer`. The animation opacity will animate from the current opacity.
+ Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object. The animation opacity will animate from the current opacity.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -138,7 +138,7 @@
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates an returns an animation that changes the opacity of a `UIView` or `CALayer`. The animation opacity will animate from the current opacity.
+ Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object. The animation opacity will animate from the current opacity.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -157,7 +157,7 @@
                   curve:(TrCurve *)curve;
 
 /*!
- Creates an returns an animation that changes the opacity of a `UIView` or `CALayer`. The animation opacity will animate from the current opacity.
+ Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object. The animation opacity will animate from the current opacity.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.

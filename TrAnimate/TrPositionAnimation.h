@@ -59,7 +59,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
 + (void)cancelAnimationOn:(id<TrAnimatable>)viewOrLayer;
 
 /*!
- Checks if a position animation is in progress on a `UIView` or `CALayer` instance.
+ Checks if a position animation is in progress on a `UIView` or `CALayer` object.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to examine.
  
@@ -72,7 +72,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
 /// -------------------------
 
 /*!
- Creates and returns an animation that moves a `UIView` or `CALayer`.
+ Creates and returns an animation that moves a `UIView` or `CALayer` object.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
@@ -95,7 +95,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates and returns an animation that moves a `UIView` or `CALayer`.
+ Creates and returns an animation that moves a `UIView` or `CALayer` object.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
@@ -116,7 +116,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
                   curve:(TrCurve *)curve;
 
 /*!
- Creates and returns an animation that moves a `UIView` or `CALayer`.
+ Creates and returns an animation that moves a `UIView` or `CALayer` object.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
@@ -135,7 +135,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
                  anchor:(TrPositionAnimationAnchor)anchor;
 
 /*!
- Creates and returns an animation that moves a `UIView` or `CALayer`.
+ Creates and returns an animation that moves a `UIView` or `CALayer` object.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
@@ -152,7 +152,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
              toPosition:(CGPoint)toPosition;
 
 /*!
- Creates and returns an animation that moves a `UIView` or `CALayer`. The animation position will animate from the current position.
+ Creates and returns an animation that moves a `UIView` or `CALayer` object. The animation position will animate from the current position.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
@@ -173,7 +173,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates and returns an animation that moves a `UIView` or `CALayer`. The animation position will animate from the current position.
+ Creates and returns an animation that moves a `UIView` or `CALayer` object. The animation position will animate from the current position.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
@@ -192,7 +192,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
                   curve:(TrCurve *)curve;
 
 /*!
- Creates and returns an animation that moves a `UIView` or `CALayer`. The animation position will animate from the current position.
+ Creates and returns an animation that moves a `UIView` or `CALayer` object. The animation position will animate from the current position.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.
@@ -209,7 +209,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
                  anchor:(TrPositionAnimationAnchor)anchor;
 
 /*!
- Creates and returns an animation that moves a `UIView` or `CALayer`. The animation position will animate from the current position.
+ Creates and returns an animation that moves a `UIView` or `CALayer` object. The animation position will animate from the current position.
  
  @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
  @param duration     The duration of the animation.

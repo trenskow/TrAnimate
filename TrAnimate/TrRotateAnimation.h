@@ -60,7 +60,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 + (void)cancelAnimationOn:(id<TrAnimatable>)viewOrLayer withAxis:(TrRotateAnimationAxis)axis;
 
 /*!
- Checks if a rotation animation is in progress on a `UIView` or `CALayer` instance.
+ Checks if a rotation animation is in progress on a `UIView` or `CALayer` object.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to examine.
  @param axis The axis on which the animation is rotating.
@@ -74,7 +74,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 /// -------------------------
 
 /*!
- Creates and returns an animation that rotates around a specified axis.
+ Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -97,7 +97,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates and returns an animation that rotates around a specified axis.
+ Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -118,7 +118,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
                   curve:(TrCurve *)curve;
 
 /*!
- Creates and returns an animation that rotates around a specified axis.
+ Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -137,7 +137,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
                    axis:(TrRotateAnimationAxis)axis;
 
 /*!
- Creates and returns an animation that rotates around a specified axis. Animation rotates around the Z-axis.
+ Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis. Animation rotates around the Z-axis.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -154,7 +154,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
                 toAngle:(CGFloat)toAngle;
 
 /*!
- Creates and returns an animation that rotates around a specified axis. The rotation angle will animate from the current angle.
+ Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis. The rotation angle will animate from the current angle.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -175,7 +175,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates and returns an animation that rotates around a specified axis. The rotation angle will animate from the current angle.
+ Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis. The rotation angle will animate from the current angle.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -194,7 +194,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
                   curve:(TrCurve *)curve;
 
 /*!
- Creates and returns an animation that rotates around a specified axis. The rotation angle will animate from the current angle.
+ Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis. The rotation angle will animate from the current angle.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.
@@ -211,7 +211,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
                    axis:(TrRotateAnimationAxis)axis;
 
 /*!
- Creates and returns an animation that rotates around a specified axis. The rotation angle will animate from the current angle. Animation rotates around the Z-axis.
+ Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis. The rotation angle will animate from the current angle. Animation rotates around the Z-axis.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to animate.
  @param duration    The duration of the animation.

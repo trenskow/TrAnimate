@@ -31,7 +31,7 @@
 #import "TrLayerAnimation.h"
 
 /*!
- The `TrScaleAnimation` scales a `UIView` or `CALayer`.
+ The `TrScaleAnimation` scales a `UIView` or `CALayer` object.
  */
 @interface TrScaleAnimation : TrLayerAnimation
 
@@ -47,7 +47,7 @@
 + (void)cancelAnimationOn:(id<TrAnimatable>)viewOrLayer;
 
 /*!
- Checks if a scale animation is in progress on a `UIView` or `CALayer` instance.
+ Checks if a scale animation is in progress on a `UIView` or `CALayer` object.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to examine.
  
@@ -60,7 +60,7 @@
 /// -------------------------
 
 /*!
- Creates and returns an animation that scales a `UIView` or `CALayer`.
+ Creates and returns an animation that scales a `UIView` or `CALayer` object.
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.
@@ -81,7 +81,7 @@
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates and returns an animation that scales a `UIView` or `CALayer`.
+ Creates and returns an animation that scales a `UIView` or `CALayer` object.
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.
@@ -100,7 +100,7 @@
                   curve:(TrCurve *)curve;
 
 /*!
- Creates and returns an animation that scales a `UIView` or `CALayer`.
+ Creates and returns an animation that scales a `UIView` or `CALayer` object.
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.
@@ -117,7 +117,7 @@
           toScaleFactor:(CGFloat)toScaleFactor;
 
 /*!
- Creates and returns an animation that scales a `UIView` or `CALayer`. The animation scale will animate from the current scale.
+ Creates and returns an animation that scales a `UIView` or `CALayer` object. The animation scale will animate from the current scale.
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.
@@ -136,7 +136,7 @@
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates and returns an animation that scales a `UIView` or `CALayer`. The animation scale will animate from the current scale.
+ Creates and returns an animation that scales a `UIView` or `CALayer` object. The animation scale will animate from the current scale.
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.
@@ -153,7 +153,7 @@
                   curve:(TrCurve *)curve;
 
 /*!
- Creates and returns an animation that scales a `UIView` or `CALayer`. The animation scale will animate from the current scale.
+ Creates and returns an animation that scales a `UIView` or `CALayer` object. The animation scale will animate from the current scale.
  
  @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
  @param duration        The duration of the animation.

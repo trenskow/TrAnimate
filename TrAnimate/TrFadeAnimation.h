@@ -41,7 +41,7 @@ typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
 };
 
 /*!
- The `TrFadeAnimation` fades in or out a `UIView` or `CALayer`.
+ The `TrFadeAnimation` fades a `UIView` or `CALayer` object.
  */
 @interface TrFadeAnimation : TrOpacityAnimation
 
@@ -50,7 +50,7 @@ typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
 /// -------------------------
 
 /*!
- Creates and returns an animation that fades in or out a `UIView` or `CALayer`.
+ Creates and returns an animation that fades a `UIView` or `CALayer` object.
 
  @param viewOrLayer The `UIView` or `CALayer` you want to fade.
  @param duration    The duration of the fade.
@@ -69,7 +69,7 @@ typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates and returns an animation that fades in or out a `UIView` or `CALayer`.
+ Creates and returns an animation that fades a `UIView` or `CALayer` object.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to fade.
  @param duration    The duration of the fade.
@@ -86,7 +86,7 @@ typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
                   curve:(TrCurve *)curve;
 
 /*!
- Creates and returns an animation that fades in or out a `UIView` or `CALayer`.
+ Creates and returns an animation that fades a `UIView` or `CALayer` object.
  
  @param viewOrLayer The `UIView` or `CALayer` you want to fade.
  @param duration    The duration of the fade.
