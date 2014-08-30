@@ -8,6 +8,7 @@
 
 #import "TrAnimatable.h"
 
+#import "TrCurve.h"
 #import "TrScaleAnimation.h"
 #import "TrFadeAnimation.h"
 

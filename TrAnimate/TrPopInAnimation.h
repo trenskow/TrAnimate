@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Kristian Trenskow. All rights reserved.
 //
 
-#import <TrAnimate/TrAnimate.h>
+#import "TrAnimationGroup.h"
 
 @protocol TrAnimatable;
 
