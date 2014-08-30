@@ -32,14 +32,6 @@
 
 #import "TrBasicAnimation.h"
 
-@interface TrBasicAnimation () {
-    
-    TrCurve *_curve;
-    
-}
-
-@end
-
 @implementation TrBasicAnimation
 
 #pragma mark - Creating an Animation
