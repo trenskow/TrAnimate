@@ -40,17 +40,16 @@
 const char TrAnimationGroupKey;
 char TrAnimationGroupObserverContext;
 
-@interface TrAnimationGroup () {
-    
-    NSMutableArray *_animations;
-    void (^_completion)(BOOL finished);
-    BOOL _animationFinished;
-    BOOL _beginsImmediately;
-    
-}
+@interface TrAnimationGroup ()
+
 @property (nonatomic,getter = isAnimating) BOOL animating;
 @property (nonatomic,getter = isComplete) BOOL complete;
 @property (nonatomic,getter = hasFinished) BOOL finished;
+
+@property (nonatomic) NSMutableArray *animations;
+@property (nonatomic,copy) void (^completionBlock)(BOOL finished);
+@property (nonatomic) BOOL animationFinished;
+@property (nonatomic) BOOL beginsImmediately;
 
 @end
 
@@ -62,10 +61,10 @@ char TrAnimationGroupObserverContext;
     
     if ((self = [super init])) {
         
-        _animations = [[NSMutableArray alloc] init];
-        _completion = [completion copy];
+        self.animations = [[NSMutableArray alloc] init];
+        self.completionBlock = [completion copy];
         
-        _animationFinished = YES;
+        self.animationFinished = YES;
         
         for (id<TrAnimation> animation in animations)
             [self addAnimation:animation animateAfter:nil];
@@ -130,7 +129,7 @@ char TrAnimationGroupObserverContext;
         /* Tell animation to postpone it's animation so we can manage this in the group */
         [animation postponeAnimation];
         
-        [_animations addObject:[NSMutableDictionary dictionaryWithAnimation:animation animatedAfter:animateAfter]];
+        [self.animations addObject:[NSMutableDictionary dictionaryWithAnimation:animation animatedAfter:animateAfter]];
         
         /* Add observer for when animation completes */
         [(id)animation addObserver:self forKeyPath:@"complete" options:0 context:&TrAnimationGroupObserverContext];
@@ -153,10 +152,10 @@ char TrAnimationGroupObserverContext;
     /* Start by cancelling any scheduled calls */
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(beginAnimation) object:nil];
     
-    if ([_animations count] > 0) {
+    if ([self.animations count] > 0) {
         
         /* Create a copy in order to prevent mutation exceptions while enumerating */
-        NSArray *animations = [_animations copy];
+        NSArray *animations = [self.animations copy];
         
         for (NSMutableDictionary *a in animations)
             if (!a.animatedAfter && !a.animation.isAnimating)
@@ -164,11 +163,11 @@ char TrAnimationGroupObserverContext;
         
     } else {
         
-        if (_completion)
-            _completion(_animationFinished);
+        if (self.completionBlock)
+            self.completionBlock(self.animationFinished);
         
+        self.finished = self.animationFinished;
         self.complete = YES;
-        self.finished = _animationFinished;
         
     }
     
@@ -182,8 +181,8 @@ char TrAnimationGroupObserverContext;
 
 - (void)cancel {
     
-    while ([_animations count] > 0)
-        [[_animations[0] animation] cancel];
+    while ([self.animations count] > 0)
+        [[self.animations[0] animation] cancel];
     
 }
 
@@ -194,7 +193,7 @@ char TrAnimationGroupObserverContext;
     NSTimeInterval duration = .0;
     
     /* Iterate animations and find the longest running */
-    for (NSMutableDictionary *a in _animations) {
+    for (NSMutableDictionary *a in self.animations) {
         NSTimeInterval animDuration = a.animation.delay + a.animation.duration;
         if (a.animatedAfter)
             animDuration += a.animatedAfter.delay + a.animatedAfter.duration;
@@ -211,7 +210,7 @@ char TrAnimationGroupObserverContext;
     
     NSTimeInterval delay = DBL_MAX;
     
-    for (NSMutableDictionary *a in _animations)
+    for (NSMutableDictionary *a in self.animations)
         if (!a.animatedAfter)
             delay = MIN(delay, a.animation.delay);
     
@@ -223,7 +222,7 @@ char TrAnimationGroupObserverContext;
     
     NSTimeInterval delayDiff = MAX(delay, .0) - self.delay;
     
-    for (NSMutableDictionary *a in _animations)
+    for (NSMutableDictionary *a in self.animations)
         if (!a.animatedAfter)
             a.animation.delay += delayDiff;
     
@@ -237,15 +236,15 @@ char TrAnimationGroupObserverContext;
         
         /* We really only observe once kind of value */
         [object removeObserver:self forKeyPath:@"complete" context:&TrAnimationGroupObserverContext];
-        [_animations removeAnimation:object];
+        [self.animations removeAnimation:object];
         
         /* Find all animations waiting on this animation and remove them */
-        for (NSMutableDictionary *a in _animations)
+        for (NSMutableDictionary *a in self.animations)
             if (a.animatedAfter == object)
                 a.animatedAfter = nil;
         
         BOOL finished = [object isFinished];
-        _animationFinished &= finished;
+        self.animationFinished &= finished;
         
         /* Call beginAnimation again to start any waiting animations */
         [self beginAnimation];
