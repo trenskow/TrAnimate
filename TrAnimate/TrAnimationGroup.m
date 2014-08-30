@@ -180,6 +180,13 @@ char TrAnimationGroupObserverContext;
     
 }
 
+- (void)cancel {
+    
+    while ([_animations count] > 0)
+        [[_animations[0] animation] cancel];
+    
+}
+
 #pragma mark - Properties
 
 - (NSTimeInterval)duration {
@@ -238,7 +245,7 @@ char TrAnimationGroupObserverContext;
                 a.animatedAfter = nil;
         
         BOOL finished = [object isFinished];
-        _animationFinished |= finished;
+        _animationFinished &= finished;
         
         /* Call beginAnimation again to start any waiting animations */
         [self beginAnimation];

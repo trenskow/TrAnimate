@@ -45,7 +45,18 @@
 /// --------------------------------
 
 /*!
-*  Checks if an animation is in progress on a `UIView` or `CALayer` instance at a perticular property.
+ Cancels an already ongoing animation on the `CALayer` object on a perticular property.
+ 
+ @param layer   The `CALayer` from which you want to remove the animation.
+ @param keyPath The key path of the property you want to remove the animation of.
+ 
+ @discussion If no animation is in progress on the `CALayer` object this method does nothing.
+ 
+ */
++ (void)cancelAnimation:(CALayer *)layer withKeyPath:(NSString *)keyPath;
+
+/*!
+*  Checks if an animation is in progress on a `CALayer` object at a perticular property.
 *
 *  @param layer       The `CALayer` you want to examine.
 *  @param keyPath     The key path of the property that you want to examine.

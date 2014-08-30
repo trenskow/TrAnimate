@@ -40,6 +40,8 @@
 
 #import "TrLayerAnimation+Private.h"
 
+#define ANIMATION_KEY_FOR_KEYPATH(x) [NSString stringWithFormat:@"layerAnimation.%@", x]
+
 const void *TrAnimationLayerKey;
 
 NSString *const TrLayerAnimationKey = @"TrAnimationKey";
@@ -111,8 +113,8 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     if (self.completionBlock)
         self.completionBlock(flag);
     
-    self.complete = YES;
     self.finished = flag;
+    self.complete = YES;
     
     /* Remove animation from view so it can be released */
     objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -121,12 +123,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
 - (void)prepareAnimation:(TrBasicAnimation *)animation usingKey:(NSString *)key {
     
-#if defined(TR_ANIMATION_VIEW_DEBUG)
-    animation.duration = self.duration * 10.0;
-#else
     animation.duration = self.duration;
-#endif
-    
     animation.curve = self.curve;
     
     [animation setValue:key forKey:TrLayerAnimationKey];
@@ -144,11 +141,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
         self.animating = YES;
         [self performSelector:@selector(setupAnimations)
                    withObject:nil
-#if defined(TR_ANIMATION_VIEW_DEBUG)
-                   afterDelay:self.delay * 10.0
-#else
                    afterDelay:self.delay
-#endif
                       inModes:@[NSRunLoopCommonModes]];
     }
     
@@ -162,9 +155,9 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
 - (void)animationStarted {
     
-    [self.layer setValue:[_fromValue interpolateWithValue:_toValue
-                                               atPosition:[self.curve transform:1.0]]
-              forKeyPath:_keyPath];
+    [self.layer setValue:[self.fromValue interpolateWithValue:self.toValue
+                                                   atPosition:[self.curve transform:1.0]]
+              forKeyPath:self.keyPath];
     
 }
 
@@ -172,25 +165,59 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
 - (void)setupAnimations {
     
-    TrBasicAnimation *customAnimation = [TrBasicAnimation animationWithKeyPath:_keyPath];
-    customAnimation.fromValue = _fromValue;
-    customAnimation.toValue = _toValue;
+    TrBasicAnimation *customAnimation = [TrBasicAnimation animationWithKeyPath:self.keyPath];
+    customAnimation.fromValue = self.fromValue;
+    customAnimation.toValue = self.toValue;
     
-    [self.layer setValue:[_fromValue interpolateWithValue:_toValue
-                                               atPosition:[self.curve transform:1.0]]
-              forKeyPath:_keyPath];
+    [self.layer setValue:[self.fromValue interpolateWithValue:self.toValue
+                                                   atPosition:[self.curve transform:1.0]]
+              forKeyPath:self.keyPath];
     
-    [self prepareAnimation:customAnimation usingKey:[NSString stringWithFormat:@"layerAnimation.%@", _keyPath]];
+    [self prepareAnimation:customAnimation usingKey:ANIMATION_KEY_FOR_KEYPATH(self.keyPath)];
+    
+}
+
+- (void)cancel {
+    
+    // Animation has not yet begun
+    if (!self.isAnimating && !self.isComplete) {
+        
+        [self postponeAnimation];
+        
+    } else if (self.isAnimating && !self.isComplete) {
+        
+        // We need to determine if we are on a delay or on actually animating.
+        // We do that by checking if the animation has been added to the layer.
+        
+        // Animation is in it's delay.
+        if (![self.layer animationForKey:ANIMATION_KEY_FOR_KEYPATH(self.keyPath)]) {
+            
+            [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setupAnimations) object:nil];
+            [self animationDidStop:nil finished:NO];
+            
+        } else { // Animation is in progress.
+            
+            [self.layer setValue:[self.layer.presentationLayer valueForKeyPath:self.keyPath]
+                      forKeyPath:self.keyPath];
+            [self.layer removeAnimationForKey:ANIMATION_KEY_FOR_KEYPATH(self.keyPath)];
+            
+        }
+        
+    }
     
 }
 
 #pragma mark - Creating Animation
 
++ (void)cancelAnimation:(CALayer *)layer withKeyPath:(NSString *)keyPath {
+    
+    [layer removeAnimationForKey:ANIMATION_KEY_FOR_KEYPATH(keyPath)];
+    
+}
+
 + (BOOL)inProgressOn:(CALayer *)layer withKeyPath:(NSString *)keyPath {
     
-    NSString *key = [NSString stringWithFormat:@"layerAnimation.%@", keyPath];
-    
-    TrBasicAnimation *animation = (TrBasicAnimation *)[layer animationForKey:key];
+    TrBasicAnimation *animation = (TrBasicAnimation *)[layer animationForKey:ANIMATION_KEY_FOR_KEYPATH(keyPath)];
     return (animation && [animation.keyPath isEqualToString:keyPath]);
     
 }
@@ -273,7 +300,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
                 duration:duration
                    delay:delay
                  keyPath:keyPath
-               fromValue:[layer valueForKeyPath:keyPath]
+               fromValue:[layer.presentedLayer valueForKeyPath:keyPath]
                  toValue:toValue
                    curve:curve
               completion:completion];
