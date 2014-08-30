@@ -24,24 +24,22 @@
                 elastic:(BOOL)elastic
              completion:(void (^)(BOOL))completion {
     
-    viewOrLayer.presentedLayer.transform = CATransform3DConcat(viewOrLayer.animationLayer.transform,
-                                                               CATransform3DMakeScale(.01, .01, 1.0));
-    viewOrLayer.presentedLayer.opacity = .0;
-    
     TrCurve *curve = (elastic ? [TrCurve easeOutElastic] : [TrCurve easeOutBack]);
     
     TrScaleAnimation *scaleAnimation = [TrScaleAnimation animate:viewOrLayer
                                                         duration:duration
                                                            delay:delay
+                                                 fromScaleFactor:0.01
                                                    toScaleFactor:1.0
                                                            curve:curve];
     
-    TrFadeAnimation *fadeAnimation = [TrFadeAnimation animate:viewOrLayer
-                                                     duration:duration * (elastic ? .1 : .3)
-                                                        delay:delay
-                                                    direction:TrFadeAnimationDirectionIn];
+    TrOpacityAnimation *opacityAnimation = [TrFadeAnimation animate:viewOrLayer
+                                                           duration:duration * (elastic ? .1 : .3)
+                                                              delay:delay
+                                                        fromOpacity:.0
+                                                          toOpacity:1.0];
     
-    return [self animationGroupWithAnimations:@[scaleAnimation, fadeAnimation]
+    return [self animationGroupWithAnimations:@[scaleAnimation, opacityAnimation]
                                    completion:completion];
     
 }
