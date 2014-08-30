@@ -38,26 +38,22 @@
 
 const void *TrDirectAnimationKey;
 
-@interface TrDirectAnimation () {
-    
-    id _object;
-    NSString *_keyPath;
-    NSTimeInterval _duration;
-    NSTimeInterval _delay;
-    id<TrInterpolatable> _fromValue;
-    id<TrInterpolatable> _toValue;
-    TrCurve *_curve;
-    void (^_completionBlock)(BOOL);
-    
-    CADisplayLink *_displayLink;
-    NSDate *_beginTime;
-    
-}
+@interface TrDirectAnimation ()
 
 @property (nonatomic,readwrite,getter = isAnimating) BOOL animating;
 @property (nonatomic,readwrite,getter = isComplete) BOOL complete;
 @property (nonatomic,readwrite,getter = isFinished) BOOL finished;
+
+@property (nonatomic) id object;
+@property (nonatomic,copy) NSString *keyPath;
 @property (nonatomic,readwrite) NSTimeInterval duration;
+@property (nonatomic,copy) id<TrInterpolatable> fromValue;
+@property (nonatomic,copy) id<TrInterpolatable> toValue;
+@property (nonatomic,copy) TrCurve *curve;
+@property (nonatomic,copy) void (^completionBlock)(BOOL finished);
+
+@property (nonatomic) CADisplayLink *displayLink;
+@property (nonatomic) NSDate *beginTime;
 
 @end
 
@@ -76,14 +72,14 @@ const void *TrDirectAnimationKey;
     
     if ((self = [super init])) {
         
-        _object = object;
-        _keyPath = keyPath;
+        self.object = object;
+        self.keyPath = keyPath;
         self.duration = duration;
         self.delay = delay;
-        _fromValue = fromValue;
-        _toValue = toValue;
-        _curve = (curve ?: [TrCurve linear]);
-        _completionBlock = [completion copy];
+        self.fromValue = fromValue;
+        self.toValue = toValue;
+        self.curve = (curve ?: [TrCurve linear]);
+        self.completionBlock = [completion copy];
         
         objc_setAssociatedObject(_object, &TrDirectAnimationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
@@ -97,16 +93,16 @@ const void *TrDirectAnimationKey;
 
 - (void)endAnimation:(BOOL)finished {
     
-    [_displayLink invalidate];
-    _displayLink = nil;
+    [self.displayLink invalidate];
+    self.displayLink = nil;
     
     self.finished = finished;
     self.complete = YES;
     
-    if (_completionBlock)
-        _completionBlock(finished);
+    if (self.completionBlock)
+        self.completionBlock(finished);
     
-    objc_setAssociatedObject(_object, &TrDirectAnimationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(self.object, &TrDirectAnimationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
 }
 
@@ -115,9 +111,9 @@ const void *TrDirectAnimationKey;
     double progress = MIN([[NSDate date] timeIntervalSinceDate:_beginTime] / self.duration, 1.0);
     
     if (progress >= 0 && progress <= 1.0)
-        [_object setValue:[_fromValue interpolateWithValue:_toValue
-                                                atPosition:[_curve transform:progress]]
-               forKeyPath:_keyPath];
+        [self.object setValue:[self.fromValue interpolateWithValue:self.toValue
+                                                        atPosition:[self.curve transform:progress]]
+               forKeyPath:self.keyPath];
     
     if (progress == 1.0)
         [self endAnimation:YES];
@@ -140,10 +136,10 @@ const void *TrDirectAnimationKey;
         
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(beginAnimation) object:nil];
         
-        _beginTime = [NSDate dateWithTimeIntervalSinceNow:self.delay];
+        self.beginTime = [NSDate dateWithTimeIntervalSinceNow:self.delay];
         
-        _displayLink = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(displayDidUpdate:)];
-        [_displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+        self.displayLink = [[UIScreen mainScreen] displayLinkWithTarget:self selector:@selector(displayDidUpdate:)];
+        [self.displayLink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
         
         self.animating = YES;
         
@@ -159,7 +155,7 @@ const void *TrDirectAnimationKey;
 
 - (void)cancel {
     
-    if (_displayLink)
+    if (self.displayLink)
         [self endAnimation:NO];
     
 }
