@@ -39,13 +39,11 @@
 
 #import "TrCurve.h"
 
-@interface TrCurve () {
-    
-    double (^_block)(double t);
-    
-}
+@interface TrCurve ()
 
 - (instancetype)initWithBlock:(double (^)(double t))block;
+
+@property (nonatomic,copy) double (^block)(double t);
 
 @end
 
@@ -372,7 +370,7 @@
 - (instancetype)initWithBlock:(double (^)(double))block {
     
     if ((self = [super init]))
-        _block = [block copy];
+        self.block = block;
     
     return self;
     
@@ -382,7 +380,7 @@
 
 - (double)transform:(double)positionInTime {
     
-    return _block(MIN(1.0, MAX(.0, positionInTime)));
+    return self.block(MIN(1.0, MAX(.0, positionInTime)));
     
 }
 
@@ -392,7 +390,7 @@
     
     TrCurve *curve = [[TrCurve alloc] init];
     
-    curve->_block = [_block copy];
+    curve.block = self.block;
     
     return curve;
     
