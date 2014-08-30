@@ -37,6 +37,18 @@
  */
 @interface TrDirectAnimation : NSObject <TrAnimation>
 
+/// -----------------------------
+/// @name Actions and Information
+/// -----------------------------
+
+/*!
+ Cancels an in-progress animation - if any - on an object at a specific key path.
+ 
+ @param object  The object from which you want to remove the animation.
+ @param keyPath The key path you want to remove the animation of.
+ */
++ (void)cancelAnimationOn:(id)object withKeyPath:(NSString *)keyPath;
+
 /// ---------------------------
 /// @name Creating an Animation
 /// ---------------------------

@@ -40,23 +40,20 @@
  */
 @interface TrLayerAnimation : NSObject <TrAnimation>
 
-/// --------------------------------
-/// @name Examining Views and Layers
-/// --------------------------------
+/// -----------------------------
+/// @name Actions and Information
+/// -----------------------------
 
 /*!
- Cancels an already ongoing animation on the `CALayer` object on a perticular property.
+ Cancels an in-progress animation - if any - on the `CALayer` object at a specific key path.
  
  @param layer   The `CALayer` from which you want to remove the animation.
- @param keyPath The key path of the property you want to remove the animation of.
- 
- @discussion If no animation is in progress on the `CALayer` object this method does nothing.
- 
+ @param keyPath The key path you want to remove the animation from.
  */
-+ (void)cancelAnimation:(CALayer *)layer withKeyPath:(NSString *)keyPath;
++ (void)cancelAnimationOn:(CALayer *)layer withKeyPath:(NSString *)keyPath;
 
 /*!
-*  Checks if an animation is in progress on a `CALayer` object at a perticular property.
+*  Checks if an animation is in progress on a `CALayer` object at a specific key path.
 *
 *  @param layer       The `CALayer` you want to examine.
 *  @param keyPath     The key path of the property that you want to examine.

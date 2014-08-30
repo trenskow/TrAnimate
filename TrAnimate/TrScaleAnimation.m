@@ -39,6 +39,12 @@
 
 #pragma mark - Creating Animation
 
++ (void)cancelAnimationOn:(id<TrAnimatable>)viewOrLayer {
+    
+    [super cancelAnimationOn:viewOrLayer.animationLayer withKeyPath:@"transform.scale"];
+    
+}
+
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer {
     
     return [self inProgressOn:viewOrLayer.presentedLayer withKeyPath:@"transform.scale"];

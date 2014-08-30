@@ -85,7 +85,7 @@ const void *TrDirectAnimationKey;
         _curve = (curve ?: [TrCurve linear]);
         _completionBlock = [completion copy];
         
-        objc_setAssociatedObject(self, &TrDirectAnimationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        objc_setAssociatedObject(_object, &TrDirectAnimationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
         
     }
     
@@ -106,7 +106,7 @@ const void *TrDirectAnimationKey;
     if (_completionBlock)
         _completionBlock(finished);
     
-    objc_setAssociatedObject(self, &TrDirectAnimationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    objc_setAssociatedObject(_object, &TrDirectAnimationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
 }
 
@@ -165,6 +165,13 @@ const void *TrDirectAnimationKey;
 }
 
 #pragma mark - Creating Animation
+
++ (void)cancelAnimationOn:(id)object withKeyPath:(NSString *)keyPath {
+    
+    TrDirectAnimation *animation = objc_getAssociatedObject(object, &TrDirectAnimationKey);
+    [animation cancel];
+    
+}
 
 + (instancetype)animate:(id)object
                duration:(NSTimeInterval)duration

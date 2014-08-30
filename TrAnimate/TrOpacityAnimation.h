@@ -35,9 +35,16 @@
  */
 @interface TrOpacityAnimation : TrLayerAnimation
 
-/// --------------------------------
-/// @name Examining Views and Layers
-/// --------------------------------
+/// -----------------------------
+/// @name Actions and Information
+/// -----------------------------
+
+/*!
+ Cancels an in-progress opacity animation - if any - an a `UIView` or `CALayer` object.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to remove the opacity animation from.
+ */
++ (void)cancelAnimationOn:(id<TrAnimatable>)viewOrLayer;
 
 /*!
  Checks if a opacity animation is in progress on a `UIView` or `CALayer` instance.
@@ -48,9 +55,9 @@
  */
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
-/// --------------------------
-/// @name Creating Animaitions
-/// --------------------------
+/// -------------------------
+/// @name Creating Animations
+/// -------------------------
 
 /*!
  Creates an returns an animation that changes the opacity of a `UIView` or `CALayer`.

@@ -52,6 +52,12 @@
 
 #pragma mark - Creating Animation
 
++ (void)cancelAnimationOn:(id<TrAnimatable>)viewOrLayer withAxis:(TrRotateAnimationAxis)axis {
+    
+    [super cancelAnimationOn:viewOrLayer.animationLayer withKeyPath:[self keyPathForAxis:axis]];
+    
+}
+
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withAxis:(TrRotateAnimationAxis)axis {
     
     return [super inProgressOn:viewOrLayer.presentedLayer withKeyPath:[self keyPathForAxis:axis]];

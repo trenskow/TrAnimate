@@ -47,9 +47,16 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
  */
 @interface TrPositionAnimation : TrLayerAnimation
 
-/// --------------------------------
-/// @name Examining Views and Layers
-/// --------------------------------
+/// -----------------------------
+/// @name Actions and Information
+/// -----------------------------
+
+/*!
+ Cancels an in-progress position animation - if any - an a `UIView` or `CALayer` object.
+ 
+ @param viewOrLayer The `UIView` or `CALayer` you want to remove the position animation from.
+ */
++ (void)cancelAnimationOn:(id<TrAnimatable>)viewOrLayer;
 
 /*!
  Checks if a position animation is in progress on a `UIView` or `CALayer` instance.
@@ -60,9 +67,9 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
  */
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
-/// --------------------------
-/// @name Creating Animaitions
-/// --------------------------
+/// -------------------------
+/// @name Creating Animations
+/// -------------------------
 
 /*!
  Creates and returns an animation that moves a `UIView` or `CALayer`.

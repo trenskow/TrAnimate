@@ -61,6 +61,12 @@
 
 #pragma mark - Creating Animation
 
++ (void)cancelAnimationOn:(id<TrAnimatable>)viewOrLayer {
+    
+    [super cancelAnimationOn:viewOrLayer.animationLayer withKeyPath:@"position"];
+    
+}
+
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer {
     
     return [self inProgressOn:viewOrLayer.presentedLayer withKeyPath:@"position"];

@@ -207,11 +207,12 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     
 }
 
-#pragma mark - Creating Animation
+#pragma mark - Actions and Information
 
-+ (void)cancelAnimation:(CALayer *)layer withKeyPath:(NSString *)keyPath {
++ (void)cancelAnimationOn:(CALayer *)layer withKeyPath:(NSString *)keyPath {
     
-    [layer removeAnimationForKey:ANIMATION_KEY_FOR_KEYPATH(keyPath)];
+    TrLayerAnimation *animation = objc_getAssociatedObject(layer, &TrAnimationLayerKey);
+    [animation cancel];
     
 }
 
@@ -221,6 +222,8 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     return (animation && [animation.keyPath isEqualToString:keyPath]);
     
 }
+
+#pragma mark - Creating Animation
 
 + (instancetype)animate:(CALayer *)layer
                duration:(NSTimeInterval)duration

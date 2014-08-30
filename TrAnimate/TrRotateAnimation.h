@@ -47,6 +47,18 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
  */
 @interface TrRotateAnimation : TrLayerAnimation
 
+/// -----------------------------
+/// @name Actions and Information
+/// -----------------------------
+
+/*!
+ Cancels an in-progress rotation animation - if any - an a `UIView` or `CALayer` object at a specific axis.
+
+ @param viewOrLayer The `UIView` or `CALayer` you want to remove the rotation animation from.
+ @param axis        The axis at which the rotation occurs.
+*/
++ (void)cancelAnimationOn:(id<TrAnimatable>)viewOrLayer withAxis:(TrRotateAnimationAxis)axis;
+
 /*!
  Checks if a rotation animation is in progress on a `UIView` or `CALayer` instance.
  

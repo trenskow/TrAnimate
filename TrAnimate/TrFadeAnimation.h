@@ -45,9 +45,9 @@ typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
  */
 @interface TrFadeAnimation : TrOpacityAnimation
 
-/// --------------------------
-/// @name Creating Animaitions
-/// --------------------------
+/// -------------------------
+/// @name Creating Animations
+/// -------------------------
 
 /*!
  Creates and returns an animation that fades in or out a `UIView` or `CALayer`.
