@@ -195,6 +195,7 @@
 				A11C7854178839720000B420 /* Products */,
 			);
 			sourceTree = "<group>";
+			tabWidth = 4;
 		};
 		A11C7854178839720000B420 /* Products */ = {
 			isa = PBXGroup;
@@ -539,8 +540,9 @@
 		A11C784B178839720000B420 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = Tr;
 				LastUpgradeCheck = 0600;
-				ORGANIZATIONNAME = "Kristian Trenskow";
+				ORGANIZATIONNAME = Trenskow;
 				TargetAttributes = {
 					A1076B68199D279D00E452CB = {
 						CreatedOnToolsVersion = 6.0;
