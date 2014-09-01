@@ -1,20 +1,20 @@
 //
-//  NSMutableArray+TrAnimationGroupAdditions.m
+//  NSObject+TrAnimationsAddition.m
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
 //  All rights reserved.
-//  
+//
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
-//  
+//
 //  1. Redistributions of source code must retain the above copyright notice,
 //  this list of conditions and the following disclaimer.
-//  
+//
 //  2. Redistributions in binary form must reproduce the above copyright notice,
 //  this list of conditions and the following disclaimer in the documentation
 //  and/or other materials provided with the distribution.
-//  
+//
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 //  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 //  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,17 +28,43 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "NSMutableArray+TrAnimationGroupAdditions.h"
+#import "NSObject+TrAnimateAdditions.h"
 
-@implementation NSMutableArray (TrAnimationGroupAdditions)
+#import "NSObject+TrAnimationsAddition.h"
 
-#pragma mark - Removing Objects
+NSString *const NSObjectAnimationAssociationsKey = @"NSObjectAnimationAssociationsKey";
 
-- (void)removeAnimation:(id<TrAnimation>)animation {
+@implementation NSObject (TrAnimationsAddition)
+
+#pragma mark - Associated Animations
+
+- (NSArray *)associatedAnimations {
     
-    NSUInteger i = [self indexOfAnimation:animation];
-    if (i != NSNotFound)
-        [self removeObjectAtIndex:i];
+    return [[self associatedValueForKey:NSObjectAnimationAssociationsKey] copy];
+    
+}
+
+- (void)associateAnimation:(id<TrAnimation>)animation {
+    
+    NSMutableArray *animations = [self associatedValueForKey:NSObjectAnimationAssociationsKey];
+    
+    if (!animations) {
+        animations = [[NSMutableArray alloc] init];
+        [self setAssociatedValue:animations forKey:NSObjectAnimationAssociationsKey];
+    }
+    
+    [animations addObject:animation];
+    
+}
+
+- (void)removeAnimationAssociation:(id<TrAnimation>)animation {
+    
+    NSMutableArray *animations = [self associatedValueForKey:NSObjectAnimationAssociationsKey];
+    
+    [animations removeObject:animation];
+    
+    if ([animations count] == 0)
+        [self setAssociatedValue:nil forKey:NSObjectAnimationAssociationsKey];
     
 }
 

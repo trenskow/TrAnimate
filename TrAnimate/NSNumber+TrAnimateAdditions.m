@@ -47,7 +47,7 @@
     
 }
 
-#pragma mark - Transitioning
+#pragma mark - Interpolation
 
 - (id<TrInterpolatable>)interpolateWithValue:(id<TrInterpolatable>)value atPosition:(double)position {
     

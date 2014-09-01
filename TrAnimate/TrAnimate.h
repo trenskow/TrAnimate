@@ -37,6 +37,7 @@ FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 
 #import "NSNumber+TrAnimateAdditions.h"
 #import "NSValue+TrAnimateAdditions.h"
+#import "UIColor+TrAnimateAdditions.h"
 
 #import "TrAnimatable.h"
 

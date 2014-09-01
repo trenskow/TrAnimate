@@ -190,7 +190,7 @@ static inline CGFloat interpolate(CGFloat val1, CGFloat val2, CGFloat p) {
     
 }
 
-#pragma mark - Transitioning
+#pragma mark - Interpolation
 
 - (id<TrInterpolatable>)interpolateWithValue:(id<TrInterpolatable>)value atPosition:(double)position {
     

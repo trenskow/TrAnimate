@@ -28,8 +28,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-@import ObjectiveC.runtime;
-
+#import "NSObject+TrAnimationsAddition.h"
 #import "CALayer+TrAnimateAdditions.h"
 
 #import "TrAnimation.h"
@@ -76,6 +75,8 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     
     if ((self = [super init])) {
         
+        [[self class] cancelAnimationOn:layer withKeyPath:keyPath];
+        
         self.layer = layer;
         self.duration = duration;
         self.delay = delay;
@@ -85,8 +86,8 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
         self.curve = (curve ?: [TrCurve linear]);
         self.completionBlock = completion;
         
-        /* Associate animation object with view, so it won't be released doing animation */
-        objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        /* Associate animation object with layer, so it won't be released doing animation */
+        [layer associateAnimation:self];
         
     }
     
@@ -117,7 +118,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     self.complete = YES;
     
     /* Remove animation from view so it can be released */
-    objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self.layer removeAnimationAssociation:self];
     
 }
 
@@ -207,20 +208,29 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     
 }
 
++ (TrLayerAnimation *)animationOn:(CALayer *)layer withKeyPath:(NSString *)keyPath {
+    
+    for (id animation in layer.associatedAnimations)
+        if ([animation isKindOfClass:[TrLayerAnimation class]])
+            if ([((TrLayerAnimation *)animation).keyPath isEqualToString:keyPath])
+                return animation;
+    
+    return nil;
+    
+}
+
 #pragma mark - Actions and Information
 
 + (void)cancelAnimationOn:(CALayer *)layer withKeyPath:(NSString *)keyPath {
     
-    TrLayerAnimation *animation = objc_getAssociatedObject(layer, &TrAnimationLayerKey);
-    [animation cancel];
+    [[self animationOn:layer withKeyPath:keyPath] cancel];
     
 }
 
 + (BOOL)inProgressOn:(CALayer *)layer withKeyPath:(NSString *)keyPath {
     
-    TrBasicAnimation *animation = (TrBasicAnimation *)[layer animationForKey:ANIMATION_KEY_FOR_KEYPATH(keyPath)];
-    return (animation && [animation.keyPath isEqualToString:keyPath]);
-    
+    return ([self animationOn:layer withKeyPath:keyPath] != nil);
+        
 }
 
 #pragma mark - Creating Animation

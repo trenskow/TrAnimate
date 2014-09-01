@@ -28,8 +28,9 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-@import ObjectiveC.runtime;
 @import UIKit;
+
+#import "NSObject+TrAnimationsAddition.h"
 
 #import "TrCurve.h"
 #import "TrInterpolatable.h"
@@ -83,7 +84,7 @@ const void *TrDirectAnimationKey;
         self.curve = (curve ?: [TrCurve linear]);
         self.completionBlock = [completion copy];
         
-        objc_setAssociatedObject(self.object, &TrDirectAnimationKey, self, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        [object associateAnimation:self];
         
         [self performSelector:@selector(beginAnimation) withObject:nil afterDelay:0.0 inModes:@[NSRunLoopCommonModes]];
         
@@ -106,7 +107,7 @@ const void *TrDirectAnimationKey;
     if (self.completionBlock)
         self.completionBlock(finished);
     
-    objc_setAssociatedObject(self.object, &TrDirectAnimationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self.object removeAnimationAssociation:self];
     
 }
 
@@ -164,14 +165,34 @@ const void *TrDirectAnimationKey;
     
 }
 
-#pragma mark - Creating Animation
++ (TrDirectAnimation *)animationOn:(id)object keyPath:(NSString *)keyPath {
+    
+    for (id animation in [object associatedAnimations])
+        if ([animation isKindOfClass:[TrDirectAnimation class]])
+            if ([((TrDirectAnimation *)animation).keyPath isEqualToString:keyPath])
+                return animation;
+    
+    return nil;
+    
+}
+
+#pragma mark - Actions and Information
 
 + (void)cancelAnimationOn:(id)object withKeyPath:(NSString *)keyPath {
     
-    TrDirectAnimation *animation = objc_getAssociatedObject(object, &TrDirectAnimationKey);
-    [animation cancel];
+    TrDirectAnimation *animation;
+    while ((animation = [self animationOn:object keyPath:keyPath]) != nil)
+        [animation cancel];
     
 }
+
++ (BOOL)inProgressOn:(id)object withKeyPath:(NSString *)keyPath {
+    
+    return ([self animationOn:object keyPath:keyPath] != nil);
+    
+}
+
+#pragma mark - Creating Animation
 
 + (instancetype)animate:(id)object
                duration:(NSTimeInterval)duration

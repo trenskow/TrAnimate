@@ -1,20 +1,17 @@
 //
-//  NSArray+TrAnimationGroupAdditions.m
+//  UIColor+TrAnimateAdditions.h
 //  TrAnimate
 //
-//  Copyright (c) 2013-2014, Kristian Trenskow
-//  All rights reserved.
-//  
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
-//  
+//
 //  1. Redistributions of source code must retain the above copyright notice,
 //  this list of conditions and the following disclaimer.
-//  
+//
 //  2. Redistributions in binary form must reproduce the above copyright notice,
 //  this list of conditions and the following disclaimer in the documentation
 //  and/or other materials provided with the distribution.
-//  
+//
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 //  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 //  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,21 +25,13 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "NSMutableDictionary+TrAnimationGroupAdditions.h"
+@import UIKit;
 
-#import "NSArray+TrAnimationGroupAdditions.h"
+#import "TrInterpolatable.h"
 
-@implementation NSArray (TrAnimationGroupAdditions)
-
-#pragma mark - Finding Objects in an Array
-
-- (NSUInteger)indexOfAnimation:(id<TrAnimation>)animation {
-    
-    for (NSUInteger i = 0 ; i < [self count] ; i++)
-        if ([self[i] animation] == animation)
-            return i;
-    return NSNotFound;
-    
-}
+/*!
+ Category of `NSValue` that implements the [TrInterpolatable](TrInterpolatable) protocol.
+ */
+@interface UIColor (TrAnimateAdditions) <TrInterpolatable>
 
 @end

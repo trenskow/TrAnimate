@@ -29,7 +29,7 @@
 //
 
 /*!
- The `TrInterpolatable` is implemented by classes that are able to interpolate their value with other values. Currently TrAnimate implements this on `NSNumber` and `NSValue`.
+ The `TrInterpolatable` is implemented by classes that are able to interpolate their value with other values. Currently TrAnimate implements this on `NSNumber`, `NSValue` and `UIColor`.
  */
 @protocol TrInterpolatable
 

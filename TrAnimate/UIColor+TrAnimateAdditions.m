@@ -1,20 +1,17 @@
 //
-//  NSDictionary+TrAnimationGroupAdditions.m
+//  UIColor+TrAnimateAdditions.m
 //  TrAnimate
 //
-//  Copyright (c) 2013-2014, Kristian Trenskow
-//  All rights reserved.
-//  
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
-//  
+//
 //  1. Redistributions of source code must retain the above copyright notice,
 //  this list of conditions and the following disclaimer.
-//  
+//
 //  2. Redistributions in binary form must reproduce the above copyright notice,
 //  this list of conditions and the following disclaimer in the documentation
 //  and/or other materials provided with the distribution.
-//  
+//
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 //  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 //  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,44 +25,30 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "NSMutableDictionary+TrAnimationGroupAdditions.h"
+#import "UIColor+TrAnimateAdditions.h"
 
-NSString *const TrAnimationGroupAnimationKey = @"TrAnimationGroupAnimationKey";
-NSString *const TrAnimationGroupAnimateAfterKey = @"TrAnimationGroupAnimateAfterKey";
+@implementation UIColor (TrAnimateAdditions)
 
-@implementation NSMutableDictionary (TrAnimationGroupAdditions)
+#pragma mark - Interpolation
 
-#pragma mark - Creating a Dictionary
-
-+ (instancetype)dictionaryWithAnimation:(id<TrAnimation>)animation animatedAfter:(id<TrAnimation>)animatedAfter {
+- (id<TrInterpolatable>)interpolateWithValue:(id<TrInterpolatable>)value atPosition:(double)position {
     
-    NSMutableDictionary *dictionary = [@{TrAnimationGroupAnimationKey: animation} mutableCopy];
-    [dictionary setAnimatedAfter:animatedAfter];
-    return dictionary;
+    if (![(id)value isKindOfClass:[UIColor class]])
+        [NSException raise:@"InvalidInterpolatableType" format:@"UIColor instances can only interpolate with other instances of UIColor."];
     
-}
-
-#pragma mark - Properties
-
-- (id<TrAnimation>)animation {
+    UIColor *val1 = self;
+    UIColor *val2 = (UIColor *)value;
     
-    return self[TrAnimationGroupAnimationKey];
+    CGFloat red1, red2, green1, green2, blue1, blue2, alpha1, alpha2;
     
-}
-
-- (NSMutableArray *)animatedAfter {
+    [val1 getRed:&red1 green:&green1 blue:&blue1 alpha:&alpha1];
+    [val2 getRed:&red2 green:&green2 blue:&blue2 alpha:&alpha2];
     
-    return self[TrAnimationGroupAnimateAfterKey];
+    return [UIColor colorWithRed:(red2 - red1) * position + red1
+                           green:(green2 - green1) * position + green1
+                            blue:(blue2 - blue1) * position + blue1
+                           alpha:(alpha2 - alpha1) * position + alpha1];
     
-}
-
-- (void)setAnimatedAfter:(id<TrAnimation>)animatedAfter {
-    
-    if (animatedAfter)
-        self[TrAnimationGroupAnimateAfterKey] = animatedAfter;
-    else
-        [self removeObjectForKey:TrAnimationGroupAnimateAfterKey];
-        
 }
 
 @end
