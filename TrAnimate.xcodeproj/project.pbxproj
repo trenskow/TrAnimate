@@ -376,12 +376,12 @@
 			name = Foundation;
 			sourceTree = "<group>";
 		};
-		A1A2E47A19B4921B00CEAE48 /* Public Additions */ = {
+		A1A2E47A19B4921B00CEAE48 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
 				A11C789417883BBE0000B420 /* Custom Classes */,
 			);
-			name = "Public Additions";
+			name = Additions;
 			sourceTree = "<group>";
 		};
 		A1A2E48019B4999300CEAE48 /* Additions */ = {
@@ -432,7 +432,7 @@
 		A1D5FCD719ACE5EA00C9EB4B /* Additions */ = {
 			isa = PBXGroup;
 			children = (
-				A1A2E47A19B4921B00CEAE48 /* Public Additions */,
+				A1A2E47A19B4921B00CEAE48 /* Additions */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
