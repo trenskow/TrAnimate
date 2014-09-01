@@ -62,7 +62,7 @@
 /*!
  Creates and returns an animation that scales a `UIView` or `CALayer` object.
  
- @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer     The `UIView` or `CALayer` object you want to animate.
  @param duration        The duration of the animation.
  @param delay           The delay before the animation begins.
  @param fromScaleFactor The scale factor to animate from.
@@ -83,7 +83,7 @@
 /*!
  Creates and returns an animation that scales a `UIView` or `CALayer` object.
  
- @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer     The `UIView` or `CALayer` object you want to animate.
  @param duration        The duration of the animation.
  @param delay           The delay before the animation begins.
  @param fromScaleFactor The scale factor to animate from.
@@ -102,7 +102,7 @@
 /*!
  Creates and returns an animation that scales a `UIView` or `CALayer` object.
  
- @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer     The `UIView` or `CALayer` object you want to animate.
  @param duration        The duration of the animation.
  @param delay           The delay before the animation begins.
  @param fromScaleFactor The scale factor to animate from.
@@ -119,7 +119,7 @@
 /*!
  Creates and returns an animation that scales a `UIView` or `CALayer` object. The animation scale will animate from the current scale.
  
- @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer     The `UIView` or `CALayer` object you want to animate.
  @param duration        The duration of the animation.
  @param delay           The delay before the animation begins.
  @param toScaleFactor   The scale factor to animate to.
@@ -138,7 +138,7 @@
 /*!
  Creates and returns an animation that scales a `UIView` or `CALayer` object. The animation scale will animate from the current scale.
  
- @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer     The `UIView` or `CALayer` object you want to animate.
  @param duration        The duration of the animation.
  @param delay           The delay before the animation begins.
  @param toScaleFactor   The scale factor to animate to.
@@ -155,7 +155,7 @@
 /*!
  Creates and returns an animation that scales a `UIView` or `CALayer` object. The animation scale will animate from the current scale.
  
- @param viewOrLayer     The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer     The `UIView` or `CALayer` object you want to animate.
  @param duration        The duration of the animation.
  @param delay           The delay before the animation begins.
  @param toScaleFactor   The scale factor to animate to.

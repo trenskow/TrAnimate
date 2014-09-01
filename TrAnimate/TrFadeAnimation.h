@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
 /*!
  Creates and returns an animation that fades a `UIView` or `CALayer` object.
 
- @param viewOrLayer The `UIView` or `CALayer` you want to fade.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to fade.
  @param duration    The duration of the fade.
  @param delay       The delay before the fade begins.
  @param direction   Indicates if the animation should fade in or out.
@@ -71,7 +71,7 @@ typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
 /*!
  Creates and returns an animation that fades a `UIView` or `CALayer` object.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to fade.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to fade.
  @param duration    The duration of the fade.
  @param delay       The delay before the fade begins.
  @param direction   Indicates if the animation should fade in or out.
@@ -88,7 +88,7 @@ typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
 /*!
  Creates and returns an animation that fades a `UIView` or `CALayer` object.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to fade.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to fade.
  @param duration    The duration of the fade.
  @param delay       The delay before the fade begins.
  @param direction   Indicates if the animation should fade in or out.

@@ -74,7 +74,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
 /*!
  Creates and returns an animation that moves a `UIView` or `CALayer` object.
  
- @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer  The `UIView` or `CALayer` object you want to animate.
  @param duration     The duration of the animation.
  @param delay        The delay before the animation begins.
  @param fromPosition The start position of the animation.
@@ -97,7 +97,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
 /*!
  Creates and returns an animation that moves a `UIView` or `CALayer` object.
  
- @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer  The `UIView` or `CALayer` object you want to animate.
  @param duration     The duration of the animation.
  @param delay        The delay before the animation begins.
  @param fromPosition The start position of the animation.
@@ -118,7 +118,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
 /*!
  Creates and returns an animation that moves a `UIView` or `CALayer` object.
  
- @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer  The `UIView` or `CALayer` object you want to animate.
  @param duration     The duration of the animation.
  @param delay        The delay before the animation begins.
  @param fromPosition The start position of the animation.
@@ -137,7 +137,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
 /*!
  Creates and returns an animation that moves a `UIView` or `CALayer` object.
  
- @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer  The `UIView` or `CALayer` object you want to animate.
  @param duration     The duration of the animation.
  @param delay        The delay before the animation begins.
  @param fromPosition The start position of the animation.
@@ -154,7 +154,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
 /*!
  Creates and returns an animation that moves a `UIView` or `CALayer` object. The animation position will animate from the current position.
  
- @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer  The `UIView` or `CALayer` object you want to animate.
  @param duration     The duration of the animation.
  @param delay        The delay before the animation begins.
  @param toPosition   The end position of the animation.
@@ -175,7 +175,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
 /*!
  Creates and returns an animation that moves a `UIView` or `CALayer` object. The animation position will animate from the current position.
  
- @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer  The `UIView` or `CALayer` object you want to animate.
  @param duration     The duration of the animation.
  @param delay        The delay before the animation begins.
  @param toPosition   The end position of the animation.
@@ -194,7 +194,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
 /*!
  Creates and returns an animation that moves a `UIView` or `CALayer` object. The animation position will animate from the current position.
  
- @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer  The `UIView` or `CALayer` object you want to animate.
  @param duration     The duration of the animation.
  @param delay        The delay before the animation begins.
  @param toPosition   The end position of the animation.
@@ -211,7 +211,7 @@ typedef NS_OPTIONS(NSUInteger, TrPositionAnimationAnchor) {
 /*!
  Creates and returns an animation that moves a `UIView` or `CALayer` object. The animation position will animate from the current position.
  
- @param viewOrLayer  The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer  The `UIView` or `CALayer` object you want to animate.
  @param duration     The duration of the animation.
  @param delay        The delay before the animation begins.
  @param toPosition   The end position of the animation.

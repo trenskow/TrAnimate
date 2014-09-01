@@ -62,7 +62,7 @@
 /*!
  Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay before the animation begins.
  @param fromOpacity Animate from this opacity value.
@@ -83,7 +83,7 @@
 /*!
  Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay before the animation begins.
  @param fromOpacity Animate from this opacity value.
@@ -102,7 +102,7 @@
 /*!
  Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay before the animation begins.
  @param fromOpacity Animate from this opacity value.
@@ -119,7 +119,7 @@
 /*!
  Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object. The animation opacity will animate from the current opacity.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay before the animation begins.
  @param toOpacity   Animate to this opacity value.
@@ -140,7 +140,7 @@
 /*!
  Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object. The animation opacity will animate from the current opacity.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay before the animation begins.
  @param toOpacity   Animate to this opacity value.
@@ -159,7 +159,7 @@
 /*!
  Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object. The animation opacity will animate from the current opacity.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay before the animation begins.
  @param toOpacity   Animate to this opacity value.

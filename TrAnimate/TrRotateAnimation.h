@@ -76,7 +76,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 /*!
  Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay of the animation.
  @param fromAngle   The angle to animate from.
@@ -99,7 +99,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 /*!
  Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay of the animation.
  @param fromAngle   The angle to animate from.
@@ -120,7 +120,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 /*!
  Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay of the animation.
  @param fromAngle   The angle to animate from.
@@ -139,7 +139,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 /*!
  Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis. Animation rotates around the Z-axis.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay of the animation.
  @param fromAngle   The angle to animate from.
@@ -156,7 +156,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 /*!
  Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis. The rotation angle will animate from the current angle.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay of the animation.
  @param toAngle     The angle to animate to.
@@ -177,7 +177,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 /*!
  Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis. The rotation angle will animate from the current angle.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay of the animation.
  @param toAngle     The angle to animate to.
@@ -196,7 +196,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 /*!
  Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis. The rotation angle will animate from the current angle.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay of the animation.
  @param toAngle     The angle to animate to.
@@ -213,7 +213,7 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
 /*!
  Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis. The rotation angle will animate from the current angle. Animation rotates around the Z-axis.
  
- @param viewOrLayer The `UIView` or `CALayer` you want to animate.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
  @param duration    The duration of the animation.
  @param delay       The delay of the animation.
  @param toAngle     The angle to animate to.
