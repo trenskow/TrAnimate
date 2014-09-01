@@ -167,17 +167,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A10A32A618E2DB24000D4B49 /* Core Animation */ = {
+		A10A32A618E2DB24000D4B49 /* Core Animation Animations */ = {
 			isa = PBXGroup;
 			children = (
 				A1D5FCD719ACE5EA00C9EB4B /* Additions */,
 				A1D5FCDA19ACEA1F00C9EB4B /* Animatable */,
-				A1D5FCD519ACE59300C9EB4B /* Custom Animations */,
+				A1D5FCD519ACE59300C9EB4B /* Animations */,
 				A10A32A718E2DB5B000D4B49 /* TrLayerAnimation.h */,
 				A10BC9E017899EF200F354FC /* TrLayerAnimation+Private.h */,
 				A10A32A818E2DB5B000D4B49 /* TrLayerAnimation.m */,
 			);
-			name = "Core Animation";
+			name = "Core Animation Animations";
 			sourceTree = "<group>";
 		};
 		A10A32B418E2E646000D4B49 /* Categories */ = {
@@ -245,54 +245,54 @@
 			isa = PBXGroup;
 			children = (
 				A1A2E48019B4999300CEAE48 /* Additions */,
-				A10A32A618E2DB24000D4B49 /* Core Animation */,
-				A1E6EA921912D96B00E4F179 /* Direct */,
+				A10A32A618E2DB24000D4B49 /* Core Animation Animations */,
+				A1E6EA921912D96B00E4F179 /* Direct Animation */,
 				A11C7867178839FA0000B420 /* TrAnimation.h */,
 			);
 			name = Animations;
 			sourceTree = "<group>";
 		};
-		A11C786A17883A0A0000B420 /* Position */ = {
+		A11C786A17883A0A0000B420 /* Position Animation */ = {
 			isa = PBXGroup;
 			children = (
 				A11C787017883AE60000B420 /* TrPositionAnimation.h */,
 				A11C787117883AE60000B420 /* TrPositionAnimation.m */,
 			);
-			name = Position;
+			name = "Position Animation";
 			sourceTree = "<group>";
 		};
-		A11C786C17883A180000B420 /* Opacity */ = {
+		A11C786C17883A180000B420 /* Opacity Animations */ = {
 			isa = PBXGroup;
 			children = (
 				A1876C2A19A6753600C1639A /* Fade */,
 				A11C787517883B050000B420 /* TrOpacityAnimation.h */,
 				A11C787617883B050000B420 /* TrOpacityAnimation.m */,
 			);
-			name = Opacity;
+			name = "Opacity Animations";
 			sourceTree = "<group>";
 		};
-		A11C786E17883AB70000B420 /* Scale */ = {
+		A11C786E17883AB70000B420 /* Scale Animation */ = {
 			isa = PBXGroup;
 			children = (
 				A11C787917883B260000B420 /* TrScaleAnimation.h */,
 				A11C787A17883B260000B420 /* TrScaleAnimation.m */,
 			);
-			name = Scale;
+			name = "Scale Animation";
 			sourceTree = "<group>";
 		};
-		A11C786F17883ABF0000B420 /* Rotate */ = {
+		A11C786F17883ABF0000B420 /* Rotate Animation */ = {
 			isa = PBXGroup;
 			children = (
 				A11C787F17883B430000B420 /* TrRotateAnimation.h */,
 				A11C788017883B430000B420 /* TrRotateAnimation.m */,
 			);
-			name = Rotate;
+			name = "Rotate Animation";
 			sourceTree = "<group>";
 		};
 		A11C788217883B6E0000B420 /* Animation Group */ = {
 			isa = PBXGroup;
 			children = (
-				A12886FC19B1F4CD0093AD13 /* Transitions */,
+				A12886FC19B1F4CD0093AD13 /* Animations */,
 				A11C788317883B7D0000B420 /* TrAnimationGroup.h */,
 				A11C788417883B7D0000B420 /* TrAnimationGroup.m */,
 			);
@@ -315,13 +315,12 @@
 			name = Additions;
 			sourceTree = "<group>";
 		};
-		A12886FC19B1F4CD0093AD13 /* Transitions */ = {
+		A12886FC19B1F4CD0093AD13 /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				A12886FD19B1F4FB0093AD13 /* TrPopInAnimation.h */,
-				A12886FE19B1F4FB0093AD13 /* TrPopInAnimation.m */,
+				A162BCF519B4D56E00D5B019 /* Pop In Animation */,
 			);
-			name = Transitions;
+			name = Animations;
 			sourceTree = "<group>";
 		};
 		A1525C9919A4DD9F00024B4A /* Curvature */ = {
@@ -340,6 +339,15 @@
 				A162BCEB19B4A16300D5B019 /* UIColor+TrAnimateAdditions.m */,
 			);
 			name = UIKit;
+			sourceTree = "<group>";
+		};
+		A162BCF519B4D56E00D5B019 /* Pop In Animation */ = {
+			isa = PBXGroup;
+			children = (
+				A12886FD19B1F4FB0093AD13 /* TrPopInAnimation.h */,
+				A12886FE19B1F4FB0093AD13 /* TrPopInAnimation.m */,
+			);
+			name = "Pop In Animation";
 			sourceTree = "<group>";
 		};
 		A1876C2A19A6753600C1639A /* Fade */ = {
@@ -401,15 +409,15 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		A1D5FCD519ACE59300C9EB4B /* Custom Animations */ = {
+		A1D5FCD519ACE59300C9EB4B /* Animations */ = {
 			isa = PBXGroup;
 			children = (
-				A11C786C17883A180000B420 /* Opacity */,
-				A11C786A17883A0A0000B420 /* Position */,
-				A11C786E17883AB70000B420 /* Scale */,
-				A11C786F17883ABF0000B420 /* Rotate */,
+				A11C786C17883A180000B420 /* Opacity Animations */,
+				A11C786A17883A0A0000B420 /* Position Animation */,
+				A11C786E17883AB70000B420 /* Scale Animation */,
+				A11C786F17883ABF0000B420 /* Rotate Animation */,
 			);
-			name = "Custom Animations";
+			name = Animations;
 			sourceTree = "<group>";
 		};
 		A1D5FCD619ACE5C700C9EB4B /* Interpolation */ = {
@@ -493,13 +501,13 @@
 			name = Foundation;
 			sourceTree = "<group>";
 		};
-		A1E6EA921912D96B00E4F179 /* Direct */ = {
+		A1E6EA921912D96B00E4F179 /* Direct Animation */ = {
 			isa = PBXGroup;
 			children = (
 				A1E6EA931912D98600E4F179 /* TrDirectAnimation.h */,
 				A1E6EA941912D98600E4F179 /* TrDirectAnimation.m */,
 			);
-			name = Direct;
+			name = "Direct Animation";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
