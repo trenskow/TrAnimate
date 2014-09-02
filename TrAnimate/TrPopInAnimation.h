@@ -37,6 +37,10 @@
  */
 @interface TrPopInAnimation : TrAnimationGroup
 
+/// ------------------------
+/// @name Creating Animation
+/// ------------------------
+
 /*!
  Creates and returns an animation that pops in a `UIView` or `CALayer`.
  

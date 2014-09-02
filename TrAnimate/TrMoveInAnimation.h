@@ -75,9 +75,9 @@ typedef NS_ENUM(NSInteger, TrMoveInAnimationBounds) {
  */
 @interface TrMoveInAnimation : TrPositionAnimation
 
-/// -------------------------
-/// @name Creating Animations
-/// -------------------------
+/// ------------------------
+/// @name Creating Animation
+/// ------------------------
 
 /*!
  Creates and returns an animation that moves-in a `UIView` or `CALayer` object from a specific direction and outside the specified bounds.

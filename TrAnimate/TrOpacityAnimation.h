@@ -55,9 +55,9 @@
  */
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
-/// -------------------------
-/// @name Creating Animations
-/// -------------------------
+/// ------------------------
+/// @name Creating Animation
+/// ------------------------
 
 /*!
  Creates an returns an animation that changes the opacity of a `UIView` or `CALayer` object.

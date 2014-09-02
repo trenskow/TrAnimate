@@ -76,9 +76,9 @@
  */
 @property (nonatomic) NSTimeInterval duration;
 
-/// -------------------------
-/// @name Creating Animations
-/// -------------------------
+/// ------------------------
+/// @name Creating Animation
+/// ------------------------
 
 /*!
  Creates and returns an animation that animates the key path of a `CALayer` object.

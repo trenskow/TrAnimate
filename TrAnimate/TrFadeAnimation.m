@@ -34,7 +34,7 @@
 
 @implementation TrFadeAnimation
 
-#pragma mark - Creating Animations
+#pragma mark - Creating Animation
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration

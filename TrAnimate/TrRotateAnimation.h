@@ -69,9 +69,9 @@ typedef NS_OPTIONS(NSUInteger, TrRotateAnimationAxis) {
  */
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer withAxis:(TrRotateAnimationAxis)axis;
 
-/// -------------------------
-/// @name Creating Animations
-/// -------------------------
+/// ------------------------
+/// @name Creating Animation
+/// ------------------------
 
 /*!
  Creates and returns an animation that rotates a `UIView` or `CALayer` object around a specified axis.

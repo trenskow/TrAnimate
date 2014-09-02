@@ -55,9 +55,9 @@
  */
 + (BOOL)inProgressOn:(id<TrAnimatable>)viewOrLayer;
 
-/// -------------------------
-/// @name Creating Animations
-/// -------------------------
+/// ------------------------
+/// @name Creating Animation
+/// ------------------------
 
 /*!
  Creates and returns an animation that scales a `UIView` or `CALayer` object.
