@@ -53,24 +53,6 @@ typedef NS_ENUM(NSInteger, TrMoveInAnimationDirection) {
 };
 
 /*!
- Specifies the bounds from which the move-in should occur.
- */
-typedef NS_ENUM(NSInteger, TrMoveInAnimationBounds) {
-    /*!
-     Move in from outside animated content's bounds.
-     */
-    TrMoveInAnimationBoundsContent = 0,
-    /*!
-     Move in from outside animated content's superview or superlayer bounds.
-     */
-    TrMoveInAnimationBoundsSuper,
-    /*!
-     Move in from outside animated content's window.
-     */
-    TrMoveInAnimationBoundsWindow
-};
-
-/*!
  The `TrMoveInAnimation` moves in a view from a specific direction and from outside some specified bounds.
  */
 @interface TrMoveInAnimation : TrPositionAnimation
@@ -82,13 +64,13 @@ typedef NS_ENUM(NSInteger, TrMoveInAnimationBounds) {
 /*!
  Creates and returns an animation that moves-in a `UIView` or `CALayer` object from a specific direction and outside the specified bounds.
  
- @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
- @param duration    The duration of the animation.
- @param delay       The delay before the animation begins.
- @param direction   The direction from which the move-in should occur.
- @param bounds      The bounds the move-in should occur from outside.
- @param curve       The curvature to the animation.
- @param completion  A block that gets invokes when animation completes.
+ @param viewOrLayer       The `UIView` or `CALayer` object you want to animate.
+ @param duration          The duration of the animation.
+ @param delay             The delay before the animation begins.
+ @param direction         The direction from which the move-in should occur.
+ @param boundsViewOrLayer The `UIView` or `CALayer` object from outside which bounds the move-in should occur. If nil is provided the bounds of the `UIView` or `CALayer` object provided in `viewOrLayer` will be used.
+ @param curve             The curvature to the animation.
+ @param completion        A block that gets invokes when animation completes.
  
  @return A move-in animation ready to animate.
  */
@@ -96,19 +78,19 @@ typedef NS_ENUM(NSInteger, TrMoveInAnimationBounds) {
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
               direction:(TrMoveInAnimationDirection)direction
-                 bounds:(TrMoveInAnimationBounds)bounds
+      fromOutsideBounds:(id<TrAnimatable>)boundsViewOrLayer
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion;
 
 /*!
  Creates and returns an animation that moves-in a `UIView` or `CALayer` object from a specific direction and outside the specified bounds.
  
- @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
- @param duration    The duration of the animation.
- @param delay       The delay before the animation begins.
- @param direction   The direction from which the move-in should occur.
- @param bounds      The bounds the move-in should occur from outside.
- @param curve       The curvature to the animation.
+ @param viewOrLayer       The `UIView` or `CALayer` object you want to animate.
+ @param duration          The duration of the animation.
+ @param delay             The delay before the animation begins.
+ @param direction         The direction from which the move-in should occur.
+ @param boundsViewOrLayer The `UIView` or `CALayer` object from outside which bounds the move-in should occur. If nil is provided the bounds of the `UIView` or `CALayer` object provided in `viewOrLayer` will be used.
+ @param curve             The curvature to the animation.
  
  @return A move-in animation ready to animate.
  */
@@ -116,17 +98,17 @@ typedef NS_ENUM(NSInteger, TrMoveInAnimationBounds) {
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
               direction:(TrMoveInAnimationDirection)direction
-                 bounds:(TrMoveInAnimationBounds)bounds
+      fromOutsideBounds:(id<TrAnimatable>)boundsViewOrLayer
                   curve:(TrCurve *)curve;
 
 /*!
  Creates and returns an animation that moves-in a `UIView` or `CALayer` object from a specific direction and outside the specified bounds.
  
- @param viewOrLayer The `UIView` or `CALayer` object you want to animate.
- @param duration    The duration of the animation.
- @param delay       The delay before the animation begins.
- @param direction   The direction from which the move-in should occur.
- @param bounds      The bounds the move-in should occur from outside.
+ @param viewOrLayer       The `UIView` or `CALayer` object you want to animate.
+ @param duration          The duration of the animation.
+ @param delay             The delay before the animation begins.
+ @param direction         The direction from which the move-in should occur.
+ @param boundsViewOrLayer The `UIView` or `CALayer` object from outside which bounds the move-in should occur. If nil is provided the bounds of the `UIView` or `CALayer` object provided in `viewOrLayer` will be used.
  
  @return A move-in animation ready to animate.
  */
@@ -134,7 +116,7 @@ typedef NS_ENUM(NSInteger, TrMoveInAnimationBounds) {
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
               direction:(TrMoveInAnimationDirection)direction
-                 bounds:(TrMoveInAnimationBounds)bounds;
+      fromOutsideBounds:(id<TrAnimatable>)boundsViewOrLayer;
 
 /*!
  Creates and returns an animation that moves-in a `UIView` or `CALayer` object from a specific direction and from ouside the `UIView` or `CALayer` object's bounds.

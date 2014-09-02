@@ -53,31 +53,16 @@
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
               direction:(TrMoveInAnimationDirection)direction
-                 bounds:(TrMoveInAnimationBounds)bounds
+      fromOutsideBounds:(id<TrAnimatable>)boundsViewOrLayer
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL))completion {
     
     /* Get the layers relevant to do all calculations. */
     CALayer *layer = viewOrLayer.animationLayer;
-    CALayer *superLayer = layer.superlayer;
-    CALayer *windowLayer = layer.windowLayer;
+    CALayer *boundsLayer = (boundsViewOrLayer ?: layer).animationLayer;
     
-    CGRect b;
-    
-    /* Get the bounds `b` based on `bounds` in the coordinate space of the superLayer. */
-    switch (bounds) {
-        case TrMoveInAnimationBoundsContent:
-            b = [superLayer convertRect:layer.bounds
-                              fromLayer:layer];
-            break;
-        case TrMoveInAnimationBoundsSuper:
-            b = superLayer.bounds;
-            break;
-        default:
-            b = [superLayer convertRect:windowLayer.bounds
-                              fromLayer:windowLayer];
-            break;
-    }
+    CGRect b = [layer.superlayer convertRect:boundsLayer.bounds
+                                   fromLayer:boundsLayer];
     
     /* Calculate `fromPosition` based on `direction` */
     CGPoint fromPosition = layer.position;
@@ -113,14 +98,14 @@
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
               direction:(TrMoveInAnimationDirection)direction
-                 bounds:(TrMoveInAnimationBounds)bounds
+      fromOutsideBounds:(id<TrAnimatable>)boundsViewOrLayer
                   curve:(TrCurve *)curve {
     
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
                direction:direction
-                  bounds:bounds
+       fromOutsideBounds:boundsViewOrLayer
                    curve:curve
               completion:nil];
     
@@ -130,13 +115,13 @@
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
               direction:(TrMoveInAnimationDirection)direction
-                 bounds:(TrMoveInAnimationBounds)bounds {
-    
+      fromOutsideBounds:(id<TrAnimatable>)boundsViewOrLayer {
+
     return [self animate:viewOrLayer
                 duration:duration
                    delay:delay
                direction:direction
-                  bounds:bounds
+       fromOutsideBounds:boundsViewOrLayer
                    curve:nil
               completion:nil];
     
@@ -153,7 +138,7 @@
                 duration:duration
                    delay:delay
                direction:direction
-                  bounds:TrMoveInAnimationBoundsContent
+       fromOutsideBounds:nil
                    curve:curve
               completion:completion];
     
@@ -169,7 +154,7 @@
                 duration:duration
                    delay:delay
                direction:direction
-                  bounds:TrMoveInAnimationBoundsContent
+       fromOutsideBounds:nil
                    curve:curve
               completion:nil];
     
@@ -184,7 +169,7 @@
                 duration:duration
                    delay:delay
                direction:direction
-                  bounds:TrMoveInAnimationBoundsContent
+       fromOutsideBounds:nil
                    curve:nil
               completion:nil];
     
