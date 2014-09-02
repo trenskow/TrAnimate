@@ -119,7 +119,7 @@
 		A11C787117883AE60000B420 /* TrPositionAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrPositionAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		A11C787517883B050000B420 /* TrOpacityAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrOpacityAnimation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A11C787617883B050000B420 /* TrOpacityAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrOpacityAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		A11C787917883B260000B420 /* TrScaleAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrScaleAnimation.h; sourceTree = "<group>"; };
+		A11C787917883B260000B420 /* TrScaleAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrScaleAnimation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A11C787A17883B260000B420 /* TrScaleAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrScaleAnimation.m; sourceTree = "<group>"; };
 		A11C787F17883B430000B420 /* TrRotateAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrRotateAnimation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A11C788017883B430000B420 /* TrRotateAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = TrRotateAnimation.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -138,11 +138,11 @@
 		A12886FE19B1F4FB0093AD13 /* TrPopInAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrPopInAnimation.m; sourceTree = "<group>"; };
 		A162BCEA19B4A16300D5B019 /* UIColor+TrAnimateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TrAnimateAdditions.h"; sourceTree = "<group>"; };
 		A162BCEB19B4A16300D5B019 /* UIColor+TrAnimateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TrAnimateAdditions.m"; sourceTree = "<group>"; };
-		A162BCF719B4D5C400D5B019 /* TrMoveInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrMoveInAnimation.h; sourceTree = "<group>"; };
+		A162BCF719B4D5C400D5B019 /* TrMoveInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrMoveInAnimation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A162BCF819B4D5C400D5B019 /* TrMoveInAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrMoveInAnimation.m; sourceTree = "<group>"; };
 		A162BCFF19B4DAD200D5B019 /* CALayer+TrMoveInAnimationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+TrMoveInAnimationAdditions.h"; sourceTree = "<group>"; };
 		A162BD0019B4DAD200D5B019 /* CALayer+TrMoveInAnimationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+TrMoveInAnimationAdditions.m"; sourceTree = "<group>"; };
-		A1876C2519A6753300C1639A /* TrFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrFadeAnimation.h; sourceTree = "<group>"; };
+		A1876C2519A6753300C1639A /* TrFadeAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrFadeAnimation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		A1876C2619A6753300C1639A /* TrFadeAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrFadeAnimation.m; sourceTree = "<group>"; };
 		A1A2E47619B48EE200CEAE48 /* NSObject+TrAnimateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+TrAnimateAdditions.h"; sourceTree = "<group>"; };
 		A1A2E47719B48EE200CEAE48 /* NSObject+TrAnimateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+TrAnimateAdditions.m"; sourceTree = "<group>"; };
@@ -285,6 +285,7 @@
 		A11C786E17883AB70000B420 /* Scale Animation */ = {
 			isa = PBXGroup;
 			children = (
+				A162BD0B19B6242F00D5B019 /* Pop In Animation */,
 				A11C787917883B260000B420 /* TrScaleAnimation.h */,
 				A11C787A17883B260000B420 /* TrScaleAnimation.m */,
 			);
@@ -355,8 +356,6 @@
 		A162BCF519B4D56E00D5B019 /* Pop In Animation */ = {
 			isa = PBXGroup;
 			children = (
-				A12886FD19B1F4FB0093AD13 /* TrPopInAnimation.h */,
-				A12886FE19B1F4FB0093AD13 /* TrPopInAnimation.m */,
 			);
 			name = "Pop In Animation";
 			sourceTree = "<group>";
@@ -394,6 +393,15 @@
 				A162BD0019B4DAD200D5B019 /* CALayer+TrMoveInAnimationAdditions.m */,
 			);
 			name = QuartzCore;
+			sourceTree = "<group>";
+		};
+		A162BD0B19B6242F00D5B019 /* Pop In Animation */ = {
+			isa = PBXGroup;
+			children = (
+				A12886FD19B1F4FB0093AD13 /* TrPopInAnimation.h */,
+				A12886FE19B1F4FB0093AD13 /* TrPopInAnimation.m */,
+			);
+			name = "Pop In Animation";
 			sourceTree = "<group>";
 		};
 		A1876C2A19A6753600C1639A /* Fade */ = {

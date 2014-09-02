@@ -28,14 +28,12 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrAnimationGroup.h"
-
-@protocol TrAnimatable;
+#import "TrScaleAnimation.h"
 
 /*!
  The `TrPopInAnimation` pops in a `UIView` or `CALayer`.
  */
-@interface TrPopInAnimation : TrAnimationGroup
+@interface TrPopInAnimation : TrScaleAnimation
 
 /// ------------------------
 /// @name Creating Animation

@@ -31,8 +31,6 @@
 #import "TrAnimatable.h"
 
 #import "TrCurve.h"
-#import "TrScaleAnimation.h"
-#import "TrFadeAnimation.h"
 
 #import "TrPopInAnimation.h"
 
@@ -48,21 +46,12 @@
     
     TrCurve *curve = (elastic ? [TrCurve easeOutElastic] : [TrCurve easeOutBack]);
     
-    TrScaleAnimation *scaleAnimation = [TrScaleAnimation animate:viewOrLayer
-                                                        duration:duration
-                                                           delay:delay
-                                                 fromScaleFactor:0.01
-                                                   toScaleFactor:1.0
-                                                           curve:curve];
-    
-    TrOpacityAnimation *opacityAnimation = [TrFadeAnimation animate:viewOrLayer
-                                                           duration:duration * (elastic ? .1 : .3)
-                                                              delay:delay
-                                                        fromOpacity:.0
-                                                          toOpacity:1.0];
-    
-    return [self animationGroupWithAnimations:@[scaleAnimation, opacityAnimation]
-                                   completion:completion];
+    return [super animate:viewOrLayer
+                 duration:duration
+                    delay:delay
+          fromScaleFactor:0.01
+            toScaleFactor:1.0
+                    curve:curve];
     
 }
 
