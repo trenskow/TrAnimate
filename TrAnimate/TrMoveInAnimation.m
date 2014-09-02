@@ -31,10 +31,23 @@
 #import "CALayer+TrMoveInAnimationAdditions.h"
 
 #import "TrAnimatable.h"
+#import "TrLayerAnimation+Private.h"
 
 #import "TrMoveInAnimation.h"
 
 @implementation TrMoveInAnimation
+
+#pragma mark - Internals
+
+- (void)setupAnimations {
+    
+    [super setupAnimations];
+    
+    self.layer.hidden = NO;
+    
+}
+
+#pragma mark - Creating Animation
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
