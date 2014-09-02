@@ -31,10 +31,21 @@
 #import "TrAnimatable.h"
 
 #import "TrCurve.h"
+#import "TrLayerAnimation+Private.h"
 
 #import "TrPopInAnimation.h"
 
 @implementation TrPopInAnimation
+
+#pragma mark - Internals
+
+- (void)setupAnimations {
+    
+    [super setupAnimations];
+    
+    self.layer.hidden = NO;
+    
+}
 
 #pragma mark - Creating Animation
 
