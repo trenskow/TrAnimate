@@ -40,219 +40,157 @@
 /// ---------------------
 
 /*!
- Returns a linear curve.
- 
- @return A linear curve.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/linear.png" alt="The signature of the linear curve." />
  */
 + (TrCurve *)linear;
 
 /*!
- Returns a curve that eases in quad.
- 
- @return A curve that eases in quad.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInQuad.png" alt="The signature of the easeInQuad curve." />
  */
 + (TrCurve *)easeInQuad;
 
 /*!
- Returns a curve that eases out quad.
- 
- @return A curve that eases out quad.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeOutQuad.png" alt="The signature of the easeOutQuad curve." />
  */
 + (TrCurve *)easeOutQuad;
 
 /*!
- Returns a curve that eases in and out quad.
- 
- @return A curve that eases in and out quad.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInOutQuad.png" alt="The signature of the easeInOutQuad curve." />
  */
 + (TrCurve *)easeInOutQuad;
 
 /*!
- Returns a curve that eases in cubic.
- 
- @return A curve that eases in cubic.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInCubic.png" alt="The signature of the easeInCubic curve." />
  */
 + (TrCurve *)easeInCubic;
 
 /*!
- Returns a curve that eases out cubic.
- 
- @return A curve that eases out cubic.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeOutCubic.png" alt="The signature of the easeOutCubic curve." />
  */
 + (TrCurve *)easeOutCubic;
 
 /*!
- Returns a curve that eases in and out cubic.
- 
- @return A curve that eases in and out cubic.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInOutCubic.png" alt="The signature of the easeInOutCubic curve." />
  */
 + (TrCurve *)easeInOutCubic;
 
 /*!
- Returns a curve that eases in quart.
- 
- @return A curve that eases in quart.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInQuart.png" alt="The signature of the easeInQuart curve." />
  */
 + (TrCurve *)easeInQuart;
 
 /*!
- Returns a curve that eases out quart.
- 
- @return A curve that eases out quart.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeOutQuart.png" alt="The signature of the easeOutQuart curve." />
  */
 + (TrCurve *)easeOutQuart;
 
 /*!
- Returns a curve that eases in and out quart.
- 
- @return A curve that eases in and out quart.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInOutQuart.png" alt="The signature of the easeInOutQuart curve." />
  */
 + (TrCurve *)easeInOutQuart;
 
 /*!
- Returns a curve that eases in quint.
- 
- @return A curve that eases in quint.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInQuint.png" alt="The signature of the easeInQuint curve." />
  */
 + (TrCurve *)easeInQuint;
 
 /*!
- Returns a curve that eases out quint.
- 
- @return A curve that eases out quint.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeOutQuint.png" alt="The signature of the easeOutQuint curve." />
  */
 + (TrCurve *)easeOutQuint;
 
 /*!
- Returns a curve that eases in and out quint.
- 
- @return A curve that eases in and out quint.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInOutQuint.png" alt="The signature of the easeInOutQuint curve." />
  */
 + (TrCurve *)easeInOutQuint;
 
 /*!
- Returns a curve that eases in using sine.
- 
- @return A curve that eases in using sine.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInSine.png" alt="The signature of the easeInSine curve." />
  */
 + (TrCurve *)easeInSine;
 
 /*!
- Returns a curve that eases out using sine.
- 
- @return A curve that eases out using sine.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeOutSine.png" alt="The signature of the easeOutSine curve." />
  */
 + (TrCurve *)easeOutSine;
 
 /*!
- Returns a curve that eases in and out using sine.
- 
- @return A curve that eases in and out using sine.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInOutSine.png" alt="The signature of the easeInOutSine curve." />
  */
 + (TrCurve *)easeInOutSine;
 
 /*!
- Returns a curve that eases in expo.
- 
- @return A curve that eases in expo.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInExpo.png" alt="The signature of the easeInExpo curve." />
  */
 + (TrCurve *)easeInExpo;
 
 /*!
- Returns a curve that eases out expo.
- 
- @return A curve that eases out expo.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeOutExpo.png" alt="The signature of the easeOutExpo curve." />
  */
 + (TrCurve *)easeOutExpo;
 
 /*!
- Returns a curve that eases in and out expo.
- 
- @return A curve that eases in and out expo.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInOutExpo.png" alt="The signature of the easeInOutExpo curve." />
  */
 + (TrCurve *)easeInOutExpo;
 
 /*!
- Returns a curve that eases in circular.
- 
- @return A curve that eases in circular.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInCirc.png" alt="The signature of the easeInCirc curve." />
  */
 + (TrCurve *)easeInCirc;
 
 /*!
- Returns a curve that ease out circular.
- 
- @return A curve that ease out circular.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeOutCirc.png" alt="The signature of the easeOutCirc curve." />
  */
 + (TrCurve *)easeOutCirc;
 
 /*!
- Returns a curve that eases in and out circular.
- 
- @return A curve that eases in and out circular.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInOutCirc.png" alt="The signature of the easeInOutCirc curve." />
  */
 + (TrCurve *)easeInOutCirc;
 
 /*!
- Returns a curve that eases in elasticly.
- 
- @return A curve that eases in elasticly.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInElastic.png" alt="The signature of the easeInElastic curve." />
  */
 + (TrCurve *)easeInElastic;
 
 /*!
- Returns a curve that eases out elasticly.
- 
- @return A curve that eases out elasticly.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeOutElastic.png" alt="The signature of the easeOutElastic curve." />
  */
 + (TrCurve *)easeOutElastic;
 
 /*!
- Returns a curve that eases in and out elasticly.
- 
- @return A curve that eases in and out elasticly.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInOutElastic.png" alt="The signature of the easeInOutElastic curve." />
  */
 + (TrCurve *)easeInOutElastic;
 
 /*!
- Returns a curve that eases in with an overshoot.
- 
- @return A curve that eases in with an overshoot.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInBack.png" alt="The signature of the easeInBack curve." />
  */
 + (TrCurve *)easeInBack;
 
 /*!
- Returns a curve that eases out with an overshoot.
- 
- @return A curve that eases out with an overshoot.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeOutBack.png" alt="The signature of the easeOutBack curve." />
  */
 + (TrCurve *)easeOutBack;
 
 /*!
- Returns a curve that eases in and out with an overshoot.
- 
- @return A curve that eases in and out with an overshoot.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInOutBack.png" alt="The signature of the easeInOutBack curve." />
  */
 + (TrCurve *)easeInOutBack;
 
 /*!
- Returns a curve that bounces in.
- 
- @return A curve that bounces in.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInBounce.png" alt="The signature of the easeInBounce curve." />
  */
 + (TrCurve *)easeInBounce;
 
 /*!
- Returns a curve that bounces out.
- 
- @return A curve that bounces out.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeOutBounce.png" alt="The signature of the easeOutBounce curve." />
  */
 + (TrCurve *)easeOutBounce;
 
 /*!
- Returns a curve that bounces in and out.
- 
- @return A curve that bounces in and out.
+ Returns a curve with a signature as below.<br /><img src="../docs/curves/easeInOutBounce.png" alt="The signature of the easeInOutBounce curve." />
  */
 + (TrCurve *)easeInOutBounce;
 
