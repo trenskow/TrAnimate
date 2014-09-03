@@ -32,6 +32,10 @@
 
 /*!
  The `TrPopInAnimation` pops in a `UIView` or `CALayer`. A `TrPopInAnimation` object implicitly unhides the animated content before animation begins.
+ 
+ ## Convenience methods
+ 
+ There are some convenience methods for creating pop-in animation on `UIView` objects which are described in the reference for UIView(TrPopInAnimationAdditions).
  */
 @interface TrPopInAnimation : TrScaleAnimation
 

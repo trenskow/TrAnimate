@@ -28,7 +28,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import <TrAnimate/TrAnimate.h>
+#import "TrPositionAnimation.h"
 
 /*!
  Specifies the direction from where the move-in should occur.
@@ -70,6 +70,10 @@ typedef NS_ENUM(NSInteger, TrMoveInAnimationDirection) {
                           curve:[TrCurve easeOutBack]];
  
   In the above example we set the frame of a `UIView` object (`someView`) and immediately hide it. The animation then unhides the `UIView` object and animates it from outside it's superview's bounds and into place.
+ 
+ ## Convenience methods
+ 
+ There are some convenience methods for creating move-in animation on `UIView` objects which are described in the reference for UIView(TrMoveInAnimationAdditions).
  
  */
 @interface TrMoveInAnimation : TrPositionAnimation

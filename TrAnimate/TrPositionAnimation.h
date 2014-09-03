@@ -30,6 +30,8 @@
 
 #import "TrLayerAnimation.h"
 
+@protocol TrAnimatable;
+
 /*!
  Specifies the anchor point of the position.
  */
