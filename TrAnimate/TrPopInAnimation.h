@@ -31,7 +31,7 @@
 #import "TrScaleAnimation.h"
 
 /*!
- The `TrPopInAnimation` pops in a `UIView` or `CALayer`.
+ The `TrPopInAnimation` pops in a `UIView` or `CALayer`. A `TrPopInAnimation` object implicitly unhides the animated content before animation begins.
  */
 @interface TrPopInAnimation : TrScaleAnimation
 

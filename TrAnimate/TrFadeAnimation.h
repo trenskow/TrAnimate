@@ -41,7 +41,11 @@ typedef NS_ENUM(NSInteger, TrFadeAnimationDirection) {
 };
 
 /*!
- The `TrFadeAnimation` fades a `UIView` or `CALayer` object.
+ The `TrFadeAnimation` fades a `UIView` or `CALayer` object. A `TrFadeAnimation` object implicitly unhides the animated content before animation begins.
+ 
+ ## Convenience methods
+ 
+ There are some convenience methods for creating fade animation on `UIView` objects which are described in the reference for UIView(TrFadeAnimationAdditions).
  */
 @interface TrFadeAnimation : TrOpacityAnimation
 
