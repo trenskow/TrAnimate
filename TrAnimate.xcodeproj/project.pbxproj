@@ -193,8 +193,8 @@
 		A10A32B418E2E646000D4B49 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				A1D5FCDD19ACEA6800C9EB4B /* UIKit */,
-				A1D5FCDE19ACEA6D00C9EB4B /* QuartzCore */,
+				A119306719B7368400AEBE95 /* UIView */,
+				A119306819B7368C00AEBE95 /* CALayer */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -210,10 +210,90 @@
 		A119305819B71F8800AEBE95 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				A119306919B7369E00AEBE95 /* UIView */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		A119306119B7362B00AEBE95 /* NSValue */ = {
+			isa = PBXGroup;
+			children = (
+				A11C789A17883BE70000B420 /* NSValue+TrAnimateAdditions.h */,
+				A11C789B17883BE70000B420 /* NSValue+TrAnimateAdditions.m */,
+			);
+			name = NSValue;
+			sourceTree = "<group>";
+		};
+		A119306219B7363000AEBE95 /* NSNumber */ = {
+			isa = PBXGroup;
+			children = (
+				A11C789C17883BE70000B420 /* NSNumber+TrAnimateAdditions.h */,
+				A11C789D17883BE70000B420 /* NSNumber+TrAnimateAdditions.m */,
+			);
+			name = NSNumber;
+			sourceTree = "<group>";
+		};
+		A119306319B7363800AEBE95 /* UIColor */ = {
+			isa = PBXGroup;
+			children = (
+				A162BCEA19B4A16300D5B019 /* UIColor+TrAnimateAdditions.h */,
+				A162BCEB19B4A16300D5B019 /* UIColor+TrAnimateAdditions.m */,
+			);
+			name = UIColor;
+			sourceTree = "<group>";
+		};
+		A119306419B7365400AEBE95 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				A1A2E47619B48EE200CEAE48 /* NSObject+TrAnimateAdditions.h */,
+				A1A2E47719B48EE200CEAE48 /* NSObject+TrAnimateAdditions.m */,
+			);
+			name = NSObject;
+			sourceTree = "<group>";
+		};
+		A119306519B7366700AEBE95 /* NSObject */ = {
+			isa = PBXGroup;
+			children = (
+				A1A2E47C19B4998E00CEAE48 /* NSObject+TrAnimationsAddition.h */,
+				A1A2E47D19B4998E00CEAE48 /* NSObject+TrAnimationsAddition.m */,
+			);
+			name = NSObject;
+			sourceTree = "<group>";
+		};
+		A119306619B7367600AEBE95 /* CAKeyframeAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				A11C789517883BD20000B420 /* TrBasicAnimation.h */,
+				A11C789617883BD20000B420 /* TrBasicAnimation.m */,
+			);
+			name = CAKeyframeAnimation;
+			sourceTree = "<group>";
+		};
+		A119306719B7368400AEBE95 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				A1E6EA9F1913B55300E4F179 /* UIView+TrAnimateAdditions.h */,
+				A1E6EAA01913B55300E4F179 /* UIView+TrAnimateAdditions.m */,
+			);
+			name = UIView;
+			sourceTree = "<group>";
+		};
+		A119306819B7368C00AEBE95 /* CALayer */ = {
+			isa = PBXGroup;
+			children = (
+				A1E6EAA21913B5CE00E4F179 /* CALayer+TrAnimateAdditions.h */,
+				A1E6EAA31913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m */,
+			);
+			name = CALayer;
+			sourceTree = "<group>";
+		};
+		A119306919B7369E00AEBE95 /* UIView */ = {
+			isa = PBXGroup;
+			children = (
 				A119305A19B71FAB00AEBE95 /* UIView+TrFadeAnimationAdditions.h */,
 				A119305B19B71FAB00AEBE95 /* UIView+TrFadeAnimationAdditions.m */,
 			);
-			name = Categories;
+			name = UIView;
 			sourceTree = "<group>";
 		};
 		A11C784A178839720000B420 = {
@@ -330,7 +410,7 @@
 		A11C789417883BBE0000B420 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A1D5FCDC19ACEA5800C9EB4B /* QuartzCore */,
+				A119306619B7367600AEBE95 /* CAKeyframeAnimation */,
 			);
 			name = "Custom Classes";
 			sourceTree = "<group>";
@@ -350,15 +430,6 @@
 				A10D78D919A279530013E5F5 /* TrCurve.m */,
 			);
 			name = Curvature;
-			sourceTree = "<group>";
-		};
-		A162BCE919B4A14F00D5B019 /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				A162BCEA19B4A16300D5B019 /* UIColor+TrAnimateAdditions.h */,
-				A162BCEB19B4A16300D5B019 /* UIColor+TrAnimateAdditions.m */,
-			);
-			name = UIKit;
 			sourceTree = "<group>";
 		};
 		A162BCF619B4D5AE00D5B019 /* Move In Animation */ = {
@@ -397,15 +468,6 @@
 			name = Additions;
 			sourceTree = "<group>";
 		};
-		A1A2E47519B48ECC00CEAE48 /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				A1A2E47619B48EE200CEAE48 /* NSObject+TrAnimateAdditions.h */,
-				A1A2E47719B48EE200CEAE48 /* NSObject+TrAnimateAdditions.m */,
-			);
-			name = Foundation;
-			sourceTree = "<group>";
-		};
 		A1A2E47A19B4921B00CEAE48 /* Additions */ = {
 			isa = PBXGroup;
 			children = (
@@ -425,7 +487,7 @@
 		A1A2E48219B499A700CEAE48 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				A1A2E47519B48ECC00CEAE48 /* Foundation */,
+				A119306419B7365400AEBE95 /* NSObject */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -433,8 +495,7 @@
 		A1A2E48319B499B200CEAE48 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				A1A2E47C19B4998E00CEAE48 /* NSObject+TrAnimationsAddition.h */,
-				A1A2E47D19B4998E00CEAE48 /* NSObject+TrAnimationsAddition.m */,
+				A119306519B7366700AEBE95 /* NSObject */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -462,8 +523,9 @@
 		A1D5FCD819ACE60D00C9EB4B /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				A1D5FCE019ACEAA900C9EB4B /* Foundation */,
-				A162BCE919B4A14F00D5B019 /* UIKit */,
+				A119306119B7362B00AEBE95 /* NSValue */,
+				A119306219B7363000AEBE95 /* NSNumber */,
+				A119306319B7363800AEBE95 /* UIColor */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -483,44 +545,6 @@
 				A10A32B418E2E646000D4B49 /* Categories */,
 			);
 			name = Additions;
-			sourceTree = "<group>";
-		};
-		A1D5FCDC19ACEA5800C9EB4B /* QuartzCore */ = {
-			isa = PBXGroup;
-			children = (
-				A11C789517883BD20000B420 /* TrBasicAnimation.h */,
-				A11C789617883BD20000B420 /* TrBasicAnimation.m */,
-			);
-			name = QuartzCore;
-			sourceTree = "<group>";
-		};
-		A1D5FCDD19ACEA6800C9EB4B /* UIKit */ = {
-			isa = PBXGroup;
-			children = (
-				A1E6EA9F1913B55300E4F179 /* UIView+TrAnimateAdditions.h */,
-				A1E6EAA01913B55300E4F179 /* UIView+TrAnimateAdditions.m */,
-			);
-			name = UIKit;
-			sourceTree = "<group>";
-		};
-		A1D5FCDE19ACEA6D00C9EB4B /* QuartzCore */ = {
-			isa = PBXGroup;
-			children = (
-				A1E6EAA21913B5CE00E4F179 /* CALayer+TrAnimateAdditions.h */,
-				A1E6EAA31913B5CE00E4F179 /* CALayer+TrAnimateAdditions.m */,
-			);
-			name = QuartzCore;
-			sourceTree = "<group>";
-		};
-		A1D5FCE019ACEAA900C9EB4B /* Foundation */ = {
-			isa = PBXGroup;
-			children = (
-				A11C789A17883BE70000B420 /* NSValue+TrAnimateAdditions.h */,
-				A11C789B17883BE70000B420 /* NSValue+TrAnimateAdditions.m */,
-				A11C789C17883BE70000B420 /* NSNumber+TrAnimateAdditions.h */,
-				A11C789D17883BE70000B420 /* NSNumber+TrAnimateAdditions.m */,
-			);
-			name = Foundation;
 			sourceTree = "<group>";
 		};
 		A1E6EA921912D96B00E4F179 /* Direct Animation */ = {
