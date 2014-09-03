@@ -175,7 +175,7 @@
 		A10A32A618E2DB24000D4B49 /* Core Animation Animations */ = {
 			isa = PBXGroup;
 			children = (
-				A1D5FCD719ACE5EA00C9EB4B /* Additions */,
+				A1A2E47A19B4921B00CEAE48 /* Additions */,
 				A1D5FCDA19ACEA1F00C9EB4B /* Animatable */,
 				A1D5FCD519ACE59300C9EB4B /* Animations */,
 				A10A32A718E2DB5B000D4B49 /* TrLayerAnimation.h */,
@@ -450,14 +450,6 @@
 				A11C789917883BE70000B420 /* TrInterpolatable.h */,
 			);
 			name = Interpolation;
-			sourceTree = "<group>";
-		};
-		A1D5FCD719ACE5EA00C9EB4B /* Additions */ = {
-			isa = PBXGroup;
-			children = (
-				A1A2E47A19B4921B00CEAE48 /* Additions */,
-			);
-			name = Additions;
 			sourceTree = "<group>";
 		};
 		A1D5FCD819ACE60D00C9EB4B /* Categories */ = {
