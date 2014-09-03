@@ -321,7 +321,6 @@
 		A11C788217883B6E0000B420 /* Animation Group */ = {
 			isa = PBXGroup;
 			children = (
-				A12886FC19B1F4CD0093AD13 /* Animations */,
 				A11C788317883B7D0000B420 /* TrAnimationGroup.h */,
 				A11C788417883B7D0000B420 /* TrAnimationGroup.m */,
 			);
@@ -344,14 +343,6 @@
 			name = Additions;
 			sourceTree = "<group>";
 		};
-		A12886FC19B1F4CD0093AD13 /* Animations */ = {
-			isa = PBXGroup;
-			children = (
-				A162BCF519B4D56E00D5B019 /* Pop In Animation */,
-			);
-			name = Animations;
-			sourceTree = "<group>";
-		};
 		A1525C9919A4DD9F00024B4A /* Curvature */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,13 +359,6 @@
 				A162BCEB19B4A16300D5B019 /* UIColor+TrAnimateAdditions.m */,
 			);
 			name = UIKit;
-			sourceTree = "<group>";
-		};
-		A162BCF519B4D56E00D5B019 /* Pop In Animation */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Pop In Animation";
 			sourceTree = "<group>";
 		};
 		A162BCF619B4D5AE00D5B019 /* Move In Animation */ = {
