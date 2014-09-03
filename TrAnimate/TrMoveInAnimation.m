@@ -28,8 +28,6 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "CALayer+TrMoveInAnimationAdditions.h"
-
 #import "TrAnimatable.h"
 #import "TrLayerAnimation+Private.h"
 
