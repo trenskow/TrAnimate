@@ -54,6 +54,23 @@ typedef NS_ENUM(NSInteger, TrMoveInAnimationDirection) {
 
 /*!
  The `TrMoveInAnimation` moves in a view from a specific direction and from outside some specified bounds.
+ 
+ ## Usage
+ 
+ This animation implicitly unhides the animated content before the animation begins. Use this by moving your content into place and hide it.
+ 
+     self.someView.frame = CGRectMake(100.0, 100.0, 100.0, 100.0);
+     self.someView.hidden = YES;
+     
+     [TrMoveInAnimation animate:self.someView
+                       duration:.3
+                          delay:.0
+                      direction:TrMoveInAnimationDirectionTop
+              fromOutsideBounds:self.someView.superview
+                          curve:[TrCurve easeOutBack]];
+ 
+  In the above example we set the frame of a `UIView` object (`someView`) and immediately hide it. The animation then unhides the `UIView` object and animates it from outside it's superview's bounds and into place.
+ 
  */
 @interface TrMoveInAnimation : TrPositionAnimation
 
