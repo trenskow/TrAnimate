@@ -194,9 +194,9 @@
  */
 + (TrCurve *)easeInOutBounce;
 
-/// ---------------------
-/// @name Creating Curves
-/// ---------------------
+/// --------------------
+/// @name Creating Curve
+/// --------------------
 
 /*!
  Creates and returns a new curve using a block.
@@ -208,7 +208,7 @@
 + (instancetype)curveWithBlock:(double (^)(double t))block;
 
 /// ------------------------
-/// @name Calculating Curves
+/// @name Transforming Curve
 /// ------------------------
 
 /*!
@@ -216,7 +216,7 @@
  
  @param positionInTime Position in time between one and zero.
  
- @discussion Override this if you want to create a custom curve without using blocks.
+ @discussion Override this in a subclass if you want to create a custom curve without using blocks.
  
  @return The position on the curve relative to `positionInTime`.
  */
