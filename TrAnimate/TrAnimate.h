@@ -52,6 +52,7 @@ FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 
 #import "TrOpacityAnimation.h"
 #import "TrFadeAnimation.h"
+#import "UIView+TrFadeAnimationAdditions.h"
 #import "TrPositionAnimation.h"
 #import "TrMoveInAnimation.h"
 #import "TrScaleAnimation.h"

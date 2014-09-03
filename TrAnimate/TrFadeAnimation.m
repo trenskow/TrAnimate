@@ -28,11 +28,23 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "TrLayerAnimation+Private.h"
+
 #import "TrAnimatable.h"
 
 #import "TrFadeAnimation.h"
 
 @implementation TrFadeAnimation
+
+#pragma mark - Internal
+
+- (void)animationStarted {
+    
+    [super animationStarted];
+    
+    self.layer.hidden = NO;
+    
+}
 
 #pragma mark - Creating Animation
 

@@ -40,16 +40,6 @@
 
 @implementation TrOpacityAnimation
 
-#pragma mark - Internal
-
-- (void)animationStarted {
-    
-    [super animationStarted];
-    
-    self.layer.hidden = NO;
-    
-}
-
 #pragma mark - Creating Animation
 
 + (void)cancelAnimationOn:(id<TrAnimatable>)viewOrLayer {
