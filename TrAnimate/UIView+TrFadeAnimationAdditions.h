@@ -41,7 +41,7 @@
 /// -----------------------
 
 /*!
- Creates and returns a fade-in animation.
+ Creates and returns a fade-in animation. 
 
  @param duration   The duration of the fade-in.
  @param delay      The delay before the fade-in begins.

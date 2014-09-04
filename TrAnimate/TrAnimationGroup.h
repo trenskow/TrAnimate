@@ -28,6 +28,8 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
+@import Foundation;
+
 #import "TrAnimation.h"
 
 /*!
@@ -35,7 +37,9 @@
  */
 @interface TrAnimationGroup : NSObject <TrAnimation>
 
-#pragma mark - Creating animation groups
+/// ------------------------------
+/// @name Creating Animation Group
+/// ------------------------------
 
 /*!
  Creates a new instance of `TrAnimationGroup`.
@@ -73,7 +77,9 @@
  */
 + (instancetype)animationGroup;
 
-#pragma mark - Adding animations
+/// -----------------------
+/// @name Adding Animations
+/// -----------------------
 
 /*!
  Adds an animation to the group.

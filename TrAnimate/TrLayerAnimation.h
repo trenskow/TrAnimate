@@ -76,6 +76,21 @@
  */
 @property (nonatomic) NSTimeInterval duration;
 
+/*!
+ The key path of the property to animate.
+ */
+@property (nonatomic,copy,readonly) NSString *keyPath;
+
+/*!
+ The value to animate from.
+ */
+@property (nonatomic,copy,readonly) id<TrInterpolatable> fromValue;
+
+/*!
+ The value to animate to.
+ */
+@property (nonatomic,copy,readonly) id<TrInterpolatable> toValue;
+
 /// ------------------------
 /// @name Creating Animation
 /// ------------------------

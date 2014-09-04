@@ -1,5 +1,5 @@
 //
-//  TrMoveInAnimation.m
+//  TrPushAnimation.m
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
@@ -31,17 +31,35 @@
 #import "TrAnimatable.h"
 #import "TrLayerAnimation+Private.h"
 
-#import "TrMoveInAnimation.h"
+#import "TrPushAnimation.h"
 
-@implementation TrMoveInAnimation
+@interface TrPushAnimation ()
+
+@property (nonatomic) TrPushAnimationDirection direction;
+
+@end
+
+@implementation TrPushAnimation
 
 #pragma mark - Internals
 
+- (void)animationCompleted:(BOOL)finished {
+    
+    if (self.direction == TrPushAnimationDirectionOut) {
+        self.layer.hidden = YES;
+        [self.layer setValue:self.fromValue forKeyPath:@"position"];
+    }
+    
+    [super animationCompleted:finished];
+    
+}
+
 - (void)setupAnimations {
     
-    [super setupAnimations];
+    if (self.direction == TrPushAnimationDirectionIn)
+        self.layer.hidden = NO;
     
-    self.layer.hidden = NO;
+    [super setupAnimations];
     
 }
 
@@ -49,61 +67,79 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
+              direction:(TrPushAnimationDirection)direction
+                   edge:(TrPushAnimationEdge)edge
+         toOrFromBounds:(id<TrAnimatable>)bounds
                   delay:(NSTimeInterval)delay
-              direction:(TrMoveInAnimationDirection)direction
-      fromOutsideBounds:(id<TrAnimatable>)boundsViewOrLayer
                   curve:(TrCurve *)curve
-             completion:(void (^)(BOOL))completion {
+             completion:(void (^)(BOOL finished))completion {
+    
+    /* We create a push in by default and reverse it below if it's a push out. */
     
     /* Get the layers relevant to do all calculations. */
     CALayer *layer = viewOrLayer.animationLayer;
-    CALayer *boundsLayer = (boundsViewOrLayer ?: layer).animationLayer;
+    CALayer *boundsLayer = (bounds ?: viewOrLayer).animationLayer;
     
     CGRect b = [layer.superlayer convertRect:boundsLayer.bounds
                                    fromLayer:boundsLayer];
     
     /* Calculate `fromPosition` based on `direction` */
+    CGPoint toPosition = layer.position;
     CGPoint fromPosition = layer.position;
     
-    switch (direction) {
-        case TrMoveInAnimationDirectionTop:
+    switch (edge) {
+        case TrPushAnimationEdgeTop:
             fromPosition.y = b.origin.y - layer.bounds.size.height * (1.0 - layer.anchorPoint.y);
             break;
-        case TrMoveInAnimationDirectionRight:
+        case TrPushAnimationEdgeRight:
             fromPosition.x = b.origin.x + b.size.width + layer.bounds.size.width * layer.anchorPoint.x;
             break;
-        case TrMoveInAnimationDirectionBottom:
+        case TrPushAnimationEdgeBottom:
             fromPosition.y = b.origin.y + b.size.height + layer.bounds.size.height * layer.anchorPoint.y;
             break;
-        case TrMoveInAnimationDirectionLeft:
+        case TrPushAnimationEdgeLeft:
             fromPosition.x = b.origin.x - layer.bounds.size.width * (1.0 - layer.anchorPoint.x);
             break;
     }
     
+    /* In case it's a push out we swap the positions */
+    if (direction == TrPushAnimationDirectionOut) {
+        CGPoint p = fromPosition;
+        fromPosition = toPosition;
+        toPosition = p;
+    }
+    
     /* Return position animation */
-    return [super animate:viewOrLayer
-                 duration:duration
-                    delay:delay
-             fromPosition:fromPosition
-               toPosition:layer.position
-                   anchor:TrPositionAnimationAnchorCenter
-                    curve:curve
-               completion:completion];
+    TrPushAnimation *pushAnimation = [super animate:viewOrLayer
+                                           duration:duration
+                                              delay:delay
+                                       fromPosition:fromPosition
+                                         toPosition:toPosition
+                                             anchor:TrPositionAnimationAnchorCenter
+                                              curve:curve
+                                         completion:completion];
+    
+    /* Needed in order to do correct hiding of viewOrLayer before or after animation. */
+    pushAnimation.direction = direction;
+    
+    return pushAnimation;
     
 }
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
+              direction:(TrPushAnimationDirection)direction
+                   edge:(TrPushAnimationEdge)edge
+         toOrFromBounds:(id<TrAnimatable>)bounds
                   delay:(NSTimeInterval)delay
-              direction:(TrMoveInAnimationDirection)direction
-      fromOutsideBounds:(id<TrAnimatable>)boundsViewOrLayer
                   curve:(TrCurve *)curve {
     
     return [self animate:viewOrLayer
                 duration:duration
-                   delay:delay
                direction:direction
-       fromOutsideBounds:boundsViewOrLayer
+                    edge:edge
+          toOrFromBounds:bounds
+                   delay:delay
                    curve:curve
               completion:nil];
     
@@ -111,15 +147,17 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-              direction:(TrMoveInAnimationDirection)direction
-      fromOutsideBounds:(id<TrAnimatable>)boundsViewOrLayer {
-
+              direction:(TrPushAnimationDirection)direction
+                   edge:(TrPushAnimationEdge)edge
+         toOrFromBounds:(id<TrAnimatable>)bounds
+                  delay:(NSTimeInterval)delay {
+    
     return [self animate:viewOrLayer
                 duration:duration
-                   delay:delay
                direction:direction
-       fromOutsideBounds:boundsViewOrLayer
+                    edge:edge
+          toOrFromBounds:bounds
+                   delay:delay
                    curve:nil
               completion:nil];
     
@@ -127,50 +165,36 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-              direction:(TrMoveInAnimationDirection)direction
-                  curve:(TrCurve *)curve
-             completion:(void (^)(BOOL))completion {
+              direction:(TrPushAnimationDirection)direction
+                   edge:(TrPushAnimationEdge)edge
+         toOrFromBounds:(id<TrAnimatable>)bounds {
     
     return [self animate:viewOrLayer
                 duration:duration
-                   delay:delay
                direction:direction
-       fromOutsideBounds:nil
-                   curve:curve
-              completion:completion];
-    
-}
-
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-              direction:(TrMoveInAnimationDirection)direction
-                  curve:(TrCurve *)curve {
-    
-    return [self animate:viewOrLayer
-                duration:duration
-                   delay:delay
-               direction:direction
-       fromOutsideBounds:nil
-                   curve:curve
-              completion:nil];
-    
-}
-
-+ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
-               duration:(NSTimeInterval)duration
-                  delay:(NSTimeInterval)delay
-              direction:(TrMoveInAnimationDirection)direction {
-    
-    return [self animate:viewOrLayer
-                duration:duration
-                   delay:delay
-               direction:direction
-       fromOutsideBounds:nil
+                    edge:edge
+          toOrFromBounds:bounds
+                   delay:.0
                    curve:nil
               completion:nil];
     
 }
+
++ (instancetype)animate:(id<TrAnimatable>)viewOrLayer
+               duration:(NSTimeInterval)duration
+              direction:(TrPushAnimationDirection)direction
+                   edge:(TrPushAnimationEdge)edge {
+    
+    return [self animate:viewOrLayer
+                duration:duration
+               direction:direction
+                    edge:edge
+          toOrFromBounds:nil
+                   delay:.0
+                   curve:nil
+              completion:nil];
+    
+}
+
 
 @end
