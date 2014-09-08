@@ -164,19 +164,16 @@
     
     // We already convert toPosition to center origin here.
     
-    TrPositionAnimationAnchor useAnchor = [self anchorForViewOrLayer:viewOrLayer
-                                                          withAnchor:anchor];
-    
-    return [self animate:viewOrLayer
-                duration:duration
-                   delay:delay
-            fromPosition:viewOrLayer.presentedLayer.position
-              toPosition:[self position:toPosition
-                                ofLayer:viewOrLayer.animationLayer
-                             fromAnchor:useAnchor]
-                  anchor:TrPositionAnimationAnchorCenter
-                   curve:curve
-              completion:completion];
+    return [super animate:viewOrLayer.animationLayer
+                 duration:duration
+                    delay:delay
+                  keyPath:@"position"
+                  toValue:[NSValue valueWithCGPoint:[self position:toPosition
+                                                           ofLayer:viewOrLayer.animationLayer
+                                                        fromAnchor:[self anchorForViewOrLayer:viewOrLayer
+                                                                                   withAnchor:anchor]]]
+                    curve:curve
+               completion:completion];
     
 }
 

@@ -115,10 +115,16 @@ const void *TrDirectAnimationKey;
     
     double progress = MIN([[NSDate date] timeIntervalSinceDate:_beginTime] / self.duration, 1.0);
     
-    if (progress >= 0 && progress <= 1.0)
+    if (progress >= 0 && progress <= 1.0) {
+        
+        if (!self.fromValue)
+            self.fromValue = [self.object valueForKeyPath:self.keyPath];
+        
         [self.object setValue:[self.fromValue interpolateWithValue:self.toValue
                                                         atPosition:[self.curve transform:progress]]
                forKeyPath:self.keyPath];
+        
+    }
     
     if (progress == 1.0)
         [self endAnimation:YES];
@@ -263,7 +269,7 @@ const void *TrDirectAnimationKey;
                 duration:duration
                    delay:delay
                  keyPath:keyPath
-               fromValue:[object valueForKeyPath:keyPath]
+               fromValue:nil
                  toValue:toValue
                    curve:curve
               completion:completion];

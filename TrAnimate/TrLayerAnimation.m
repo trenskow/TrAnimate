@@ -166,6 +166,8 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
 - (void)setupAnimations {
     
+    self.fromValue = (self.fromValue ?: [self.layer valueForKeyPath:self.keyPath]);
+    
     TrBasicAnimation *customAnimation = [TrBasicAnimation animationWithKeyPath:self.keyPath];
     customAnimation.fromValue = self.fromValue;
     customAnimation.toValue = self.toValue;
@@ -313,7 +315,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
                 duration:duration
                    delay:delay
                  keyPath:keyPath
-               fromValue:[layer.presentedLayer valueForKeyPath:keyPath]
+               fromValue:nil
                  toValue:toValue
                    curve:curve
               completion:completion];

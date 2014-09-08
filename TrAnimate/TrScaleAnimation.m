@@ -110,13 +110,13 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
-    return [self animate:viewOrLayer
-                duration:duration
-                   delay:delay
-         fromScaleFactor:[[viewOrLayer.presentedLayer valueForKeyPath:@"transform.scale.x"] floatValue]
-           toScaleFactor:toScaleFactor
-                   curve:curve
-              completion:completion];
+    return [super animate:viewOrLayer.animationLayer
+                 duration:duration
+                    delay:delay
+                  keyPath:@"transform.scale"
+                  toValue:@(toScaleFactor)
+                    curve:curve
+               completion:completion];
     
 }
 

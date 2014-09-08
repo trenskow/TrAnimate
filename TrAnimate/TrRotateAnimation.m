@@ -146,14 +146,13 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
-    return [self animate:viewOrLayer
-                duration:duration
-                   delay:delay
-               fromAngle:[[viewOrLayer.presentedLayer valueForKeyPath:[self keyPathForAxis:axis]] doubleValue]
-                 toAngle:toAngle
-                    axis:axis
-                   curve:curve
-              completion:completion];
+    return [super animate:viewOrLayer.animationLayer
+                 duration:duration
+                    delay:delay
+                  keyPath:[self keyPathForAxis:axis]
+                  toValue:@(toAngle)
+                    curve:curve
+               completion:completion];
     
 }
 

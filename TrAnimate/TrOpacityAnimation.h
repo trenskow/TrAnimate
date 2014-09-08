@@ -30,6 +30,8 @@
 
 #import "TrLayerAnimation.h"
 
+@protocol TrAnimatable;
+
 /*!
  The `TrOpacityAnimation` class animates the opacity of a `UIView` or `CALayer` object.
  */

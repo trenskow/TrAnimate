@@ -66,7 +66,7 @@
                  duration:duration
                     delay:delay
                   keyPath:@"opacity"
-                fromValue:@(fromOpacity)
+                fromValue:(fromOpacity >= 0.0 ? @(fromOpacity) : nil)
                   toValue:@(toOpacity)
                     curve:curve
                completion:completion];
@@ -113,13 +113,13 @@
                   curve:(TrCurve *)curve
              completion:(void (^)(BOOL finished))completion {
     
-    return [self animate:viewOrLayer
-                duration:duration
-                   delay:delay
-             fromOpacity:viewOrLayer.presentedLayer.opacity
-               toOpacity:toOpacity
-                   curve:curve
-              completion:completion];
+    return [super animate:viewOrLayer.animationLayer
+                 duration:duration
+                    delay:delay
+                  keyPath:@"opacity"
+                  toValue:@(toOpacity)
+                    curve:curve
+               completion:completion];
     
 }
 
