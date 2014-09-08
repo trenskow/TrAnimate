@@ -28,8 +28,27 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
+@import Foundation;
+
 /*!
  The `TrAnimation` protocol defines a set of methods and properties that are common to all types of animations. As an example the `TrAnimationGroup` only adds animations of objects that conform to this protocol.
+ 
+ ## Implementations
+ 
+ The build-in animations and groups below conform to this protocol.
+ 
+ - TrAnimationGroup
+   - TrConstruct
+ - TrLayerAnimation
+   - TrOpacityAnimation
+     - TrFadeAnimation
+   - TrPositionAnimation
+     - TrPushAnimation
+   - TrScaleAnimation
+     - TrPopInAnimation
+   - TrRotateAnimation
+ - TrDirectAnimation
+ 
  */
 @protocol TrAnimation
 
