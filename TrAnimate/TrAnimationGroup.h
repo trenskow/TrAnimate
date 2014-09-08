@@ -37,6 +37,22 @@
  */
 @interface TrAnimationGroup : NSObject <TrAnimation>
 
+/// -------------------------------------
+/// @name Initializing an Animation Group
+/// -------------------------------------
+
+/*!
+ Initializes a newly allocated animation group.
+ 
+ @param animations An NSArray containing animations which should be added to the group. The animations provided will all animate at the same time.
+ @param completion A block that gets invoked when all the animations in the group has completed.
+ 
+ @discussion Animations must conform to the `TrAnimation` protocol.
+ 
+ @return An initialized animation group ready to animate.
+ */
+- (instancetype)initWithAnimations:(NSArray *)animations completion:(void(^)(BOOL finished))completion;
+
 /// ------------------------------
 /// @name Creating Animation Group
 /// ------------------------------
@@ -47,7 +63,9 @@
  @param animations An NSArray containing animations which should be added to the group. The animations provided will all animate at the same time.
  @param completion A block that gets invoked when all the animations in the group has completed.
  
- @return Returns a `TrAnimationGroup` object.
+ @discussion Animations must conform to the `TrAnimation` protocol.
+ 
+ @return Returns a `TrAnimationGroup` object ready to animate.
  */
 + (instancetype)animationGroupWithAnimations:(NSArray *)animations
                                   completion:(void(^)(BOOL finished))completion;
@@ -56,6 +74,8 @@
  Create a new instance of `TrAnimationGroup`.
  
  @param animations An NSArray containing animation which should be added to the group. The animations provided will all animate at the same time.
+ 
+ @discussion Animations must conform to the `TrAnimation` protocol.
  
  @return Returns a `TrAnimationGroup` object.
  */
@@ -86,6 +106,8 @@
  
  @param animation    The animation to add to the group.
  @param animateAfter An animation which must complete before the added animation in `animation` begins. This animation must already have been added to the group.
+ 
+ @discussion Animations must conform to the `TrAnimation` protocol.
  */
 - (void)addAnimation:(id<TrAnimation>)animation
         animateAfter:(id<TrAnimation>)animateAfter;
@@ -94,7 +116,18 @@
  Adds an animation to the group.
  
  @param animation The animation to add to the group.
+ 
+ @discussion Animations must conform to the `TrAnimation` protocol.
  */
 - (void)addAnimation:(id<TrAnimation>)animation;
+
+/// ----------------
+/// @name Completion
+/// ----------------
+
+/*!
+ The block to execute when all the animations in the group has finished animating.
+ */
+@property (nonatomic,copy) void (^completionBlock)(BOOL finished);
 
 @end

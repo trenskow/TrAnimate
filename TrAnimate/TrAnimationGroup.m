@@ -63,7 +63,6 @@ char TrAnimationGroupObserverContext;
 @property (nonatomic,getter = hasFinished) BOOL finished;
 
 @property (nonatomic) NSMutableArray *animations;
-@property (nonatomic,copy) void (^completionBlock)(BOOL finished);
 @property (nonatomic) BOOL animationFinished;
 @property (nonatomic) BOOL beginsImmediately;
 
@@ -78,7 +77,7 @@ char TrAnimationGroupObserverContext;
     if ((self = [super init])) {
         
         self.animations = [[NSMutableArray alloc] init];
-        self.completionBlock = [completion copy];
+        self.completionBlock = completion;
         
         /* We mark it as finished - not complete. */
         self.animationFinished = YES;
