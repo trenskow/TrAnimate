@@ -1,5 +1,5 @@
 //
-//  TrPushAnimation.m
+//  TrMoveAnimation.m
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
@@ -31,21 +31,21 @@
 #import "TrAnimatable.h"
 #import "TrLayerAnimation+Private.h"
 
-#import "TrPushAnimation.h"
+#import "TrMoveAnimation.h"
 
-@interface TrPushAnimation ()
+@interface TrMoveAnimation ()
 
-@property (nonatomic) TrPushAnimationDirection direction;
+@property (nonatomic) TrMoveAnimationDirection direction;
 
 @end
 
-@implementation TrPushAnimation
+@implementation TrMoveAnimation
 
 #pragma mark - Internals
 
 - (void)animationCompleted:(BOOL)finished {
     
-    if (self.direction == TrPushAnimationDirectionOut) {
+    if (self.direction == TrMoveAnimationDirectionOut) {
         self.layer.hidden = YES;
         [self.layer setValue:self.fromValue forKeyPath:@"position"];
     }
@@ -56,7 +56,7 @@
 
 - (void)setupAnimations {
     
-    if (self.direction == TrPushAnimationDirectionIn)
+    if (self.direction == TrMoveAnimationDirectionIn)
         self.layer.hidden = NO;
     
     [super setupAnimations];
@@ -67,8 +67,8 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-              direction:(TrPushAnimationDirection)direction
-                   edge:(TrPushAnimationEdge)edge
+              direction:(TrMoveAnimationDirection)direction
+                   edge:(TrMoveAnimationEdge)edge
          toOrFromBounds:(id<TrAnimatable>)bounds
                   delay:(NSTimeInterval)delay
                   curve:(TrCurve *)curve
@@ -88,29 +88,29 @@
     CGPoint fromPosition = layer.position;
     
     switch (edge) {
-        case TrPushAnimationEdgeTop:
+        case TrMoveAnimationEdgeTop:
             fromPosition.y = b.origin.y - layer.bounds.size.height * (1.0 - layer.anchorPoint.y);
             break;
-        case TrPushAnimationEdgeRight:
+        case TrMoveAnimationEdgeRight:
             fromPosition.x = b.origin.x + b.size.width + layer.bounds.size.width * layer.anchorPoint.x;
             break;
-        case TrPushAnimationEdgeBottom:
+        case TrMoveAnimationEdgeBottom:
             fromPosition.y = b.origin.y + b.size.height + layer.bounds.size.height * layer.anchorPoint.y;
             break;
-        case TrPushAnimationEdgeLeft:
+        case TrMoveAnimationEdgeLeft:
             fromPosition.x = b.origin.x - layer.bounds.size.width * (1.0 - layer.anchorPoint.x);
             break;
     }
     
     /* In case it's a push out we swap the positions */
-    if (direction == TrPushAnimationDirectionOut) {
+    if (direction == TrMoveAnimationDirectionOut) {
         CGPoint p = fromPosition;
         fromPosition = toPosition;
         toPosition = p;
     }
     
     /* Return position animation */
-    TrPushAnimation *pushAnimation = [super animate:viewOrLayer
+    TrMoveAnimation *pushAnimation = [super animate:viewOrLayer
                                            duration:duration
                                               delay:delay
                                        fromPosition:fromPosition
@@ -128,8 +128,8 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-              direction:(TrPushAnimationDirection)direction
-                   edge:(TrPushAnimationEdge)edge
+              direction:(TrMoveAnimationDirection)direction
+                   edge:(TrMoveAnimationEdge)edge
          toOrFromBounds:(id<TrAnimatable>)bounds
                   delay:(NSTimeInterval)delay
                   curve:(TrCurve *)curve {
@@ -147,8 +147,8 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-              direction:(TrPushAnimationDirection)direction
-                   edge:(TrPushAnimationEdge)edge
+              direction:(TrMoveAnimationDirection)direction
+                   edge:(TrMoveAnimationEdge)edge
          toOrFromBounds:(id<TrAnimatable>)bounds
                   delay:(NSTimeInterval)delay {
     
@@ -165,8 +165,8 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-              direction:(TrPushAnimationDirection)direction
-                   edge:(TrPushAnimationEdge)edge
+              direction:(TrMoveAnimationDirection)direction
+                   edge:(TrMoveAnimationEdge)edge
          toOrFromBounds:(id<TrAnimatable>)bounds {
     
     return [self animate:viewOrLayer
@@ -182,8 +182,8 @@
 
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-              direction:(TrPushAnimationDirection)direction
-                   edge:(TrPushAnimationEdge)edge {
+              direction:(TrMoveAnimationDirection)direction
+                   edge:(TrMoveAnimationEdge)edge {
     
     return [self animate:viewOrLayer
                 duration:duration

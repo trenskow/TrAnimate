@@ -43,7 +43,7 @@
    - TrOpacityAnimation
      - TrFadeAnimation
    - TrPositionAnimation
-     - TrPushAnimation
+     - TrMoveAnimation
    - TrScaleAnimation
      - TrPopInAnimation
    - TrRotateAnimation

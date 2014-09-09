@@ -28,7 +28,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrPushAnimation.h"
+#import "TrMoveAnimation.h"
 #import "TrAnimationGroup.h"
 
 @protocol TrAnimatable;
@@ -40,8 +40,8 @@
 + (instancetype)constructWithViewOrLayer:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration curve:(TrCurve *)curve;
 
 - (TrConstruct *)fadeIn;
-- (TrConstruct *)pushIn:(TrPushAnimationEdge)edge fromBounds:(id<TrAnimatable>)bounds;
-- (TrConstruct *)pushIn:(TrPushAnimationEdge)edge;
+- (TrConstruct *)pushIn:(TrMoveAnimationEdge)edge fromBounds:(id<TrAnimatable>)bounds;
+- (TrConstruct *)pushIn:(TrMoveAnimationEdge)edge;
 - (TrConstruct *)popIn:(BOOL)elastic;
 - (TrConstruct *)and:(id<TrAnimation>)animation;
 - (TrConstruct *)then:(id<TrAnimation>)animation;

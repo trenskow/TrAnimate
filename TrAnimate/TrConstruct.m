@@ -29,7 +29,7 @@
 //
 
 #import "TrFadeAnimation.h"
-#import "TrPushAnimation.h"
+#import "TrMoveAnimation.h"
 #import "TrPopInAnimation.h"
 
 #import "TrConstruct.h"
@@ -86,11 +86,11 @@
     
 }
 
-- (TrConstruct *)pushIn:(TrPushAnimationEdge)edge fromBounds:(id<TrAnimatable>)bounds {
+- (TrConstruct *)pushIn:(TrMoveAnimationEdge)edge fromBounds:(id<TrAnimatable>)bounds {
     
-    [self.group addAnimation:[TrPushAnimation animate:self.viewOrLayer
+    [self.group addAnimation:[TrMoveAnimation animate:self.viewOrLayer
                                                       duration:self.applyDuration
-                                                     direction:TrPushAnimationDirectionIn
+                                                     direction:TrMoveAnimationDirectionIn
                                                           edge:edge
                                                 toOrFromBounds:bounds
                                                          delay:self.applyDelay
@@ -100,7 +100,7 @@
     
 }
 
-- (TrConstruct *)pushIn:(TrPushAnimationEdge)edge {
+- (TrConstruct *)pushIn:(TrMoveAnimationEdge)edge {
     
     return [self pushIn:edge fromBounds:self.viewOrLayer];
     

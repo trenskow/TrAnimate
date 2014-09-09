@@ -1,5 +1,5 @@
 //
-//  TrPushAnimation.h
+//  TrMoveAnimation.h
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
@@ -33,36 +33,36 @@
 /*!
  Specifies the direction of the push.
  */
-typedef NS_ENUM(NSInteger, TrPushAnimationDirection) {
+typedef NS_ENUM(NSInteger, TrMoveAnimationDirection) {
     /*! Pushes content in. With this option the content is unhidden before it is pushed in. */
-    TrPushAnimationDirectionIn = 0,
+    TrMoveAnimationDirectionIn = 0,
     /*! Pushes content out. With this option the content is hidden after the push-out is complete. */
-    TrPushAnimationDirectionOut
+    TrMoveAnimationDirectionOut
 };
 
 /*!
  Specifies the edge of the push.
  */
-typedef NS_ENUM(NSInteger, TrPushAnimationEdge) {
+typedef NS_ENUM(NSInteger, TrMoveAnimationEdge) {
     /*! Push in from or out to the top. */
-    TrPushAnimationEdgeTop = 0,
+    TrMoveAnimationEdgeTop = 0,
     /*! Push in from or out to the right. */
-    TrPushAnimationEdgeRight,
+    TrMoveAnimationEdgeRight,
     /*! Push in from or out to the bottom. */
-    TrPushAnimationEdgeBottom,
+    TrMoveAnimationEdgeBottom,
     /*! Push in from or out to the left. */
-    TrPushAnimationEdgeLeft
+    TrMoveAnimationEdgeLeft
 };
 
 /*!
- The `TrPushAnimation` pushes in or out a `UIView` or `CALayer` object from a specific edge (top, right, bottom or left) - and from outside some specific bounds.
+ The `TrMoveAnimation` pushes in or out a `UIView` or `CALayer` object from a specific edge (top, right, bottom or left) - and from outside some specific bounds.
  
  ## Convenience methods
  
- There are some convenience methods for creating push animation on `UIView` objects which are described in the reference for UIView(TrPushAnimationAdditions).
+ There are some convenience methods for creating push animation on `UIView` objects which are described in the reference for UIView(TrMoveAnimationAdditions).
  
  */
-@interface TrPushAnimation : TrPositionAnimation
+@interface TrMoveAnimation : TrPositionAnimation
 
 /// ------------------------
 /// @name Creating Animation
@@ -84,8 +84,8 @@ typedef NS_ENUM(NSInteger, TrPushAnimationEdge) {
 */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-              direction:(TrPushAnimationDirection)direction
-                   edge:(TrPushAnimationEdge)edge
+              direction:(TrMoveAnimationDirection)direction
+                   edge:(TrMoveAnimationEdge)edge
          toOrFromBounds:(id<TrAnimatable>)bounds
                   delay:(NSTimeInterval)delay
                   curve:(TrCurve *)curve
@@ -106,8 +106,8 @@ typedef NS_ENUM(NSInteger, TrPushAnimationEdge) {
  */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-              direction:(TrPushAnimationDirection)direction
-                   edge:(TrPushAnimationEdge)edge
+              direction:(TrMoveAnimationDirection)direction
+                   edge:(TrMoveAnimationEdge)edge
          toOrFromBounds:(id<TrAnimatable>)bounds
                   delay:(NSTimeInterval)delay
                   curve:(TrCurve *)curve;
@@ -126,8 +126,8 @@ typedef NS_ENUM(NSInteger, TrPushAnimationEdge) {
  */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-              direction:(TrPushAnimationDirection)direction
-                   edge:(TrPushAnimationEdge)edge
+              direction:(TrMoveAnimationDirection)direction
+                   edge:(TrMoveAnimationEdge)edge
          toOrFromBounds:(id<TrAnimatable>)bounds
                   delay:(NSTimeInterval)delay;
 
@@ -144,8 +144,8 @@ typedef NS_ENUM(NSInteger, TrPushAnimationEdge) {
  */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-              direction:(TrPushAnimationDirection)direction
-                   edge:(TrPushAnimationEdge)edge
+              direction:(TrMoveAnimationDirection)direction
+                   edge:(TrMoveAnimationEdge)edge
          toOrFromBounds:(id<TrAnimatable>)bounds;
 
 /*!
@@ -162,7 +162,7 @@ typedef NS_ENUM(NSInteger, TrPushAnimationEdge) {
  */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
-              direction:(TrPushAnimationDirection)direction
-                   edge:(TrPushAnimationEdge)edge;
+              direction:(TrMoveAnimationDirection)direction
+                   edge:(TrMoveAnimationEdge)edge;
 
 @end

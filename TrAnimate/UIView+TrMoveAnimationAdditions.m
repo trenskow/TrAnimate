@@ -1,5 +1,5 @@
 //
-//  UIView+TrPushAnimationAdditions.m
+//  UIView+TrMoveAnimationAdditions.m
 //  TrAnimate
 //
 //  Created by Kristian Trenskow on 03/09/14.
@@ -8,20 +8,20 @@
 
 #import "UIView+TrAnimateAdditions.h"
 
-#import "UIView+TrPushAnimationAdditions.h"
+#import "UIView+TrMoveAnimationAdditions.h"
 
-@implementation UIView (TrPushAnimationAdditions)
+@implementation UIView (TrMoveAnimationAdditions)
 
-- (TrPushAnimation *)pushIn:(NSTimeInterval)duration
-                       edge:(TrPushAnimationEdge)edge
+- (TrMoveAnimation *)moveIn:(NSTimeInterval)duration
+                       edge:(TrMoveAnimationEdge)edge
                       delay:(NSTimeInterval)delay
            fromOusideBounds:(id<TrAnimatable>)boundsViewOrLayer
                       curve:(TrCurve *)curve
                  completion:(void (^)(BOOL finished))completion {
     
-    return [TrPushAnimation animate:self
+    return [TrMoveAnimation animate:self
                            duration:duration
-                          direction:TrPushAnimationDirectionIn
+                          direction:TrMoveAnimationDirectionIn
                                edge:edge
                      toOrFromBounds:boundsViewOrLayer
                               delay:delay
@@ -30,15 +30,15 @@
     
 }
 
-- (TrPushAnimation *)pushIn:(NSTimeInterval)duration
-                       edge:(TrPushAnimationEdge)edge
+- (TrMoveAnimation *)moveIn:(NSTimeInterval)duration
+                       edge:(TrMoveAnimationEdge)edge
                       delay:(NSTimeInterval)delay
            fromOusideBounds:(id<TrAnimatable>)boundsViewOrLayer
                       curve:(TrCurve *)curve  {
     
-    return [TrPushAnimation animate:self
+    return [TrMoveAnimation animate:self
                            duration:duration
-                          direction:TrPushAnimationDirectionIn
+                          direction:TrMoveAnimationDirectionIn
                                edge:edge
                      toOrFromBounds:boundsViewOrLayer
                               delay:delay
@@ -47,14 +47,14 @@
     
 }
 
-- (TrPushAnimation *)pushIn:(NSTimeInterval)duration
-                       edge:(TrPushAnimationEdge)edge
+- (TrMoveAnimation *)moveIn:(NSTimeInterval)duration
+                       edge:(TrMoveAnimationEdge)edge
                       delay:(NSTimeInterval)delay
            fromOusideBounds:(id<TrAnimatable>)boundsViewOrLayer {
     
-    return [TrPushAnimation animate:self
+    return [TrMoveAnimation animate:self
                            duration:duration
-                          direction:TrPushAnimationDirectionIn
+                          direction:TrMoveAnimationDirectionIn
                                edge:edge
                      toOrFromBounds:boundsViewOrLayer
                               delay:delay
@@ -63,13 +63,13 @@
     
 }
 
-- (TrPushAnimation *)pushIn:(NSTimeInterval)duration
-                       edge:(TrPushAnimationEdge)edge
+- (TrMoveAnimation *)moveIn:(NSTimeInterval)duration
+                       edge:(TrMoveAnimationEdge)edge
                       delay:(NSTimeInterval)delay {
     
-    return [TrPushAnimation animate:self
+    return [TrMoveAnimation animate:self
                            duration:duration
-                          direction:TrPushAnimationDirectionIn
+                          direction:TrMoveAnimationDirectionIn
                                edge:edge
                      toOrFromBounds:nil
                               delay:delay
@@ -78,12 +78,12 @@
     
 }
 
-- (TrPushAnimation *)pushIn:(NSTimeInterval)duration
-                       edge:(TrPushAnimationEdge)edge {
+- (TrMoveAnimation *)moveIn:(NSTimeInterval)duration
+                       edge:(TrMoveAnimationEdge)edge {
     
-    return [TrPushAnimation animate:self
+    return [TrMoveAnimation animate:self
                            duration:duration
-                          direction:TrPushAnimationDirectionIn
+                          direction:TrMoveAnimationDirectionIn
                                edge:edge
                      toOrFromBounds:nil
                               delay:.0
@@ -92,16 +92,16 @@
     
 }
 
-- (TrPushAnimation *)pushOut:(NSTimeInterval)duration
-                        edge:(TrPushAnimationEdge)edge
+- (TrMoveAnimation *)moveOut:(NSTimeInterval)duration
+                        edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay
             fromOusideBounds:(id<TrAnimatable>)boundsViewOrLayer
                        curve:(TrCurve *)curve
                   completion:(void (^)(BOOL finished))completion {
     
-    return [TrPushAnimation animate:self
+    return [TrMoveAnimation animate:self
                            duration:duration
-                          direction:TrPushAnimationDirectionOut
+                          direction:TrMoveAnimationDirectionOut
                                edge:edge
                      toOrFromBounds:boundsViewOrLayer
                               delay:delay
@@ -110,15 +110,15 @@
     
 }
 
-- (TrPushAnimation *)pushOut:(NSTimeInterval)duration
-                        edge:(TrPushAnimationEdge)edge
+- (TrMoveAnimation *)moveOut:(NSTimeInterval)duration
+                        edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay
             fromOusideBounds:(id<TrAnimatable>)boundsViewOrLayer
                        curve:(TrCurve *)curve  {
     
-    return [TrPushAnimation animate:self
+    return [TrMoveAnimation animate:self
                            duration:duration
-                          direction:TrPushAnimationDirectionOut
+                          direction:TrMoveAnimationDirectionOut
                                edge:edge
                      toOrFromBounds:boundsViewOrLayer
                               delay:delay
@@ -127,14 +127,14 @@
     
 }
 
-- (TrPushAnimation *)pushOut:(NSTimeInterval)duration
-                        edge:(TrPushAnimationEdge)edge
+- (TrMoveAnimation *)moveOut:(NSTimeInterval)duration
+                        edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay
             fromOusideBounds:(id<TrAnimatable>)boundsViewOrLayer {
     
-    return [TrPushAnimation animate:self
+    return [TrMoveAnimation animate:self
                            duration:duration
-                          direction:TrPushAnimationDirectionOut
+                          direction:TrMoveAnimationDirectionOut
                                edge:edge
                      toOrFromBounds:boundsViewOrLayer
                               delay:delay
@@ -143,13 +143,13 @@
     
 }
 
-- (TrPushAnimation *)pushOut:(NSTimeInterval)duration
-                        edge:(TrPushAnimationEdge)edge
+- (TrMoveAnimation *)moveOut:(NSTimeInterval)duration
+                        edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay {
     
-    return [TrPushAnimation animate:self
+    return [TrMoveAnimation animate:self
                            duration:duration
-                          direction:TrPushAnimationDirectionOut
+                          direction:TrMoveAnimationDirectionOut
                                edge:edge
                      toOrFromBounds:nil
                               delay:delay
@@ -158,12 +158,12 @@
     
 }
 
-- (TrPushAnimation *)pushOut:(NSTimeInterval)duration
-                        edge:(TrPushAnimationEdge)edge {
+- (TrMoveAnimation *)moveOut:(NSTimeInterval)duration
+                        edge:(TrMoveAnimationEdge)edge {
     
-    return [TrPushAnimation animate:self
+    return [TrMoveAnimation animate:self
                            duration:duration
-                          direction:TrPushAnimationDirectionOut
+                          direction:TrMoveAnimationDirectionOut
                                edge:edge
                      toOrFromBounds:nil
                               delay:.0
