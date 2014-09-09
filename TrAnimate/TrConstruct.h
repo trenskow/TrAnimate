@@ -40,8 +40,8 @@
 + (instancetype)constructWithViewOrLayer:(id<TrAnimatable>)viewOrLayer duration:(NSTimeInterval)duration curve:(TrCurve *)curve;
 
 - (TrConstruct *)fadeIn;
-- (TrConstruct *)pushIn:(TrMoveAnimationEdge)edge fromBounds:(id<TrAnimatable>)bounds;
-- (TrConstruct *)pushIn:(TrMoveAnimationEdge)edge;
+- (TrConstruct *)moveIn:(TrMoveAnimationEdge)edge fromBounds:(id<TrAnimatable>)bounds;
+- (TrConstruct *)moveIn:(TrMoveAnimationEdge)edge;
 - (TrConstruct *)popIn:(BOOL)elastic;
 - (TrConstruct *)and:(id<TrAnimation>)animation;
 - (TrConstruct *)then:(id<TrAnimation>)animation;

@@ -86,7 +86,7 @@
     
 }
 
-- (TrConstruct *)pushIn:(TrMoveAnimationEdge)edge fromBounds:(id<TrAnimatable>)bounds {
+- (TrConstruct *)moveIn:(TrMoveAnimationEdge)edge fromBounds:(id<TrAnimatable>)bounds {
     
     [self.group addAnimation:[TrMoveAnimation animate:self.viewOrLayer
                                                       duration:self.applyDuration
@@ -100,9 +100,9 @@
     
 }
 
-- (TrConstruct *)pushIn:(TrMoveAnimationEdge)edge {
+- (TrConstruct *)moveIn:(TrMoveAnimationEdge)edge {
     
-    return [self pushIn:edge fromBounds:self.viewOrLayer];
+    return [self moveIn:edge fromBounds:self.viewOrLayer];
     
 }
 
