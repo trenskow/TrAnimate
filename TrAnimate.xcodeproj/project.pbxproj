@@ -72,8 +72,6 @@
 		A12886FF19B1F4FB0093AD13 /* TrPopInAnimation.h in Headers */ = {isa = PBXBuildFile; fileRef = A12886FD19B1F4FB0093AD13 /* TrPopInAnimation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A128870019B1F4FB0093AD13 /* TrPopInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A12886FE19B1F4FB0093AD13 /* TrPopInAnimation.m */; };
 		A128870119B1F4FB0093AD13 /* TrPopInAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = A12886FE19B1F4FB0093AD13 /* TrPopInAnimation.m */; };
-		A1599F5619BD8D7900C52912 /* TrConstruct.h in Headers */ = {isa = PBXBuildFile; fileRef = A1599F5319BD8D7900C52912 /* TrConstruct.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A1599F5719BD8D7900C52912 /* TrConstruct.m in Sources */ = {isa = PBXBuildFile; fileRef = A1599F5419BD8D7900C52912 /* TrConstruct.m */; };
 		A162BCEC19B4A16300D5B019 /* UIColor+TrAnimateAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A162BCEA19B4A16300D5B019 /* UIColor+TrAnimateAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A162BCED19B4A16300D5B019 /* UIColor+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A162BCEB19B4A16300D5B019 /* UIColor+TrAnimateAdditions.m */; };
 		A162BCEE19B4B7CF00D5B019 /* NSObject+TrAnimateAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1A2E47719B48EE200CEAE48 /* NSObject+TrAnimateAdditions.m */; };
@@ -153,8 +151,6 @@
 		A11C78A217883C120000B420 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A12886FD19B1F4FB0093AD13 /* TrPopInAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrPopInAnimation.h; sourceTree = "<group>"; };
 		A12886FE19B1F4FB0093AD13 /* TrPopInAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrPopInAnimation.m; sourceTree = "<group>"; };
-		A1599F5319BD8D7900C52912 /* TrConstruct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrConstruct.h; sourceTree = "<group>"; };
-		A1599F5419BD8D7900C52912 /* TrConstruct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrConstruct.m; sourceTree = "<group>"; };
 		A162BCEA19B4A16300D5B019 /* UIColor+TrAnimateAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+TrAnimateAdditions.h"; sourceTree = "<group>"; };
 		A162BCEB19B4A16300D5B019 /* UIColor+TrAnimateAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+TrAnimateAdditions.m"; sourceTree = "<group>"; };
 		A162BCF719B4D5C400D5B019 /* TrMoveAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = TrMoveAnimation.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -470,7 +466,6 @@
 		A11C788217883B6E0000B420 /* Animation Group */ = {
 			isa = PBXGroup;
 			children = (
-				A1599F5819BD8DB300C52912 /* Construct */,
 				A11C788317883B7D0000B420 /* TrAnimationGroup.h */,
 				A11C788417883B7D0000B420 /* TrAnimationGroup.m */,
 			);
@@ -500,15 +495,6 @@
 				A10D78D919A279530013E5F5 /* TrCurve.m */,
 			);
 			name = Curvature;
-			sourceTree = "<group>";
-		};
-		A1599F5819BD8DB300C52912 /* Construct */ = {
-			isa = PBXGroup;
-			children = (
-				A1599F5319BD8D7900C52912 /* TrConstruct.h */,
-				A1599F5419BD8D7900C52912 /* TrConstruct.m */,
-			);
-			name = Construct;
 			sourceTree = "<group>";
 		};
 		A162BCF619B4D5AE00D5B019 /* Move Animation */ = {
@@ -685,7 +671,6 @@
 				A1145D0E194EFB06001B0108 /* UIView+TrAnimateAdditions.h in Headers */,
 				A1145D12194EFB31001B0108 /* TrAnimationGroup.h in Headers */,
 				A1876C2419A6714200C1639A /* TrAnimatable.h in Headers */,
-				A1599F5619BD8D7900C52912 /* TrConstruct.h in Headers */,
 				A119306F19B7373400AEBE95 /* UIView+TrMoveAnimationAdditions.h in Headers */,
 				A1145D16194EFB31001B0108 /* TrRotateAnimation.h in Headers */,
 				A1145D0B194EFAE8001B0108 /* TrAnimate.h in Headers */,
@@ -813,7 +798,6 @@
 				A1145D08194EFA7D001B0108 /* TrLayerAnimation.m in Sources */,
 				A119307919B746E900AEBE95 /* UIView+TrPopInAnimationAdditions.m in Sources */,
 				A1145D07194EFA7D001B0108 /* TrRotateAnimation.m in Sources */,
-				A1599F5719BD8D7900C52912 /* TrConstruct.m in Sources */,
 				A128870119B1F4FB0093AD13 /* TrPopInAnimation.m in Sources */,
 				A1145D05194EFA7D001B0108 /* TrPositionAnimation.m in Sources */,
 				A1145D03194EFA7D001B0108 /* CALayer+TrAnimateAdditions.m in Sources */,

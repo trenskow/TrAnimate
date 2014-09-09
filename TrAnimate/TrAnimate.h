@@ -65,5 +65,3 @@ FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 #import "NSObject+TrDirectAnimationAdditions.h"
 
 #import "TrAnimationGroup.h"
-
-#import "TrConstruct.h"
