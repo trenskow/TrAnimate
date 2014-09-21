@@ -31,35 +31,35 @@
 #import "TrPositionAnimation.h"
 
 /*!
- Specifies the direction of the push.
+ Specifies the direction of the move.
  */
 typedef NS_ENUM(NSInteger, TrMoveAnimationDirection) {
-    /*! Pushes content in. With this option the content is unhidden before it is pushed in. */
+    /*! Moves content in. With this option the content is unhidden before it is moved in. */
     TrMoveAnimationDirectionIn = 0,
-    /*! Pushes content out. With this option the content is hidden after the push-out is complete. */
+    /*! Moves content out. With this option the content is hidden after the move-out is complete. */
     TrMoveAnimationDirectionOut
 };
 
 /*!
- Specifies the edge of the push.
+ Specifies the edge of the move.
  */
 typedef NS_ENUM(NSInteger, TrMoveAnimationEdge) {
-    /*! Push in from or out to the top. */
+    /*! Move in from or out to the top. */
     TrMoveAnimationEdgeTop = 0,
-    /*! Push in from or out to the right. */
+    /*! Move in from or out to the right. */
     TrMoveAnimationEdgeRight,
-    /*! Push in from or out to the bottom. */
+    /*! Move in from or out to the bottom. */
     TrMoveAnimationEdgeBottom,
-    /*! Push in from or out to the left. */
+    /*! Move in from or out to the left. */
     TrMoveAnimationEdgeLeft
 };
 
 /*!
- The `TrMoveAnimation` pushes in or out a `UIView` or `CALayer` object from a specific edge (top, right, bottom or left) - and from outside some specific bounds.
+ The `TrMoveAnimation` moves in or out a `UIView` or `CALayer` object from a specific edge (top, right, bottom or left) - and from outside some specific bounds.
  
  ## Convenience methods
  
- There are some convenience methods for creating push animation on `UIView` objects which are described in the reference for UIView(TrMoveAnimationAdditions).
+ There are some convenience methods for creating move animation on `UIView` objects which are described in the reference for UIView(TrMoveAnimationAdditions).
  
  */
 @interface TrMoveAnimation : TrPositionAnimation
@@ -69,18 +69,18 @@ typedef NS_ENUM(NSInteger, TrMoveAnimationEdge) {
 /// ------------------------
 
 /*!
- Creates and returns a push in or out animation that is pushed to or from a specific edge of a specific bounds.
+ Creates and returns a move in or out animation that is moved to or from a specific edge of a specific bounds.
 
- @param viewOrLayer The `UIView` or `CALayer` object you want to push.
- @param duration    The duration of the push.
- @param direction   The direction of the push.
- @param edge        The edge of which the push will go to or come from.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to move.
+ @param duration    The duration of the move.
+ @param direction   The direction of the move.
+ @param edge        The edge of which the move will go to or come from.
  @param bounds      The `UIView` or `CALayer` object which bounds will be animated to or from outside. If *nil* is provided the bounds of the `viewOrLayer` is used.
  @param delay       The delay before the animation begins.
  @param curve       The curvature of the animation.
- @param completion  A block that get invoked when the push completes.
+ @param completion  A block that get invoked when the move completes.
 
- @return A push animation ready to animate.
+ @return A move animation ready to animate.
 */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
@@ -92,17 +92,17 @@ typedef NS_ENUM(NSInteger, TrMoveAnimationEdge) {
              completion:(void (^)(BOOL finished))completion;
 
 /*!
- Creates and returns a push in or out animation that is pushed to or from a specific edge of a specific bounds.
+ Creates and returns a move in or out animation that is moved to or from a specific edge of a specific bounds.
  
- @param viewOrLayer The `UIView` or `CALayer` object you want to push.
- @param duration    The duration of the push.
- @param direction   The direction of the push.
- @param edge        The edge of which the push will go to or come from.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to move.
+ @param duration    The duration of the move.
+ @param direction   The direction of the move.
+ @param edge        The edge of which the move will go to or come from.
  @param bounds      The `UIView` or `CALayer` object which bounds will be animated to or from outside. If *nil* is provided the bounds of the `viewOrLayer` is used.
  @param delay       The delay before the animation begins.
  @param curve       The curvature of the animation.
  
- @return A push animation ready to animate.
+ @return A move animation ready to animate.
  */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
@@ -113,16 +113,16 @@ typedef NS_ENUM(NSInteger, TrMoveAnimationEdge) {
                   curve:(TrCurve *)curve;
 
 /*!
- Creates and returns a push in or out animation that is pushed to or from a specific edge of a specific bounds.
+ Creates and returns a move in or out animation that is moved to or from a specific edge of a specific bounds.
  
- @param viewOrLayer The `UIView` or `CALayer` object you want to push.
- @param duration    The duration of the push.
- @param direction   The direction of the push.
- @param edge        The edge of which the push will go to or come from.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to move.
+ @param duration    The duration of the move.
+ @param direction   The direction of the move.
+ @param edge        The edge of which the move will go to or come from.
  @param bounds      The `UIView` or `CALayer` object which bounds will be animated to or from outside. If *nil* is provided the bounds of the `viewOrLayer` is used.
  @param delay       The delay before the animation begins.
  
- @return A push animation ready to animate.
+ @return A move animation ready to animate.
  */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
@@ -132,15 +132,15 @@ typedef NS_ENUM(NSInteger, TrMoveAnimationEdge) {
                   delay:(NSTimeInterval)delay;
 
 /*!
- Creates and returns a push in or out animation that is pushed to or from a specific edge of a specific bounds.
+ Creates and returns a move in or out animation that is moved to or from a specific edge of a specific bounds.
  
- @param viewOrLayer The `UIView` or `CALayer` object you want to push.
- @param duration    The duration of the push.
- @param direction   The direction of the push.
- @param edge        The edge of which the push will go to or come from.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to move.
+ @param duration    The duration of the move.
+ @param direction   The direction of the move.
+ @param edge        The edge of which the move will go to or come from.
  @param bounds      The `UIView` or `CALayer` object which bounds will be animated to or from outside. If *nil* is provided the bounds of the `viewOrLayer` is used.
  
- @return A push animation ready to animate.
+ @return A move animation ready to animate.
  */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
@@ -149,16 +149,16 @@ typedef NS_ENUM(NSInteger, TrMoveAnimationEdge) {
          toOrFromBounds:(id<TrAnimatable>)bounds;
 
 /*!
- Creates and returns a push in or out animation that is pushed to or from a specific edge of a specific bounds.
+ Creates and returns a move in or out animation that is moved to or from a specific edge of a specific bounds.
  
- @param viewOrLayer The `UIView` or `CALayer` object you want to push.
- @param duration    The duration of the push.
- @param direction   The direction of the push.
- @param edge        The edge of which the push will go to or come from.
+ @param viewOrLayer The `UIView` or `CALayer` object you want to move.
+ @param duration    The duration of the move.
+ @param direction   The direction of the move.
+ @param edge        The edge of which the move will go to or come from.
  
- @discussion When using this method the push will occur from or to outside the bounds of the animated content.
+ @discussion When using this method the move will occur from or to outside the bounds of the animated content.
  
- @return A push animation ready to animate.
+ @return A move animation ready to animate.
  */
 + (instancetype)animate:(id<TrAnimatable>)viewOrLayer
                duration:(NSTimeInterval)duration
