@@ -258,7 +258,8 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
                                                         curve:curve
                                                    completion:completion];
     
-    [layer setValue:fromValue forKeyPath:keyPath];
+    if (fromValue)
+        [layer setValue:fromValue forKeyPath:keyPath];
     
     [animation performSelector:@selector(beginAnimation) withObject:nil afterDelay:0.0 inModes:@[NSRunLoopCommonModes]];
     
