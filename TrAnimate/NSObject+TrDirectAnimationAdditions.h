@@ -33,9 +33,23 @@
 @class TrDirectAnimation;
 @class TrCurve;
 
-#warning Documentation is missing
+/*!
+ Category of `NSObject` that adds convinience methods for direct animations.
+ */
 @interface NSObject (TrDirectAnimationAdditions)
 
+/*!
+ Sets the value for the property identified by a given key path to a given value interpolating and setting the value regularly using a direct drivin' animation.
+ 
+ @param value      The value for the property identified by `keyPath`.
+ @param keyPath    A key path of the form `relationship.property` (with one or more relationships): for example “department.name” or “department.manager.lastName.”
+ @param duration   The duration of the value change.
+ @param delay      The delay before the value change begins.
+ @param curve      The curvature of the value change.
+ @param completion A block that gets invoked when the value change is complete.
+ 
+ @return A `TrDirectAnimation` instance ready to animate.
+ */
 - (TrDirectAnimation *)setValue:(id)value
                      forKeyPath:(NSString *)keyPath
                        duration:(NSTimeInterval)duration
@@ -43,17 +57,47 @@
                           curve:(TrCurve *)curve
                      completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Sets the value for the property identified by a given key path to a given value interpolating and setting the value regularly using `TrDirectAnimation`
+ 
+ @param value      The value for the property identified by `keyPath`.
+ @param keyPath    A key path of the form `relationship.property` (with one or more relationships): for example “department.name” or “department.manager.lastName.”
+ @param duration   The duration of the value change.
+ @param delay      The delay before the value change begins.
+ @param curve      The curvature of the value change.
+ 
+ @return A `TrDirectAnimation` instance ready to animate.
+ */
 - (TrDirectAnimation *)setValue:(id)value
                      forKeyPath:(NSString *)keyPath
                        duration:(NSTimeInterval)duration
                           delay:(NSTimeInterval)delay
                           curve:(TrCurve *)curve;
 
+/*!
+ Sets the value for the property identified by a given key path to a given value interpolating and setting the value regularly using `TrDirectAnimation`
+ 
+ @param value      The value for the property identified by `keyPath`.
+ @param keyPath    A key path of the form `relationship.property` (with one or more relationships): for example “department.name” or “department.manager.lastName.”
+ @param duration   The duration of the value change.
+ @param delay      The delay before the value change begins.
+ 
+ @return A `TrDirectAnimation` instance ready to animate.
+ */
 - (TrDirectAnimation *)setValue:(id)value
                      forKeyPath:(NSString *)keyPath
                        duration:(NSTimeInterval)duration
                           delay:(NSTimeInterval)delay;
 
+/*!
+ Sets the value for the property identified by a given key path to a given value interpolating and setting the value regularly using `TrDirectAnimation`
+ 
+ @param value      The value for the property identified by `keyPath`.
+ @param keyPath    A key path of the form `relationship.property` (with one or more relationships): for example “department.name” or “department.manager.lastName.”
+ @param duration   The duration of the value change.
+ 
+ @return A `TrDirectAnimation` instance ready to animate.
+ */
 - (TrDirectAnimation *)setValue:(id)value
                      forKeyPath:(NSString *)keyPath
                        duration:(NSTimeInterval)duration;
