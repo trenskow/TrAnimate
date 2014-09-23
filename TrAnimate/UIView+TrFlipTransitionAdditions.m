@@ -55,12 +55,12 @@
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve {
     
-    return [self flipTo:toView
-               duration:duration
-              direction:direction
-                  delay:delay
-                  curve:curve
-             completion:nil];
+    return [TrFlipTransition transitionFrom:self
+                                         to:toView
+                                   duration:duration
+                                  direction:direction
+                                      delay:delay
+                                      curve:curve];
     
 }
 
@@ -69,12 +69,11 @@
                    direction:(TrFlipTransitionDirection)direction
                        delay:(NSTimeInterval)delay {
     
-    return [self flipTo:toView
-               duration:duration
-              direction:direction
-                  delay:delay
-                  curve:nil
-             completion:nil];
+    return [TrFlipTransition transitionFrom:self
+                                         to:toView
+                                   duration:duration
+                                  direction:direction
+                                      delay:delay];
     
 }
 
@@ -82,12 +81,10 @@
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction {
     
-    return [self flipTo:toView
-               duration:duration
-              direction:direction
-                  delay:.0
-                  curve:nil
-             completion:nil];
+    return [TrFlipTransition transitionFrom:self
+                                         to:toView
+                                   duration:duration
+                                  direction:direction];
     
 }
 
