@@ -35,8 +35,24 @@
 
 @class TrCurve;
 
+/*!
+ The `TrPushTransition` pushes from one view to another - replacing the origin view in the view hierarchy.
+ */
 @interface TrPushTransition : TrAnimationGroup
 
+/*!
+ Creates and returns a push transition pushes `sourceView` out and `destinationView` into it's place.
+ 
+ @param sourceView      The `UIView` object to push out. This view must be in a view hierarchy.
+ @param destinationView The `UIView` object to push in.
+ @param duration        The duration of the push transition.
+ @param edge            The direction of the push.
+ @param delay           The delay before the push transition begins.
+ @param curve           The curvature of the push transition.
+ @param completion      A block that gets invoked when the push transition completes.
+ 
+ @return A push transition ready to animate.
+ */
 + (instancetype)transitionFrom:(UIView *)sourceView
                             to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
@@ -45,6 +61,18 @@
                          curve:(TrCurve *)curve
                     completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns a push transition pushes `sourceView` out and `destinationView` into it's place.
+ 
+ @param sourceView      The `UIView` object to push out. This view must be in a view hierarchy.
+ @param destinationView The `UIView` object to push in.
+ @param duration        The duration of the push transition.
+ @param edge            The direction of the push.
+ @param delay           The delay before the push transition begins.
+ @param curve           The curvature of the push transition.
+ 
+ @return A push transition ready to animate.
+ */
 + (instancetype)transitionFrom:(UIView *)sourceView
                             to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
@@ -52,12 +80,33 @@
                          delay:(NSTimeInterval)delay
                          curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns a push transition pushes `sourceView` out and `destinationView` into it's place.
+ 
+ @param sourceView      The `UIView` object to push out. This view must be in a view hierarchy.
+ @param destinationView The `UIView` object to push in.
+ @param duration        The duration of the push transition.
+ @param edge            The direction of the push.
+ @param delay           The delay before the push transition begins.
+ 
+ @return A push transition ready to animate.
+ */
 + (instancetype)transitionFrom:(UIView *)sourceView
                             to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                           edge:(TrMoveAnimationEdge)edge
                          delay:(NSTimeInterval)delay;
 
+/*!
+ Creates and returns a push transition pushes `sourceView` out and `destinationView` into it's place.
+ 
+ @param sourceView      The `UIView` object to push out. This view must be in a view hierarchy.
+ @param destinationView The `UIView` object to push in.
+ @param duration        The duration of the push transition.
+ @param edge            The direction of the push.
+ 
+ @return A push transition ready to animate.
+ */
 + (instancetype)transitionFrom:(UIView *)sourceView
                             to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration

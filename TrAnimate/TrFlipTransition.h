@@ -34,15 +34,38 @@
 
 @class TrCurve;
 
+/*!
+ Specifies the direction of the flip.
+ */
 typedef NS_ENUM(NSInteger, TrFlipTransitionDirection) {
+    /*! Flip the views in a downwards direction. */
     TrFlipTransitionDirectionDown,
+    /*! Flip the views to the left. */
     TrFlipTransitionDirectionLeft,
+    /*! Flip the views in a upwards direction. */
     TrFlipTransitionDirectionUp,
+    /*! Flip the views to the right. */
     TrFlipTransitionDirectionRight
 };
 
+/*!
+ The `TrFlipTransition` flips one view to another - replacing the origin view in the view hierarchy.
+ */
 @interface TrFlipTransition : TrAnimationGroup
 
+/*!
+ Creates and returns a flip transition that flips `sourceView` to `destinationView`.
+ 
+ @param sourceView      The `UIView` object to flip from. This view must be in a view hierarchy.
+ @param destinationView The `UIView` object to flip to.
+ @param duration        The duration of the flip transition.
+ @param direction       The direction of the flip.
+ @param delay           The delay before the flip transition begins.
+ @param curve           The curvature of the flip transition.
+ @param completion      A block that gets invoked when the flip transition completes.
+ 
+ @return A flip transition ready to animate.
+ */
 + (instancetype)transitionFrom:(UIView *)sourceView
                             to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
@@ -51,6 +74,18 @@ typedef NS_ENUM(NSInteger, TrFlipTransitionDirection) {
                          curve:(TrCurve *)curve
                     completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns a flip transition that flips `sourceView` to `destinationView`.
+ 
+ @param sourceView      The `UIView` object to flip from. This view must be in a view hierarchy.
+ @param destinationView The `UIView` object to flip to.
+ @param duration        The duration of the flip transition.
+ @param direction       The direction of the flip.
+ @param delay           The delay before the flip transition begins.
+ @param curve           The curvature of the flip transition.
+ 
+ @return A flip transition ready to animate.
+ */
 + (instancetype)transitionFrom:(UIView *)sourceView
                             to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
@@ -58,12 +93,33 @@ typedef NS_ENUM(NSInteger, TrFlipTransitionDirection) {
                          delay:(NSTimeInterval)delay
                          curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns a flip transition that flips `sourceView` to `destinationView`.
+ 
+ @param sourceView      The `UIView` object to flip from. This view must be in a view hierarchy.
+ @param destinationView The `UIView` object to flip to.
+ @param duration        The duration of the flip transition.
+ @param direction       The direction of the flip.
+ @param delay           The delay before the flip transition begins.
+ 
+ @return A flip transition ready to animate.
+ */
 + (instancetype)transitionFrom:(UIView *)sourceView
                             to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                      direction:(TrFlipTransitionDirection)direction
                          delay:(NSTimeInterval)delay;
 
+/*!
+ Creates and returns a flip transition that flips `sourceView` to `destinationView`.
+ 
+ @param sourceView      The `UIView` object to flip from. This view must be in a view hierarchy.
+ @param destinationView The `UIView` object to flip to.
+ @param duration        The duration of the flip transition.
+ @param direction       The direction of the flip.
+ 
+ @return A flip transition ready to animate.
+ */
 + (instancetype)transitionFrom:(UIView *)sourceView
                             to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
