@@ -103,6 +103,9 @@
 		A1BFF51319D117DC005FAE0D /* TrDirectCurvedInterpolation.h in Headers */ = {isa = PBXBuildFile; fileRef = A1BFF51119D117DC005FAE0D /* TrDirectCurvedInterpolation.h */; };
 		A1BFF51419D117DC005FAE0D /* TrDirectCurvedInterpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BFF51219D117DC005FAE0D /* TrDirectCurvedInterpolation.m */; };
 		A1BFF51519D117DC005FAE0D /* TrDirectCurvedInterpolation.m in Sources */ = {isa = PBXBuildFile; fileRef = A1BFF51219D117DC005FAE0D /* TrDirectCurvedInterpolation.m */; };
+		A1C6DF9D19CF6118002567C4 /* TrFlipTransition.h in Headers */ = {isa = PBXBuildFile; fileRef = A1C6DF9B19CF6118002567C4 /* TrFlipTransition.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A1C6DF9E19CF6118002567C4 /* TrFlipTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C6DF9C19CF6118002567C4 /* TrFlipTransition.m */; };
+		A1C6DF9F19CF6118002567C4 /* TrFlipTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C6DF9C19CF6118002567C4 /* TrFlipTransition.m */; };
 		A1D384D319BD9C7700C30B1D /* NSObject+TrDirectAnimationAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = A1D384D119BD9C7700C30B1D /* NSObject+TrDirectAnimationAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A1D384D419BD9C7700C30B1D /* NSObject+TrDirectAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D384D219BD9C7700C30B1D /* NSObject+TrDirectAnimationAdditions.m */; };
 		A1D384D519BD9C7700C30B1D /* NSObject+TrDirectAnimationAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = A1D384D219BD9C7700C30B1D /* NSObject+TrDirectAnimationAdditions.m */; };
@@ -181,6 +184,8 @@
 		A1BFF50A19D1135F005FAE0D /* TrInterpolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrInterpolation.m; sourceTree = "<group>"; };
 		A1BFF51119D117DC005FAE0D /* TrDirectCurvedInterpolation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrDirectCurvedInterpolation.h; sourceTree = "<group>"; };
 		A1BFF51219D117DC005FAE0D /* TrDirectCurvedInterpolation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrDirectCurvedInterpolation.m; sourceTree = "<group>"; };
+		A1C6DF9B19CF6118002567C4 /* TrFlipTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrFlipTransition.h; sourceTree = "<group>"; };
+		A1C6DF9C19CF6118002567C4 /* TrFlipTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrFlipTransition.m; sourceTree = "<group>"; };
 		A1D384D119BD9C7700C30B1D /* NSObject+TrDirectAnimationAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+TrDirectAnimationAdditions.h"; sourceTree = "<group>"; };
 		A1D384D219BD9C7700C30B1D /* NSObject+TrDirectAnimationAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+TrDirectAnimationAdditions.m"; sourceTree = "<group>"; };
 		A1E6EA931912D98600E4F179 /* TrDirectAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrDirectAnimation.h; sourceTree = "<group>"; };
@@ -635,6 +640,15 @@
 			name = "Direct Curved Interpolation";
 			sourceTree = "<group>";
 		};
+		A1C6DF9A19CF6107002567C4 /* Flip */ = {
+			isa = PBXGroup;
+			children = (
+				A1C6DF9B19CF6118002567C4 /* TrFlipTransition.h */,
+				A1C6DF9C19CF6118002567C4 /* TrFlipTransition.m */,
+			);
+			name = Flip;
+			sourceTree = "<group>";
+		};
 		A1D384CE19BD9C5500C30B1D /* Additions */ = {
 			isa = PBXGroup;
 			children = (
@@ -738,6 +752,7 @@
 				A162BCF919B4D5C400D5B019 /* TrMoveAnimation.h in Headers */,
 				A1145D15194EFB31001B0108 /* TrScaleAnimation.h in Headers */,
 				A1145D13194EFB31001B0108 /* TrOpacityAnimation.h in Headers */,
+				A1C6DF9D19CF6118002567C4 /* TrFlipTransition.h in Headers */,
 				A1145D0E194EFB06001B0108 /* UIView+TrAnimateAdditions.h in Headers */,
 				A1145D12194EFB31001B0108 /* TrAnimationGroup.h in Headers */,
 				A1876C2419A6714200C1639A /* TrAnimatable.h in Headers */,
@@ -883,6 +898,7 @@
 				A1145D06194EFA7D001B0108 /* TrScaleAnimation.m in Sources */,
 				A1BFF51519D117DC005FAE0D /* TrDirectCurvedInterpolation.m in Sources */,
 				A1145CFB194EFA7D001B0108 /* NSValue+TrAnimateAdditions.m in Sources */,
+				A1C6DF9F19CF6118002567C4 /* TrFlipTransition.m in Sources */,
 				A162BCED19B4A16300D5B019 /* UIColor+TrAnimateAdditions.m in Sources */,
 				A1145CFD194EFA7D001B0108 /* TrBasicAnimation.m in Sources */,
 				A1A2E47919B48EE200CEAE48 /* NSObject+TrAnimateAdditions.m in Sources */,
@@ -917,6 +933,7 @@
 				A10D78DB19A279530013E5F5 /* TrCurve.m in Sources */,
 				A1BFF51419D117DC005FAE0D /* TrDirectCurvedInterpolation.m in Sources */,
 				A162BCEF19B4B7D200D5B019 /* UIColor+TrAnimateAdditions.m in Sources */,
+				A1C6DF9E19CF6118002567C4 /* TrFlipTransition.m in Sources */,
 				A11C789717883BD20000B420 /* TrBasicAnimation.m in Sources */,
 				A11C789E17883BE70000B420 /* NSValue+TrAnimateAdditions.m in Sources */,
 				A1876C2819A6753300C1639A /* TrFadeAnimation.m in Sources */,
