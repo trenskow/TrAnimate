@@ -32,7 +32,7 @@
 #import "CALayer+TrAnimateAdditions.h"
 
 #import "TrAnimation.h"
-#import "TrDirectCurvedInterpolation.h"
+#import "TrCurvedInterpolation.h"
 #import "TrCurve.h"
 #import "TrBasicAnimation.h"
 #import "TrAnimatable.h"
@@ -227,8 +227,8 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
 - (TrCurve *)curve {
     
-    if ([self.interpolation isKindOfClass:[TrDirectCurvedInterpolation class]])
-        return ((TrDirectCurvedInterpolation *)self.interpolation).curve;
+    if ([self.interpolation isKindOfClass:[TrCurvedInterpolation class]])
+        return ((TrCurvedInterpolation *)self.interpolation).curve;
     
     return nil;
     
@@ -236,7 +236,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
 - (void)setCurve:(TrCurve *)curve {
     
-    self.interpolation = [TrDirectCurvedInterpolation interpolationWithCurve:(curve ?: [TrCurve linear])];
+    self.interpolation = [TrCurvedInterpolation interpolationWithCurve:(curve ?: [TrCurve linear])];
     
 }
 

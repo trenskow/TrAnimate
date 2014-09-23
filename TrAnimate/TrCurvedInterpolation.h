@@ -1,5 +1,5 @@
 //
-//  TrDirectCurvedInterpolation.m
+//  TrCurvedInterpolation.h
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
@@ -28,30 +28,14 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrCurve.h"
+#import "TrInterpolation.h"
 
-#import "TrDirectCurvedInterpolation.h"
+@class TrCurve;
 
-@interface TrDirectCurvedInterpolation ()
+@interface TrCurvedInterpolation : TrInterpolation
 
-@property (nonatomic,copy,readwrite) TrCurve *curve;
++ (instancetype)interpolationWithCurve:(TrCurve *)curve;
 
-@end
-
-@implementation TrDirectCurvedInterpolation
-
-#pragma mark - Creating Interpolations
-
-+ (instancetype)interpolationWithCurve:(TrCurve *)curve {
-    
-    TrDirectCurvedInterpolation *interpolation = [self interpolationWithBlock:^id<TrInterpolatable>(id<TrInterpolatable> fromValue, id<TrInterpolatable> toValue, double position) {
-        return [fromValue interpolateWithValue:toValue atPosition:[curve transform:position]];
-    }];
-    
-    interpolation.curve = curve;
-    
-    return interpolation;
-    
-}
+@property (nonatomic,copy,readonly) TrCurve *curve;
 
 @end

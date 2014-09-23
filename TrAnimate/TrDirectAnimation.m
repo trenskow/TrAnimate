@@ -32,7 +32,7 @@
 
 #import "NSObject+TrAnimationsAddition.h"
 
-#import "TrDirectCurvedInterpolation.h"
+#import "TrCurvedInterpolation.h"
 #import "TrCurve.h"
 
 #import "TrDirectAnimation.h"
@@ -80,7 +80,7 @@ const void *TrDirectAnimationKey;
         self.delay = delay;
         self.fromValue = fromValue;
         self.toValue = toValue;
-        self.interpolation = [TrDirectCurvedInterpolation interpolationWithCurve:(curve ?: [TrCurve linear])];
+        self.interpolation = [TrCurvedInterpolation interpolationWithCurve:(curve ?: [TrCurve linear])];
         self.completionBlock = [completion copy];
         
         [object associateAnimation:self];

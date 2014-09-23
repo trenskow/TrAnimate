@@ -28,7 +28,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrDirectCurvedInterpolation.h"
+#import "TrCurvedInterpolation.h"
 #import "TrCurve.h"
 
 #import "TrBasicAnimation.h"
@@ -94,8 +94,8 @@
 
 - (TrCurve *)curve {
     
-    if ([_interpolation isKindOfClass:[TrDirectCurvedInterpolation class]])
-        return ((TrDirectCurvedInterpolation *)_interpolation).curve;
+    if ([_interpolation isKindOfClass:[TrCurvedInterpolation class]])
+        return ((TrCurvedInterpolation *)_interpolation).curve;
     
     return nil;
     
@@ -103,7 +103,7 @@
 
 - (void)setCurve:(TrCurve *)curve {
     
-    _interpolation = [TrDirectCurvedInterpolation interpolationWithCurve:curve];
+    _interpolation = [TrCurvedInterpolation interpolationWithCurve:curve];
     
     [self applyInterpolationIfSetupComplete];
     
