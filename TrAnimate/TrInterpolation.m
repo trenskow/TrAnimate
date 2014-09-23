@@ -1,20 +1,20 @@
 //
-//  TrAnimate.h
+//  TrInterpolation.m
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
 //  All rights reserved.
-//  
+//
 //  Redistribution and use in source and binary forms, with or without
 //  modification, are permitted provided that the following conditions are met:
-//  
+//
 //  1. Redistributions of source code must retain the above copyright notice,
 //  this list of conditions and the following disclaimer.
-//  
+//
 //  2. Redistributions in binary form must reproduce the above copyright notice,
 //  this list of conditions and the following disclaimer in the documentation
 //  and/or other materials provided with the distribution.
-//  
+//
 //  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 //  AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 //  IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -28,44 +28,51 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-@import Foundation;
-
-FOUNDATION_EXPORT double TrAnimateVersionNumber;
-FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
-
-#import "TrInterpolatable.h"
-
-#import "NSNumber+TrAnimateAdditions.h"
-#import "NSValue+TrAnimateAdditions.h"
-#import "UIColor+TrAnimateAdditions.h"
-
-#import "TrAnimatable.h"
-
-#import "UIView+TrAnimateAdditions.h"
-#import "CALayer+TrAnimateAdditions.h"
-
-#import "TrInterpolation.h"
 #import "TrCurve.h"
 
-#import "TrAnimation.h"
+#import "TrInterpolation.h"
 
-#import "TrLayerAnimation.h"
+@interface TrInterpolation ()
 
-#import "TrOpacityAnimation.h"
-#import "TrFadeAnimation.h"
-#import "UIView+TrFadeAnimationAdditions.h"
-#import "TrPositionAnimation.h"
-#import "TrMoveAnimation.h"
-#import "UIView+TrMoveAnimationAdditions.h"
-#import "TrScaleAnimation.h"
-#import "TrPopInAnimation.h"
-#import "UIView+TrPopInAnimationAdditions.h"
-#import "TrRotateAnimation.h"
+@property (nonatomic,copy) id<TrInterpolatable> (^block)(id<TrInterpolatable>, id<TrInterpolatable>, double);
 
-#import "TrDirectAnimation.h"
-#import "NSObject+TrDirectAnimationAdditions.h"
+@end
 
-#import "TrAnimationGroup.h"
+@implementation TrInterpolation
 
-#import "TrFadeTransition.h"
-#import "TrPushTransition.h"
+#pragma mark - Setup / Tear down
+
+- (instancetype)initWithBlock:(id<TrInterpolatable> (^)(id<TrInterpolatable>, id<TrInterpolatable>, double))block {
+    
+    if ((self = [super init]))
+        self.block = block;
+    
+    return self;
+    
+}
+
+#pragma mark - Creating Interpolations
+
++ (instancetype)interpolationWithBlock:(id<TrInterpolatable> (^)(id<TrInterpolatable>, id<TrInterpolatable>, double))block {
+    
+    return [[self alloc] initWithBlock:block];
+    
+}
+
+#pragma mark - Interpolation
+
+- (id<TrInterpolatable>)interpolateFromValue:(id<TrInterpolatable>)fromValue toValue:(id<TrInterpolatable>)toValue position:(double)position {
+    
+    return self.block(fromValue, toValue, position);
+    
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+    
+    return [[[self class] alloc] initWithBlock:self.block];
+    
+}
+
+@end

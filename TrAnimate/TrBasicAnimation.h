@@ -32,6 +32,7 @@
 
 #import "TrInterpolatable.h"
 
+@class TrInterpolation;
 @class TrCurve;
 
 /*!
@@ -57,5 +58,11 @@
  The value at which the animation ends.
  */
 @property (nonatomic,strong) id<TrInterpolatable> toValue;
+
+/*!
+ The interpolation used. This is by default the direct interpolation between `fromValue` and `toValue` with curvature applied.
+ @discussion Use it to provide custom interpolation instead of a simple curvature.
+ */
+@property (nonatomic,copy) TrInterpolation *interpolation;
 
 @end

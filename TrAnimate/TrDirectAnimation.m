@@ -32,8 +32,8 @@
 
 #import "NSObject+TrAnimationsAddition.h"
 
+#import "TrDirectCurvedInterpolation.h"
 #import "TrCurve.h"
-#import "TrInterpolatable.h"
 
 #import "TrDirectAnimation.h"
 
@@ -50,7 +50,6 @@ const void *TrDirectAnimationKey;
 @property (nonatomic,readwrite) NSTimeInterval duration;
 @property (nonatomic,copy) id<TrInterpolatable> fromValue;
 @property (nonatomic,copy) id<TrInterpolatable> toValue;
-@property (nonatomic,copy) TrCurve *curve;
 @property (nonatomic,copy) void (^completionBlock)(BOOL finished);
 
 @property (nonatomic) CADisplayLink *displayLink;
@@ -81,7 +80,7 @@ const void *TrDirectAnimationKey;
         self.delay = delay;
         self.fromValue = fromValue;
         self.toValue = toValue;
-        self.curve = (curve ?: [TrCurve linear]);
+        self.interpolation = [TrDirectCurvedInterpolation interpolationWithCurve:(curve ?: [TrCurve linear])];
         self.completionBlock = [completion copy];
         
         [object associateAnimation:self];
@@ -113,20 +112,21 @@ const void *TrDirectAnimationKey;
 
 - (void)displayDidUpdate:(CADisplayLink *)displayLink {
     
-    double progress = MIN([[NSDate date] timeIntervalSinceDate:_beginTime] / self.duration, 1.0);
+    double position = MIN([[NSDate date] timeIntervalSinceDate:_beginTime] / self.duration, 1.0);
     
-    if (progress >= 0 && progress <= 1.0) {
+    if (position >= 0 && position <= 1.0) {
         
         if (!self.fromValue)
             self.fromValue = [self.object valueForKeyPath:self.keyPath];
         
-        [self.object setValue:[self.fromValue interpolateWithValue:self.toValue
-                                                        atPosition:[self.curve transform:progress]]
+        [self.object setValue:[self.interpolation interpolateFromValue:self.fromValue
+                                                               toValue:self.toValue
+                                                              position:position]
                forKeyPath:self.keyPath];
         
     }
     
-    if (progress == 1.0)
+    if (position == 1.0)
         [self endAnimation:YES];
     
 }

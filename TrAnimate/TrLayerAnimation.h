@@ -33,6 +33,7 @@
 #import "TrAnimation.h"
 
 @protocol TrInterpolatable;
+@class TrInterpolation;
 @class TrCurve;
 
 /*!
@@ -90,6 +91,12 @@
  The value to animate to.
  */
 @property (nonatomic,copy,readonly) id<TrInterpolatable> toValue;
+
+/*!
+ The interpolation used. This is by default the direct interpolation between `fromValue` and `toValue` with curvature applied.
+ @discussion Use it to provide custom interpolation instead of a simple curvature.
+ */
+@property (nonatomic,copy) TrInterpolation *interpolation;
 
 /// ------------------------
 /// @name Creating Animation

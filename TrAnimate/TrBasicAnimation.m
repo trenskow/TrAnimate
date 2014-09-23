@@ -28,6 +28,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
+#import "TrDirectCurvedInterpolation.h"
 #import "TrCurve.h"
 
 #import "TrBasicAnimation.h"
@@ -51,7 +52,7 @@
 
 - (void)applyInterpolationIfSetupComplete {
     
-    if (self.duration && self.curve && self.fromValue && self.toValue) {
+    if (self.duration && self.interpolation && self.fromValue && self.toValue) {
         
         NSMutableArray *keyTimes = [[NSMutableArray alloc] init];
         NSMutableArray *values = [[NSMutableArray alloc] init];
@@ -59,8 +60,9 @@
         for (NSTimeInterval t = .0 ; t <= 1.0 ; t += 1.0 / (60.0 * (self.duration / self.speed))) {
             
             [keyTimes addObject:@(t)];
-            [values addObject:[self.fromValue interpolateWithValue:self.toValue
-                                                        atPosition:[self.curve transform:t]]];
+            [values addObject:[_interpolation interpolateFromValue:self.fromValue
+                                                           toValue:self.toValue
+                                                          position:t]];
             
         }
         
@@ -90,9 +92,18 @@
     
 }
 
+- (TrCurve *)curve {
+    
+    if ([_interpolation isKindOfClass:[TrDirectCurvedInterpolation class]])
+        return ((TrDirectCurvedInterpolation *)_interpolation).curve;
+    
+    return nil;
+    
+}
+
 - (void)setCurve:(TrCurve *)curve {
     
-    _curve = [curve copy];
+    _interpolation = [TrDirectCurvedInterpolation interpolationWithCurve:curve];
     
     [self applyInterpolationIfSetupComplete];
     
@@ -109,6 +120,14 @@
 - (void)setToValue:(id<TrInterpolatable>)toValue {
     
     _toValue = toValue;
+    
+    [self applyInterpolationIfSetupComplete];
+    
+}
+
+- (void)setInterpolation:(TrInterpolation *)interpolation {
+    
+    _interpolation = interpolation;
     
     [self applyInterpolationIfSetupComplete];
     
