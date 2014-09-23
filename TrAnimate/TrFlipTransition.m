@@ -48,6 +48,9 @@
                          curve:(TrCurve *)curve
                     completion:(void (^)(BOOL finished))completion {
     
+    if (!sourceView.superview)
+        [NSException raise:@"NotInViewHierarchy" format:@"View sourceView must be added to a view heirarchy."];
+    
     UIView *encapsulationView = [UIView new];
     encapsulationView.backgroundColor = [UIColor clearColor];
     encapsulationView.opaque = NO;
