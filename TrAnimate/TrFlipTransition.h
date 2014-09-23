@@ -43,29 +43,29 @@ typedef NS_ENUM(NSInteger, TrFlipTransitionDirection) {
 
 @interface TrFlipTransition : TrAnimationGroup
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                      direction:(TrFlipTransitionDirection)direction
                          delay:(NSTimeInterval)delay
                          curve:(TrCurve *)curve
                     completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                      direction:(TrFlipTransitionDirection)direction
                          delay:(NSTimeInterval)delay
                          curve:(TrCurve *)curve;
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                      direction:(TrFlipTransitionDirection)direction
                          delay:(NSTimeInterval)delay;
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                      direction:(TrFlipTransitionDirection)direction;
 

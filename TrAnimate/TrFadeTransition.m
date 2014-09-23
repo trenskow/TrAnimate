@@ -36,50 +36,50 @@
 
 @implementation TrFadeTransition
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                          delay:(NSTimeInterval)delay
                          curve:(TrCurve *)curve
                     completion:(void (^)(BOOL finished))completion {
     
-    toView.frame = fromView.frame;
-    toView.alpha = .0;
-    toView.hidden = NO;
+    destinationView.frame = sourceView.frame;
+    destinationView.alpha = .0;
+    destinationView.hidden = NO;
     
-    [fromView.superview addSubview:toView];
+    [sourceView.superview addSubview:destinationView];
     
     TrFadeTransition *animationGroup = [self animationGroupWithCompletion:completion];
     
-    if (!fromView.opaque)
-        [animationGroup addAnimation:[TrFadeAnimation animate:fromView
+    if (!sourceView.opaque)
+        [animationGroup addAnimation:[TrFadeAnimation animate:sourceView
                                                      duration:duration
                                                         delay:delay
                                                     direction:TrFadeAnimationDirectionOut
                                                         curve:curve
                                                    completion:nil]];
     
-    [animationGroup addAnimation:[TrFadeAnimation animate:toView
+    [animationGroup addAnimation:[TrFadeAnimation animate:destinationView
                                                  duration:duration
                                                     delay:delay
                                                 direction:TrFadeAnimationDirectionIn
                                                     curve:curve
                                                completion:^(BOOL finished) {
-                                                   [fromView removeFromSuperview];
+                                                   [sourceView removeFromSuperview];
                                                }]];
     
     return animationGroup;
     
 }
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                          delay:(NSTimeInterval)delay
                          curve:(TrCurve *)curve {
     
-    return [self transitionFrom:fromView
-                             to:toView
+    return [self transitionFrom:sourceView
+                             to:destinationView
                        duration:duration
                           delay:delay
                           curve:curve
@@ -87,13 +87,13 @@
     
 }
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                          delay:(NSTimeInterval)delay {
     
-    return [self transitionFrom:fromView
-                             to:toView
+    return [self transitionFrom:sourceView
+                             to:destinationView
                        duration:duration
                           delay:delay
                           curve:nil
@@ -101,12 +101,12 @@
     
 }
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration {
     
-    return [self transitionFrom:fromView
-                             to:toView
+    return [self transitionFrom:sourceView
+                             to:destinationView
                        duration:duration
                           delay:.0
                           curve:nil

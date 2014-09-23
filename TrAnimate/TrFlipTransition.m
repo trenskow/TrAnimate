@@ -40,8 +40,8 @@
 
 @implementation TrFlipTransition
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                      direction:(TrFlipTransitionDirection)direction
                          delay:(NSTimeInterval)delay
@@ -51,17 +51,17 @@
     UIView *encapsulationView = [UIView new];
     encapsulationView.backgroundColor = [UIColor clearColor];
     encapsulationView.opaque = NO;
-    encapsulationView.frame = fromView.frame;
+    encapsulationView.frame = sourceView.frame;
     
-    [fromView.superview addSubview:encapsulationView];
+    [sourceView.superview addSubview:encapsulationView];
     
-    fromView.frame = toView.frame = encapsulationView.bounds;
+    sourceView.frame = destinationView.frame = encapsulationView.bounds;
     
-    toView.alpha = .0;
-    toView.hidden = NO;
+    destinationView.alpha = .0;
+    destinationView.hidden = NO;
     
-    [encapsulationView addSubview:fromView];
-    [encapsulationView addSubview:toView];
+    [encapsulationView addSubview:sourceView];
+    [encapsulationView addSubview:destinationView];
     
     CATransform3D sublayerTransform = CATransform3DIdentity;
     sublayerTransform.m34 = 1.0 / -500.0;
@@ -78,9 +78,9 @@
     if (direction == TrFlipTransitionDirectionDown || direction == TrFlipTransitionDirectionRight)
         delta = -1.0;
     
-    [toView.layer setValue:@(M_PI * delta) forKey:keyPath];
+    [destinationView.layer setValue:@(M_PI * delta) forKey:keyPath];
     
-    TrRotateAnimation *fromViewRotationAnimation = [TrRotateAnimation animate:fromView
+    TrRotateAnimation *fromViewRotationAnimation = [TrRotateAnimation animate:sourceView
                                                                      duration:duration
                                                                         delay:delay
                                                                     fromAngle:.0
@@ -90,7 +90,7 @@
                                                                    completion:nil];
     
     /* To and from values are ignored in our custom interpolation below. */
-    TrRotateAnimation *toViewRotationAnimation = [TrRotateAnimation animate:toView
+    TrRotateAnimation *toViewRotationAnimation = [TrRotateAnimation animate:destinationView
                                                                    duration:duration
                                                                       delay:delay
                                                                   fromAngle:.0
@@ -108,14 +108,14 @@
         return (t >= .5 ? 1.0 : .0);
     }];
     
-    TrOpacityAnimation *fromViewOpacityAnimation = [TrOpacityAnimation animate:fromView
+    TrOpacityAnimation *fromViewOpacityAnimation = [TrOpacityAnimation animate:sourceView
                                                                       duration:duration
                                                                          delay:delay
                                                                    fromOpacity:1.0
                                                                      toOpacity:.0
                                                                          curve:halfwayCurve];
     
-    TrOpacityAnimation *toViewOpacityAnimation = [TrOpacityAnimation animate:toView
+    TrOpacityAnimation *toViewOpacityAnimation = [TrOpacityAnimation animate:destinationView
                                                                     duration:duration
                                                                        delay:delay
                                                                  fromOpacity:.0
@@ -128,15 +128,15 @@
                                                 toViewOpacityAnimation]
                                    completion:^(BOOL finished) {
                                        
-                                       fromView.frame = toView.frame = encapsulationView.frame;
-                                       [encapsulationView.superview addSubview:toView];
+                                       sourceView.frame = destinationView.frame = encapsulationView.frame;
+                                       [encapsulationView.superview addSubview:destinationView];
                                        
-                                       [fromView removeFromSuperview];
+                                       [sourceView removeFromSuperview];
                                        [encapsulationView removeFromSuperview];
                                        
-                                       fromView.hidden = YES;
-                                       fromView.alpha = 1.0;
-                                       [fromView.layer setValue:@(.0) forKeyPath:keyPath];
+                                       sourceView.hidden = YES;
+                                       sourceView.alpha = 1.0;
+                                       [sourceView.layer setValue:@(.0) forKeyPath:keyPath];
                                        
                                        if (completion)
                                            completion(finished);
@@ -145,15 +145,15 @@
     
 }
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                      direction:(TrFlipTransitionDirection)direction
                          delay:(NSTimeInterval)delay
                          curve:(TrCurve *)curve {
     
-    return [self transitionFrom:fromView
-                             to:toView
+    return [self transitionFrom:sourceView
+                             to:destinationView
                        duration:duration
                       direction:direction
                           delay:delay
@@ -162,14 +162,14 @@
     
 }
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                      direction:(TrFlipTransitionDirection)direction
                          delay:(NSTimeInterval)delay {
     
-    return [self transitionFrom:fromView
-                             to:toView
+    return [self transitionFrom:sourceView
+                             to:destinationView
                        duration:duration
                       direction:direction
                           delay:delay
@@ -178,13 +178,13 @@
     
 }
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                      direction:(TrFlipTransitionDirection)direction {
     
-    return [self transitionFrom:fromView
-                             to:toView
+    return [self transitionFrom:sourceView
+                             to:destinationView
                        duration:duration
                       direction:direction
                           delay:.0

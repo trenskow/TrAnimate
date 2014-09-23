@@ -34,35 +34,35 @@
 
 @implementation TrPushTransition
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                           edge:(TrMoveAnimationEdge)edge
                          delay:(NSTimeInterval)delay
                          curve:(TrCurve *)curve
                     completion:(void (^)(BOOL finished))completion {
     
-    toView.frame = fromView.frame;
-    toView.hidden = YES;
+    destinationView.frame = sourceView.frame;
+    destinationView.hidden = YES;
     
-    [fromView.superview addSubview:toView];
+    [sourceView.superview addSubview:destinationView];
     
-    TrMoveAnimation *moveOutAnimation = [TrMoveAnimation animate:fromView
+    TrMoveAnimation *moveOutAnimation = [TrMoveAnimation animate:sourceView
                                                         duration:duration
                                                        direction:TrMoveAnimationDirectionOut
                                                             edge:edge
-                                                  toOrFromBounds:fromView
+                                                  toOrFromBounds:sourceView
                                                            delay:delay
                                                            curve:curve
                                                       completion:^(BOOL finished) {
-                                                          [fromView removeFromSuperview];
+                                                          [sourceView removeFromSuperview];
                                                       }];
     
-    TrMoveAnimation *moveInAnimation = [TrMoveAnimation animate:toView
+    TrMoveAnimation *moveInAnimation = [TrMoveAnimation animate:destinationView
                                                        duration:duration
                                                       direction:TrMoveAnimationDirectionIn
                                                            edge:(edge + 2) % 4 // Opposide side
-                                                 toOrFromBounds:toView
+                                                 toOrFromBounds:destinationView
                                                           delay:delay
                                                           curve:curve
                                                      completion:nil];
@@ -72,15 +72,15 @@
     
 }
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                           edge:(TrMoveAnimationEdge)edge
                          delay:(NSTimeInterval)delay
                          curve:(TrCurve *)curve {
     
-    return [self transitionFrom:fromView
-                             to:toView
+    return [self transitionFrom:sourceView
+                             to:destinationView
                        duration:duration
                            edge:edge
                           delay:delay
@@ -89,14 +89,14 @@
     
 }
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                           edge:(TrMoveAnimationEdge)edge
                          delay:(NSTimeInterval)delay {
     
-    return [self transitionFrom:fromView
-                             to:toView
+    return [self transitionFrom:sourceView
+                             to:destinationView
                        duration:duration
                            edge:edge
                           delay:delay
@@ -105,13 +105,13 @@
     
 }
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                           edge:(TrMoveAnimationEdge)edge {
     
-    return [self transitionFrom:fromView
-                             to:toView
+    return [self transitionFrom:sourceView
+                             to:destinationView
                        duration:duration
                            edge:edge
                           delay:.0

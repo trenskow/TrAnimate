@@ -37,29 +37,29 @@
 
 @interface TrPushTransition : TrAnimationGroup
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                           edge:(TrMoveAnimationEdge)edge
                          delay:(NSTimeInterval)delay
                          curve:(TrCurve *)curve
                     completion:(void (^)(BOOL finished))completion;
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                           edge:(TrMoveAnimationEdge)edge
                          delay:(NSTimeInterval)delay
                          curve:(TrCurve *)curve;
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                           edge:(TrMoveAnimationEdge)edge
                          delay:(NSTimeInterval)delay;
 
-+ (instancetype)transitionFrom:(UIView *)fromView
-                            to:(UIView *)toView
++ (instancetype)transitionFrom:(UIView *)sourceView
+                            to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
                           edge:(TrMoveAnimationEdge)edge;
 
