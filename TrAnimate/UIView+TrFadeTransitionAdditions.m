@@ -34,14 +34,14 @@
 
 @implementation UIView (TrFadeTransitionAdditions)
 
-- (TrFadeTransition *)fadeTo:(UIView *)toView
+- (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve
                   completion:(void (^)(BOOL finished))completion {
     
     return [TrFadeTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration
                                       delay:delay
                                       curve:curve
@@ -49,35 +49,35 @@
     
 }
 
-- (TrFadeTransition *)fadeTo:(UIView *)toView
+- (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve {
     
     return [TrFadeTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration
                                       delay:delay
                                       curve:curve];
     
 }
 
-- (TrFadeTransition *)fadeTo:(UIView *)toView
+- (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                        delay:(NSTimeInterval)delay {
     
     return [TrFadeTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration
                                       delay:delay];
     
 }
 
-- (TrFadeTransition *)fadeTo:(UIView *)toView
+- (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration {
     
     return [TrFadeTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration];
     
 }

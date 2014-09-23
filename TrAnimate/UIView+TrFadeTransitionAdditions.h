@@ -35,22 +35,22 @@
 
 @interface UIView (TrFadeTransitionAdditions)
 
-- (TrFadeTransition *)fadeTo:(UIView *)toView
+- (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve
                   completion:(void (^)(BOOL finished))completion;
 
-- (TrFadeTransition *)fadeTo:(UIView *)toView
+- (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve;
 
-- (TrFadeTransition *)fadeTo:(UIView *)toView
+- (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                        delay:(NSTimeInterval)delay;
 
-- (TrFadeTransition *)fadeTo:(UIView *)toView
+- (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration;
 
 @end

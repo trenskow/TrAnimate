@@ -32,7 +32,7 @@
 
 @implementation UIView (TrPushTransitionAdditions)
 
-- (TrPushTransition *)pushTo:(UIView *)toView
+- (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay
@@ -40,7 +40,7 @@
                   completion:(void (^)(BOOL finished))completion {
     
     return [TrPushTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration
                                        edge:edge
                                       delay:delay
@@ -49,14 +49,14 @@
     
 }
 
-- (TrPushTransition *)pushTo:(UIView *)toView
+- (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve {
     
     return [TrPushTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration
                                        edge:edge
                                       delay:delay
@@ -64,25 +64,25 @@
     
 }
 
-- (TrPushTransition *)pushTo:(UIView *)toView
+- (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay {
     
     return [TrPushTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration
                                        edge:edge
                                       delay:delay];
     
 }
 
-- (TrPushTransition *)pushTo:(UIView *)toView
+- (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge {
     
     return [TrPushTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration
                                        edge:edge];
     

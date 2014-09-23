@@ -36,25 +36,25 @@
 
 @interface UIView (TrFlipTransitionAdditions)
 
-- (TrFlipTransition *)flipTo:(UIView *)toView
+- (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve
                   completion:(void (^)(BOOL finished))completion;
 
-- (TrFlipTransition *)flipTo:(UIView *)toView
+- (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve;
 
-- (TrFlipTransition *)flipTo:(UIView *)toView
+- (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction
                        delay:(NSTimeInterval)delay;
 
-- (TrFlipTransition *)flipTo:(UIView *)toView
+- (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction;
 

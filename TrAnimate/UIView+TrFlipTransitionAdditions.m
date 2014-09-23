@@ -32,7 +32,7 @@
 
 @implementation UIView (TrFlipTransitionAdditions)
 
-- (TrFlipTransition *)flipTo:(UIView *)toView
+- (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction
                        delay:(NSTimeInterval)delay
@@ -40,7 +40,7 @@
                   completion:(void (^)(BOOL finished))completion {
     
     return [TrFlipTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration
                                   direction:direction
                                       delay:delay
@@ -49,14 +49,14 @@
     
 }
 
-- (TrFlipTransition *)flipTo:(UIView *)toView
+- (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve {
     
     return [TrFlipTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration
                                   direction:direction
                                       delay:delay
@@ -64,25 +64,25 @@
     
 }
 
-- (TrFlipTransition *)flipTo:(UIView *)toView
+- (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction
                        delay:(NSTimeInterval)delay {
     
     return [TrFlipTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration
                                   direction:direction
                                       delay:delay];
     
 }
 
-- (TrFlipTransition *)flipTo:(UIView *)toView
+- (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction {
     
     return [TrFlipTransition transitionFrom:self
-                                         to:toView
+                                         to:destinationView
                                    duration:duration
                                   direction:direction];
     

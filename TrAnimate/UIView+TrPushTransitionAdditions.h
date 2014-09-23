@@ -36,25 +36,25 @@
 
 @interface UIView (TrPushTransitionAdditions)
 
-- (TrPushTransition *)pushTo:(UIView *)toView
+- (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve
                   completion:(void (^)(BOOL finished))completion;
 
-- (TrPushTransition *)pushTo:(UIView *)toView
+- (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve;
 
-- (TrPushTransition *)pushTo:(UIView *)toView
+- (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay;
 
-- (TrPushTransition *)pushTo:(UIView *)toView
+- (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge;
 
