@@ -34,12 +34,14 @@
 
 /*!
  A category to `UIView` with convenience methods to create move animations.
+ 
+ @discussion See `TrMoveAnimation` for information about this type of transition.
  */
 @interface UIView (TrMoveAnimationAdditions)
 
-/// ------------------------
-/// @name moveing in and out
-/// ------------------------
+/// ----------------------------------------
+/// @name Creating Move In or Out Animations
+/// ----------------------------------------
 
 /*!
  Creates and returns a move-in animation.

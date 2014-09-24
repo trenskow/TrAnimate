@@ -53,6 +53,10 @@ typedef NS_ENUM(NSInteger, TrFlipTransitionDirection) {
  */
 @interface TrFlipTransition : TrAnimationGroup
 
+/// -------------------------
+/// @name Creating Transition
+/// -------------------------
+
 /*!
  Creates and returns a flip transition that flips `sourceView` to `destinationView`.
  

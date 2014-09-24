@@ -40,6 +40,10 @@
  */
 @interface UIView (TrFadeTransitionAdditions)
 
+/// -------------------------------
+/// @name Creating Fade Transitions
+/// -------------------------------
+
 /*!
  Creates and returns a fade transition.
  

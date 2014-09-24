@@ -40,6 +40,10 @@
  */
 @interface TrPushTransition : TrAnimationGroup
 
+/// -------------------------
+/// @name Creating Transition
+/// -------------------------
+
 /*!
  Creates and returns a push transition pushes `sourceView` out and `destinationView` into it's place.
  

@@ -41,6 +41,10 @@
  */
 @interface UIView (TrFlipTransitionAdditions)
 
+/// -------------------------------
+/// @name Creating Flip Transitions
+/// -------------------------------
+
 /*!
  Creates and returns a flip transition.
  

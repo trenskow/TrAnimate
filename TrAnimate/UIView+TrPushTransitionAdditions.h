@@ -41,6 +41,10 @@
  */
 @interface UIView (TrPushTransitionAdditions)
 
+/// -------------------------------
+/// @name Creating Push Transitions
+/// -------------------------------
+
 /*!
  Creates and returns a push transition.
  

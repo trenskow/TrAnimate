@@ -39,6 +39,10 @@
  */
 @interface TrFadeTransition : TrAnimationGroup
 
+/// -------------------------
+/// @name Creating Transition
+/// -------------------------
+
 /*!
  Creates and returns a transition that fades from `sourceView` to `destinationView`.
  

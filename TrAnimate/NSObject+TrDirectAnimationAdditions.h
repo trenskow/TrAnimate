@@ -35,8 +35,14 @@
 
 /*!
  Category of `NSObject` that adds convinience methods for direct animations.
+ 
+ @discussion See `TrDirectAnimation` for information about this type of transition.
  */
 @interface NSObject (TrDirectAnimationAdditions)
+
+/// --------------------------------
+/// @name Creating Direct Animations
+/// --------------------------------
 
 /*!
  Sets the value for the property identified by a given key path to a given value interpolating and setting the value regularly using a direct drivin' animation.

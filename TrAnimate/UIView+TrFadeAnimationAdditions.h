@@ -33,12 +33,14 @@
 
 /*!
  A category to `UIView` with convenience methods to create fade-in and fade-out animations.
+ 
+ @discussion See `TrFadeAnimation` for information about this type of transition.
  */
 @interface UIView (TrFadeAnimationAdditions)
 
-/// -----------------------
-/// @name Fading in and out
-/// -----------------------
+/// -----------------------------------------
+/// @name Creating Fade In and Out Animations
+/// -----------------------------------------
 
 /*!
  Creates and returns a fade-in animation. 

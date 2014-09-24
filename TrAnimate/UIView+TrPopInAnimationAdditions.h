@@ -30,14 +30,16 @@
 @class TrPopInAnimation;
 @class TrCurve;
 
-/// ----------------
-/// @name Popping in
-/// ----------------
-
 /*!
  A category to `UIView` with convenience methods to create pop-in animations.
+ 
+ @discussion See `TrPopInAnimation` for information about this type of transition.
  */
 @interface UIView (TrPopInAnimationAdditions)
+
+/// --------------------------------
+/// @name Creating Pop In Animations
+/// --------------------------------
 
 /*!
  Creates and returns a pop-in animation.
