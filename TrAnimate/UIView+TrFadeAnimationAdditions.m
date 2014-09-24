@@ -33,6 +33,8 @@
 
 @implementation UIView (TrFadeAnimationAdditions)
 
+#pragma mark - Creating Fade In Animations
+
 - (TrFadeAnimation *)fadeIn:(NSTimeInterval)duration
                       delay:(NSTimeInterval)delay
                       curve:(TrCurve *)curve
@@ -77,6 +79,8 @@
                           direction:TrFadeAnimationDirectionIn];
     
 }
+
+#pragma mark - Creating Fade Out Animations
 
 - (TrFadeAnimation *)fadeOut:(NSTimeInterval)duration
                        delay:(NSTimeInterval)delay

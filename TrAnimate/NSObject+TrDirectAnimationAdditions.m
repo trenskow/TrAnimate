@@ -34,6 +34,8 @@
 
 @implementation NSObject (TrDirectAnimationAdditions)
 
+#pragma mark - Creating Direct Animations
+
 - (TrDirectAnimation *)setValue:(id)value
                      forKeyPath:(NSString *)keyPath
                        duration:(NSTimeInterval)duration

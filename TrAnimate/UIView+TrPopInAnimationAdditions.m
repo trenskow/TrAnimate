@@ -33,6 +33,8 @@
 
 @implementation UIView (TrPopInAnimationAdditions)
 
+#pragma mark - Creating Pop In Animations
+
 - (TrPopInAnimation *)popIn:(NSTimeInterval)duration
                       delay:(NSTimeInterval)delay
                     elastic:(BOOL)elastic

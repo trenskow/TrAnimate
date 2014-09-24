@@ -32,6 +32,8 @@
 
 @implementation UIView (TrFlipTransitionAdditions)
 
+#pragma mark - Creating Flip To Transitions
+
 - (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction

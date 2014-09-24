@@ -31,6 +31,8 @@
 
 @implementation UIView (TrMoveAnimationAdditions)
 
+#pragma mark - Creating Move In Animations
+
 - (TrMoveAnimation *)moveIn:(NSTimeInterval)duration
                        edge:(TrMoveAnimationEdge)edge
                       delay:(NSTimeInterval)delay
@@ -110,6 +112,8 @@
                          completion:nil];
     
 }
+
+#pragma mark - Creating Move Out Animations
 
 - (TrMoveAnimation *)moveOut:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge

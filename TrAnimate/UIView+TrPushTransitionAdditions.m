@@ -32,6 +32,8 @@
 
 @implementation UIView (TrPushTransitionAdditions)
 
+#pragma mark - Creating Push To Transitions
+
 - (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge

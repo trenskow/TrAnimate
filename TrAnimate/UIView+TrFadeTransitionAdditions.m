@@ -34,6 +34,8 @@
 
 @implementation UIView (TrFadeTransitionAdditions)
 
+#pragma mark - Creating Fade To Transitions
+
 - (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                        delay:(NSTimeInterval)delay

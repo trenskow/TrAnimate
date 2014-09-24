@@ -36,6 +36,8 @@
 
 @implementation TrFadeTransition
 
+#pragma mark - Creating Transition
+
 + (instancetype)transitionFrom:(UIView *)sourceView
                             to:(UIView *)destinationView
                       duration:(NSTimeInterval)duration
