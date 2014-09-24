@@ -33,23 +33,66 @@
 @class TrFadeTransition;
 @class TrCurve;
 
+/*!
+ A category to `UIView` with convenience methods for creating fade transitions.
+ 
+ @discussion See `TrFadeTransition` for information about this type of transition.
+ */
 @interface UIView (TrFadeTransitionAdditions)
 
+/*!
+ Creates and returns a fade transition.
+ 
+ @param destinationView The `UIView` object to fade to.
+ @param duration        The duration of the fade transition.
+ @param delay           The delay before the fade transition begins.
+ @param curve           The curvature of the fade transition.
+ @param completion      A block that gets invoked when the fade transition completes.
+ 
+ @return A fade transition ready to animate.
+ */
 - (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve
                   completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns a fade transition.
+ 
+ @param destinationView The `UIView` object to fade to.
+ @param duration        The duration of the fade transition.
+ @param delay           The delay before the fade transition begins.
+ @param curve           The curvature of the fade transition.
+ 
+ @return A fade transition ready to animate.
+ */
 - (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns a fade transition.
+ 
+ @param destinationView The `UIView` object to fade to.
+ @param duration        The duration of the fade transition.
+ @param delay           The delay before the fade transition begins.
+ 
+ @return A fade transition ready to animate.
+ */
 - (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                        delay:(NSTimeInterval)delay;
 
+/*!
+ Creates and returns a fade transition.
+ 
+ @param destinationView The `UIView` object to fade to.
+ @param duration        The duration of the fade transition.
+ 
+ @return A fade transition ready to animate.
+ */
 - (TrFadeTransition *)fadeTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration;
 

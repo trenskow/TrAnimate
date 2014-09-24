@@ -34,8 +34,25 @@
 
 @class TrCurve;
 
+/*!
+ A category to `UIView` with convenience methods for creating flip transitions.
+ 
+ @discussion See `TrFlipTransition` for information about this type of transition.
+ */
 @interface UIView (TrFlipTransitionAdditions)
 
+/*!
+ Creates and returns a flip transition.
+ 
+ @param destinationView The `UIView` object to flip to.
+ @param duration        The duration of the flip transition.
+ @param direction       The direction of the flip transition.
+ @param delay           The delay before the flip transition begins.
+ @param curve           The curvature of the flip transition.
+ @param completion      A block that gets invoked when the flip transition completes.
+ 
+ @return A flip transition ready to animate.
+ */
 - (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction
@@ -43,17 +60,47 @@
                        curve:(TrCurve *)curve
                   completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns a flip transition.
+ 
+ @param destinationView The `UIView` object to flip to.
+ @param duration        The duration of the flip transition.
+ @param direction       The direction of the flip transition.
+ @param delay           The delay before the flip transition begins.
+ @param curve           The curvature of the flip transition.
+ 
+ @return A flip transition ready to animate.
+ */
 - (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns a flip transition.
+ 
+ @param destinationView The `UIView` object to flip to.
+ @param duration        The duration of the flip transition.
+ @param direction       The direction of the flip transition.
+ @param delay           The delay before the flip transition begins.
+ 
+ @return A flip transition ready to animate.
+ */
 - (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction
                        delay:(NSTimeInterval)delay;
 
+/*!
+ Creates and returns a flip transition.
+ 
+ @param destinationView The `UIView` object to flip to.
+ @param duration        The duration of the flip transition.
+ @param direction       The direction of the flip transition.
+ 
+ @return A flip transition ready to animate.
+ */
 - (TrFlipTransition *)flipTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                    direction:(TrFlipTransitionDirection)direction;

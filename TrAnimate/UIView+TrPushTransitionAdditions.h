@@ -34,8 +34,25 @@
 
 @class TrCurve;
 
+/*!
+ A category to `UIVIew` with convenience method for creating push transitions.
+ 
+ @discussion See `TrPushTransition` for information about this type of transition.
+ */
 @interface UIView (TrPushTransitionAdditions)
 
+/*!
+ Creates and returns a push transition.
+ 
+ @param destinationView The `UIView` object to push to.
+ @param duration        The duration of the push transition.
+ @param edge            The direction of the push transition.
+ @param delay           The delay before the push transition begins.
+ @param curve           The curvature of the push transition.
+ @param completion      A block that gets invoked when the push transition completes.
+ 
+ @return A push transition ready to animate.
+ */
 - (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge
@@ -43,17 +60,47 @@
                        curve:(TrCurve *)curve
                   completion:(void (^)(BOOL finished))completion;
 
+/*!
+ Creates and returns a push transition.
+ 
+ @param destinationView The `UIView` object to transition to.
+ @param duration        The duration of the push transition.
+ @param edge            The direction of the push transition.
+ @param delay           The delay before the push transition begins.
+ @param curve           The curvature of the push transition.
+ 
+ @return A push transition ready to animate.
+ */
 - (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay
                        curve:(TrCurve *)curve;
 
+/*!
+ Creates and returns a push transition.
+ 
+ @param destinationView The `UIView` object to transition to.
+ @param duration        The duration of the push transition.
+ @param edge            The direction of the push transition.
+ @param delay           The delay before the push transition begins.
+ 
+ @return A push transition ready to animate.
+ */
 - (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge
                        delay:(NSTimeInterval)delay;
 
+/*!
+ Creates and returns a push transition.
+ 
+ @param destinationView The `UIView` object to transition to.
+ @param duration        The duration of the push transition.
+ @param edge            The direction of the push transition.
+ 
+ @return A push transition ready to animate.
+ */
 - (TrPushTransition *)pushTo:(UIView *)destinationView
                     duration:(NSTimeInterval)duration
                         edge:(TrMoveAnimationEdge)edge;
