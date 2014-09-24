@@ -4,3 +4,4 @@ doc/*
 !doc
 /doc/*
 !doc/assets
+/doc/assets/.DS_Store
