@@ -121,6 +121,15 @@
  */
 - (void)addAnimation:(id<TrAnimation>)animation;
 
+/*!
+ Adds the animations from an `NSArray` object to the group.
+ 
+ @param animations An `NSArray` containing animations.
+ 
+ @discussion Animations must conform to the `TrAnimation` protocol.
+ */
+- (void)addAnimations:(NSArray *)animations;
+
 /// ----------------
 /// @name Completion
 /// ----------------

@@ -36,9 +36,144 @@
 #import "TrRotateAnimation.h"
 #import "TrOpacityAnimation.h"
 
+#import "TrAnimationGroup+Private.h"
+
 #import "TrFlipTransition.h"
 
+@interface TrFlipTransition ()
+
+@property (nonatomic) UIView *encapsulationView;
+@property (nonatomic,weak) UIView *sourceView;
+@property (nonatomic,weak) UIView *destinationView;
+@property (nonatomic) NSTimeInterval applyDuration;
+@property (nonatomic) TrFlipTransitionDirection direction;
+@property (nonatomic) NSTimeInterval applyDelay;
+@property (nonatomic,copy) TrCurve *curve;
+
+@end
+
 @implementation TrFlipTransition
+
+#pragma mark - Internals
+
+- (TrRotateAnimationAxis)axisForDirection:(TrFlipTransitionDirection)direction {
+    
+    if (self.direction == TrFlipTransitionDirectionDown || self.direction == TrFlipTransitionDirectionUp)
+        return TrRotateAnimationAxisX;
+    
+    return TrRotateAnimationAxisY;
+    
+}
+
+- (NSString *)keyPathForAxis:(TrRotateAnimationAxis)axis {
+    
+    if (axis == TrRotateAnimationAxisX)
+        return @"transform.rotation.x";
+    
+    return @"transform.rotation.y";
+    
+}
+
+- (void)animationsCompleted:(BOOL)finished {
+    
+    self.sourceView.frame = self.destinationView.frame = self.encapsulationView.frame;
+    [self.encapsulationView.superview addSubview:self.destinationView];
+    
+    [self.sourceView removeFromSuperview];
+    [self.encapsulationView removeFromSuperview];
+    
+    self.sourceView.hidden = YES;
+    self.sourceView.alpha = 1.0;
+    [self.sourceView.layer setValue:@(.0) forKeyPath:[self keyPathForAxis:[self axisForDirection:self.direction]]];
+    
+}
+
+- (void)setupAnimations {
+    
+    self.encapsulationView = [UIView new];
+    self.encapsulationView.backgroundColor = [UIColor clearColor];
+    self.encapsulationView.opaque = NO;
+    self.encapsulationView.frame = self.sourceView.frame;
+    
+    [self.sourceView.superview addSubview:self.encapsulationView];
+    
+    self.sourceView.frame = self.destinationView.frame = self.encapsulationView.bounds;
+    
+    self.destinationView.alpha = .0;
+    self.destinationView.hidden = NO;
+    
+    [self.encapsulationView addSubview:self.sourceView];
+    [self.encapsulationView addSubview:self.destinationView];
+    
+    CATransform3D sublayerTransform = CATransform3DIdentity;
+    sublayerTransform.m34 = 1.0 / -500.0;
+    self.encapsulationView.layer.sublayerTransform = sublayerTransform;
+    
+    CGFloat delta = 1.0;
+    if (self.direction == TrFlipTransitionDirectionDown || self.direction == TrFlipTransitionDirectionRight)
+        delta = -1.0;
+    
+    TrRotateAnimationAxis axis = [self axisForDirection:self.direction];
+    
+    [self.destinationView.layer setValue:@(M_PI * delta) forKey:[self keyPathForAxis:axis]];
+    
+    TrRotateAnimation *fromViewRotationAnimation = [TrRotateAnimation animate:self.sourceView
+                                                                     duration:self.applyDuration
+                                                                        delay:self.applyDelay
+                                                                    fromAngle:.0
+                                                                      toAngle:M_PI * delta
+                                                                         axis:axis
+                                                                        curve:self.curve
+                                                                   completion:nil];
+    
+    /* To and from values are ignored in our custom interpolation below. */
+    TrRotateAnimation *toViewRotationAnimation = [TrRotateAnimation animate:self.destinationView
+                                                                   duration:self.applyDuration
+                                                                      delay:self.applyDelay
+                                                                  fromAngle:.0
+                                                                    toAngle:.0
+                                                                       axis:axis];
+    
+    // We use a custom interpolation to ensure rotation is in correct direction. */
+    toViewRotationAnimation.interpolation = [TrInterpolation interpolationWithBlock:^id<TrInterpolatable>(id<TrInterpolatable> fromValue, id<TrInterpolatable> toValue, double position) {
+        return @(M_PI + M_PI * [(self.curve ?: [TrCurve linear]) transform:position] * delta);
+    }];
+    
+    TrCurve *halfwayCurve = [TrCurve curveWithBlock:^double(double t) {
+        if (self.curve)
+            return ([self.curve transform:t] >= .5 ? 1.0 : .0);
+        return (t >= .5 ? 1.0 : .0);
+    }];
+    
+    TrOpacityAnimation *fromViewOpacityAnimation = [TrOpacityAnimation animate:self.sourceView
+                                                                      duration:self.applyDuration
+                                                                         delay:self.applyDelay
+                                                                   fromOpacity:1.0
+                                                                     toOpacity:.0
+                                                                         curve:halfwayCurve];
+    
+    TrOpacityAnimation *toViewOpacityAnimation = [TrOpacityAnimation animate:self.destinationView
+                                                                    duration:self.applyDuration
+                                                                       delay:self.applyDelay
+                                                                 fromOpacity:.0
+                                                                   toOpacity:1.0
+                                                                       curve:halfwayCurve];
+    
+    [self addAnimations:@[fromViewRotationAnimation,
+                          toViewRotationAnimation,
+                          fromViewOpacityAnimation,
+                          toViewOpacityAnimation]];
+    
+}
+
+#pragma mark - Properties
+
+- (void)setDelay:(NSTimeInterval)delay {
+    
+    [super setDelay:delay];
+    self.applyDelay = delay;
+    
+}
 
 #pragma mark - Creating Transition
 
@@ -53,100 +188,16 @@
     if (!sourceView.superview)
         [NSException raise:@"NotInViewHierarchy" format:@"View sourceView must be added to a view heirarchy."];
     
-    UIView *encapsulationView = [UIView new];
-    encapsulationView.backgroundColor = [UIColor clearColor];
-    encapsulationView.opaque = NO;
-    encapsulationView.frame = sourceView.frame;
+    TrFlipTransition *flipTransition = [self animationGroupWithCompletion:completion];
     
-    [sourceView.superview addSubview:encapsulationView];
+    flipTransition.sourceView = sourceView;
+    flipTransition.destinationView = destinationView;
+    flipTransition.applyDuration = duration;
+    flipTransition.direction = direction;
+    flipTransition.applyDelay = delay;
+    flipTransition.curve = curve;
     
-    sourceView.frame = destinationView.frame = encapsulationView.bounds;
-    
-    destinationView.alpha = .0;
-    destinationView.hidden = NO;
-    
-    [encapsulationView addSubview:sourceView];
-    [encapsulationView addSubview:destinationView];
-    
-    CATransform3D sublayerTransform = CATransform3DIdentity;
-    sublayerTransform.m34 = 1.0 / -500.0;
-    encapsulationView.layer.sublayerTransform = sublayerTransform;
-    
-    TrRotateAnimationAxis axis = TrRotateAnimationAxisY;
-    NSString *keyPath = @"transform.rotation.y";
-    if (direction == TrFlipTransitionDirectionDown || direction == TrFlipTransitionDirectionUp) {
-        axis = TrRotateAnimationAxisX;
-        keyPath = @"transform.rotation.x";
-    }
-    
-    CGFloat delta = 1.0;
-    if (direction == TrFlipTransitionDirectionDown || direction == TrFlipTransitionDirectionRight)
-        delta = -1.0;
-    
-    [destinationView.layer setValue:@(M_PI * delta) forKey:keyPath];
-    
-    TrRotateAnimation *fromViewRotationAnimation = [TrRotateAnimation animate:sourceView
-                                                                     duration:duration
-                                                                        delay:delay
-                                                                    fromAngle:.0
-                                                                      toAngle:M_PI * delta
-                                                                         axis:axis
-                                                                        curve:curve
-                                                                   completion:nil];
-    
-    /* To and from values are ignored in our custom interpolation below. */
-    TrRotateAnimation *toViewRotationAnimation = [TrRotateAnimation animate:destinationView
-                                                                   duration:duration
-                                                                      delay:delay
-                                                                  fromAngle:.0
-                                                                    toAngle:.0
-                                                                       axis:axis];
-    
-    // We use a custom interpolation to ensure rotation is in correct direction. */
-    toViewRotationAnimation.interpolation = [TrInterpolation interpolationWithBlock:^id<TrInterpolatable>(id<TrInterpolatable> fromValue, id<TrInterpolatable> toValue, double position) {
-        return @(M_PI + M_PI * [(curve ?: [TrCurve linear]) transform:position] * delta);
-    }];
-    
-    TrCurve *halfwayCurve = [TrCurve curveWithBlock:^double(double t) {
-        if (curve)
-            return ([curve transform:t] >= .5 ? 1.0 : .0);
-        return (t >= .5 ? 1.0 : .0);
-    }];
-    
-    TrOpacityAnimation *fromViewOpacityAnimation = [TrOpacityAnimation animate:sourceView
-                                                                      duration:duration
-                                                                         delay:delay
-                                                                   fromOpacity:1.0
-                                                                     toOpacity:.0
-                                                                         curve:halfwayCurve];
-    
-    TrOpacityAnimation *toViewOpacityAnimation = [TrOpacityAnimation animate:destinationView
-                                                                    duration:duration
-                                                                       delay:delay
-                                                                 fromOpacity:.0
-                                                                   toOpacity:1.0
-                                                                       curve:halfwayCurve];
-    
-    return [self animationGroupWithAnimations:@[fromViewRotationAnimation,
-                                                toViewRotationAnimation,
-                                                fromViewOpacityAnimation,
-                                                toViewOpacityAnimation]
-                                   completion:^(BOOL finished) {
-                                       
-                                       sourceView.frame = destinationView.frame = encapsulationView.frame;
-                                       [encapsulationView.superview addSubview:destinationView];
-                                       
-                                       [sourceView removeFromSuperview];
-                                       [encapsulationView removeFromSuperview];
-                                       
-                                       sourceView.hidden = YES;
-                                       sourceView.alpha = 1.0;
-                                       [sourceView.layer setValue:@(.0) forKeyPath:keyPath];
-                                       
-                                       if (completion)
-                                           completion(finished);
-                                       
-                                   }];
+    return flipTransition;
     
 }
 

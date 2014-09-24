@@ -31,10 +31,63 @@
 #import "UIView+TrAnimateAdditions.h"
 
 #import "TrFadeAnimation.h"
+#import "TrAnimationGroup+Private.h"
 
 #import "TrFadeTransition.h"
 
+@interface TrFadeTransition ()
+
+@property (nonatomic,weak) UIView *sourceView;
+@property (nonatomic,weak) UIView *destinationView;
+@property (nonatomic) NSTimeInterval applyDuration;
+@property (nonatomic) NSTimeInterval applyDelay;
+@property (nonatomic,copy) TrCurve *curve;
+
+@end
+
 @implementation TrFadeTransition
+
+#pragma mark - Internals
+
+- (void)animationsCompleted:(BOOL)finished {
+    
+    [self.sourceView removeFromSuperview];
+    
+}
+
+- (void)setupAnimations {
+    
+    self.destinationView.frame = self.sourceView.frame;
+    self.destinationView.alpha = .0;
+    self.destinationView.hidden = NO;
+    
+    [self.sourceView.superview addSubview:self.destinationView];
+    
+    if (!self.sourceView.opaque)
+        [self addAnimation:[TrFadeAnimation animate:self.sourceView
+                                           duration:self.applyDuration
+                                              delay:self.applyDelay
+                                          direction:TrFadeAnimationDirectionOut
+                                              curve:self.curve
+                                         completion:nil]];
+    
+    [self addAnimation:[TrFadeAnimation animate:self.destinationView
+                                                 duration:self.applyDuration
+                                                    delay:self.applyDelay
+                                                direction:TrFadeAnimationDirectionIn
+                                                    curve:self.curve
+                                               completion:nil]];
+    
+}
+
+#pragma mark - Properties
+
+- (void)setDelay:(NSTimeInterval)delay {
+    
+    [super setDelay:delay];
+    self.applyDelay = delay;
+    
+}
 
 #pragma mark - Creating Transition
 
@@ -48,32 +101,15 @@
     if (!sourceView.superview)
         [NSException raise:@"NotInViewHierarchy" format:@"View sourceView must be added to a view heirarchy."];
     
-    destinationView.frame = sourceView.frame;
-    destinationView.alpha = .0;
-    destinationView.hidden = NO;
+    TrFadeTransition *fadeTransition = [self animationGroupWithCompletion:completion];
     
-    [sourceView.superview addSubview:destinationView];
+    fadeTransition.sourceView = sourceView;
+    fadeTransition.destinationView = destinationView;
+    fadeTransition.applyDuration = duration;
+    fadeTransition.applyDelay = delay;
+    fadeTransition.curve = curve;
     
-    TrFadeTransition *animationGroup = [self animationGroupWithCompletion:completion];
-    
-    if (!sourceView.opaque)
-        [animationGroup addAnimation:[TrFadeAnimation animate:sourceView
-                                                     duration:duration
-                                                        delay:delay
-                                                    direction:TrFadeAnimationDirectionOut
-                                                        curve:curve
-                                                   completion:nil]];
-    
-    [animationGroup addAnimation:[TrFadeAnimation animate:destinationView
-                                                 duration:duration
-                                                    delay:delay
-                                                direction:TrFadeAnimationDirectionIn
-                                                    curve:curve
-                                               completion:^(BOOL finished) {
-                                                   [sourceView removeFromSuperview];
-                                               }]];
-    
-    return animationGroup;
+    return fadeTransition;
     
 }
 

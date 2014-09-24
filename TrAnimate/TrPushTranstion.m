@@ -30,9 +30,68 @@
 
 #import "UIView+TrAnimateAdditions.h"
 
+#import "TrAnimationGroup+Private.h"
+
 #import "TrPushTransition.h"
 
+@interface TrPushTransition ()
+
+@property (nonatomic,weak) UIView *sourceView;
+@property (nonatomic,weak) UIView *destinationView;
+@property (nonatomic) NSTimeInterval applyDuration;
+@property (nonatomic) TrMoveAnimationEdge edge;
+@property (nonatomic) NSTimeInterval applyDelay;
+@property (nonatomic,copy) TrCurve *curve;
+
+@end
+
 @implementation TrPushTransition
+
+#pragma mark - Internals
+
+- (void)animationsCompleted:(BOOL)finished {
+    
+    [self.sourceView removeFromSuperview];
+    
+}
+
+- (void)setupAnimations {
+    
+    self.destinationView.frame = self.sourceView.frame;
+    self.destinationView.hidden = YES;
+    
+    [self.sourceView.superview addSubview:self.destinationView];
+    
+    TrMoveAnimation *moveOutAnimation = [TrMoveAnimation animate:self.sourceView
+                                                        duration:self.applyDuration
+                                                       direction:TrMoveAnimationDirectionOut
+                                                            edge:self.edge
+                                                  toOrFromBounds:self.sourceView
+                                                           delay:self.applyDelay
+                                                           curve:self.curve
+                                                      completion:nil];
+    
+    TrMoveAnimation *moveInAnimation = [TrMoveAnimation animate:self.destinationView
+                                                       duration:self.applyDuration
+                                                      direction:TrMoveAnimationDirectionIn
+                                                           edge:(self.edge + 2) % 4 // Opposide side
+                                                 toOrFromBounds:self.destinationView
+                                                          delay:self.applyDelay
+                                                          curve:self.curve
+                                                     completion:nil];
+    
+    [self addAnimations:@[moveOutAnimation, moveInAnimation]];
+    
+}
+
+#pragma mark - Properties
+
+- (void)setDelay:(NSTimeInterval)delay {
+    
+    [super setDelay:delay];
+    self.applyDelay = delay;
+    
+}
 
 #pragma mark - Creating Transition
 
@@ -47,33 +106,16 @@
     if (!sourceView.superview)
         [NSException raise:@"NotInViewHierarchy" format:@"View sourceView must be added to a view heirarchy."];
     
-    destinationView.frame = sourceView.frame;
-    destinationView.hidden = YES;
+    TrPushTransition *pushTransition = [TrPushTransition animationGroupWithCompletion:completion];
     
-    [sourceView.superview addSubview:destinationView];
+    pushTransition.sourceView = sourceView;
+    pushTransition.destinationView = destinationView;
+    pushTransition.applyDuration = duration;
+    pushTransition.edge = edge;
+    pushTransition.applyDelay = delay;
+    pushTransition.curve = curve;
     
-    TrMoveAnimation *moveOutAnimation = [TrMoveAnimation animate:sourceView
-                                                        duration:duration
-                                                       direction:TrMoveAnimationDirectionOut
-                                                            edge:edge
-                                                  toOrFromBounds:sourceView
-                                                           delay:delay
-                                                           curve:curve
-                                                      completion:^(BOOL finished) {
-                                                          [sourceView removeFromSuperview];
-                                                      }];
-    
-    TrMoveAnimation *moveInAnimation = [TrMoveAnimation animate:destinationView
-                                                       duration:duration
-                                                      direction:TrMoveAnimationDirectionIn
-                                                           edge:(edge + 2) % 4 // Opposide side
-                                                 toOrFromBounds:destinationView
-                                                          delay:delay
-                                                          curve:curve
-                                                     completion:nil];
-    
-    return [self animationGroupWithAnimations:@[moveOutAnimation, moveInAnimation]
-                                   completion:completion];
+    return pushTransition;
     
 }
 

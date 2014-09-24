@@ -30,6 +30,8 @@
 
 #import "TrLayerAnimation.h"
 
+@protocol TrAnimatable;
+
 /*!
  Speciefies the rotation axis.
  */

@@ -34,7 +34,7 @@
 
 #import "TrAnimation.h"
 
-#import "TrAnimationGroup.h"
+#import "TrAnimationGroup+Private.h"
 
 // Information class.
 @interface TrAnimationInfo : NSObject
@@ -65,6 +65,8 @@ char TrAnimationGroupObserverContext;
 @property (nonatomic) NSMutableArray *animations;
 @property (nonatomic) BOOL animationFinished;
 @property (nonatomic) BOOL beginsImmediately;
+
+@property (nonatomic,getter=isSetupComplete) BOOL setupComplete;
 
 @end
 
@@ -120,6 +122,12 @@ char TrAnimationGroupObserverContext;
     
 }
 
+#pragma mark - Subclassing
+
+// These methods are used by transition subclasses in order to setup when animation begins and tear down when animation completes.
+- (void)animationsCompleted:(BOOL)finished { }
+- (void)setupAnimations { }
+
 #pragma mark - Managing Animations
 
 - (void)addAnimation:(id<TrAnimation>)animation animateAfter:(id<TrAnimation>)animateAfter {
@@ -152,10 +160,22 @@ char TrAnimationGroupObserverContext;
     
 }
 
+- (void)addAnimations:(NSArray *)animations {
+    
+    for (id<TrAnimation> animation in animations)
+        [self addAnimation:animation];
+    
+}
+
 - (void)beginAnimation {
     
     /* Start by cancelling any scheduled calls */
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(beginAnimation) object:nil];
+    
+    if (!self.isSetupComplete) {
+        [self setupAnimations];
+        self.setupComplete = YES;
+    }
     
     if ([self.animations count] > 0) {
         
@@ -167,6 +187,8 @@ char TrAnimationGroupObserverContext;
                 [a.animation beginAnimation];
         
     } else {
+        
+        [self animationsCompleted:self.animationFinished];
         
         if (self.completionBlock)
             self.completionBlock(self.animationFinished);
@@ -190,6 +212,8 @@ char TrAnimationGroupObserverContext;
         [[self.animations[0] animation] cancel];
     
 }
+
+#pragma mark - Internals
 
 #pragma mark - Properties
 
