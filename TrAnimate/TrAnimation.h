@@ -38,10 +38,10 @@
  The build-in animations and groups below conform to this protocol.
  
  - TrAnimationGroup
-   - TrAnimationConstruct
-   - TrFadeTransition
-   - TrPushTransition
-   - TrFlipTransition
+   - TrTransition
+     - TrFadeTransition
+     - TrPushTransition
+     - TrFlipTransition
  - TrLayerAnimation
    - TrOpacityAnimation
      - TrFadeAnimation
