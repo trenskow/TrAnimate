@@ -34,11 +34,6 @@
 
 @interface TrLayerAnimation (Private)
 
-@property (copy,nonatomic,readonly) TrCurve *curve;
-
-- (void)prepareAnimation:(TrBasicAnimation *)animation
-                usingKey:(NSString *)key;
-
 - (void)animationStarted;
 - (void)animationCompleted:(BOOL)finished;
 - (void)setupAnimations;

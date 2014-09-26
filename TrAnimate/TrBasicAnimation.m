@@ -28,31 +28,21 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrCurvedInterpolation.h"
+#import "TrInterpolation.h"
 #import "TrCurve.h"
 
 #import "TrBasicAnimation.h"
 
 @implementation TrBasicAnimation
 
-#pragma mark - Creating an Animation
-
-+ (instancetype)animationWithKeyPath:(NSString *)path {
-    
-    TrBasicAnimation* animation = [super animationWithKeyPath:path];
-    
-    if (animation)
-        animation.curve = [TrCurve linear];
-    
-    return animation;
-    
-}
-
 #pragma mark - Private Methods
 
 - (void)applyInterpolationIfSetupComplete {
     
-    if (self.duration && self.interpolation && self.fromValue && self.toValue) {
+    if (self.duration && self.fromValue && self.toValue) {
+        
+        TrCurve *useCurve = (self.curve ?: [TrCurve linear]);
+        TrInterpolation *useInterpolation = (self.interpolation ?: [TrInterpolation new]);
         
         NSMutableArray *keyTimes = [[NSMutableArray alloc] init];
         NSMutableArray *values = [[NSMutableArray alloc] init];
@@ -60,9 +50,9 @@
         for (NSTimeInterval t = .0 ; t <= 1.0 ; t += 1.0 / (60.0 * (self.duration / self.speed))) {
             
             [keyTimes addObject:@(t)];
-            [values addObject:[_interpolation interpolateFromValue:self.fromValue
-                                                           toValue:self.toValue
-                                                          position:t]];
+            [values addObject:[useInterpolation interpolateFromValue:self.fromValue
+                                                             toValue:self.toValue
+                                                          atPosition:[useCurve transform:t]]];
             
         }
         
@@ -92,22 +82,6 @@
     
 }
 
-- (TrCurve *)curve {
-    
-    if ([_interpolation isKindOfClass:[TrCurvedInterpolation class]])
-        return ((TrCurvedInterpolation *)_interpolation).curve;
-    
-    return nil;
-    
-}
-
-- (void)setCurve:(TrCurve *)curve {
-    
-    _interpolation = [TrCurvedInterpolation interpolationWithCurve:curve];
-    
-    [self applyInterpolationIfSetupComplete];
-    
-}
 
 - (void)setFromValue:(id<TrInterpolatable>)fromValue {
     

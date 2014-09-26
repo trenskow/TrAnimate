@@ -30,14 +30,39 @@
 
 @import Foundation;
 
-#include "TrInterpolatable.h"
+@class TrCurve;
+@protocol TrInterpolatable;
 
+/*!
+ The `TrInterpolation` class provides interpolation between two values. Currently `TrLayerAnimation` - and it's subclasses - and `TrDirectAnimation` supports this - see `TrInterpolatableAnimation`.
+ 
+ ## Custom Interpolation
+ 
+ Create an interpolation with a block or subclass it and override the `interpolateFromValue:toValue:atPosition:` method to provide custom interpolation.
+ 
+ */
 @interface TrInterpolation : NSObject <NSCopying>
 
-+ (instancetype)interpolationWithBlock:(id<TrInterpolatable> (^)(id<TrInterpolatable> fromValue, id<TrInterpolatable> toValue, double position))block;
+/*!
+ Creates and returns a `TrInterpolation` object with a block that is capable of interpolating two values.
+ 
+ @param block The block that is capable of interpolating two values.
+ 
+ @return An `TrInterpolation` object.
+ */
++ (instancetype)interpolationWithBlock:(id (^)(id fromValue, id toValue, double position))block;
 
-- (id<TrInterpolatable>)interpolateFromValue:(id<TrInterpolatable>)fromValue
-                                     toValue:(id<TrInterpolatable>)toValue
-                                    position:(double)position;
+/*!
+ Interpolate two values at a given position.
+ 
+ @param fromValue The value to interpolate from.
+ @param toValue   The value to interpolate to.
+ @param position  The position of the interpolation.
+ 
+ @return An interpolated value.
+ */
+- (id)interpolateFromValue:(id)fromValue
+                   toValue:(id)toValue
+                atPosition:(double)position;
 
 @end

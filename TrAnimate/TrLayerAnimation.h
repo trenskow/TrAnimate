@@ -30,7 +30,7 @@
 
 @import QuartzCore;
 
-#import "TrAnimation.h"
+#import "TrInterpolatableAnimation.h"
 
 @protocol TrInterpolatable;
 @class TrInterpolation;
@@ -39,7 +39,7 @@
 /*!
  The `TrLayerAnimation` provides animation on any animatable property of CALayer. Use this animation if you need to do custom animations on a layer that is not directly implemented in TrAnimate as an explicit animation.
  */
-@interface TrLayerAnimation : NSObject <TrAnimation>
+@interface TrLayerAnimation : NSObject <TrInterpolatableAnimation>
 
 /// -----------------------------
 /// @name Actions and Information
@@ -91,12 +91,6 @@
  The value to animate to.
  */
 @property (nonatomic,copy,readonly) id<TrInterpolatable> toValue;
-
-/*!
- The interpolation used. This is by default the direct interpolation between `fromValue` and `toValue` with curvature applied.
- @discussion Use it to provide custom interpolation instead of a simple curvature.
- */
-@property (nonatomic,copy) TrInterpolation *interpolation;
 
 /// ------------------------
 /// @name Creating Animation

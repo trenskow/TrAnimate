@@ -144,16 +144,19 @@ static NSString *layerKeyPathForAxis(TrRotateAnimationAxis axis) {
                                                                       delay:self.applyDelay
                                                                   fromAngle:.0
                                                                     toAngle:.0
-                                                                       axis:axis];
+                                                                       axis:axis
+                                                                      curve:self.applyCurve];
     
     // We use a custom interpolation to ensure rotation is in correct direction. */
     toViewRotationAnimation.interpolation = [TrInterpolation interpolationWithBlock:^id<TrInterpolatable>(id<TrInterpolatable> fromValue, id<TrInterpolatable> toValue, double position) {
-        return @(M_PI + M_PI * [(self.applyCurve ?: [TrCurve linear]) transform:position] * delta);
+        return @(M_PI + M_PI * position * delta);
     }];
     
+    __weak TrCurve *curve = self.applyCurve;
+    
     TrCurve *halfwayCurve = [TrCurve curveWithBlock:^double(double t) {
-        if (self.applyCurve)
-            return ([self.applyCurve transform:t] >= .5 ? 1.0 : .0);
+        if (curve)
+            return ([curve transform:t] >= .5 ? 1.0 : .0);
         return (t >= .5 ? 1.0 : .0);
     }];
     

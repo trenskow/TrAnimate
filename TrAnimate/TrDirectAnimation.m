@@ -32,7 +32,8 @@
 
 #import "NSObject+TrAnimationsAddition.h"
 
-#import "TrCurvedInterpolation.h"
+#import "TrInterpolatable.h"
+#import "TrInterpolation.h"
 #import "TrCurve.h"
 
 #import "TrDirectAnimation.h"
@@ -80,8 +81,8 @@ const void *TrDirectAnimationKey;
         self.delay = delay;
         self.fromValue = fromValue;
         self.toValue = toValue;
-        self.interpolation = [TrCurvedInterpolation interpolationWithCurve:(curve ?: [TrCurve linear])];
-        self.completionBlock = [completion copy];
+        self.curve = (curve ?: [TrCurve linear]);
+        self.completionBlock = completion;
         
         [object associateAnimation:self];
         
@@ -119,10 +120,13 @@ const void *TrDirectAnimationKey;
         if (!self.fromValue)
             self.fromValue = [self.object valueForKeyPath:self.keyPath];
         
+        if (!self.interpolation)
+            self.interpolation = [TrInterpolation new];
+        
         [self.object setValue:[self.interpolation interpolateFromValue:self.fromValue
                                                                toValue:self.toValue
-                                                              position:position]
-               forKeyPath:self.keyPath];
+                                                            atPosition:[self.curve transform:position]]
+                   forKeyPath:self.keyPath];
         
     }
     
@@ -138,6 +142,8 @@ const void *TrDirectAnimationKey;
 @synthesize finished=_finished;
 @synthesize duration=_duration;
 @synthesize delay=_delay;
+@synthesize curve=_curve;
+@synthesize interpolation;
 
 #pragma mark - Public Methods
 

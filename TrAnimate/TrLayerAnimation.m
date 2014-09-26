@@ -32,10 +32,10 @@
 #import "CALayer+TrAnimateAdditions.h"
 
 #import "TrAnimation.h"
-#import "TrCurvedInterpolation.h"
 #import "TrCurve.h"
 #import "TrBasicAnimation.h"
 #import "TrAnimatable.h"
+#import "TrInterpolation.h"
 
 #import "TrLayerAnimation+Private.h"
 
@@ -54,7 +54,6 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 @property (nonatomic,getter = isAnimating) BOOL animating;
 @property (nonatomic,getter = isComplete) BOOL complete;
 @property (nonatomic,getter = isFinished) BOOL finished;
-@property (copy,nonatomic) TrCurve *curve;
 @property (copy,nonatomic) void(^completionBlock)(BOOL finished);
 @property (weak,readwrite,nonatomic) CALayer *layer;
 
@@ -122,19 +121,6 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     
 }
 
-- (void)prepareAnimation:(TrBasicAnimation *)animation usingKey:(NSString *)key {
-    
-    animation.duration = self.duration;
-    animation.interpolation = self.interpolation;
-    
-    [animation setValue:key forKey:TrLayerAnimationKey];
-    
-    animation.delegate = self;
-    
-    [self.layer addAnimation:animation forKey:key];
-    
-}
-
 - (void)beginAnimation {
     
     if (!self.isAnimating) {
@@ -154,14 +140,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     
 }
 
-- (void)animationStarted {
-    
-    [self.layer setValue:[self.interpolation interpolateFromValue:self.fromValue
-                                                          toValue:self.toValue
-                                                         position:1.0]
-              forKeyPath:self.keyPath];
-    
-}
+- (void)animationStarted { }
 
 - (void)animationCompleted:(BOOL)finished { }
 
@@ -172,13 +151,22 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     TrBasicAnimation *customAnimation = [TrBasicAnimation animationWithKeyPath:self.keyPath];
     customAnimation.fromValue = self.fromValue;
     customAnimation.toValue = self.toValue;
+    customAnimation.duration = self.duration;
+    customAnimation.curve = self.curve;
+    customAnimation.interpolation = self.interpolation;
     
-    [self.layer setValue:[self.interpolation interpolateFromValue:self.fromValue
-                                                          toValue:self.toValue
-                                                         position:1.0]
-              forKeyPath:self.keyPath];
+    TrInterpolation *useInterpolation = (self.interpolation ?: [TrInterpolation new]);
     
-    [self prepareAnimation:customAnimation usingKey:ANIMATION_KEY_FOR_KEYPATH(self.keyPath)];
+    [self.layer setValue:[useInterpolation interpolateFromValue:self.fromValue
+                                                        toValue:self.toValue
+                                                     atPosition:[self.curve transform:1.0]]
+                  forKey:self.keyPath];
+    
+    [customAnimation setValue:ANIMATION_KEY_FOR_KEYPATH(self.keyPath) forKey:TrLayerAnimationKey];
+    
+    customAnimation.delegate = self;
+    
+    [self.layer addAnimation:customAnimation forKey:ANIMATION_KEY_FOR_KEYPATH(self.keyPath)];
     
 }
 
@@ -225,20 +213,8 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
 #pragma mark - Properties
 
-- (TrCurve *)curve {
-    
-    if ([self.interpolation isKindOfClass:[TrCurvedInterpolation class]])
-        return ((TrCurvedInterpolation *)self.interpolation).curve;
-    
-    return nil;
-    
-}
-
-- (void)setCurve:(TrCurve *)curve {
-    
-    self.interpolation = [TrCurvedInterpolation interpolationWithCurve:(curve ?: [TrCurve linear])];
-    
-}
+@synthesize curve=_curve;
+@synthesize interpolation;
 
 #pragma mark - Actions and Information
 

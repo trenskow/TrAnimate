@@ -1,5 +1,5 @@
 //
-//  TrCurvedInterpolation.h
+//  TrInterpolatableAnimation.h
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
@@ -28,14 +28,39 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "TrInterpolation.h"
+#import "TrAnimation.h"
 
+@class TrInterpolation;
 @class TrCurve;
 
-@interface TrCurvedInterpolation : TrInterpolation
+/*!
+ The `TrInterpolatableAnimation` protocol defines properties that are common to all types of animations that support custom interpolation between two values.
+ 
+ You can use custom interpolation if the build-in interpolation is not satisfactory, or if you need to interpolate values that are not currently implemented by TrAnimate - see `TrInterpolatable`.
+ 
+ The `TrDirectAnimation` and `TrLayerAnimation` - and it's subclasses - currently conforms to this protocol.
+ 
+ ## Example
+ 
+ An example of custom interpolation is when you need to rotate in the opposite direction of what the build-in interpolation does. In this case you can provide the interpolation in order to achieve the desired result.
+ 
+ */
+@protocol TrInterpolatableAnimation <TrAnimation>
 
-+ (instancetype)interpolationWithCurve:(TrCurve *)curve;
+///------------------------------------
+/// @name Getting Animation Information
+///------------------------------------
 
-@property (nonatomic,copy,readonly) TrCurve *curve;
+/*!
+ Returns the curvature to be used in the interpolation. A linear curvature will be applied if this is nil (default).
+ */
+@property (nonatomic,copy) TrCurve *curve;
+
+/*!
+ Returns the interpolation used or nil if no custom interpolation has been provided.
+ 
+ @discussion Assign it with a `TrInterpolation` object to provide custom interpolation.
+ */
+@property (nonatomic,copy) TrInterpolation *interpolation;
 
 @end

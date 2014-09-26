@@ -29,12 +29,13 @@
 //
 
 #import "TrCurve.h"
+#import "TrInterpolatable.h"
 
 #import "TrInterpolation.h"
 
 @interface TrInterpolation ()
 
-@property (nonatomic,copy) id<TrInterpolatable> (^block)(id<TrInterpolatable>, id<TrInterpolatable>, double);
+@property (nonatomic,copy) id (^block)(id, id, double);
 
 @end
 
@@ -42,7 +43,7 @@
 
 #pragma mark - Setup / Tear down
 
-- (instancetype)initWithBlock:(id<TrInterpolatable> (^)(id<TrInterpolatable>, id<TrInterpolatable>, double))block {
+- (instancetype)initWithBlock:(id (^)(id, id, double))block {
     
     if ((self = [super init]))
         self.block = block;
@@ -53,7 +54,7 @@
 
 #pragma mark - Creating Interpolations
 
-+ (instancetype)interpolationWithBlock:(id<TrInterpolatable> (^)(id<TrInterpolatable>, id<TrInterpolatable>, double))block {
++ (instancetype)interpolationWithBlock:(id (^)(id, id, double))block {
     
     return [[self alloc] initWithBlock:block];
     
@@ -61,9 +62,17 @@
 
 #pragma mark - Interpolation
 
-- (id<TrInterpolatable>)interpolateFromValue:(id<TrInterpolatable>)fromValue toValue:(id<TrInterpolatable>)toValue position:(double)position {
+- (id)interpolateFromValue:(id)fromValue toValue:(id)toValue atPosition:(double)position {
     
-    return self.block(fromValue, toValue, position);
+    if (self.block)
+        return self.block(fromValue, toValue, position);
+    
+    if (![fromValue conformsToProtocol:@protocol(TrInterpolatable)])
+        [NSException raise:@"UnsupportedType" format:@"Class of kind %@ is not interpolatable by TrAnimate.", NSStringFromClass(fromValue)];
+    if (![toValue conformsToProtocol:@protocol(TrInterpolatable)])
+        [NSException raise:@"UnsupportedType" format:@"Class of kind %@ is not interpolatable by TrAnimate.", NSStringFromClass(toValue)];
+    
+    return [(id<TrInterpolatable>)fromValue interpolateWithValue:toValue atPosition:position];
     
 }
 

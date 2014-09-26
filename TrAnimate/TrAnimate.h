@@ -45,6 +45,7 @@ FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 #import "CALayer+TrAnimateAdditions.h"
 
 #import "TrInterpolation.h"
+#import "TrInterpolatableAnimation.h"
 #import "TrCurve.h"
 
 #import "TrAnimation.h"

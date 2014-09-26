@@ -45,23 +45,24 @@
 /// --------------------------
 
 /*!
- Returns the curve used by the animation. Default is a linear curve.
+ Returns the curvature of the animation. A linear curvature is applied if this is set to `nil` (default).
  */
-@property (copy,nonatomic) TrCurve *curve;
+@property (nonatomic,copy) TrCurve *curve;
 
 /*!
- The value at which the animation should begin.
+ Returns the value at which the animation should animate from. *Required*.
  */
-@property (nonatomic,strong) id<TrInterpolatable> fromValue;
+@property (nonatomic,copy) id<TrInterpolatable> fromValue;
 
 /*!
- The value at which the animation ends.
+ Returns the value at which the animation should animate to. *Required*.
  */
-@property (nonatomic,strong) id<TrInterpolatable> toValue;
+@property (nonatomic,copy) id<TrInterpolatable> toValue;
 
 /*!
- The interpolation used. This is by default the direct interpolation between `fromValue` and `toValue` with curvature applied.
- @discussion Use it to provide custom interpolation instead of a simple curvature.
+ Returns the interpolation.
+ 
+ @discussion Use it to provide custom interpolation.
  */
 @property (nonatomic,copy) TrInterpolation *interpolation;
 
