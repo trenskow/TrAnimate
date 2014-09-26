@@ -73,6 +73,3 @@ FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 #import "UIView+TrPushTransitionAdditions.h"
 #import "TrFlipTransition.h"
 #import "UIView+TrFlipTransitionAdditions.h"
-
-#import "TrAnimationConstruct.h"
-#import "UIView+TrAnimationConstructAdditions.h"
