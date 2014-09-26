@@ -31,14 +31,15 @@
 @import UIKit;
 
 #import "TrMoveAnimation.h"
-#import "TrAnimationGroup.h"
+
+#import "TrTransition.h"
 
 @class TrCurve;
 
 /*!
  The `TrPushTransition` pushes from one view to another - replacing the origin view in the view hierarchy.
  */
-@interface TrPushTransition : TrAnimationGroup
+@interface TrPushTransition : TrTransition
 
 /// -------------------------
 /// @name Creating Transition

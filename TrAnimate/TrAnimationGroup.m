@@ -34,7 +34,7 @@
 
 #import "TrAnimation.h"
 
-#import "TrAnimationGroup+Private.h"
+#import "TrAnimationGroup.h"
 
 // Information class.
 @interface TrAnimationInfo : NSObject
@@ -122,12 +122,6 @@ char TrAnimationGroupObserverContext;
     
 }
 
-#pragma mark - Subclassing
-
-// These methods are used by transition subclasses in order to setup when animation begins and tear down when animation completes.
-- (void)animationsCompleted:(BOOL)finished { }
-- (void)setupAnimations { }
-
 #pragma mark - Managing Animations
 
 - (void)addAnimation:(id<TrAnimation>)animation animateAfter:(id<TrAnimation>)animateAfter {
@@ -172,11 +166,6 @@ char TrAnimationGroupObserverContext;
     /* Start by cancelling any scheduled calls */
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(beginAnimation) object:nil];
     
-    if (!self.isSetupComplete) {
-        [self setupAnimations];
-        self.setupComplete = YES;
-    }
-    
     if ([self.animations count] > 0) {
         
         /* Create a copy in order to prevent mutation exceptions while enumerating */
@@ -188,13 +177,13 @@ char TrAnimationGroupObserverContext;
         
     } else {
         
-        [self animationsCompleted:self.animationFinished];
+        self.finished = self.animationFinished;
+        self.complete = YES;
+        
+        [self animationsCompleted:self.finished];
         
         if (self.completionBlock)
             self.completionBlock(self.animationFinished);
-        
-        self.finished = self.animationFinished;
-        self.complete = YES;
         
     }
     
@@ -213,7 +202,9 @@ char TrAnimationGroupObserverContext;
     
 }
 
-#pragma mark - Internals
+#pragma mark - Subclassing
+
+- (void)animationsCompleted:(BOOL)finished { }
 
 #pragma mark - Properties
 

@@ -30,7 +30,7 @@
 
 @import UIKit;
 
-#import "TrAnimationGroup.h"
+#import "TrTransition.h"
 
 @class TrCurve;
 
@@ -51,7 +51,7 @@ typedef NS_ENUM(NSInteger, TrFlipTransitionDirection) {
 /*!
  The `TrFlipTransition` flips one view to another - replacing the origin view in the view hierarchy.
  */
-@interface TrFlipTransition : TrAnimationGroup
+@interface TrFlipTransition : TrTransition
 
 /// -------------------------
 /// @name Creating Transition

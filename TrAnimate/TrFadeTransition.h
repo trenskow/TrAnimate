@@ -30,14 +30,14 @@
 
 @import UIKit;
 
-#import "TrAnimationGroup.h"
+#import "TrTransition.h"
 
 @class TrCurve;
 
 /*!
  The `TrFadeTransition` fades from one view to another - replacing the origin view in the view hierarchy.
  */
-@interface TrFadeTransition : TrAnimationGroup
+@interface TrFadeTransition : TrTransition
 
 /// -------------------------
 /// @name Creating Transition

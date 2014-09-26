@@ -36,43 +36,55 @@
 #import "TrRotateAnimation.h"
 #import "TrOpacityAnimation.h"
 
-#import "TrAnimationGroup+Private.h"
-
 #import "TrFlipTransition.h"
+
+// Some convinience methods for getting the axis and CALayer keyPaths of the flip.
+static TrRotateAnimationAxis rotationAxisForDirection(TrFlipTransitionDirection direction) {
+    if (direction == TrFlipTransitionDirectionDown || direction == TrFlipTransitionDirectionUp)
+        return TrRotateAnimationAxisX;
+    return TrRotateAnimationAxisY;
+}
+
+static NSString *layerKeyPathForAxis(TrRotateAnimationAxis axis) {
+    if (axis == TrRotateAnimationAxisX)
+        return @"transform.rotation.x";
+    return @"transform.rotation.y";
+}
 
 @interface TrFlipTransition ()
 
 @property (nonatomic) UIView *encapsulationView;
-@property (nonatomic,weak) UIView *sourceView;
-@property (nonatomic,weak) UIView *destinationView;
-@property (nonatomic) NSTimeInterval applyDuration;
 @property (nonatomic) TrFlipTransitionDirection direction;
-@property (nonatomic) NSTimeInterval applyDelay;
-@property (nonatomic,copy) TrCurve *curve;
 
 @end
 
 @implementation TrFlipTransition
 
+#pragma mark - Setup / Tear Down
+
+- (instancetype)initWithSourceView:(UIView *)sourceView
+                   destinationView:(UIView *)destinationView
+                          duration:(NSTimeInterval)duration
+                             delay:(NSTimeInterval)delay
+                             curve:(TrCurve *)curve
+                         direction:(TrFlipTransitionDirection)direction
+                        completion:(void (^)(BOOL))completion {
+    
+    self = [super initWithSourceView:sourceView
+                     destinationView:destinationView
+                            duration:duration
+                               delay:delay
+                               curve:curve
+                          completion:completion];
+    
+    if (self)
+        self.direction = direction;
+    
+    return self;
+    
+}
+
 #pragma mark - Internals
-
-- (TrRotateAnimationAxis)axisForDirection:(TrFlipTransitionDirection)direction {
-    
-    if (self.direction == TrFlipTransitionDirectionDown || self.direction == TrFlipTransitionDirectionUp)
-        return TrRotateAnimationAxisX;
-    
-    return TrRotateAnimationAxisY;
-    
-}
-
-- (NSString *)keyPathForAxis:(TrRotateAnimationAxis)axis {
-    
-    if (axis == TrRotateAnimationAxisX)
-        return @"transform.rotation.x";
-    
-    return @"transform.rotation.y";
-    
-}
 
 - (void)animationsCompleted:(BOOL)finished {
     
@@ -84,7 +96,7 @@
     
     self.sourceView.hidden = YES;
     self.sourceView.alpha = 1.0;
-    [self.sourceView.layer setValue:@(.0) forKeyPath:[self keyPathForAxis:[self axisForDirection:self.direction]]];
+    [self.sourceView.layer setValue:@(.0) forKeyPath:layerKeyPathForAxis(rotationAxisForDirection(self.direction))];
     
 }
 
@@ -113,9 +125,9 @@
     if (self.direction == TrFlipTransitionDirectionDown || self.direction == TrFlipTransitionDirectionRight)
         delta = -1.0;
     
-    TrRotateAnimationAxis axis = [self axisForDirection:self.direction];
+    TrRotateAnimationAxis axis = rotationAxisForDirection(self.direction);
     
-    [self.destinationView.layer setValue:@(M_PI * delta) forKey:[self keyPathForAxis:axis]];
+    [self.destinationView.layer setValue:@(M_PI * delta) forKey:layerKeyPathForAxis(axis)];
     
     TrRotateAnimation *fromViewRotationAnimation = [TrRotateAnimation animate:self.sourceView
                                                                      duration:self.applyDuration
@@ -123,7 +135,7 @@
                                                                     fromAngle:.0
                                                                       toAngle:M_PI * delta
                                                                          axis:axis
-                                                                        curve:self.curve
+                                                                        curve:self.applyCurve
                                                                    completion:nil];
     
     /* To and from values are ignored in our custom interpolation below. */
@@ -136,12 +148,12 @@
     
     // We use a custom interpolation to ensure rotation is in correct direction. */
     toViewRotationAnimation.interpolation = [TrInterpolation interpolationWithBlock:^id<TrInterpolatable>(id<TrInterpolatable> fromValue, id<TrInterpolatable> toValue, double position) {
-        return @(M_PI + M_PI * [(self.curve ?: [TrCurve linear]) transform:position] * delta);
+        return @(M_PI + M_PI * [(self.applyCurve ?: [TrCurve linear]) transform:position] * delta);
     }];
     
     TrCurve *halfwayCurve = [TrCurve curveWithBlock:^double(double t) {
-        if (self.curve)
-            return ([self.curve transform:t] >= .5 ? 1.0 : .0);
+        if (self.applyCurve)
+            return ([self.applyCurve transform:t] >= .5 ? 1.0 : .0);
         return (t >= .5 ? 1.0 : .0);
     }];
     
@@ -166,15 +178,6 @@
     
 }
 
-#pragma mark - Properties
-
-- (void)setDelay:(NSTimeInterval)delay {
-    
-    [super setDelay:delay];
-    self.applyDelay = delay;
-    
-}
-
 #pragma mark - Creating Transition
 
 + (instancetype)transitionFrom:(UIView *)sourceView
@@ -188,16 +191,13 @@
     if (!sourceView.superview)
         [NSException raise:@"NotInViewHierarchy" format:@"View sourceView must be added to a view heirarchy."];
     
-    TrFlipTransition *flipTransition = [self animationGroupWithCompletion:completion];
-    
-    flipTransition.sourceView = sourceView;
-    flipTransition.destinationView = destinationView;
-    flipTransition.applyDuration = duration;
-    flipTransition.direction = direction;
-    flipTransition.applyDelay = delay;
-    flipTransition.curve = curve;
-    
-    return flipTransition;
+    return [[self alloc] initWithSourceView:sourceView
+                            destinationView:destinationView
+                                   duration:duration
+                                      delay:delay
+                                      curve:curve
+                                  direction:direction
+                                 completion:completion];
     
 }
 

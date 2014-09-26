@@ -31,19 +31,8 @@
 #import "UIView+TrAnimateAdditions.h"
 
 #import "TrFadeAnimation.h"
-#import "TrAnimationGroup+Private.h"
 
 #import "TrFadeTransition.h"
-
-@interface TrFadeTransition ()
-
-@property (nonatomic,weak) UIView *sourceView;
-@property (nonatomic,weak) UIView *destinationView;
-@property (nonatomic) NSTimeInterval applyDuration;
-@property (nonatomic) NSTimeInterval applyDelay;
-@property (nonatomic,copy) TrCurve *curve;
-
-@end
 
 @implementation TrFadeTransition
 
@@ -68,24 +57,15 @@
                                            duration:self.applyDuration
                                               delay:self.applyDelay
                                           direction:TrFadeAnimationDirectionOut
-                                              curve:self.curve
+                                              curve:self.applyCurve
                                          completion:nil]];
     
     [self addAnimation:[TrFadeAnimation animate:self.destinationView
                                                  duration:self.applyDuration
                                                     delay:self.applyDelay
                                                 direction:TrFadeAnimationDirectionIn
-                                                    curve:self.curve
+                                                    curve:self.applyCurve
                                                completion:nil]];
-    
-}
-
-#pragma mark - Properties
-
-- (void)setDelay:(NSTimeInterval)delay {
-    
-    [super setDelay:delay];
-    self.applyDelay = delay;
     
 }
 
@@ -101,15 +81,12 @@
     if (!sourceView.superview)
         [NSException raise:@"NotInViewHierarchy" format:@"View sourceView must be added to a view heirarchy."];
     
-    TrFadeTransition *fadeTransition = [self animationGroupWithCompletion:completion];
-    
-    fadeTransition.sourceView = sourceView;
-    fadeTransition.destinationView = destinationView;
-    fadeTransition.applyDuration = duration;
-    fadeTransition.applyDelay = delay;
-    fadeTransition.curve = curve;
-    
-    return fadeTransition;
+    return [[self alloc] initWithSourceView:sourceView
+                            destinationView:destinationView
+                                   duration:duration
+                                      delay:delay
+                                      curve:curve
+                                 completion:completion];
     
 }
 

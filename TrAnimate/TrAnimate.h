@@ -67,6 +67,7 @@ FOUNDATION_EXPORT const unsigned char TrAnimateVersionString[];
 
 #import "TrAnimationGroup.h"
 
+#import "TrTransition.h"
 #import "TrFadeTransition.h"
 #import "UIView+TrFadeTransitionAdditions.h"
 #import "TrPushTransition.h"

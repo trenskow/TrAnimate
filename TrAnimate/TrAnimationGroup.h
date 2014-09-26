@@ -139,4 +139,13 @@
  */
 @property (nonatomic,copy) void (^completionBlock)(BOOL finished);
 
+/*!
+ Notifies the animation group that all animations are complete.
+ 
+ @param finished This value is set the `YES` if all animations was finished.
+ 
+ @discussion You can override this method in order to do additional work when the animation group has completed it's animations.
+ */
+- (void)animationsCompleted:(BOOL)finished;
+
 @end
