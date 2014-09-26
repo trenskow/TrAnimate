@@ -82,6 +82,13 @@
     
 }
 
+- (void)setCurve:(TrCurve *)curve {
+    
+    _curve = curve;
+    
+    [self applyInterpolationIfSetupComplete];
+    
+}
 
 - (void)setFromValue:(id<TrInterpolatable>)fromValue {
     
