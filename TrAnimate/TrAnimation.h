@@ -83,7 +83,7 @@
 
 /*!
  Returns the delay before the animation will begin.
- @discussion This value is only settable prior to animation start. Setting it after will raise an exception.
+ @discussion Setting this value after animation has begun will raise an exception.
  */
 @property (nonatomic) NSTimeInterval delay;
 
