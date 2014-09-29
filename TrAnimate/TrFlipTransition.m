@@ -210,7 +210,7 @@ static NSString *layerKeyPathForAxis(TrRotateAnimationAxis axis) {
                     completion:(void (^)(BOOL finished))completion {
     
     if (!sourceView.superview)
-        [NSException raise:@"NotInViewHierarchy" format:@"View sourceView must be added to a view heirarchy."];
+        [NSException raise:@"NotInViewHierarchyException" format:@"View sourceView must be added to a view heirarchy."];
     
     return [[self alloc] initWithSourceView:sourceView
                             destinationView:destinationView

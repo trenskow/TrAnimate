@@ -44,7 +44,7 @@
                      completion:(void (^)(BOOL finished))completion {
     
     if (![value conformsToProtocol:@protocol(TrInterpolatable)])
-        [NSException raise:@"NonSupportedObject" format:@"Cannot interpolate object of type %@", NSStringFromClass([value class])];
+        [NSException raise:@"NonSupportedObjectException" format:@"Cannot interpolate object of type %@", NSStringFromClass([value class])];
     
     return [TrDirectAnimation animate:self
                              duration:duration

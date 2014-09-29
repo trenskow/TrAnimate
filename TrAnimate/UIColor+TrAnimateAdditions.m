@@ -34,7 +34,7 @@
 - (id<TrInterpolatable>)interpolateWithValue:(id<TrInterpolatable>)value atPosition:(double)position {
     
     if (![(id)value isKindOfClass:[UIColor class]])
-        [NSException raise:@"InvalidInterpolatableType" format:@"UIColor instances can only interpolate with other instances of UIColor."];
+        [NSException raise:@"InvalidInterpolatableTypeException" format:@"UIColor instances can only interpolate with other instances of UIColor."];
     
     UIColor *val1 = self;
     UIColor *val2 = (UIColor *)value;

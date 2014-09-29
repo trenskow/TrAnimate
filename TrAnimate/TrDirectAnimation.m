@@ -145,6 +145,15 @@ const void *TrDirectAnimationKey;
 @synthesize curve=_curve;
 @synthesize interpolation;
 
+- (void)setDelay:(NSTimeInterval)delay {
+    
+    if (self.isAnimating)
+        [NSException raise:@"AnimationBegunException" format:@"Cannot set delay after animation has begun."];
+    
+    _delay = delay;
+    
+}
+
 #pragma mark - Public Methods
 
 - (void)beginAnimation {

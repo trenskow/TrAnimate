@@ -72,9 +72,9 @@
     
     // Make sure fromValue and toValue conforms to TrInterpolatable.
     if (![fromValue conformsToProtocol:@protocol(TrInterpolatable)])
-        [NSException raise:@"UnsupportedType" format:@"Class of kind %@ is not interpolatable by TrAnimate.", NSStringFromClass(fromValue)];
+        [NSException raise:@"NoninterpolatableTypeException" format:@"Class of kind %@ is not interpolatable by TrAnimate.", NSStringFromClass(fromValue)];
     if (![toValue conformsToProtocol:@protocol(TrInterpolatable)])
-        [NSException raise:@"UnsupportedType" format:@"Class of kind %@ is not interpolatable by TrAnimate.", NSStringFromClass(toValue)];
+        [NSException raise:@"NoninterpolatableTypeException" format:@"Class of kind %@ is not interpolatable by TrAnimate.", NSStringFromClass(toValue)];
     
     // Interplate and return.
     return [(id<TrInterpolatable>)fromValue interpolateWithValue:toValue atPosition:position];
