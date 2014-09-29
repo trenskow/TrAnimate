@@ -64,14 +64,19 @@
 
 - (id)interpolateFromValue:(id)fromValue toValue:(id)toValue atPosition:(double)position {
     
+    // If we have a block, we will delegate the interpolation to that.
     if (self.block)
         return self.block(fromValue, toValue, position);
     
+    // If no block is provided we will fall back to default interpolation.
+    
+    // Make sure fromValue and toValue conforms to TrInterpolatable.
     if (![fromValue conformsToProtocol:@protocol(TrInterpolatable)])
         [NSException raise:@"UnsupportedType" format:@"Class of kind %@ is not interpolatable by TrAnimate.", NSStringFromClass(fromValue)];
     if (![toValue conformsToProtocol:@protocol(TrInterpolatable)])
         [NSException raise:@"UnsupportedType" format:@"Class of kind %@ is not interpolatable by TrAnimate.", NSStringFromClass(toValue)];
     
+    // Interplate and return.
     return [(id<TrInterpolatable>)fromValue interpolateWithValue:toValue atPosition:position];
     
 }

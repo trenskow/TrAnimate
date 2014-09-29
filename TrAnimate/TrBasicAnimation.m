@@ -39,14 +39,17 @@
 
 - (void)applyInterpolationIfSetupComplete {
     
+    // If all required properties are provided
     if (self.duration && self.fromValue && self.toValue) {
         
+        // Curvature and interpolation to use.
         TrCurve *useCurve = (self.curve ?: [TrCurve linear]);
         TrInterpolation *useInterpolation = (self.interpolation ?: [TrInterpolation new]);
         
         NSMutableArray *keyTimes = [[NSMutableArray alloc] init];
         NSMutableArray *values = [[NSMutableArray alloc] init];
         
+        // Add a keyframe for every frame in a 60 fps animation.
         for (NSTimeInterval t = .0 ; t <= 1.0 ; t += 1.0 / (60.0 * (self.duration / self.speed))) {
             
             [keyTimes addObject:@(t)];
@@ -56,6 +59,7 @@
             
         }
         
+        // Apply keyTimes and values.
         self.keyTimes = keyTimes;
         self.values = values;
         

@@ -88,47 +88,60 @@ static NSString *layerKeyPathForAxis(TrRotateAnimationAxis axis) {
 
 - (void)animationsCompleted:(BOOL)finished {
     
+    // Apply frame and add destination view to source view's original place in hierarchy.
     self.sourceView.frame = self.destinationView.frame = self.encapsulationView.frame;
     [self.encapsulationView.superview addSubview:self.destinationView];
     
+    // Remove source view and encapsulation view.
     [self.sourceView removeFromSuperview];
     [self.encapsulationView removeFromSuperview];
     
     self.sourceView.hidden = YES;
     self.sourceView.alpha = 1.0;
+    
+    // Reset source view rotation.
     [self.sourceView.layer setValue:@(.0) forKeyPath:layerKeyPathForAxis(rotationAxisForDirection(self.direction))];
     
 }
 
 - (void)setupAnimations {
     
+    // Create an encapsulation view that will contain the views doing animation.
     self.encapsulationView = [UIView new];
     self.encapsulationView.backgroundColor = [UIColor clearColor];
     self.encapsulationView.opaque = NO;
     self.encapsulationView.frame = self.sourceView.frame;
     
+    // Add encapsulation view to view hierarchy.
     [self.sourceView.superview addSubview:self.encapsulationView];
     
     self.sourceView.frame = self.destinationView.frame = self.encapsulationView.bounds;
     
+    // Hide destinationView.
     self.destinationView.alpha = .0;
     self.destinationView.hidden = NO;
     
+    // Add views to encapsulation view.
     [self.encapsulationView addSubview:self.sourceView];
     [self.encapsulationView addSubview:self.destinationView];
     
+    // Apply perspective.
     CATransform3D sublayerTransform = CATransform3DIdentity;
     sublayerTransform.m34 = 1.0 / -500.0;
     self.encapsulationView.layer.sublayerTransform = sublayerTransform;
     
+    // Adjust angle calculation according to direction.
     CGFloat delta = 1.0;
     if (self.direction == TrFlipTransitionDirectionDown || self.direction == TrFlipTransitionDirectionRight)
         delta = -1.0;
     
+    // Get the axis for the direction.
     TrRotateAnimationAxis axis = rotationAxisForDirection(self.direction);
     
+    // Rotate the destination view to it's initial position.
     [self.destinationView.layer setValue:@(M_PI * delta) forKey:layerKeyPathForAxis(axis)];
     
+    // Source view rotation animation.
     TrRotateAnimation *fromViewRotationAnimation = [TrRotateAnimation animate:self.sourceView
                                                                      duration:self.applyDuration
                                                                         delay:self.applyDelay
@@ -138,7 +151,8 @@ static NSString *layerKeyPathForAxis(TrRotateAnimationAxis axis) {
                                                                         curve:self.applyCurve
                                                                    completion:nil];
     
-    /* To and from values are ignored in our custom interpolation below. */
+    // Destination view rotation animation.
+    // To and from values are ignored in our custom interpolation below.
     TrRotateAnimation *toViewRotationAnimation = [TrRotateAnimation animate:self.destinationView
                                                                    duration:self.applyDuration
                                                                       delay:self.applyDelay
@@ -154,6 +168,9 @@ static NSString *layerKeyPathForAxis(TrRotateAnimationAxis axis) {
     
     __weak TrCurve *curve = self.applyCurve;
     
+    // We create a custom curvature returns 0.0 when t is below 0.5 - otherwise 1.0.
+    // Applied to an opacity animation in order to hide the source view and show the destination view
+    // when the rotation animation is halfway.
     TrCurve *halfwayCurve = [TrCurve curveWithBlock:^double(double t) {
         if (curve)
             return ([curve transform:t] >= .5 ? 1.0 : .0);
@@ -174,6 +191,7 @@ static NSString *layerKeyPathForAxis(TrRotateAnimationAxis axis) {
                                                                    toOpacity:1.0
                                                                        curve:halfwayCurve];
     
+    // Add animations to group.
     [self addAnimations:@[fromViewRotationAnimation,
                           toViewRotationAnimation,
                           fromViewOpacityAnimation,
