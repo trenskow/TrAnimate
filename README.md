@@ -122,7 +122,7 @@ See the [TrAnimate API reference](http://cocoadocs.org/docsets/TrAnimate/) or th
 
 #### Custom Animations
 
-TrAnimate supports custom animation by either subclassing existing animations - or creating objects that implements the `TrAnimatable` protocol.
+TrAnimate supports custom animation by either subclassing existing animations - or creating objects that implements the `TrAnimation` protocol.
 
 #### Curves
 
