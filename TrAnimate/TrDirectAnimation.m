@@ -179,7 +179,7 @@ const void *TrDirectAnimationKey;
     
 }
 
-- (void)cancel {
+- (void)cancelAnimation {
     
     if (self.displayLink)
         [self endAnimation:NO];
@@ -203,7 +203,7 @@ const void *TrDirectAnimationKey;
     
     TrDirectAnimation *animation;
     while ((animation = [self animationOn:object keyPath:keyPath]) != nil)
-        [animation cancel];
+        [animation cancelAnimation];
     
 }
 

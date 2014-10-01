@@ -170,7 +170,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     
 }
 
-- (void)cancel {
+- (void)cancelAnimation {
     
     // Animation has not yet begun
     if (!self.isAnimating && !self.isComplete) {
@@ -220,7 +220,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
 + (void)cancelAnimationOn:(CALayer *)layer withKeyPath:(NSString *)keyPath {
     
-    [[self animationOn:layer withKeyPath:keyPath] cancel];
+    [[self animationOn:layer withKeyPath:keyPath] cancelAnimation];
     
 }
 

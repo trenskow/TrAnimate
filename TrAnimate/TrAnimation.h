@@ -104,6 +104,6 @@
 /*!
  Tells the receiver to cancel the animation. The animating content will stay at it's current position in animation - and the completion handler will be invoked.
  */
-- (void)cancel;
+- (void)cancelAnimation;
 
 @end

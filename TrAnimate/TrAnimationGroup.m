@@ -195,10 +195,10 @@ char TrAnimationGroupObserverContext;
     
 }
 
-- (void)cancel {
+- (void)cancelAnimation {
     
     while ([self.animations count] > 0)
-        [[self.animations[0] animation] cancel];
+        [[self.animations[0] animation] cancelAnimation];
     
 }
 
