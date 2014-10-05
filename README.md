@@ -34,7 +34,7 @@ Now you can import TrAnimate as a module in your source code.
 
 ##### Using the Umbrella Header (Xcode 5/iOS 7 and below)
 
-If you're on Xcode 5 and/or iOS 7 and below, you need to use static linking. You do that by adding `TrAnimate Static` to your application's *Target Dependencies*. Secondly you need to add `libTrAnimate Static.a` to the *Link Binary with Libraries* secton of your application.
+If you're on Xcode 5 and/or iOS 7 and below, you need to use static linking. You do that by adding `TrAnimate Static` to your application's *Target Dependencies*. Secondly you need to add `libTrAnimate Static.a` to the *Link Binary with Libraries* section of your application.
 
 Now you can import TrAnimate's umbrella header in your source code.
 
@@ -44,7 +44,7 @@ Now you can import TrAnimate's umbrella header in your source code.
 
 ### Introduction
 
-TrAnimate uses a set of classes in order to acheive animations. Instead of the Core Animation and UIKit's way of doing animations - where you specify which properties you want to animate - TrAnimate uses task-oriented animations. Meaning if you want to fade in a `UIView` or `CALayer` you use the `TrFadeAnimation` class.
+TrAnimate uses a set of classes in order to achieve animations. Instead of the Core Animation and UIKit's way of doing animations - where you specify which properties you want to animate - TrAnimate uses task-oriented animations. Meaning if you want to fade in a `UIView` or `CALayer` you use the `TrFadeAnimation` class.
 
 The same way goes, if you want a `UIView` to move in from - as an example - outside the screen bounds, you would want to use the `TrMoveAnimation` - which is capable of either moving a `UIView` both in and out.
 
@@ -54,9 +54,9 @@ In TrAnimate there are *animations* and *transitions*.
 
 Animations animate a single `UIView` - as an example with the `TrFadeAnimation`.
 
-Transitions animate from one `UIView` to another - replacing the original view in the view hierarchy. An example of this is the `TrFlipTransition` which flips one `UIView` to another. Transitions are a kind of prepacked group of animations - which execute in a predefined order - see more below.
+Transitions animate from one `UIView` to another - replacing the original view in the view hierarchy. An example of this is the `TrFlipTransition` which flips one `UIView` to another. Transitions are a kind of pre-packed group of animations - which execute in a predefined order - see more below.
 
-For a list of avalable animations and transition - and for detailed descriptions about them - please refer to the [API Reference](http://cocoadocs.org/docsets/TrAnimate/) or the [*TrAnimate Programming Guide*](https://github.com/trenskow/TrAnimate/wiki/).
+For a list of available animations and transition - and for detailed descriptions about them - please refer to the [API Reference](http://cocoadocs.org/docsets/TrAnimate/) or the [*TrAnimate Programming Guide*](https://github.com/trenskow/TrAnimate/wiki/).
 
 For more information about groups - see the [*TrAnimate Programming Guide*](http://cocoadocs.org/docsets/TrAnimate/).
 
@@ -140,7 +140,7 @@ In TrAnimate there are completion handlers everywhere. Any animation, any transi
 
 #### Groups
 
-*Groups* are a very powerful tool of TrAnimate. It allows you to group animations and do daisychaining. It is actually quite useful when dealing with complex animations and you want to move your animation code outside your logic - for instance your view controllers.
+*Groups* are a very powerful tool of TrAnimate. It allows you to group animations and do daisy-chaining. It is actually quite useful when dealing with complex animations and you want to move your animation code outside your logic - for instance your view controllers.
 
 All build-in transitions are implemented using groups.
 
@@ -162,7 +162,7 @@ The API reference is available at [CocoaDocs](http://cocoadocs.org/docsets/TrAni
 
 ##### In Xcode
 
-You can also get the library's reference documentation right at your findertip, by compiling the documentation directly from within Xcode. If you have [appledoc](http://gentlebytes.com/appledoc/) installed on your system, you can build the *Documentation* target of TrAnimate which will then compile and install the documentation right into Xcode's *Documentation and API Reference* window.
+You can also get the library's reference documentation right at your fingertip, by compiling the documentation directly from within Xcode. If you have [appledoc](http://gentlebytes.com/appledoc/) installed on your system, you can build the *Documentation* target of TrAnimate which will then compile and install the documentation right into Xcode's *Documentation and API Reference* window.
 
 #### TrAnimate Programming Guide
 
@@ -170,7 +170,7 @@ A programming guide is available at TrAnimate's [Github wiki](https://github.com
 
 ## About TrAnimate
 
-TrAnimate was created out of the need to create complex animations - without the constant need of also using complex Core Animation setups. The libary was also build to accomodate the lack of available curves provided by Core Animation.
+TrAnimate was created out of the need to create complex animations - without the constant need of also using complex Core Animation setups. The library was also build to accommodate the lack of available curves provided by Core Animation.
 
 ### State of Development
 
@@ -178,7 +178,7 @@ TrAnimate is not complete - but it is stable and the API of implemented features
 
 ### Contributing
 
-Contributions are hightly appreciated. Especially for specialized animations. If you have any bug fixes, changes or additions - that you wish to get merged into the library - please send a pull request at *[Github](http://github.com/)*.
+Contributions are highly appreciated. Especially for specialized animations. If you have any bug fixes, changes or additions - that you wish to get merged into the library - please send a pull request at *[Github](http://github.com/)*.
 
 Please make sure your code is proper documented - see the headers of TrAnimate for a guideline of the level of documentation needed.
 
