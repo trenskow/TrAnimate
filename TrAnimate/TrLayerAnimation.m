@@ -140,36 +140,6 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     
 }
 
-- (void)animationStarted { }
-
-- (void)animationCompleted:(BOOL)finished { }
-
-- (void)setupAnimations {
-    
-    self.fromValue = (self.fromValue ?: [self.layer valueForKeyPath:self.keyPath]);
-    
-    TrBasicAnimation *customAnimation = [TrBasicAnimation animationWithKeyPath:self.keyPath];
-    customAnimation.fromValue = self.fromValue;
-    customAnimation.toValue = self.toValue;
-    customAnimation.duration = self.duration;
-    customAnimation.curve = self.curve;
-    customAnimation.interpolation = self.interpolation;
-    
-    TrInterpolation *useInterpolation = (self.interpolation ?: [TrInterpolation new]);
-    
-    [self.layer setValue:[useInterpolation interpolateFromValue:self.fromValue
-                                                        toValue:self.toValue
-                                                     atPosition:[self.curve transform:1.0]]
-                  forKey:self.keyPath];
-    
-    [customAnimation setValue:ANIMATION_KEY_FOR_KEYPATH(self.keyPath) forKey:TrLayerAnimationKey];
-    
-    customAnimation.delegate = self;
-    
-    [self.layer addAnimation:customAnimation forKey:ANIMATION_KEY_FOR_KEYPATH(self.keyPath)];
-    
-}
-
 - (void)cancelAnimation {
     
     // Animation has not yet begun
@@ -197,6 +167,36 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
         }
         
     }
+    
+}
+
+- (void)animationStarted { }
+
+- (void)animationCompleted:(BOOL)finished { }
+
+- (void)setupAnimations {
+    
+    self.fromValue = (self.fromValue ?: [self.layer valueForKeyPath:self.keyPath]);
+    
+    TrBasicAnimation *customAnimation = [TrBasicAnimation animationWithKeyPath:self.keyPath];
+    customAnimation.fromValue = self.fromValue;
+    customAnimation.toValue = self.toValue;
+    customAnimation.duration = self.duration;
+    customAnimation.curve = self.curve;
+    customAnimation.interpolation = self.interpolation;
+    
+    TrInterpolation *useInterpolation = (self.interpolation ?: [TrInterpolation new]);
+    
+    [self.layer setValue:[useInterpolation interpolateFromValue:self.fromValue
+                                                        toValue:self.toValue
+                                                     atPosition:[self.curve transform:1.0]]
+                  forKey:self.keyPath];
+    
+    [customAnimation setValue:ANIMATION_KEY_FOR_KEYPATH(self.keyPath) forKey:TrLayerAnimationKey];
+    
+    customAnimation.delegate = self;
+    
+    [self.layer addAnimation:customAnimation forKey:ANIMATION_KEY_FOR_KEYPATH(self.keyPath)];
     
 }
 
