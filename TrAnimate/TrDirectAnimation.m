@@ -30,7 +30,7 @@
 
 @import UIKit;
 
-#import "NSObject+TrAnimationsAddition.h"
+#import "NSObject+TrAnimationAddition.h"
 
 #import "TrInterpolatable.h"
 #import "TrInterpolation.h"

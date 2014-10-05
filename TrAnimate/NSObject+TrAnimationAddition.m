@@ -1,5 +1,5 @@
 //
-//  NSObject+TrAnimationsAddition.m
+//  NSObject+TrAnimationAddition.m
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
@@ -30,11 +30,11 @@
 
 #import "NSObject+TrAnimateAdditions.h"
 
-#import "NSObject+TrAnimationsAddition.h"
+#import "NSObject+TrAnimationAddition.h"
 
 NSString *const NSObjectAnimationAssociationsKey = @"NSObjectAnimationAssociationsKey";
 
-@implementation NSObject (TrAnimationsAddition)
+@implementation NSObject (TrAnimationAddition)
 
 #pragma mark - Associated Animations
 

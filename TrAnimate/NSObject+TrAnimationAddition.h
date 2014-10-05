@@ -1,5 +1,5 @@
 //
-//  NSObject+TrAnimationsAddition.h
+//  NSObject+TrAnimationAddition.h
 //  TrAnimate
 //
 //  Copyright (c) 2013-2014, Kristian Trenskow
@@ -32,7 +32,7 @@
 
 @protocol TrAnimation;
 
-@interface NSObject (TrAnimationsAddition)
+@interface NSObject (TrAnimationAddition)
 
 @property (nonatomic,readonly) NSArray *associatedAnimations;
 

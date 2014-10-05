@@ -28,7 +28,7 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 //
 
-#import "NSObject+TrAnimationsAddition.h"
+#import "NSObject+TrAnimationAddition.h"
 #import "CALayer+TrAnimateAdditions.h"
 
 #import "TrAnimation.h"
