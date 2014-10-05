@@ -74,7 +74,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     
     if ((self = [super init])) {
         
-        [[self class] cancelAnimationOn:layer withKeyPath:keyPath];
+        [[self class] cancelAnimationOn:self.layer withKeyPath:self.keyPath];
         
         self.layer = layer;
         self.duration = duration;
@@ -98,28 +98,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
 @synthesize delay=_delay;
 
-#pragma mark - Internal
-
-- (void)animationDidStart:(TrBasicAnimation *)anim {
-    
-    [self animationStarted];
-    
-}
-
-- (void)animationDidStop:(TrBasicAnimation *)anim finished:(BOOL)flag {
-    
-    [self animationCompleted:flag];
-    
-    if (self.completionBlock)
-        self.completionBlock(flag);
-    
-    self.finished = flag;
-    self.complete = YES;
-    
-    /* Remove animation from view so it can be released */
-    [self.layer removeAnimationAssociation:self];
-    
-}
+#pragma mark - Public Methods
 
 - (void)beginAnimation {
     
@@ -167,6 +146,29 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
         }
         
     }
+    
+}
+
+#pragma mark - Internal
+
+- (void)animationDidStart:(TrBasicAnimation *)anim {
+    
+    [self animationStarted];
+    
+}
+
+- (void)animationDidStop:(TrBasicAnimation *)anim finished:(BOOL)flag {
+    
+    [self animationCompleted:flag];
+    
+    if (self.completionBlock)
+        self.completionBlock(flag);
+    
+    self.finished = flag;
+    self.complete = YES;
+    
+    /* Remove animation from view so it can be released */
+    [self.layer removeAnimationAssociation:self];
     
 }
 
