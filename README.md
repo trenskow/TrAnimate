@@ -1,6 +1,8 @@
 (A programming guide is currently being written)
 
 # TrAnimate iOS Animation Library
+[![Pod version](https://badge.fury.io/co/TrAnimate.svg)](http://badge.fury.io/co/TrAnimate)
+-
 
 TrAnimate is an iOS animation library designed to make it easy to create complex animations, without the need for using Core Animation.
 
