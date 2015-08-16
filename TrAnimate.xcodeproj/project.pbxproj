@@ -523,7 +523,7 @@
 		A11C784B178839720000B420 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "Kristian Trenskow";
 				TargetAttributes = {
 					A1076B68199D279D00E452CB = {
@@ -779,10 +779,6 @@
 		A11C7862178839720000B420 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7s,
-				);
 				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/TrAnimate.dst;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -797,10 +793,6 @@
 		A11C7863178839720000B420 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					"$(ARCHS_STANDARD)",
-					armv7s,
-				);
 				CLANG_ENABLE_MODULES = YES;
 				DSTROOT = /tmp/TrAnimate.dst;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
