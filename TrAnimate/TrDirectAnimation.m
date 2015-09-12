@@ -95,7 +95,7 @@ const void *TrDirectAnimationKey;
 
 #pragma mark - Internals
 
-- (void)endAnimation {
+- (void)endAnimation:(BOOL)animationFinished {
     
     [_displayLink invalidate];
     _displayLink = nil;
@@ -104,7 +104,7 @@ const void *TrDirectAnimationKey;
     self.finished = YES;
     
     if (_completionBlock)
-        _completionBlock(YES);
+        _completionBlock(animationFinished);
     
     objc_setAssociatedObject(self, &TrDirectAnimationKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
@@ -120,7 +120,7 @@ const void *TrDirectAnimationKey;
                forKeyPath:_keyPath];
     
     if (progress == 1.0)
-        [self endAnimation];
+        [self endAnimation:YES];
     
 }
 
@@ -154,6 +154,13 @@ const void *TrDirectAnimationKey;
 - (void)postponeAnimation {
     
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(beginAnimation) object:nil];
+    
+}
+
+- (void)cancelAnimation {
+    
+    if (_displayLink)
+        [self endAnimation:NO];
     
 }
 

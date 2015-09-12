@@ -180,6 +180,13 @@ char TrAnimationGroupObserverContext;
     
 }
 
+- (void)cancelAnimation {
+    
+    while ([_animations count] > 0)
+        [[[_animations firstObject] animation] cancelAnimation];
+    
+}
+
 #pragma mark - Properties
 
 - (NSTimeInterval)duration {
