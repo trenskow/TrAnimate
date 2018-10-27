@@ -50,7 +50,7 @@ char TrAnimationGroupObserverContext;
 }
 @property (nonatomic,getter = isAnimating) BOOL animating;
 @property (nonatomic,getter = isComplete) BOOL complete;
-@property (nonatomic,getter = hasFinished) BOOL finished;
+@property (nonatomic,getter = isFinished) BOOL finished;
 
 @end
 

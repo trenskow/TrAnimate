@@ -46,7 +46,7 @@ const void *TrAnimationLayerKey;
 
 NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
-@interface TrLayerAnimation ()
+@interface TrLayerAnimation () <CAAnimationDelegate>
 
 @property (nonatomic,copy) NSString *keyPath;
 @property (nonatomic,copy) id<TrInterpolatable> fromValue;
@@ -108,16 +108,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
 
 - (void)animationDidStop:(TrBasicAnimation *)anim finished:(BOOL)flag {
     
-    [self animationCompleted:flag];
-    
-    if (self.completionBlock)
-        self.completionBlock(flag);
-    
-    self.complete = YES;
-    self.finished = flag;
-    
-    /* Remove animation from view so it can be released */
-    objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self animationStopped:flag];
     
 }
 
@@ -178,7 +169,7 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
         if (![self.layer animationForKey:ANIMATION_KEY_FOR_KEYPATH(self.keyPath)]) {
             
             [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(setupAnimations) object:nil];
-            [self animationDidStop:nil finished:NO];
+            [self animationStopped:NO];
             
         } else { // Animation is in progress.
             
@@ -197,6 +188,21 @@ NSString *const TrLayerAnimationKey = @"TrAnimationKey";
     [self.layer setValue:[_fromValue interpolateWithValue:_toValue
                                                atPosition:[self.curve transform:1.0]]
               forKeyPath:_keyPath];
+    
+}
+
+- (void)animationStopped:(BOOL)flag {
+    
+    [self animationCompleted:flag];
+    
+    if (self.completionBlock)
+        self.completionBlock(flag);
+    
+    self.complete = YES;
+    self.finished = flag;
+    
+    /* Remove animation from view so it can be released */
+    objc_setAssociatedObject(self.layer, &TrAnimationLayerKey, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
 }
 
